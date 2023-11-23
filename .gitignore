@@ -1,0 +1,6 @@
+*.xmpi
+*.run.xml
+*.pdf
+*.bbl
+*.synctex.gz
+*.icm

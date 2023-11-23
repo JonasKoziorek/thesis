@@ -1,0 +1,101 @@
+% First of all, include a document class and options
+\documentclass[english,bachelor]{diploma}
+% There are some addtional packages
+\usepackage[autostyle=true]{csquotes} % enhanced support for quotation marks, support for biblatex package
+\usepackage[backend=biber, style=iso-numeric, alldates=iso]{biblatex} % bibliography
+\usepackage{dcolumn} % numeric column type
+\usepackage{subfig} % subtables and subfigures
+\usepackage[julia]{diplomalst}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% my own package imports/ I have to check at uni whether they are ok
+% \usepackage{fontspec}
+
+% my own commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Next, enter data for leading pages
+\ThesisAuthor{Jonáš Koziorek}
+
+\ThesisSupervisor{prof. RNDr. Marek Lampart, Ph.D.}
+
+\CzechThesisTitle{Algoritmická detekce intermitence type I}
+% \CzechThesisTitle{Studium dynamických systémů pomocí programovacího jazyku Julia}
+
+\EnglishThesisTitle{Algorithmic detection of type-I intermittency}
+% \EnglishThesisTitle{Study of dynamical systems using the Julia programming language}
+
+\SubmissionYear{2024}
+
+\ThesisAssignmentFileName{ThesisAssignment.pdf}
+
+\Acknowledgement{I would like to thank ... to be added}
+
+\CzechAbstract{Tohle je český abstrakt, zbytek odstavce je tvořen výplňovým textem. To be added.}
+
+\CzechKeywords{typografie; \LaTeX; bakalářská práce}
+
+\EnglishAbstract{This is English abstract. To be added.}
+\EnglishKeywords{typography; \LaTeX; bachelor thesis}
+
+\AddAcronym{DVD}{Digital Versatile Disc}
+\AddAcronym{TNT}{Trinitrotoluen}
+\AddAcronym{UML}{Unified Modeling Language}
+\AddAcronym{HTML}{Hyper Text Markup Language}
+\AddAcronym{TUG}{\TeX{} Users Group}
+
+% Bibliography resources for BibLaTeX
+\addbibresource{biblatex-examples.bib}
+\addbibresource{coffee.bib}
+\addbibresource{bibliography.bib}
+
+% New table column type for numeric values
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+
+
+% Beginning of the document
+\begin{document}
+
+% Leading pages printing
+\MakeTitlePages
+
+% Do theses contain any figures? If so, print the list of figures and then move to the next page.
+% If not, delete the next two macros.
+\listoffigures
+\clearpage
+
+% Do theses contain any tables? If so, print the list of table and then move to the next page.
+% If not, delete the next two macros.
+\listoftables
+\clearpage
+
+% Your text starts here...
+\input{Chapters/Introduction.tex}
+% \input{Chapters/HAVOK.tex}
+% \input{Chapters/Mathematical Background.tex}
+% \input{Chapters/SampleChapter2}
+% \input{Chapters/Models}
+% \input{Chapters/Type-I Intermittency.tex}
+\input{Chapters/RemarkOnSoftware.tex}
+\input{Chapters/Conclusion.tex}
+
+
+\printbibliography[heading=bibintoc]
+
+\appendix
+% \input{Chapters/Appendix_codes.tex}
+% \input{Chapters/Appendix_complex_figures.tex}
+
+
+% Appendix included directly in main LaTeX file. Not all attachments need to be in separate files.
+% \chapter{Long Source Code Listing}
+% \lstinputlisting[label=src:CppExternal,caption={Long C++ source code taken from external file}]{SourceCodes/ArraySortingAlgorithms.cpp}
+
+\end{document}

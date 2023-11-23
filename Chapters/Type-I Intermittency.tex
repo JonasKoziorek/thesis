@@ -1,0 +1,67 @@
+\chapter{Type I Intermittency}
+Intermittency is a very interesting phenomenon in the field of dynamical systems.
+The investigation of intermittency was initiated in 1980 by Pomeau and Manneville \cite{Pomeau1980}.
+They were trying to explain an intermittent phenomenon in the fluid dynamics of convective fluids.
+During this phenomenon, long periodic behaviour was abrupted by a chaotic burst as the experiment control parameter changed.
+Subsequently, Pomeau and Manneville found analogous behaviour in the Lorenz system \cite{Lorenz2004}.
+Through a numerical study of this system, they introduced the concept of intermittency and classified it into three categories. \cite{Pomeau1980}
+This chapter deals with type I intermittency.
+
+\section{Mathematical Motivation}
+
+Intermittency is a behavior when seemingly periodic phases in the evotion of a dynamical system are abrupted by chaotic bursts.
+Periodic phases are called laminar.
+Phases with chaotic bursts are called turbulent phases.
+This naming convention originated in fluid dynamics which motivated study of intermittency. \cite{Pomeau1980}
+\\
+In figure \ref{fig:intermittent_evolution_example} you can see an example of intermittency.
+In this case intermittency is clearly visible when looking at the evolution graph.
+Seemingly 2-periodic behavior which last for about 1000 iteration is interrupted by short chaotic bursts.
+These chaotic burst transform back into 2-periodic behavior.
+This pattern goes on.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1.0\textwidth]{Thesis/Figures/type_one_intermittency_example1.png}
+    \caption{Intermittency in evolution graph}
+    \label{fig:intermittent_evolution_example}
+\end{figure}
+
+Evolution graph \ref{fig:intermittent_evolution_example} exhibits type I intermittency which is related to \hyperref[def:saddle_node_bif]{saddle-node bifurcation}.
+The reason intermittency is born is illustrated in figure \ref{fig:intermittent_cobweb_example}.
+When dynamical system $f_P$ is about to undergo inverse saddle-node bifurcation as parameter $P$ changes, graph of $f_P$ is getting closer to identity function $g(x)=x$.
+Just before they touch small passage is formed between these two curves.
+If point $x_n$ gets mapped into this narrow passage, it takes a lot of iterations for it to get out of this passage again.
+The closer the curve of $f_P$ and identity function are the narrower the passage is and the longer it gets to iterate through it.
+An illustration of the iteration through narrow passage is in figure \ref{fig:intermittent_cobweb_example} plot B.
+This iteration corresponds to first laminar phase from figure \ref{fig:intermittent_evolution_example}.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1.0\textwidth]{Thesis/Figures/type_one_intermittency_example2.png}
+    \caption{Intermittency in cobweb diagram}
+    \label{fig:intermittent_cobweb_example}
+\end{figure}
+
+\section{Numerical Simulation}
+We propose that type I intermittency occurs when there is "breakpoint" in bifurcation diagram between chaotic behavior on the left and periodic behavior on the right.
+We haven't found literature to support this claim yet.
+However, our numerical simulations support this claim.
+Results are presented in figures \ref{fig:complex_pomeau_manneville}, \ref{fig:complex_logistic}, \ref{fig:complex_henon}, \ref{fig:complex_duffing}.
+In plots marked as D in each of these figures, the breakpoint in bifurcation diagram is shown.
+In plots marked as E in each of these figures, intermittent evolution near the breakpoint is shown.
+\par
+Since left side of the breakpoint is chaotic and right side is periodic, there must be a transition from chaos to stability.
+This transition is related to intermittency and narrow passage mentioned in figure \ref{fig:intermittent_cobweb_example}.
+(Claim) The breakpoint corresponds to the value of saddle-node bifurcation.
+We can call this breakpoint $\epsilon_{sn}$.
+The closer the parameter $\epsilon$ gets to breakpoint $\epsilon_{sn}$ the narrower the passage gets.
+Hence it takes more iterations to iterate through the passage.
+Hence laminar phases visible in the evolution graph get longer and longer as $\epsilon$ gets closer to $\epsilon_{sn}$.
+Hence $\epsilon \rightarrow \epsilon_{sn} \implies l_{avg} \rightarrow \infty$ where $l_{avg}$ is the average length of laminar phase.
+When $\epsilon = \epsilon_{sn}$ behavior is periodic.
+(End Of Claim)
+
+\section{Ambiguous Bifurcation Diagram}
+
+\endinput

@@ -1,0 +1,149 @@
+\chapter{Mathematical Background}
+In this chapter we introduce neccessary notions from theory of discrete dynamial systems needed in this thesis.
+For purposes of this text we provide only simplified definitions from standard theory of dynamical systems.
+
+\section{Discrete dynamical systems}
+
+\begin{definition} \textbf{(Discrete dynamical system)} \\
+    \label{def:discrete dynamical system}
+    $m$-dimensional discrete dynamical system is a map $f: (\mathbb{R}^{m}, P) \rightarrow (\mathbb{R}^{m}, P)$ where selected $P \in \mathbb{R}^j$ are parameters.
+\end{definition}
+
+\begin{remark}
+    In this text we work with one dimensional or two dimentional discrete dymical systems.
+    We will call simply call them 1D or 2D maps.
+    If dimension doesn't matter we will call such systems maps.
+\end{remark}
+
+\begin{remark}
+    We may shorten map notation by specifying parameters as subscript $f_P: \mathbb{R}^m \rightarrow \mathbb{R}^m$.
+    Map $f_P$ is equivalent to map $f$ in Definition \ref{def:discrete dynamical system}.
+\end{remark}
+
+\begin{definition} \textbf{($n$-th iteration)} \\
+    $n$-th iteration of map $f_P$ for initial condition $x_0$ and parameters $P$ is represented by difference equation
+    \begin{eqnarray}
+        x_{n+1}  & = & f_P(x_{n}) \\
+    \end{eqnarray}
+    We can shortly write
+    \begin{equation}
+        x_{n} = f_P(f_P(f_P(...f_P(x_0)))) = f^{n}_{P}(x_0) \nonumber
+    \end{equation}
+    Where $f^{n}_{P}(x_0)$ is $n$-th composition of f into itself. \\
+    We define $f^{0}_{P}(x_0) = x_0$.
+\end{definition}
+
+\begin{definition} \textbf{(Fixed point)} \\
+    \label{def:fixed point}
+    Point $x$ is called a fixed point of map $f_P$ if it holds $f_P(x) = x$.
+\end{definition}
+
+\begin{definition} (\textbf{Periodic point})\\
+    Point $x$ is called $n$-periodic if $f^{n}_P(x)=x$. Point $x$ is called eventually $n$-periodic if $(\exists m \in \mathbb{N}, m>0) (\forall i \geq m): f^{n+i}_P(x)=f^{i}_P(x)$.
+    Thus point $f^{i}_P(x)$ in $n$-periodic for some $i \geq m$.
+\end{definition}
+
+\begin{remark}
+    Notice that every fixed point x is also 1-periodic point.  
+\end{remark}
+
+\begin{theorem} (\textbf{Saddle-node bifurcation}) \\
+    \label{th:saddle_node_bif}
+    To be added.
+\end{theorem}
+
+\begin{definition} (\textbf{Evolution graph}) \\
+    Line graph with $n=1,2,3...$ on $x$-axis and corresponding iterates $f^{n}_P(x_0)$ on $y$-axis is called evolution graph or evolution of $f_{P}(x_0)$ for some parameters $P$ and initial condition $x_0$.
+\end{definition}
+
+\begin{remark}
+    Evolution graphs are useful for studying short term and long term behavior of studied map.
+    They cleanly show how initial condition is evolved.
+\end{remark}
+
+\begin{example}
+    In figure \ref{fig:evolution_graph_example} we present an example of evolution graph for logistic map. More information about logistic map will be presented in section \ref{subsec:logistic map}.
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[width=1.0\textwidth]{Thesis/Figures/logistic_map_timeseries_example.png}
+        \caption{Example of evolution graph}
+        \label{fig:evolution_graph_example}
+    \end{figure}
+\end{example}
+
+\begin{definition} (\textbf{Cobweb diagram}) \\
+    \label{def:cobweb}
+    For 1D maps we can construct so called cobweb diagram with following algorithm:
+    \begin{enumerate}
+        \item select map $f_P$ for some parameters $P$ and initial condition $x_0$ and starting point $f^{j}_P(x_0) = x_j$
+        \item select order of the algorith $m \in \mathbb{N}$
+        \item plot graph of $f^{m}_P(x)$ for all $x$ in selected range
+        \item plot identity function $g(x) = x$
+        \item set $i:=j$
+
+        \item plot line from point $(f^{i}_P(x_0), f^{i}_P(x_0))$ to point $(f^{i}_P(x_0), f^{i+m}_P(x_0))$ \label{item1}
+        \item plot line from point point $(f^{i}_P(x_0), f^{i+m}_P(x_0))$ to point $(f^{i+m}_P(x_0), f^{i+m}_P(x_0))$ \label{item2}
+        \item set $i:=i+m$ \label{item3}
+
+        \item repeat steps \ref{item1}-\ref{item3} as long as desired
+    \end{enumerate}
+
+\end{definition}
+
+\begin{remark}
+    Cobweb diagrams are useful for understanding long term behavior of studied map.
+    Fixed points and $n$-periodic points are seen in the diagram right away since they are represented by intersection of the graph of the map and identity function.
+\end{remark}
+
+\begin{example}
+    In figure \ref{fig:cobweb_diag_example} we present an example of cobweb diagram for logistic map. More information about logistic map will be presented in section \ref{subsec:logistic map}.
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[width=1.0\textwidth]{Thesis/Figures/logistic_map_cobweb_diag_example.png}
+        \caption{Example of cobweb diagram}
+        \label{fig:cobweb_diag_example}
+    \end{figure}
+\end{example}
+
+\begin{definition} (\textbf{Bifurcation diagram}) \\
+    \label{def: bif_diag}
+    We can construct so called bifurcation diagram for map $f$ with following algorithm:
+    \begin{enumerate}
+        \item select map $f$ and some initial condition $x_0$
+        \item if $f$ takes single parameter $\epsilon \in \mathbb{R}$ select desired range for this parameter
+        \item if $f$ takes several parameters $P \in \mathbb{R}^n$ select single parameter $\epsilon$ from $P$ and select it's desired range, set remaining parameters to some fixed value
+        \item for selected range of $\epsilon$, discretize range to finite number of samples \label{item_sample}
+        \item choose number of iterations $N_{total}$
+        \item choose number of last iterations that will be ploted $N_{last}$
+        \item for each parameter $\epsilon$ from step \ref{item_sample} construct evolution graph of $f_{\epsilon}(x_0)$ for $N_{total}$ iterations \label{item_evolution}
+        \item bifurcation diagram is a scatter plot with parameter range from item \ref{item_sample} on $x$-axis and $N_{last}$ iterations of the coresponding evolution of $f(x_0)$ from step \ref{item_evolution} on $y$-axis
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+    Bifurcation diagrams show us how qualitative behavior of evolution graphs of $f_P(x_0)$ change for varying parameters P.
+\end{remark}
+
+\begin{example}
+    In figure \ref{fig:bif_diag_example} we present an example of bifurcation diagram for logistic map. More information about logistic map will be presented in section \ref{subsec:logistic map}.
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[width=1.0\textwidth]{Thesis/Figures/logistic_map_bif_diag_example.png}
+        \caption{Example of bifurcation diagram}
+        \label{fig:bif_diag_example}
+    \end{figure}
+\end{example}
+
+\begin{definition} \textbf{(Bifurcation)} \\
+    \label{def:bifurcation}
+    To be defined.
+\end{definition}
+
+\begin{definition} \textbf{(Saddle-node bifurcation)} \\
+    \label{def:saddle_node_bif}
+    To be defined.
+\end{definition}
+
+More precise theoretical background can be found at \cite{Devaney20211026,Elaskar2017,Lynch2014}.
+
+\endinput
