@@ -61,7 +61,6 @@ begin # showing intermittency at the break point of henon map
         xtick_period=500, 
         linewidth=0.5, 
         title="Henon map for [a,b]=$p, x0=$(x0)",
-        color=:blue
     )
 end
 

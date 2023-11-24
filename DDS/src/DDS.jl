@@ -11,6 +11,8 @@ include("cobweb.jl")
 include("bifurcation.jl")
 include("timeseries.jl")
 include("fixedpoints.jl")
+include("localize_bifurcations.jl")
+include("localize_intermittency.jl")
 
 const FIGURES_DIRECTORY = "./Figures/"
 

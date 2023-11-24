@@ -47,48 +47,91 @@ function DL_rule(x, β, C, g)
     return xn
 end
 
+# function DL(
+#         map,
+#         param,
+#         order,
+#         seeds;
+#         bintol::Float64 = 1e-8,
+#         kwargs...
+#     )
+#     fps = [BinarySearchTree{Float64}(nothing) for i = 1:order+1]
+#     l = length(seeds)
+#     for i = 1:l
+#         [insert!(fps[i], x, bintol) for x in seeds[i]]
+#     end
+#     for cur_p = l+1:order
+#         l = length(fps[cur_p])
+#         a = 1.0
+#         while true
+#             β = exp(a)
+#             for i = cur_p-2:cur_p-1
+#                 detect_orbits(fps[cur_p], map, param, cur_p, fps[i], β;bintol=bintol,kwargs...)
+#             end
+#             detect_orbits(fps[cur_p+1], map, param, cur_p+1, fps[cur_p], β;bintol=bintol,kwargs...)
+#             for i = cur_p-1:cur_p
+#                 detect_orbits(fps[i], map, param, i, fps[cur_p+1], β;bintol=bintol,kwargs...)
+#             end
+#             new_l = length(fps[cur_p])
+#             if new_l == l
+#                 break
+#             else
+#                 l = new_l
+#                 a += 1.0
+#             end
+#         end
+#     end
+#     return fps
+# end
+
 function DL(
         map,
         param,
         order,
-        seeds;
+        x_range;
         bintol::Float64 = 1e-8,
         kwargs...
     )
-    fps = [BinarySearchTree{Float64}(nothing) for i = 1:order+1]
-    l = length(seeds)
-    for i = 1:l
-        [insert!(fps[i], x, bintol) for x in seeds[i]]
-    end
-    for cur_p = l+1:order
-        l = length(fps[cur_p])
-        a = 1.0
-        while true
-            β = exp(a)
-            for i = cur_p-2:cur_p-1
-                detect_orbits(fps[cur_p], map, param, cur_p, fps[i], β;bintol=bintol,kwargs...)
-            end
-            detect_orbits(fps[cur_p+1], map, param, cur_p+1, fps[cur_p], β;bintol=bintol,kwargs...)
-            for i = cur_p-1:cur_p
-                detect_orbits(fps[i], map, param, i, fps[cur_p+1], β;bintol=bintol,kwargs...)
-            end
-            new_l = length(fps[cur_p])
-            if new_l == l
-                break
-            else
-                l = new_l
-                a += 1.0
-            end
+    fps = [BinarySearchTree{Float64}(nothing)]
+    l = length(fps[1])
+    a = 1.0
+    while true
+        seed = to_seed(LinRange(x_range..., min(15, 5*order)), bintol)
+        β = exp(a)
+        detect_orbits(fps[1], map, param, order, seed, β;bintol=bintol,kwargs...)
+        new_l = length(fps[1])
+        if new_l == l
+            break
+        else
+            l = new_l
+            a += 1.0
         end
     end
-    return fps
+    return fps[1]
 end
 
-function fixed_points2(map, param, order, x_range)
-    nth_ds = nth_composition(map, order)
+function fixed_points2(map_, param, order, x_range)
+    nth_ds = nth_composition(map_, order)
     g(x) = nth_ds(x, param) - x
     rts = roots(g, Interval(x_range...))
     return mid.(interval.(rts))
+end
+
+function fixed_points(map, param, order, x_range)
+    limit = 2
+    if order <= limit
+        return fixed_points2(map, param, order, x_range)
+    else
+        disttol = 1e-8
+        bintol = 1e-5
+        return to_array(DL(map, param, order, (0, 1);disttol=disttol, bintol=bintol))
+    end
+end
+
+function stable_fixed_points(map, param, order, x_range)
+    fps = fixed_points(map, param, order, x_range)
+    filter!(x0->is_stable(nth_composition(map, order), x0, param), fps) 
+    return fps
 end
 
 function create_seeds(map, param, max_order, x_range)
@@ -181,4 +224,11 @@ function _length(node)
     else
         return _length(node.left) + 1 + _length(node.right)
     end
+end
+
+function to_seed(arr, bintol)
+    bst = BinarySearchTree{Float64}(nothing)
+    [insert!(bst, x, bintol) for x in arr]
+    return bst
+
 end

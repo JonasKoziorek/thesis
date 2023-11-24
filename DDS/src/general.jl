@@ -36,3 +36,12 @@ end
 function step!(container, func, previous_x, params)
     push!(container, step(func, previous_x, params))
 end
+
+function jacobian(map)
+    return (x, p) -> ForwardDiff.derivative(x0->map(x0, p), x)
+end
+
+function is_stable(map, x0, p)
+    J = jacobian(map)
+    return abs(J(x0, p)) < 1
+end

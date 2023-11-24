@@ -8,7 +8,7 @@ begin # ploting second composition
     x = -1:0.0001:1 
     p = [0.4]
     total_n = 2
-    DDS.plot_nth_composition(pikovsky, x, p, total_n; ax_aspect=1, resolution=(600,600))
+    DDS.plot_nth_composition(pikovsky, x, p, total_n; ax_aspect=1)
 end
 
 begin
@@ -41,14 +41,6 @@ begin # bufurcation point 0.382025...
     step = 1e-8
     p_range = 0.38202:step:0.38203
     DDS.bifurcation_diagram(pikovsky, x0, p, 1, p_range, total_n, last_n)
-end
-
-begin #graph using the bifurcation point
-    bc = 0.382025 # bifurcation point
-    n = 0
-    z = -1:0.000001:1
-    y = pikovsky.(z, [bc], n)
-    DDS.lines(z, y)
 end
 
 begin # showing intermittency near bifurcation point

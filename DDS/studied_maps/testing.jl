@@ -1,7 +1,7 @@
 using DDS
 
 # map from intermittent transition to turbulance in dissipative dynamical systems from pomeau and manneville
-function f1(x, p, n)
+function f1(x, p)
     x = x[1]
     ϵ = p[1]
     return ϵ+x+x^2

@@ -67,7 +67,6 @@ begin # intermittent timeseries
         markersize=2.0,
         xtick_period=1000,
         linewidth=0.5,
-        color=:red,
         resolution=(2000, 500)
     )
 end
@@ -83,7 +82,6 @@ begin # intermittent timeseries
         markersize=2.0,
         xtick_period=1000,
         linewidth=0.5,
-        color=:red,
         resolution=(2000, 500)
     )
 end
@@ -99,7 +97,6 @@ begin # intermittent timeseries
         markersize=2.0,
         xtick_period=1000,
         linewidth=0.5,
-        color=:red,
         resolution=(2000, 500)
     )
 end
@@ -115,7 +112,6 @@ begin # intermittent timeseries
         markersize=2.0,
         xtick_period=1000,
         linewidth=0.5,
-        color=:red,
         resolution=(2000, 500)
     )
 end
@@ -132,7 +128,6 @@ begin # intermittent timeseries
         markersize=2.0,
         xtick_period=1000,
         linewidth=0.5,
-        color=:red,
         resolution=(2000, 500)
     )
 end
@@ -148,7 +143,6 @@ begin # intermittent timeseries
         markersize=2.0,
         xtick_period=1000,
         linewidth=0.05,
-        color=:red,
         resolution=(2000, 500)
     )
 end
