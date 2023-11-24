@@ -1,6 +1,3 @@
-using IntervalArithmetic
-using IntervalRootFinding
-
 function detect_orbits(
         FP,
         map,
@@ -95,8 +92,8 @@ function DL(
     fps = [BinarySearchTree{Float64}(nothing)]
     l = length(fps[1])
     a = 1.0
+    seed = to_seed(LinRange(x_range..., min(15, 5*order)), bintol)
     while true
-        seed = to_seed(LinRange(x_range..., min(15, 5*order)), bintol)
         β = exp(a)
         detect_orbits(fps[1], map, param, order, seed, β;bintol=bintol,kwargs...)
         new_l = length(fps[1])
@@ -110,22 +107,17 @@ function DL(
     return fps[1]
 end
 
-function fixed_points2(map_, param, order, x_range)
-    nth_ds = nth_composition(map_, order)
-    g(x) = nth_ds(x, param) - x
-    rts = roots(g, Interval(x_range...))
-    return mid.(interval.(rts))
-end
+# function fixed_points2(map_, param, order, x_range)
+#     nth_ds = nth_composition(map_, order)
+#     g(x) = nth_ds(x, param) - x
+#     rts = roots(g, Interval(x_range...))
+#     return mid.(interval.(rts))
+# end
 
 function fixed_points(map, param, order, x_range)
-    limit = 2
-    if order <= limit
-        return fixed_points2(map, param, order, x_range)
-    else
-        disttol = 1e-8
-        bintol = 1e-5
-        return to_array(DL(map, param, order, (0, 1);disttol=disttol, bintol=bintol))
-    end
+    disttol = 1e-8
+    bintol = 1e-5
+    return to_array(DL(map, param, order, x_range;disttol=disttol, bintol=bintol))
 end
 
 function stable_fixed_points(map, param, order, x_range)

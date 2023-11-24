@@ -1,7 +1,7 @@
 module DDS
 
 using CairoMakie, Luxor 
-using ForwardDiff, IntervalRootFinding, IntervalArithmetic
+using ForwardDiff
 
 include("selected_colors.jl")
 include("general.jl")

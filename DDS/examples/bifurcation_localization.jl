@@ -11,7 +11,7 @@ begin
     param_range = LinRange(3.64, 3.67, 500)
     x_range = (0.0, 1.0)
     orbit_limit = 16
-    @time periodic_orbits = DDS.localize_bifurcation(
+    @time bifurcation_intervals = DDS.localize_bifurcation(
         logistic, 
         param_index, 
         param_range, 
@@ -27,7 +27,7 @@ begin
     ax = DDS.bifurcation_diagram!(fig[1,1], logistic, x0, param, param_index, param_range2, total_n, last_n;ax_aspect=3)
     colors = [:red, :blue]
     i = 0
-    for (l, r) in periodic_orbits
+    for (l, r) in bifurcation_intervals
         color = colors[i%2+1]
         lines!(ax, [l, l], [x_range...], color=color)
         lines!(ax, [r, r], [x_range...], color=color)
