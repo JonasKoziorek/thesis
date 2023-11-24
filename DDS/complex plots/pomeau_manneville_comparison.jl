@@ -1,6 +1,6 @@
 using DDS
 using Plots
-using Plots.PlotMeasures
+using Plots.PlotMeasures: px
 using LaTeXStrings
 gr(size=(800,600))
 
@@ -25,7 +25,7 @@ begin # shows difference between scatter plots in bifurcation diagrams for speci
         p = diff_scatter(x, y, ticks, total_n, last_n, x0, L"$\varepsilon$")
         push!(arr, p)
     end
-    scatter(arr..., layout=l)
+    Plots.scatter(arr..., layout=l)
     file_path = DDS.FIGURES_DIRECTORY * "pomeau_manneville_bif_comparison_small.png"
     @time savefig(file_path)
     println("-----------")
@@ -48,7 +48,7 @@ begin # more precise comparison of two Bifurcation diagrams that differ # 86 sec
         p = diff_scatter(x, y, ticks, total_n, last_n, x0, L"$\varepsilon$")
         push!(arr, p)
     end
-    scatter(arr..., layout=l)
+    Plots.scatter(arr..., layout=l)
     file_path = DDS.FIGURES_DIRECTORY * "pomeau_manneville_bif_comparison_small.png"
     @time savefig(file_path)
     println("-----------")
@@ -76,7 +76,7 @@ begin # takes about 260 seconds to finish
         p = diff_scatter(x, y, ticks, total_n, last_n, x0, L"$\varepsilon$")
         push!(arr, p)
     end
-    scatter(arr..., layout=l)
+    Plots.scatter(arr..., layout=l)
     file_path = DDS.FIGURES_DIRECTORY * "pomeau_manneville_bif_comparison_big.png"
     @time savefig(file_path)
     println("-----------")
@@ -97,10 +97,34 @@ begin
         y = [y for (x,y) in plotting_data]
         index = findfirst(x->x==last_n, last_ns)
         ticks = LinRange(4.4745829135-Float64(eps_), 4.4745829165+Float64(eps_), 4)
-        p = diff_scatter(x, y, ticks, total_n, last_n, x0, L"$\varepsilon$")
+        p = diff_scatter(x, y, ticks, total_n, last_n, x0, L"$\varepsilon$", title="Total iterations: $total_n, plotting last $last_n iterations")
         push!(arr, p)
     end
-    scatter(arr..., layout=l)
+    Plots.scatter(arr..., layout=l, size=(500, 1000))
+    file_path = DDS.FIGURES_DIRECTORY * "pomeau_manneville_bif_comparison_big.png"
+    @time savefig(file_path)
+    println("-----------")
+end
+
+begin
+    total_n = 25000
+    last_ns = [1000, 5000, 11100, 24999]
+    arr = []
+    l = @layout [a ; b; c; d]
+    eps_ = BigFloat("0.000000005")
+    for last_n in last_ns
+        x0=0.5
+        p = [4.47458]
+        p_range = LinRange(BigFloat("4.4745829135")-eps_, BigFloat("4.474582916501")+eps_, 200)
+        @time plotting_data, raw_data = DDS.bifurcation_data(pomeau_manneville, x0, p, 1, p_range, total_n, last_n, 1)
+        x = [x for (x,y) in plotting_data]
+        y = [y for (x,y) in plotting_data]
+        index = findfirst(x->x==last_n, last_ns)
+        ticks = LinRange(4.4745829135-Float64(eps_), 4.4745829165+Float64(eps_), 4)
+        p = diff_scatter(x, y, ticks, total_n, last_n, x0, L"$\varepsilon$", title="Total iterations: $total_n, plotting last $last_n iterations")
+        push!(arr, p)
+    end
+    Plots.scatter(arr..., layout=l, size=(800, 1000))
     file_path = DDS.FIGURES_DIRECTORY * "pomeau_manneville_bif_comparison_big.png"
     @time savefig(file_path)
     println("-----------")

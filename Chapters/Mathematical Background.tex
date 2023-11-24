@@ -20,7 +20,7 @@ For purposes of this text we provide only simplified definitions from standard t
     Map $f_P$ is equivalent to map $f$ in Definition \ref{def:discrete dynamical system}.
 \end{remark}
 
-\begin{definition} \textbf{($n$-th iteration)} \\
+\begin{definition} \textbf{(n-th iteration)} \\
     $n$-th iteration of map $f_P$ for initial condition $x_0$ and parameters $P$ is represented by difference equation
     \begin{eqnarray}
         x_{n+1}  & = & f_P(x_{n}) \\
@@ -47,10 +47,32 @@ For purposes of this text we provide only simplified definitions from standard t
     Notice that every fixed point x is also 1-periodic point.  
 \end{remark}
 
-\begin{theorem} (\textbf{Saddle-node bifurcation}) \\
-    \label{th:saddle_node_bif}
-    To be added.
-\end{theorem}
+\begin{definition} (\textbf{Stable fixed point})\\
+    Fixed point $x$ of map $f_P$ is stable if $|\frac{d{f_P(x)}}{dx}| < 1$.
+\end{definition}
+
+\begin{definition} (\textbf{Periodic orbit})\\
+    Set of stable fixed points of map $f^{n}$ is called $n$-periodic orbit or stable $n$-periodic orbit.
+\end{definition}
+
+\begin{definition} (\textbf{Unstable periodic orbit})\\
+    Set of all fixed points of map $f^{n}$ is called unstable $n$-periodic orbit.
+\end{definition}
+
+\begin{definition} \textbf{(Bifurcation)} \\
+    \label{def:bifurcation}
+    Bifurcation occurs when qualiative behavior of the system changes as parameter varies.
+\end{definition}
+
+\begin{definition} \textbf{(Bifurcation point)} \\
+    \label{def:bifurcation_point}
+    Parameter at which \hyperref[def:bifurcation]{bifurcation} occurs.
+\end{definition}
+
+\begin{definition} \textbf{(Saddle-node bifurcation)} \\
+    \label{def:saddle_node_bif}
+    To be defined.
+\end{definition}
 
 \begin{definition} (\textbf{Evolution graph}) \\
     Line graph with $n=1,2,3...$ on $x$-axis and corresponding iterates $f^{n}_P(x_0)$ on $y$-axis is called evolution graph or evolution of $f_{P}(x_0)$ for some parameters $P$ and initial condition $x_0$.
@@ -65,7 +87,7 @@ For purposes of this text we provide only simplified definitions from standard t
     In figure \ref{fig:evolution_graph_example} we present an example of evolution graph for logistic map. More information about logistic map will be presented in section \ref{subsec:logistic map}.
     \begin{figure}[!h]
         \centering
-        \includegraphics[width=1.0\textwidth]{Thesis/Figures/logistic_map_timeseries_example.png}
+        \includegraphics[width=1.0\textwidth]{DDS/Figures/logistic_map_timeseries_example.png}
         \caption{Example of evolution graph}
         \label{fig:evolution_graph_example}
     \end{figure}
@@ -99,7 +121,7 @@ For purposes of this text we provide only simplified definitions from standard t
     In figure \ref{fig:cobweb_diag_example} we present an example of cobweb diagram for logistic map. More information about logistic map will be presented in section \ref{subsec:logistic map}.
     \begin{figure}[!h]
         \centering
-        \includegraphics[width=1.0\textwidth]{Thesis/Figures/logistic_map_cobweb_diag_example.png}
+        \includegraphics[width=0.8\textwidth]{DDS/Figures/logistic_map_cobweb_diag_example.png}
         \caption{Example of cobweb diagram}
         \label{fig:cobweb_diag_example}
     \end{figure}
@@ -122,27 +144,18 @@ For purposes of this text we provide only simplified definitions from standard t
 
 \begin{remark}
     Bifurcation diagrams show us how qualitative behavior of evolution graphs of $f_P(x_0)$ change for varying parameters P.
+    In other words bifurcation diagrams illustrate \hyperref[def:bifurcation]{bifurcations} and help us identify \hyperref[def:bifurcation_point]{bifurcation points}
 \end{remark}
 
 \begin{example}
     In figure \ref{fig:bif_diag_example} we present an example of bifurcation diagram for logistic map. More information about logistic map will be presented in section \ref{subsec:logistic map}.
     \begin{figure}[!h]
         \centering
-        \includegraphics[width=1.0\textwidth]{Thesis/Figures/logistic_map_bif_diag_example.png}
+        \includegraphics[width=0.9\textwidth]{DDS/Figures/logistic_map_bif_diag_example.png}
         \caption{Example of bifurcation diagram}
         \label{fig:bif_diag_example}
     \end{figure}
 \end{example}
-
-\begin{definition} \textbf{(Bifurcation)} \\
-    \label{def:bifurcation}
-    To be defined.
-\end{definition}
-
-\begin{definition} \textbf{(Saddle-node bifurcation)} \\
-    \label{def:saddle_node_bif}
-    To be defined.
-\end{definition}
 
 More precise theoretical background can be found at \cite{Devaney20211026,Elaskar2017,Lynch2014}.
 

@@ -24,7 +24,7 @@ begin
         function_line_color=:black,
         cobweb_line_color=BLUE,
         last_point_color=:black,
-        title = "Cobweb diagram of $total_n iterations of logistic map with r=$(p[1]) and x0=$(x0)"
+        # title = "Cobweb diagram of $total_n iterations of logistic map with r=$(p[1]) and x0=$(x0)"
     )
     ax.xlabelsize = LATEX_FONT_SIZE
     ax.ylabelsize = LATEX_FONT_SIZE

@@ -16,7 +16,7 @@ begin
     p_range = LinRange(2.81, 3.87, 1000)
     ax = DDS.bifurcation_diagram!(
         fig[1,1], logistic, x0, p, 1, p_range, total_n, last_n;
-        title="Bifurcation diagram of logistic map\n$total_n total iterations, plotting last $last_n interations, x0=$x0",
+        # title="Bifurcation diagram of logistic map\n$total_n total iterations, plotting last $last_n interations, x0=$x0",
         ax_aspect=2,
         xticks = LinRange(2.81, 3.87, 6),
         color=BLUE

@@ -27,10 +27,8 @@
 \ThesisSupervisor{prof. RNDr. Marek Lampart, Ph.D.}
 
 \CzechThesisTitle{Algoritmická detekce intermitence type I}
-% \CzechThesisTitle{Studium dynamických systémů pomocí programovacího jazyku Julia}
 
 \EnglishThesisTitle{Algorithmic detection of type-I intermittency}
-% \EnglishThesisTitle{Study of dynamical systems using the Julia programming language}
 
 \SubmissionYear{2024}
 
@@ -40,25 +38,21 @@
 
 \CzechAbstract{Tohle je český abstrakt, zbytek odstavce je tvořen výplňovým textem. To be added.}
 
-\CzechKeywords{typografie; \LaTeX; bakalářská práce}
+\CzechKeywords{intermitence typu I, diskrétní dynamické systémy}
 
 \EnglishAbstract{This is English abstract. To be added.}
-\EnglishKeywords{typography; \LaTeX; bachelor thesis}
+\EnglishKeywords{type-I intermittency; discrete dynamical systems}
 
-\AddAcronym{DVD}{Digital Versatile Disc}
-\AddAcronym{TNT}{Trinitrotoluen}
-\AddAcronym{UML}{Unified Modeling Language}
-\AddAcronym{HTML}{Hyper Text Markup Language}
-\AddAcronym{TUG}{\TeX{} Users Group}
+\AddAcronym{DDS}{discrete dynamical system}
+\AddAcronym{UPO}{unstable periodic orbit}
+\AddAcronym{DL}{Davidchack-Lai algorithm}
+\AddAcronym{SD}{Schmelcher-Diakonos algorithm}
 
 % Bibliography resources for BibLaTeX
-\addbibresource{biblatex-examples.bib}
-\addbibresource{coffee.bib}
 \addbibresource{bibliography.bib}
 
 % New table column type for numeric values
 \newcolumntype{d}[1]{D{.}{.}{#1}}
-
 
 % Beginning of the document
 \begin{document}
@@ -79,10 +73,11 @@
 % Your text starts here...
 \input{Chapters/Introduction.tex}
 % \input{Chapters/HAVOK.tex}
-% \input{Chapters/Mathematical Background.tex}
+\input{Chapters/Mathematical Background.tex}
 % \input{Chapters/SampleChapter2}
-% \input{Chapters/Models}
-% \input{Chapters/Type-I Intermittency.tex}
+\input{Chapters/Models}
+\input{Chapters/Type-I Intermittency.tex}
+\input{Chapters/Intermittency Detection.tex}
 \input{Chapters/RemarkOnSoftware.tex}
 \input{Chapters/Conclusion.tex}
 
@@ -91,7 +86,7 @@
 
 \appendix
 % \input{Chapters/Appendix_codes.tex}
-% \input{Chapters/Appendix_complex_figures.tex}
+\input{Chapters/Appendix_complex_figures.tex}
 
 
 % Appendix included directly in main LaTeX file. Not all attachments need to be in separate files.

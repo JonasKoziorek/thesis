@@ -1,6 +1,9 @@
 using DDS
 using CairoMakie
 using Luxor
+using Luxor: Point
+using MathTeXEngine
+using LaTeXStrings
 
 function custom_timeseries!(ax, func, x0, params, total_n; linewidth=0.05, markersize=7, dot_color=:black, line_color=:black)
     data = DDS.iterate(func, x0, params, total_n)
@@ -18,7 +21,7 @@ begin
     eps = 1e-8
 
     fig = Figure(
-        resolution = (2000, 500),
+        resolution = (1000, 250),
         fontsize=FONTSIZE,
     )
 
@@ -26,8 +29,8 @@ begin
     ax = Axis(fig[1,1], 
             # xlabel=L"n", 
             # ylabel=L"x_{n}",
-            xticks=LinRange(0,total_n, 11),
-            title="title"
+            xticks=LinRange(0,total_n, 6),
+            # title="title"
         )
     ax.aspect = 5
 
@@ -35,7 +38,7 @@ begin
     p = [4.47458285]
     custom_timeseries!(
         ax, pomeau_manneville, x0, p, total_n;
-        markersize=7.0, 
+        markersize=5.0, 
         linewidth=0.04,
         dot_color=RED,
         line_color=:black,
@@ -45,7 +48,7 @@ begin
     p = [4.47458285+4*eps]
     custom_timeseries!(
         ax, pomeau_manneville, x0, p, total_n;
-        markersize=7.0, 
+        markersize=5.0, 
         linewidth=0.04,
         dot_color=BLUE,
         line_color=:black,
@@ -59,7 +62,8 @@ begin
 end
 
 
-@draw begin
+# @draw begin
+@png begin
   origin()
     img = readpng("Figures/bif_diag_ambiguity_creation_sketch.png")
     w = img.width
@@ -68,16 +72,30 @@ end
     placeimage(img, Point(-w/2, -h/2), 1.0)
     sethue("black")
     setline(4)
-    p1 = Point(-250, 90)
-    p2 = Point(0, 90)
+    height = 30
+    mid = 10
+    p1 = Point(-120+mid, height)
+    p2 = Point(mid, height)
     Luxor.arrow(p1, p2,arrowheadlength=20)
     Luxor.arrow(p2, p1,arrowheadlength=20)
 
-    p1 = Point(0, 90)
-    p2 = Point(350, 90)
+    p1 = Point(mid, height)
+    p2 = Point(mid+170, height)
     Luxor.arrow(p1, p2,arrowheadlength=20)
     Luxor.arrow(p2, p1,arrowheadlength=20)
-    sethue(ORANGE)
-    # circle(Point(-250, 90), 10, :fill)
-    # circle(Point(0, 90), 10, :fill)
-end 2000 500
+
+    height = 15
+    fontsize(26)
+    x = -95
+    y = height
+    text(L"a", Point(x, y), halign=:center, valign=:baseline)
+
+    x = 30
+    y = height
+    text(L"b", Point(x, y), halign=:center, valign=:baseline)
+
+    x = 160
+    y = height
+    text(L"c", Point(x, y), halign=:center, valign=:baseline)
+# end 1000 250
+end 1000 250 file_path

@@ -1,14 +1,23 @@
 \chapter{Type I Intermittency}
+\label{chap:intermittency_review}
+
+\section{History}
 Intermittency is a very interesting phenomenon in the field of dynamical systems.
 The investigation of intermittency was initiated in 1980 by Pomeau and Manneville \cite{Pomeau1980}.
 They were trying to explain an intermittent phenomenon in the fluid dynamics of convective fluids.
-During this phenomenon, long periodic behaviour was abrupted by a chaotic burst as the experiment control parameter changed.
+During this phenomenon, long periodic behaviour was abrupted by a chaotic bursts as the experiment control parameter changed.
 Subsequently, Pomeau and Manneville found analogous behaviour in the Lorenz system \cite{Lorenz2004}.
 Through a numerical study of this system, they introduced the concept of intermittency and classified it into three categories. \cite{Pomeau1980}
-This chapter deals with type I intermittency.
+\par
+Since then the study of intermittency has grown considerably.
+Many new types of intermittent behaviors were found and investigated.
+For better understanding of intermittency modern statistical theory has been developed.
+\cite{Elaskar2017}
+\par
+The theory of intermittency is very broad.
+We decided that this thesis will be concerned with intermittency type I and it's detection.
 
 \section{Mathematical Motivation}
-
 Intermittency is a behavior when seemingly periodic phases in the evotion of a dynamical system are abrupted by chaotic bursts.
 Periodic phases are called laminar.
 Phases with chaotic bursts are called turbulent phases.
@@ -22,23 +31,43 @@ This pattern goes on.
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=1.0\textwidth]{Thesis/Figures/type_one_intermittency_example1.png}
+    \includegraphics[width=1.0\textwidth]{DDS/Figures/type_one_intermittency_example1.png}
     \caption{Intermittency in evolution graph}
     \label{fig:intermittent_evolution_example}
 \end{figure}
 
-Evolution graph \ref{fig:intermittent_evolution_example} exhibits type I intermittency which is related to \hyperref[def:saddle_node_bif]{saddle-node bifurcation}.
+Evolution graph \ref{fig:intermittent_evolution_example} exhibits type I intermittency which is related to \hyperref[def:saddle_node_bif]{saddle-node bifurcation} or it's inverse.
+Saddle-node bifurcation is a bifurcation where tangent of a curve passes through the identity line.
+Let's say we have a bifurcation point for parameter $p_{B}$.
+At this point local map of the system touches the identity line in exactly one spot, in other words the system has fixed point in the area of touching.
+For parameters $p < p_{B}$ there are two fixed points, curve is intersected in two places.
+For parameters $p > p_{B}$ there is no fixed point since the curve left the identity line.
+This relation is illustrated in figure \ref{fig:saddle_node_bifurcation}.
+Red dot in figure \ref{fig:saddle_node_bifurcation} is a fixed point for curve at bifurcation point $p_{B}$.
+Blue dots in figure \ref{fig:saddle_node_bifurcation} are fixed points for curve for parameter $p < p_{B}$.
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{DDS/Figures/intermittency_i_local_map.png}
+    \caption{Saddle-node bifurcation}
+    \label{fig:saddle_node_bifurcation}
+\end{figure}
+
+When $p > p_{B}$ is greater but very close to $p_{B}$ a channel forms.
+
 The reason intermittency is born is illustrated in figure \ref{fig:intermittent_cobweb_example}.
-When dynamical system $f_P$ is about to undergo inverse saddle-node bifurcation as parameter $P$ changes, graph of $f_P$ is getting closer to identity function $g(x)=x$.
+When dynamical system $f_P$ is about to undergo saddle-node or inverse saddle-node bifurcation as parameter $P$ changes, graph of $f_P$ is getting closer to identity function $g(x)=x$.
 Just before they touch small passage is formed between these two curves.
-If point $x_n$ gets mapped into this narrow passage, it takes a lot of iterations for it to get out of this passage again.
-The closer the curve of $f_P$ and identity function are the narrower the passage is and the longer it gets to iterate through it.
+If point $x_n$ gets injected into the narrow passage, it takes many iterations for it to get out of this passage again.
+The closer together the curve of $f_P$ and identity function are the narrower the passage is and the longer it gets to iterate through it.
 An illustration of the iteration through narrow passage is in figure \ref{fig:intermittent_cobweb_example} plot B.
 This iteration corresponds to first laminar phase from figure \ref{fig:intermittent_evolution_example}.
+While the point is travelling throug a narrow passage, on evolution graph it looks as if he was not moving.
+Hence it looks periodic.
+However this seemingly periodic behavior is fake since once the point iterates through the narrow passage it moves chaotically once again.
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=1.0\textwidth]{Thesis/Figures/type_one_intermittency_example2.png}
+    \includegraphics[width=1.0\textwidth]{DDS/Figures/type_one_intermittency_example2.png}
     \caption{Intermittency in cobweb diagram}
     \label{fig:intermittent_cobweb_example}
 \end{figure}
@@ -63,5 +92,44 @@ When $\epsilon = \epsilon_{sn}$ behavior is periodic.
 (End Of Claim)
 
 \section{Ambiguous Bifurcation Diagram}
+The laminar phases for $\epsilon$ very close to break point $\epsilon_{sn}$ get very large.
+During the creation of standart bifurcation diagrams \ref{def: bif_diag} initial point $x_o$ is evolved for certain amount of iterations and some fixed amount of them is plotted.
+However if the evolution graph has intermittency what if the plotted subsection of evolution graph consists only of long laminar phase and not the turbulent phase.
+In other words bifurcation diagram near the intermittent region can contain radical differences depending on how many iterations are made and how long the sample period is.
+\par
+To illustrate this ambiguity in bifurcation diagram, one can simply create a generic example.
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1.0\textwidth]{DDS/Figures/bif_diag_ambiguity_creation_sketch.png}
+    \caption{Creation of ambiguous bifurcation diagram}
+    \label{fig:ambiguous_bif_diag}
+\end{figure}
+
+Figure \ref{fig:ambiguous_bif_diag} shows two evolution graphs for two distinct parameters $p_1$ and $p_2$.
+Both are close to intermittency threshold (break point) $p_{sn}$ and it holds $p_1 < p_2 < p_{sn}$.
+Evolution graph for parameter $p_1$ is plotted with red color in \ref{fig:ambiguous_bif_diag}.
+Evolution graph for $p_2$ is blue.
+Since $p_2$ is closer to intermittency threshold $p_{sn}$, laminar phases of it's evolution graphs are longer.
+We can select parameters $p_1$ and $p_2$ so that the laminar phases are long enough and similar situation as in figure \ref{fig:ambiguous_bif_diag} occurs.
+Chaotic burst of evolution graph with longer laminar phase occurs in the middle of two laminar phases of evolution graph with shorter laminar phases.
+In our case chaotic burst $b$ occurs between chaotic bursts $a$ and $c$.
+If we create two bifurcation diagrams with total number of iterations $0.95 c$ and plotting last $c-(b-0.25(b-a))$ or $c-(b-0.75(b-a))$ we get two distinct bifurcation diagram.
+
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1.0\textwidth]{DDS/Figures/pomeau_manneville_bif_comparison_big.png}
+    \caption{Example of ambiguous bifurcation diagrams}
+    \label{fig:ambiguous_bif_diag_example}
+\end{figure}
+
+This is illustrated in figure \ref{fig:ambiguous_bif_diag_example}.
+Figure shows that bifurcation diagrams differ significantly for when number of total iterations is the same but number of last iterations being plotted is different.
+\par
+A question arises what do we expect from bifurcation diagram we we create it.
+The figure \ref{fig:ambiguous_bif_diag_example} clearly shows that the same region of bifurcation diagram can look very different.
+A person not knowing about intermittency could be misled.
+It would be useful to have a tool that would warn a person looking at bifurcation diagram about underlying intermittency and it's ambiguity.
+We will try to develop this tool in the next chapter.
 
 \endinput
