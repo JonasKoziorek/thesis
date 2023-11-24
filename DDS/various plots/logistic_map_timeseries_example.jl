@@ -22,7 +22,7 @@ begin
         xtick_period=10,
         linewidth=LINEWIDTH, 
         dot_color=BLUE,
-        title="Evolution of logistic map for r=$(p[1]), x0=$(x0)"
+        # title="Evolution of logistic map for r=$(p[1]), x0=$(x0)"
     )
     ax3.xlabelsize = LATEX_FONT_SIZE
     ax3.ylabelsize = LATEX_FONT_SIZE
