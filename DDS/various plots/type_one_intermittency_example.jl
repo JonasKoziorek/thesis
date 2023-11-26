@@ -19,14 +19,14 @@ begin
     x0 = 0.5
     p = [4.47458]
     index_x = 1
-    ax = DDS.timeseries!(fig[1,1], pomeau_manneville, x0, p, total_n, index_x;
+    ax = DDS.forward_orbit!(fig[1,1], pomeau_manneville, x0, p, total_n, index_x;
         ax_aspect=4,
         markersize=POINT_SIZE, 
         xtick_period=500, 
-        linewidth=0.05, 
+        linewidth=0.04, 
         line_color = :black,
         dot_color = BLUE,
-        title="Evolution of Pomeau-Manneville map for ϵ=$(p[1]), x0=$(x0)",
+        title="Forward orbit of Pomeau-Manneville map for ϵ=$(p[1]), x0=$(x0)",
     )
     ax.xlabelsize = LATEX_FONT_SIZE
     ax.ylabelsize = LATEX_FONT_SIZE

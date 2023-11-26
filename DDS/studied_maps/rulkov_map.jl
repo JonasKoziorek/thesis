@@ -8,8 +8,8 @@ begin
     N = 1000 
 end
 
-display(DDS.timeseries(rulkov, u0, p0, N, 1))
-# display(DDS.timeseries(rulkov, u0, p0, N, 2))
+display(DDS.forward_orbit(rulkov, u0, p0, N, 1))
+# display(DDS.forward_orbit(rulkov, u0, p0, N, 2))
 
 begin # whole bifurcation diagram
     total_n = 1000
@@ -56,13 +56,13 @@ begin # closer look
     display(DDS.bifurcation_diagram(rulkov, x0, p0, 1, p_range, total_n, last_n, x_index))
 end
 
-begin # intermittent timeseries
+begin # intermittent forward_orbit
     total_n = 8000
 
     x0 = [0.0, -3.0]
     p0 = [4.0, 0.001, 0.001]
     x_index = 1
-    DDS.timeseries(
+    DDS.forward_orbit(
         rulkov, u0, p0, total_n, x_index; 
         markersize=2.0,
         xtick_period=1000,
@@ -71,13 +71,13 @@ begin # intermittent timeseries
     )
 end
 
-begin # intermittent timeseries
+begin # intermittent forward_orbit
     total_n = 8000
 
     x0 = [0.0, -3.0]
     p0 = [4.1, 0.001, 0.001]
     x_index = 1
-    DDS.timeseries(
+    DDS.forward_orbit(
         rulkov, u0, p0, total_n, x_index; 
         markersize=2.0,
         xtick_period=1000,
@@ -86,13 +86,13 @@ begin # intermittent timeseries
     )
 end
 
-begin # intermittent timeseries
+begin # intermittent forward_orbit
     total_n = 8000
 
     x0 = [0.0, -3.0]
     p0 = [3.95, 0.001, 0.001]
     x_index = 1
-    DDS.timeseries(
+    DDS.forward_orbit(
         rulkov, u0, p0, total_n, x_index; 
         markersize=2.0,
         xtick_period=1000,
@@ -101,13 +101,13 @@ begin # intermittent timeseries
     )
 end
 
-begin # intermittent timeseries
+begin # intermittent forward_orbit
     total_n = 2000
 
     x0 = [0.0, -3.0]
     p0 = [3.45, 0.001, 0.001]
     x_index = 1
-    DDS.timeseries(
+    DDS.forward_orbit(
         rulkov, u0, p0, total_n, x_index; 
         markersize=2.0,
         xtick_period=1000,
@@ -117,13 +117,13 @@ begin # intermittent timeseries
 end
 
 
-begin # intermittent timeseries
+begin # intermittent forward_orbit
     total_n = 20000
 
     x0 = [0.0, -3.0]
     p0 = [4.005, 0.001, 0.001]
     x_index = 1
-    DDS.timeseries(
+    DDS.forward_orbit(
         rulkov, u0, p0, total_n, x_index; 
         markersize=2.0,
         xtick_period=1000,
@@ -132,13 +132,13 @@ begin # intermittent timeseries
     )
 end
 
-begin # intermittent timeseries
+begin # intermittent forward_orbit
     total_n = 20000
 
     x0 = [0.0, -3.0]
     p0 = [-54, 0.001, 0.001]
     x_index = 1
-    DDS.timeseries(
+    DDS.forward_orbit(
         rulkov, u0, p0, total_n, x_index; 
         markersize=2.0,
         xtick_period=1000,

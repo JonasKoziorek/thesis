@@ -1,9 +1,9 @@
 using MakiePublication
 
 begin
-    # const color_pallete = MakiePublication.COLORS[2]
+    const color_pallete = MakiePublication.COLORS[2]
     # const color_pallete = MakiePublication.COLORS[12]
-    const color_pallete = MakiePublication.COLORS[14]
+    # const color_pallete = MakiePublication.COLORS[14]
     const BLUE = color_pallete[1]
     const ORANGE = color_pallete[2]
     const GREEN = color_pallete[3]

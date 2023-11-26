@@ -28,7 +28,7 @@ begin
     DDS.plot_cobweb(pomeau_manneville, x0, x, p, total_n;ax_aspect=1, resolution=(600,600))
 end
 
-begin # showing cobweb for 3 periodic timeseries (just one dot since it's a fixed point)
+begin # showing cobweb for 3 periodic forward_orbit (just one dot since it's a fixed point)
     x = 0:0.0001:1
     x0=0.5
     p = [3.82845]

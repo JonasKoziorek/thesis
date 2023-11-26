@@ -23,8 +23,8 @@ Periodic phases are called laminar.
 Phases with chaotic bursts are called turbulent phases.
 This naming convention originated in fluid dynamics which motivated study of intermittency. \cite{Pomeau1980}
 \\
-In figure \ref{fig:intermittent_evolution_example} you can see an example of intermittency.
-In this case intermittency is clearly visible when looking at the evolution graph.
+In figure \ref{fig:intermittent_forward_orbit_example} you can see an example of intermittency.
+In this case intermittency is clearly visible when looking at the forward orbit.
 Seemingly 2-periodic behavior which last for about 1000 iteration is interrupted by short chaotic bursts.
 These chaotic burst transform back into 2-periodic behavior.
 This pattern goes on.
@@ -32,11 +32,11 @@ This pattern goes on.
 \begin{figure}[!h]
     \centering
     \includegraphics[width=1.0\textwidth]{DDS/Figures/type_one_intermittency_example1.png}
-    \caption{Intermittency in evolution graph}
-    \label{fig:intermittent_evolution_example}
+    \caption{Intermittency in forward orbit}
+    \label{fig:intermittent_forward_orbit_example}
 \end{figure}
 
-Evolution graph \ref{fig:intermittent_evolution_example} exhibits type I intermittency which is related to \hyperref[def:saddle_node_bif]{saddle-node bifurcation} or it's inverse.
+Forward orbit \ref{fig:intermittent_forward_orbit_example} exhibits type I intermittency which is related to \hyperref[def:saddle_node_bif]{saddle-node bifurcation} or it's inverse.
 Saddle-node bifurcation is a bifurcation where tangent of a curve passes through the identity line.
 Let's say we have a bifurcation point for parameter $p_{B}$.
 At this point local map of the system touches the identity line in exactly one spot, in other words the system has fixed point in the area of touching.
@@ -60,8 +60,8 @@ Just before they touch small passage is formed between these two curves.
 If point $x_n$ gets injected into the narrow passage, it takes many iterations for it to get out of this passage again.
 The closer together the curve of $f_P$ and identity function are the narrower the passage is and the longer it gets to iterate through it.
 An illustration of the iteration through narrow passage is in figure \ref{fig:intermittent_cobweb_example} plot B.
-This iteration corresponds to first laminar phase from figure \ref{fig:intermittent_evolution_example}.
-While the point is travelling throug a narrow passage, on evolution graph it looks as if he was not moving.
+This iteration corresponds to first laminar phase from figure \ref{fig:intermittent_forward_orbit_example}.
+While the point is travelling throug a narrow passage, on forward orbit it looks as if he was not moving.
 Hence it looks periodic.
 However this seemingly periodic behavior is fake since once the point iterates through the narrow passage it moves chaotically once again.
 
@@ -86,7 +86,7 @@ This transition is related to intermittency and narrow passage mentioned in figu
 We can call this breakpoint $\epsilon_{sn}$.
 The closer the parameter $\epsilon$ gets to breakpoint $\epsilon_{sn}$ the narrower the passage gets.
 Hence it takes more iterations to iterate through the passage.
-Hence laminar phases visible in the evolution graph get longer and longer as $\epsilon$ gets closer to $\epsilon_{sn}$.
+Hence laminar phases visible in the forward orbit get longer and longer as $\epsilon$ gets closer to $\epsilon_{sn}$.
 Hence $\epsilon \rightarrow \epsilon_{sn} \implies l_{avg} \rightarrow \infty$ where $l_{avg}$ is the average length of laminar phase.
 When $\epsilon = \epsilon_{sn}$ behavior is periodic.
 (End Of Claim)
@@ -94,7 +94,7 @@ When $\epsilon = \epsilon_{sn}$ behavior is periodic.
 \section{Ambiguous Bifurcation Diagram}
 The laminar phases for $\epsilon$ very close to break point $\epsilon_{sn}$ get very large.
 During the creation of standart bifurcation diagrams \ref{def: bif_diag} initial point $x_o$ is evolved for certain amount of iterations and some fixed amount of them is plotted.
-However if the evolution graph has intermittency what if the plotted subsection of evolution graph consists only of long laminar phase and not the turbulent phase.
+However if the forward orbit has intermittency what if the plotted subsection of forward orbit consists only of long laminar phase and not the turbulent phase.
 In other words bifurcation diagram near the intermittent region can contain radical differences depending on how many iterations are made and how long the sample period is.
 \par
 To illustrate this ambiguity in bifurcation diagram, one can simply create a generic example.
@@ -105,13 +105,13 @@ To illustrate this ambiguity in bifurcation diagram, one can simply create a gen
     \label{fig:ambiguous_bif_diag}
 \end{figure}
 
-Figure \ref{fig:ambiguous_bif_diag} shows two evolution graphs for two distinct parameters $p_1$ and $p_2$.
+Figure \ref{fig:ambiguous_bif_diag} shows two forward orbits for two distinct parameters $p_1$ and $p_2$.
 Both are close to intermittency threshold (break point) $p_{sn}$ and it holds $p_1 < p_2 < p_{sn}$.
-Evolution graph for parameter $p_1$ is plotted with red color in \ref{fig:ambiguous_bif_diag}.
-Evolution graph for $p_2$ is blue.
-Since $p_2$ is closer to intermittency threshold $p_{sn}$, laminar phases of it's evolution graphs are longer.
+Forward orbit for parameter $p_1$ is plotted with red color in \ref{fig:ambiguous_bif_diag}.
+Forward orbit for $p_2$ is blue.
+Since $p_2$ is closer to intermittency threshold $p_{sn}$, laminar phases of it's forward orbits are longer.
 We can select parameters $p_1$ and $p_2$ so that the laminar phases are long enough and similar situation as in figure \ref{fig:ambiguous_bif_diag} occurs.
-Chaotic burst of evolution graph with longer laminar phase occurs in the middle of two laminar phases of evolution graph with shorter laminar phases.
+Chaotic burst of forward orbit with longer laminar phase occurs in the middle of two laminar phases of forward orbit with shorter laminar phases.
 In our case chaotic burst $b$ occurs between chaotic bursts $a$ and $c$.
 If we create two bifurcation diagrams with total number of iterations $0.95 c$ and plotting last $c-(b-0.25(b-a))$ or $c-(b-0.75(b-a))$ we get two distinct bifurcation diagram.
 

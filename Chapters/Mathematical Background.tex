@@ -74,22 +74,22 @@ For purposes of this text we provide only simplified definitions from standard t
     To be defined.
 \end{definition}
 
-\begin{definition} (\textbf{Evolution graph}) \\
-    Line graph with $n=1,2,3...$ on $x$-axis and corresponding iterates $f^{n}_P(x_0)$ on $y$-axis is called evolution graph or evolution of $f_{P}(x_0)$ for some parameters $P$ and initial condition $x_0$.
+\begin{definition} (\textbf{Forward orbit}) \\
+    Line graph with $n=1,2,3...$ on $x$-axis and corresponding iterates $f^{n}_P(x_0)$ on $y$-axis is called forward orbit of $f_{P}(x_0)$ for some parameters $P$ and initial condition $x_0$.
 \end{definition}
 
 \begin{remark}
-    Evolution graphs are useful for studying short term and long term behavior of studied map.
+    Forward orbits are useful for studying short term and long term behavior of studied map.
     They cleanly show how initial condition is evolved.
 \end{remark}
 
 \begin{example}
-    In figure \ref{fig:evolution_graph_example} we present an example of evolution graph for logistic map. More information about logistic map will be presented in section \ref{subsec:logistic map}.
+    In figure \ref{fig:forward_orbit_example} we present an example of forward orbit for logistic map. More information about logistic map will be presented in section \ref{subsec:logistic map}.
     \begin{figure}[!h]
         \centering
-        \includegraphics[width=1.0\textwidth]{DDS/Figures/logistic_map_timeseries_example.png}
-        \caption{Example of evolution graph}
-        \label{fig:evolution_graph_example}
+        \includegraphics[width=1.0\textwidth]{DDS/Figures/logistic_map_forward_orbit_example.png}
+        \caption{Example of forward orbit}
+        \label{fig:forward_orbit_example}
     \end{figure}
 \end{example}
 
@@ -137,13 +137,13 @@ For purposes of this text we provide only simplified definitions from standard t
         \item for selected range of $\epsilon$, discretize range to finite number of samples \label{item_sample}
         \item choose number of iterations $N_{total}$
         \item choose number of last iterations that will be ploted $N_{last}$
-        \item for each parameter $\epsilon$ from step \ref{item_sample} construct evolution graph of $f_{\epsilon}(x_0)$ for $N_{total}$ iterations \label{item_evolution}
-        \item bifurcation diagram is a scatter plot with parameter range from item \ref{item_sample} on $x$-axis and $N_{last}$ iterations of the coresponding evolution of $f(x_0)$ from step \ref{item_evolution} on $y$-axis
+        \item for each parameter $\epsilon$ from step \ref{item_sample} construct forward orbit of $f_{\epsilon}(x_0)$ for $N_{total}$ iterations \label{item_forward_orbit}
+        \item bifurcation diagram is a scatter plot with parameter range from item \ref{item_sample} on $x$-axis and $N_{last}$ iterations of the coresponding evolution of $f(x_0)$ from step \ref{item_forward_orbit} on $y$-axis
     \end{enumerate}
 \end{definition}
 
 \begin{remark}
-    Bifurcation diagrams show us how qualitative behavior of evolution graphs of $f_P(x_0)$ change for varying parameters P.
+    Bifurcation diagrams show us how qualitative behavior of forward orbits of $f_P(x_0)$ change for varying parameters P.
     In other words bifurcation diagrams illustrate \hyperref[def:bifurcation]{bifurcations} and help us identify \hyperref[def:bifurcation_point]{bifurcation points}
 \end{remark}
 

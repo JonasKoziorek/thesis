@@ -6,7 +6,7 @@ begin
     x0 = 0.5
     p = [3.8]
     N = 500
-    DDS.timeseries(logistic, x0, p, N, 1; markersize=5.0)
+    DDS.forward_orbit(logistic, x0, p, N, 1; markersize=5.0)
 end
 
 begin
@@ -39,12 +39,12 @@ begin
     DDS.bifurcation_diagram(logistic, x0, p, 1, p_range, total_n, last_n; title="Bifurcation diagram of logistic map\n$total_n iterations, sampling last $last_n")
 end
 
-begin # intermittent timeseries
+begin # intermittent forward_orbit
     total_n = 10000
     x0 = 0.5
     p = [3.82842]
     N = 500
-    display(DDS.timeseries(logistic, x0, p, total_n, 1; 
+    display(DDS.forward_orbit(logistic, x0, p, total_n, 1; 
         ax_aspect=5, 
         markersize=7.0, 
         resolution=(2000,500), 
@@ -61,7 +61,7 @@ begin # long laminar phases
     for p in LinRange(3.828427110, 3.828427115, 10)
         p = [p]
         n = 500
-        display(DDS.timeseries(logistic, x0, p, total_n, 1; 
+        display(DDS.forward_orbit(logistic, x0, p, total_n, 1; 
             ax_aspect=5, 
             markersize=7.0, 
             resolution=(1500,500), 

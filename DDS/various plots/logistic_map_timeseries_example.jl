@@ -16,18 +16,18 @@ begin
     p = [3.841]
     x0 = 0.5
 
-    ax3 = DDS.timeseries!(fig[1,1], logistic, x0, p, total_n, 1; 
+    ax3 = DDS.forward_orbit!(fig[1,1], logistic, x0, p, total_n, 1; 
         ax_aspect=2, 
         markersize=POINT_SIZE,
         xtick_period=10,
         linewidth=LINEWIDTH, 
         dot_color=BLUE,
-        # title="Evolution of logistic map for r=$(p[1]), x0=$(x0)"
+        # title="Forward orbit of logistic map for r=$(p[1]), x0=$(x0)"
     )
     ax3.xlabelsize = LATEX_FONT_SIZE
     ax3.ylabelsize = LATEX_FONT_SIZE
     display(fig)
 
-    file_path = DDS.FIGURES_DIRECTORY * "logistic_map_timeseries_example.png"
+    file_path = DDS.FIGURES_DIRECTORY * "logistic_map_forward_orbit_example.png"
     save(file_path, fig)
 end

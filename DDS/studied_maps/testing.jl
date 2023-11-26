@@ -11,7 +11,7 @@ begin # it diverges
     x0 = -0.5
     p = [0.02]
     N = 2000
-    DDS.timeseries(f1, x0, p, N, 1; markersize=5.0)
+    DDS.forward_orbit(f1, x0, p, N, 1; markersize=5.0)
 end
 
 begin # showing laminar phase and turbulent phase
