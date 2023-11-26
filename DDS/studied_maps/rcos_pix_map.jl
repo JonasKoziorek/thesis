@@ -12,6 +12,4 @@ begin
 end
     
 display(DDS.bifurcation_diagram(cos_f, x0, p, 1, p_range, total_n, last_n))
-display(DDS.timeseries_last_n(cos_f, x0,[1.974283], 10000, 3000, 1))
 display(DDS.timeseries(cos_f, x0,[1.97427], 5000, 1))
-display(DDS.timeseries_last_n(cos_f, x0,[1.97427], 5100, 500, 1))

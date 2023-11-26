@@ -66,23 +66,6 @@ begin
     )
 end
 
-begin
-    total_n = 30000
-    last_n = 20000
-
-    x0 = [-1.5, 0.1]
-    p0 = [2.66768395005, 0.2]
-    x_index = 1
-    p_index = 1
-    DDS.timeseries_last_n(
-        duffing, x0, p0, total_n, last_n, x_index; 
-        markersize=7.0,
-        xtick_period=1000,
-        linewidth=0.05,
-        resolution=(2000, 500)
-    )
-end
-
 begin # whole bif diagram
     total_n = 1000
     last_n = 50
