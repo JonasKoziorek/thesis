@@ -224,3 +224,55 @@ function to_seed(arr, bintol)
     return bst
 
 end
+
+function newton_fps(
+    map,
+    param,
+    order,
+    x_range;
+    bintol::Float64 = 1e-10,
+    disttol::Float64 = 1e-14
+    )
+    nth_map = nth_composition(map, order)
+    fps = BinarySearchTree{Float64}(nothing)
+    l = length(fps)
+    seeds = LinRange(x_range..., max(15, 1000*order))
+    g(x) = nth_map(x, param)-x
+    while true
+        for s in seeds
+            new_root, status = newton_raphson(
+                g,
+                (x)->ForwardDiff.derivative(g, x),
+                s
+            )
+            if status
+                container = iterate(map, new_root, param, order)
+                for e in container
+                    if abs(g(e)) < disttol 
+                        if !search(fps, e, bintol)
+                            insert!(fps, e, bintol)
+                        end
+                    end
+                end
+            end
+        end
+        new_l = length(fps)
+        if new_l == l
+            break
+        else
+            l = new_l
+        end
+    end
+    return to_array(fps)
+end
+
+function newton_raphson(f, df, x0, max_iterations=100, tolerance=1e-10)
+    x = x0
+    for iteration in 1:max_iterations
+        x -= f(x) / df(x)
+        if abs(f(x)) < tolerance
+            return x, true
+        end
+    end
+    0, false
+end
