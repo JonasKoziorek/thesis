@@ -95,7 +95,7 @@ function plot_intermittency_region(
         last_n,
         x_index
     )
-    lines!(ax, [left_boundary, left_boundary], [x_range...], color=:blue, linewidth=3)
-    lines!(ax, [right_boundary, right_boundary], [x_range...], color=:red, linewidth=3)
+    lines!(ax, [left_boundary, left_boundary], [x_range...], color=DDS.BLUE, linewidth=3)
+    lines!(ax, [right_boundary, right_boundary], [x_range...], color=DDS.RED, linewidth=3)
     return ax
 end

@@ -2,7 +2,7 @@
 \label{chap:intermittency_review}
 
 \section{History}
-Intermittency is a very interesting phenomenon in the field of dynamical systems.
+Intermittency is one type of transition between chaos and periodicity.
 The investigation of intermittency was initiated in 1980 by Pomeau and Manneville \cite{Pomeau1980}.
 They were trying to explain an intermittent phenomenon in the fluid dynamics of convective fluids.
 During this phenomenon, long periodic behaviour was abrupted by a chaotic bursts as the experiment control parameter changed.
@@ -15,18 +15,17 @@ For better understanding of intermittency modern statistical theory has been dev
 \cite{Elaskar2017}
 \par
 The theory of intermittency is very broad.
-We decided that this thesis will be concerned with intermittency type I and it's detection.
+This thesis is concerned with intermittency type I and it's detection.
 
 \section{Mathematical Motivation}
-Intermittency is a behavior when seemingly periodic phases in the evotion of a dynamical system are abrupted by chaotic bursts.
+Intermittency is a behavior during which seemingly periodic phases in the forward orbit of DDS are abrupted by chaotic bursts.
 Periodic phases are called laminar.
 Phases with chaotic bursts are called turbulent phases.
 This naming convention originated in fluid dynamics which motivated study of intermittency. \cite{Pomeau1980}
 \\
 In figure \ref{fig:intermittent_forward_orbit_example} you can see an example of intermittency.
-In this case intermittency is clearly visible when looking at the forward orbit.
 Seemingly 2-periodic behavior which last for about 1000 iteration is interrupted by short chaotic bursts.
-These chaotic burst transform back into 2-periodic behavior.
+These chaotic bursts transform back into 2-periodic behavior.
 This pattern goes on.
 
 \begin{figure}[!h]
@@ -36,8 +35,9 @@ This pattern goes on.
     \label{fig:intermittent_forward_orbit_example}
 \end{figure}
 
-Forward orbit \ref{fig:intermittent_forward_orbit_example} exhibits type I intermittency which is related to \hyperref[def:saddle_node_bif]{saddle-node bifurcation} or it's inverse.
+Forward orbit in figure \ref{fig:intermittent_forward_orbit_example} exhibits type I intermittency which is related to \hyperref[def:saddle_node_bif]{saddle-node bifurcation} or it's inverse.
 Saddle-node bifurcation is a bifurcation where tangent of a curve passes through the identity line.
+\par
 Let's say we have a bifurcation point for parameter $p_{B}$.
 At this point local map of the system touches the identity line in exactly one spot, in other words the system has fixed point in the area of touching.
 For parameters $p < p_{B}$ there are two fixed points, curve is intersected in two places.
@@ -45,6 +45,7 @@ For parameters $p > p_{B}$ there is no fixed point since the curve left the iden
 This relation is illustrated in figure \ref{fig:saddle_node_bifurcation}.
 Red dot in figure \ref{fig:saddle_node_bifurcation} is a fixed point for curve at bifurcation point $p_{B}$.
 Blue dots in figure \ref{fig:saddle_node_bifurcation} are fixed points for curve for parameter $p < p_{B}$.
+When $p > p_{B}$ is greater but very close to $p_{B}$ a channel forms.
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.7\textwidth]{DDS/Figures/intermittency_i_local_map.png}
@@ -52,11 +53,10 @@ Blue dots in figure \ref{fig:saddle_node_bifurcation} are fixed points for curve
     \label{fig:saddle_node_bifurcation}
 \end{figure}
 
-When $p > p_{B}$ is greater but very close to $p_{B}$ a channel forms.
 
 The reason intermittency is born is illustrated in figure \ref{fig:intermittent_cobweb_example}.
 When dynamical system $f_P$ is about to undergo saddle-node or inverse saddle-node bifurcation as parameter $P$ changes, graph of $f_P$ is getting closer to identity function $g(x)=x$.
-Just before they touch small passage is formed between these two curves.
+Just before they touch small passage is formed between the two curves.
 If point $x_n$ gets injected into the narrow passage, it takes many iterations for it to get out of this passage again.
 The closer together the curve of $f_P$ and identity function are the narrower the passage is and the longer it gets to iterate through it.
 An illustration of the iteration through narrow passage is in figure \ref{fig:intermittent_cobweb_example} plot B.
@@ -74,6 +74,7 @@ However this seemingly periodic behavior is fake since once the point iterates t
 
 \section{Numerical Simulation}
 We propose that type I intermittency occurs when there is "breakpoint" in bifurcation diagram between chaotic behavior on the left and periodic behavior on the right.
+% Such break point is illustrated in figure \ref{fig:complex_logistic} subplot c and d.
 We haven't found literature to support this claim yet.
 However, our numerical simulations support this claim.
 Results are presented in figures \ref{fig:complex_pomeau_manneville}, \ref{fig:complex_logistic}, \ref{fig:complex_henon}, \ref{fig:complex_duffing}.
@@ -92,12 +93,12 @@ When $\epsilon = \epsilon_{sn}$ behavior is periodic.
 (End Of Claim)
 
 \section{Ambiguous Bifurcation Diagram}
-The laminar phases for $\epsilon$ very close to break point $\epsilon_{sn}$ get very large.
-During the creation of standart bifurcation diagrams \ref{def: bif_diag} initial point $x_o$ is evolved for certain amount of iterations and some fixed amount of them is plotted.
-However if the forward orbit has intermittency what if the plotted subsection of forward orbit consists only of long laminar phase and not the turbulent phase.
-In other words bifurcation diagram near the intermittent region can contain radical differences depending on how many iterations are made and how long the sample period is.
+How does bifurcation diagram look for an intermittent region?
+During the creation of a bifurcation diagram some fixed number of iterations are plotted.
+Based on the number of total iterations and number of last iterations being plotted the bifurcation diagram may differ.
+If we are plotting a subsection of forward orbit that corresponds only to the laminar phase, behavior during the turbulent phase is ommited.
+This causes bifurcation diagram to look different depending on how many iterations are made and how long the sample period is.
 \par
-To illustrate this ambiguity in bifurcation diagram, one can simply create a generic example.
 \begin{figure}[!h]
     \centering
     \includegraphics[width=1.0\textwidth]{DDS/Figures/bif_diag_ambiguity_creation_sketch.png}
@@ -105,12 +106,13 @@ To illustrate this ambiguity in bifurcation diagram, one can simply create a gen
     \label{fig:ambiguous_bif_diag}
 \end{figure}
 
+To illustrate this ambiguity in bifurcation diagram, one can simply create a generic example.
 Figure \ref{fig:ambiguous_bif_diag} shows two forward orbits for two distinct parameters $p_1$ and $p_2$.
 Both are close to intermittency threshold (break point) $p_{sn}$ and it holds $p_1 < p_2 < p_{sn}$.
 Forward orbit for parameter $p_1$ is plotted with red color in \ref{fig:ambiguous_bif_diag}.
 Forward orbit for $p_2$ is blue.
 Since $p_2$ is closer to intermittency threshold $p_{sn}$, laminar phases of it's forward orbits are longer.
-We can select parameters $p_1$ and $p_2$ so that the laminar phases are long enough and similar situation as in figure \ref{fig:ambiguous_bif_diag} occurs.
+% Parameters $p_1$ and $p_2$ can be selected arbitrarily as long as theso that the laminar phases are long enough and similar situation as in figure \ref{fig:ambiguous_bif_diag} occurs.
 Chaotic burst of forward orbit with longer laminar phase occurs in the middle of two laminar phases of forward orbit with shorter laminar phases.
 In our case chaotic burst $b$ occurs between chaotic bursts $a$ and $c$.
 If we create two bifurcation diagrams with total number of iterations $0.95 c$ and plotting last $c-(b-0.25(b-a))$ or $c-(b-0.75(b-a))$ we get two distinct bifurcation diagram.
@@ -124,12 +126,12 @@ If we create two bifurcation diagrams with total number of iterations $0.95 c$ a
 \end{figure}
 
 This is illustrated in figure \ref{fig:ambiguous_bif_diag_example}.
-Figure shows that bifurcation diagrams differ significantly for when number of total iterations is the same but number of last iterations being plotted is different.
+Figure shows that bifurcation diagrams differ significantly when number of total iterations is the same but number of last iterations being plotted is different.
 \par
-A question arises what do we expect from bifurcation diagram we we create it.
+A question arises what do we expect from bifurcation diagram when we create it?
 The figure \ref{fig:ambiguous_bif_diag_example} clearly shows that the same region of bifurcation diagram can look very different.
 A person not knowing about intermittency could be misled.
-It would be useful to have a tool that would warn a person looking at bifurcation diagram about underlying intermittency and it's ambiguity.
-We will try to develop this tool in the next chapter.
+It would be useful to have a tool that would warn a person looking at bifurcation diagram about underlying intermittency and ambiguity it is causing.
+We will try to develop such tool in the next chapter.
 
 \endinput

@@ -27,13 +27,13 @@ begin
     ax = DDS.bifurcation_diagram!(fig[1,1], logistic, x0, param, param_index, param_range2, total_n, last_n;ax_aspect=2)
     ax.ylabel = ""
     ax.xlabel = ""
-    colors = [:red, :blue]
+    colors = [DDS.RED, DDS.BLUE]
     i = 0
-    height = [0.25, 1.0]
+    height_ = [0.25, 1.0]
     for (l, r) in bifurcation_intervals
         color = colors[i%2+1]
-        lines!(ax, [l, l], [height...], color=color)
-        lines!(ax, [r, r], [height...], color=color)
+        lines!(ax, [l, l], [height_...], color=color)
+        lines!(ax, [r, r], [height_...], color=color)
         i+=1
     end
     display(fig)

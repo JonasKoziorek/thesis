@@ -72,30 +72,30 @@ end
     placeimage(img, Point(-w/2, -h/2), 1.0)
     sethue("black")
     setline(4)
-    height = 30
+    height_ = 30
     mid = 10
-    p1 = Point(-120+mid, height)
-    p2 = Point(mid, height)
+    p1 = Point(-120+mid, height_)
+    p2 = Point(mid, height_)
     Luxor.arrow(p1, p2,arrowheadlength=20)
     Luxor.arrow(p2, p1,arrowheadlength=20)
 
-    p1 = Point(mid, height)
-    p2 = Point(mid+170, height)
+    p1 = Point(mid, height_)
+    p2 = Point(mid+170, height_)
     Luxor.arrow(p1, p2,arrowheadlength=20)
     Luxor.arrow(p2, p1,arrowheadlength=20)
 
-    height = 15
+    height_ = 15
     fontsize(26)
     x = -95
-    y = height
+    y = height_
     text(L"a", Point(x, y), halign=:center, valign=:baseline)
 
     x = 30
-    y = height
+    y = height_
     text(L"b", Point(x, y), halign=:center, valign=:baseline)
 
     x = 160
-    y = height
+    y = height_
     text(L"c", Point(x, y), halign=:center, valign=:baseline)
 # end 1000 250
 end 1000 250 file_path

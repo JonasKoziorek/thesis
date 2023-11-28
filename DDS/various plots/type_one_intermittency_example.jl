@@ -1,5 +1,7 @@
 using DDS
 using CairoMakie
+using Luxor
+using Luxor: Point
 
 pomeau_manneville = DDS.pomeau_manneville
 

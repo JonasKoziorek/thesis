@@ -6,7 +6,9 @@ For purposes of this text we provide only simplified definitions from standard t
 
 \begin{definition} \textbf{(Discrete dynamical system)} \\
     \label{def:discrete dynamical system}
-    $m$-dimensional discrete dynamical system is a map $f: (\mathbb{R}^{m}, P) \rightarrow (\mathbb{R}^{m}, P)$ where selected $P \in \mathbb{R}^j$ are parameters.
+    Discrete dynamical system (abbr. DDS) is a map $f: \mathbb{R}^{m} \rightarrow \mathbb{R}^{m}$.
+    Map f can depend on one or more parameters $P \in \mathbb{R}^n$.
+    We denote map $f$ with parameters $P$ as $f_P$.
 \end{definition}
 
 \begin{remark}
@@ -15,83 +17,81 @@ For purposes of this text we provide only simplified definitions from standard t
     If dimension doesn't matter we will call such systems maps.
 \end{remark}
 
+\begin{definition} \textbf{(n-th iteration)} \\
+    One iteration of map $f$ for initial condition $x_0$ is represented by equation
+    \begin{eqnarray}
+        x_{1}  & = & f(x_{0})
+    \end{eqnarray}
+    $n$-th iteration of $x_0$ is
+    \begin{equation}
+        x_{n} = f(f(f(...f(x_0)))) = f^{n}(x_0) \nonumber
+    \end{equation}
+    Where $f^{n}(x_0)$ is $n$-th composition of f into itself. \\
+    We define $f^{0}(x_0) = x_0$.
+\end{definition}
+
+\begin{definition} \textbf{(Forward orbit)} \\
+    Set $\{f^i(x_0):i \in \mathbb{N} \cup \{0\} \}$ is called forward orbit of $f$.
+\end{definition}
+
 \begin{remark}
-    We may shorten map notation by specifying parameters as subscript $f_P: \mathbb{R}^m \rightarrow \mathbb{R}^m$.
-    Map $f_P$ is equivalent to map $f$ in Definition \ref{def:discrete dynamical system}.
+    When we talk about plot of forward orbit, we mean a line plot with
+    $0, 1, 2, 3...$ on the x-axis and $x_0, f(x_0), f^2(x_0), f^3(x_0)...$ on the y-axis.
+    Example of the plot of foward orbit is shown in figure \ref{fig:forward_orbit_example}
 \end{remark}
 
-\begin{definition} \textbf{(n-th iteration)} \\
-    $n$-th iteration of map $f_P$ for initial condition $x_0$ and parameters $P$ is represented by difference equation
-    \begin{eqnarray}
-        x_{n+1}  & = & f_P(x_{n}) \\
-    \end{eqnarray}
-    We can shortly write
-    \begin{equation}
-        x_{n} = f_P(f_P(f_P(...f_P(x_0)))) = f^{n}_{P}(x_0) \nonumber
-    \end{equation}
-    Where $f^{n}_{P}(x_0)$ is $n$-th composition of f into itself. \\
-    We define $f^{0}_{P}(x_0) = x_0$.
-\end{definition}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1.0\textwidth]{DDS/Figures/logistic_map_forward_orbit_example.png}
+    \caption{Example of forward orbit}
+    \label{fig:forward_orbit_example}
+\end{figure}
+
 
 \begin{definition} \textbf{(Fixed point)} \\
     \label{def:fixed point}
-    Point $x$ is called a fixed point of map $f_P$ if it holds $f_P(x) = x$.
+    Point $x \in \mathbb{R}^n$ is called a fixed point of $f$ if it holds $f(x) = x$.
+    We denote set of all fixed points of $f$ as $Fix(f)$. \cite{Devaney20211026}
+\end{definition}
+
+\begin{definition} (\textbf{Stable fixed point (1D)})\\
+    Fixed point $x \in \mathbb{R}$ of map $f$ is stable if $|\frac{d{f(x)}}{dx}| < 1$.
+    We call this point attracting.
+\end{definition}
+
+\begin{definition} (\textbf{Unstable fixed point (1D)})\\
+    Fixed point $x \in \mathbb{R}$ of map $f$ is unstable if $|\frac{d{f(x)}}{dx}| > 1$.
+    We call this point repelling.
 \end{definition}
 
 \begin{definition} (\textbf{Periodic point})\\
-    Point $x$ is called $n$-periodic if $f^{n}_P(x)=x$. Point $x$ is called eventually $n$-periodic if $(\exists m \in \mathbb{N}, m>0) (\forall i \geq m): f^{n+i}_P(x)=f^{i}_P(x)$.
-    Thus point $f^{i}_P(x)$ in $n$-periodic for some $i \geq m$.
+    Point $x \in \mathbb{R}^m$ is called $n$-periodic if $f^{n}(x)=x$.
+    We denote set of all $n$-periodic points of $f$ as $Per_{n}(f)$. \cite{Devaney20211026}
 \end{definition}
 
-\begin{remark}
-    Notice that every fixed point x is also 1-periodic point.  
-\end{remark}
-
-\begin{definition} (\textbf{Stable fixed point})\\
-    Fixed point $x$ of map $f_P$ is stable if $|\frac{d{f_P(x)}}{dx}| < 1$.
-\end{definition}
+\begin{theorem} (\textbf{my theorem, needs to be proved})\\
+$Fix(f^n) = Per_n(f)$
+\end{theorem}
 
 \begin{definition} (\textbf{Periodic orbit})\\
-    Set of stable fixed points of map $f^{n}$ is called $n$-periodic orbit or stable $n$-periodic orbit.
+    For $n$-periodic point $x_0$ the set $\{f^{in}(x_0):i \in \mathbb{N}\}$ is called periodic orbit of period $n$.
+    If $x_0$ is attracting, we call periodic orbit stable (abbr. PO).
+    If $x_0$ is repelling, we call periodic orbit unstable (abbr. UPO).
 \end{definition}
 
-\begin{definition} (\textbf{Unstable periodic orbit})\\
-    Set of all fixed points of map $f^{n}$ is called unstable $n$-periodic orbit.
-\end{definition}
+\begin{theorem} (\textbf{my theorem, needs to be proved})\\
+There can only be one stable periodic orbit. Saw this in \cite{Collet2009}
+\end{theorem}
 
-\begin{definition} \textbf{(Bifurcation)} \\
-    \label{def:bifurcation}
-    Bifurcation occurs when qualiative behavior of the system changes as parameter varies.
-\end{definition}
+\begin{theorem} (\textbf{my theorem, needs to be proved})\\
+If number of stable fixed points of $f^n$ is $m$ and $0<m<n$.
+Then $m|n$ and $f$ is $m$ periodic.
+There can only be one stable periodic orbit. Saw this in \cite{Collet2009}
+\end{theorem}
 
-\begin{definition} \textbf{(Bifurcation point)} \\
-    \label{def:bifurcation_point}
-    Parameter at which \hyperref[def:bifurcation]{bifurcation} occurs.
-\end{definition}
-
-\begin{definition} \textbf{(Saddle-node bifurcation)} \\
-    \label{def:saddle_node_bif}
-    To be defined.
-\end{definition}
-
-\begin{definition} (\textbf{Forward orbit}) \\
-    Line graph with $n=1,2,3...$ on $x$-axis and corresponding iterates $f^{n}_P(x_0)$ on $y$-axis is called forward orbit of $f_{P}(x_0)$ for some parameters $P$ and initial condition $x_0$.
-\end{definition}
-
-\begin{remark}
-    Forward orbits are useful for studying short term and long term behavior of studied map.
-    They cleanly show how initial condition is evolved.
-\end{remark}
-
-\begin{example}
-    In figure \ref{fig:forward_orbit_example} we present an example of forward orbit for logistic map. More information about logistic map will be presented in section \ref{subsec:logistic map}.
-    \begin{figure}[!h]
-        \centering
-        \includegraphics[width=1.0\textwidth]{DDS/Figures/logistic_map_forward_orbit_example.png}
-        \caption{Example of forward orbit}
-        \label{fig:forward_orbit_example}
-    \end{figure}
-\end{example}
+\begin{theorem} (\textbf{my theorem, needs to be proved})\\
+    $f^m$ cannot have $n, n>m$ stable fixed points.
+\end{theorem}
 
 \begin{definition} (\textbf{Cobweb diagram}) \\
     \label{def:cobweb}
@@ -114,7 +114,7 @@ For purposes of this text we provide only simplified definitions from standard t
 
 \begin{remark}
     Cobweb diagrams are useful for understanding long term behavior of studied map.
-    Fixed points and $n$-periodic points are seen in the diagram right away since they are represented by intersection of the graph of the map and identity function.
+    $n$-periodic points are seen in the diagram right away since they are represented by intersection of the graph of the map and identity function.
 \end{remark}
 
 \begin{example}
@@ -126,6 +126,22 @@ For purposes of this text we provide only simplified definitions from standard t
         \label{fig:cobweb_diag_example}
     \end{figure}
 \end{example}
+
+\begin{definition} \textbf{(Bifurcation)} \\
+    \label{def:bifurcation}
+    Bifurcation occurs when qualiative behavior of DDS $f$ changes as parameter varies.
+\end{definition}
+
+\begin{definition} \textbf{(Bifurcation point)} \\
+    \label{def:bifurcation_point}
+    Parameter at which \hyperref[def:bifurcation]{bifurcation} occurs.
+\end{definition}
+
+\begin{definition} \textbf{(Saddle-node bifurcation)} \\
+    \label{def:saddle_node_bif}
+    To be defined.
+\end{definition}
+
 
 \begin{definition} (\textbf{Bifurcation diagram}) \\
     \label{def: bif_diag}
