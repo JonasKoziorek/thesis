@@ -5,7 +5,6 @@ For purposes of this text we provide only simplified definitions from standard t
 \section{Discrete dynamical systems}
 
 \begin{definition} \textbf{(Discrete dynamical system)} \\
-    \label{def:discrete dynamical system}
     Discrete dynamical system (abbr. DDS) is a map $f: \mathbb{R}^{m} \rightarrow \mathbb{R}^{m}$.
     Map f can depend on one or more parameters $P \in \mathbb{R}^n$.
     We denote map $f$ with parameters $P$ as $f_P$.
@@ -24,7 +23,7 @@ For purposes of this text we provide only simplified definitions from standard t
     \end{eqnarray}
     $n$-th iteration of $x_0$ is
     \begin{equation}
-        x_{n} = f(f(f(...f(x_0)))) = f^{n}(x_0) \nonumber
+        x_{n} = f^{n}(x_0) = f \circ f \underbrace{\circ \cdots \circ}_\text{$n$ times} f(x_0)
     \end{equation}
     Where $f^{n}(x_0)$ is $n$-th composition of f into itself. \\
     We define $f^{0}(x_0) = x_0$.
@@ -36,8 +35,8 @@ For purposes of this text we provide only simplified definitions from standard t
 
 \begin{remark}
     When we talk about plot of forward orbit, we mean a line plot with
-    $0, 1, 2, 3...$ on the x-axis and $x_0, f(x_0), f^2(x_0), f^3(x_0)...$ on the y-axis.
-    Example of the plot of foward orbit is shown in figure \ref{fig:forward_orbit_example}
+    $0, 1, 2, 3...$ on the $x$-axis and $x_0, f(x_0), f^2(x_0), f^3(x_0)...$ on the $y$-axis.
+    Example of the plot of foward orbit is shown in Figure \ref{fig:forward_orbit_example}
 \end{remark}
 
 \begin{figure}[!h]
@@ -118,7 +117,7 @@ There can only be one stable periodic orbit. Saw this in \cite{Collet2009}
 \end{remark}
 
 \begin{example}
-    In figure \ref{fig:cobweb_diag_example} we present an example of cobweb diagram for logistic map. More information about logistic map will be presented in section \ref{subsec:logistic map}.
+    In Figure \ref{fig:cobweb_diag_example} we present an example of cobweb diagram for logistic map. More information about logistic map will be presented in section \ref{subsec:logistic map}.
     \begin{figure}[!h]
         \centering
         \includegraphics[width=0.8\textwidth]{DDS/Figures/logistic_map_cobweb_diag_example.png}
@@ -164,7 +163,7 @@ There can only be one stable periodic orbit. Saw this in \cite{Collet2009}
 \end{remark}
 
 \begin{example}
-    In figure \ref{fig:bif_diag_example} we present an example of bifurcation diagram for logistic map. More information about logistic map will be presented in section \ref{subsec:logistic map}.
+    In Figure \ref{fig:bif_diag_example} we present an example of bifurcation diagram for logistic map. More information about logistic map will be presented in section \ref{subsec:logistic map}.
     \begin{figure}[!h]
         \centering
         \includegraphics[width=0.9\textwidth]{DDS/Figures/logistic_map_bif_diag_example.png}

@@ -15,7 +15,7 @@ We will discuss each part in the following sections.
 \section{UPO detection}
 Our goal is to ultimately find regions in the bifurcation diagram where intermittency type I occurs.
 As noted in chapter \ref{chap:intermittency_review} we suppose that intermittency type I is present at "breakpoints" in the bifurcation diagram.
-Such breakpoint can be seen for example in figure \ref{fig:complex_logistic}.
+Such breakpoint can be seen for example in Figure \ref{fig:complex_logistic}.
 \par
 The breakpoints are characterized by shift from chaotic to periodic behavior.
 Periodic behavior on one side of the breakpoint in the neighborhood of it always has some fixed period $n$.
@@ -60,7 +60,7 @@ Since the algorithm is over 20 years old and there are no implementations of it 
 Our version simply the DL evolution rule but doesn't use previously UPOs as seeds.
 We choose seeds uniformly from an interval as it was suggested for SD algorithm \cite{Schmelcher1997}.
 We use efficient binary search tree structure which makes the algorithm efficient enough for our use case.
-Example of the results of the algorithm are shown in the figure \ref{fig:upo_search_example}.
+Example of the results of the algorithm are shown in the Figure \ref{fig:upo_search_example}.
 
 \begin{figure}[!h]
     \centering
@@ -104,7 +104,7 @@ We split the interval and check if the boundaries retain it's properties.
 If property at the boundary changes we simply update the initial interval and start the algorithm recursively again.
 This way we are able to precisely locate the breakpoint parameter.
 \par
-An example of the found breakpoint is illustrated in figure \ref{fig:break_point_search_example}.
+An example of the found breakpoint is illustrated in Figure \ref{fig:break_point_search_example}.
 
 \begin{figure}[!h]
     \centering
