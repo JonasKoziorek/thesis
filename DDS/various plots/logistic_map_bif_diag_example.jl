@@ -13,6 +13,7 @@ begin
     total_n = 5000
     last_n = 500
     p = [4.5]
+    x_0 = 0.5
     p_range = LinRange(2.81, 3.87, 1000)
     ax = DDS.bifurcation_diagram!(
         fig[1,1], logistic, x0, p, 1, p_range, total_n, last_n;
@@ -22,7 +23,8 @@ begin
         color=BLUE
     )
     ax.xlabel = L"r"
-    ax.ylabel = L"{$ x_{n}: n \in [%$(total_n - last_n), %$total_n]$}"
+    # ax.ylabel = L"{$ x_{n}: n \in [%$(total_n - last_n), %$total_n]$}"
+    ax.ylabel = ""
     ax.xlabelsize = LATEX_FONT_SIZE
     ax.ylabelsize = LATEX_FONT_SIZE - 4
 
