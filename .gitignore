@@ -7,3 +7,13 @@
 *.png
 *.jpg
 *.Identifier
+*.aux
+*.bcf
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.blg
+*.toc
