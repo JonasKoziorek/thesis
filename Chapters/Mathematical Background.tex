@@ -29,21 +29,21 @@ For purposes of this text we provide only simplified definitions from standard t
     We define $f^{0}(x_0) = x_0$.
 \end{definition}
 
-\begin{definition} \textbf{(Forward orbit)} \\
-    Set $\{f^i(x_0):i \in \mathbb{N} \cup \{0\} \}$ is called forward orbit of $f$.
+\begin{definition} \textbf{(Trajectory)} \\
+    Set $\{f^i(x_0):i \in \mathbb{N} \cup \{0\} \}$ is called trajectory of $f$.
 \end{definition}
 
 \begin{remark}
-    When we talk about plot of forward orbit, we mean a line plot with
+    When we talk about plot of trajectory, we mean a line plot with
     $0, 1, 2, 3...$ on the $x$-axis and $x_0, f(x_0), f^2(x_0), f^3(x_0)...$ on the $y$-axis.
-    Example of the plot of foward orbit is shown in Figure \ref{fig:forward_orbit_example}
+    Example of the plot of trajectory is shown in Figure \ref{fig:trajectory_example}
 \end{remark}
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=1.0\textwidth]{DDS/Figures/logistic_map_forward_orbit_example.png}
-    \caption{Example of forward orbit}
-    \label{fig:forward_orbit_example}
+    \includegraphics[width=1.0\textwidth]{DDS/Figures/logistic_map_trajectory_example.png}
+    \caption{Example of trajectory}
+    \label{fig:trajectory_example}
 \end{figure}
 
 
@@ -152,13 +152,13 @@ There can only be one stable periodic orbit. Saw this in \cite{Collet2009}
         \item for selected range of $\epsilon$, discretize range to finite number of samples \label{item_sample}
         \item choose number of iterations $N_{total}$
         \item choose number of last iterations that will be ploted $N_{last}$
-        \item for each parameter $\epsilon$ from step \ref{item_sample} construct forward orbit of $f_{\epsilon}(x_0)$ for $N_{total}$ iterations \label{item_forward_orbit}
-        \item bifurcation diagram is a scatter plot with parameter range from item \ref{item_sample} on $x$-axis and $N_{last}$ iterations of the coresponding evolution of $f(x_0)$ from step \ref{item_forward_orbit} on $y$-axis
+        \item for each parameter $\epsilon$ from step \ref{item_sample} construct trajectory of $f_{\epsilon}(x_0)$ for $N_{total}$ iterations \label{item_trajectory}
+        \item bifurcation diagram is a scatter plot with parameter range from item \ref{item_sample} on $x$-axis and $N_{last}$ iterations of the coresponding evolution of $f(x_0)$ from step \ref{item_trajectory} on $y$-axis
     \end{enumerate}
 \end{definition}
 
 \begin{remark}
-    Bifurcation diagrams show us how qualitative behavior of forward orbits of $f_P(x_0)$ change for varying parameters P.
+    Bifurcation diagrams show us how qualitative behavior of trajectories of $f_P(x_0)$ change for varying parameters P.
     In other words bifurcation diagrams illustrate \hyperref[def:bifurcation]{bifurcations} and help us identify \hyperref[def:bifurcation_point]{bifurcation points}
 \end{remark}
 

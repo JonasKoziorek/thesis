@@ -46,7 +46,7 @@ begin
     for i = 1:100
         p = [0.92066 + i*1e-4]
         x_index = 1
-        display(DDS.forward_orbit(standard, x0, p, total_n, x_index; xtick_period=1000))
+        display(DDS.trajectory(standard, x0, p, total_n, x_index; xtick_period=1000))
     end
 end
 
@@ -130,7 +130,7 @@ begin
     x0 = [0.5, 0.5]
     p = [0.6108]
     x_index = 2
-    DDS.forward_orbit(standard, x0, p, total_n, x_index)
+    DDS.trajectory(standard, x0, p, total_n, x_index)
 end
 
 begin
@@ -151,7 +151,7 @@ begin
     x0 = [0.5, 0.5]
     p = [0.275]
     x_index = 2
-    DDS.forward_orbit(standard, x0, p, total_n, x_index)
+    DDS.trajectory(standard, x0, p, total_n, x_index)
 end
 
 # ______________ testing _____________________

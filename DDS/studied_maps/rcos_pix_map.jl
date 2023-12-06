@@ -12,4 +12,4 @@ begin
 end
     
 display(DDS.bifurcation_diagram(cos_f, x0, p, 1, p_range, total_n, last_n))
-display(DDS.forward_orbit(cos_f, x0,[1.97427], 5000, 1))
+display(DDS.trajectory(cos_f, x0,[1.97427], 5000, 1))

@@ -32,34 +32,34 @@ begin
 
     fig.layout[1, 1] = grid
 
-    # upper left forward_orbit
+    # upper left trajectory
     total_n = 500
     p = [1.185, 0.3]
     upper1_1_color = BLUE
-    ax3 = DDS.forward_orbit!(upper_grid[1,1], henon, x0, p, total_n, 1; 
+    ax3 = DDS.trajectory!(upper_grid[1,1], henon, x0, p, total_n, 1; 
         ax_aspect=2, 
         markersize=POINT_SIZE,
         xtick_period=100,
         linewidth=LINEWIDTH+0.3, 
         dot_color=upper1_1_color,
-        title="Forward orbit for a=$(p[1]), x0=$(x0)"
+        title="Trajectory for a=$(p[1]), x0=$(x0)"
     )
     ax3.xlabelsize = LATEX_FONT_SIZE
     ax3.ylabelsize = LATEX_FONT_SIZE
     upper1_1_param = p[1]
 
 
-    # upper right forward_orbit
+    # upper right trajectory
     total_n = 500
     p = [1.25, 0.3]
     upper1_3_color = ORANGE
-    ax4 = DDS.forward_orbit!(upper_grid[1,3], henon, x0, p, total_n, 1; 
+    ax4 = DDS.trajectory!(upper_grid[1,3], henon, x0, p, total_n, 1; 
         ax_aspect=2, 
         markersize=POINT_SIZE, 
         xtick_period=100,
         linewidth=LINEWIDTH+0.3, 
         dot_color = upper1_3_color,
-        title="Forward orbit for a=$(p[1]), x0=$(x0)"
+        title="Trajectory for a=$(p[1]), x0=$(x0)"
     )
     ax4.xlabelsize = LATEX_FONT_SIZE
     ax4.ylabelsize = LATEX_FONT_SIZE
@@ -88,17 +88,17 @@ begin
     lines!(ax1, [left_boundary, right_boundary, right_boundary, left_boundary, left_boundary], [low, low, high, high, low], color=RED, linewidth = CLINEWIDTH+2)
 
 
-    # intermitten forward_orbit
+    # intermitten trajectory
     total_n = 8500
     p = [1.226617, 0.3]
     lower1_1_color = GREEN
-    ax5 = DDS.forward_orbit!(lower_grid2[1,1], henon, x0, p, total_n, 1; 
+    ax5 = DDS.trajectory!(lower_grid2[1,1], henon, x0, p, total_n, 1; 
         ax_aspect=4,
         markersize=POINT_SIZE, 
         xtick_period=500, 
         linewidth=LINEWIDTH,
         dot_color = lower1_1_color,
-        title="Forward orbit for a=$(p[1]), x0=$(x0)"
+        title="Trajectory for a=$(p[1]), x0=$(x0)"
     )
     ax5.xlabelsize = LATEX_FONT_SIZE
     ax5.ylabelsize = LATEX_FONT_SIZE

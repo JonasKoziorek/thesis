@@ -40,5 +40,5 @@ end;
 begin
     x0 = fps[2]
     N = 100
-    DDS.forward_orbit(DDS.logistic, x0, param, N, 1;ax_aspect=2)
+    DDS.trajectory(DDS.logistic, x0, param, N, 1;ax_aspect=2)
 end

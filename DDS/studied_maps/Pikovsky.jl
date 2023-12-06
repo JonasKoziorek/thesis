@@ -49,7 +49,7 @@ begin # showing intermittency near bifurcation point
     x0 = 0.3
     p = [bc+0.05]
     N = 300
-    DDS.forward_orbit(pikovsky, x0, p, total_n, 1; 
+    DDS.trajectory(pikovsky, x0, p, total_n, 1; 
         ax_aspect=5, 
         markersize=7.0, 
         resolution=(2000,500), 
@@ -65,7 +65,7 @@ begin
     x0 = 0.3
     p = [bc+0.05]
     N = 300
-    DDS.forward_orbit(pikovsky, x0, p, total_n, 1; 
+    DDS.trajectory(pikovsky, x0, p, total_n, 1; 
         ax_aspect=5, 
         markersize=7.0, 
         resolution=(2000,500), 

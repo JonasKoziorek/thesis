@@ -5,7 +5,7 @@ using Luxor: Point, text
 using MathTeXEngine
 using LaTeXStrings
 
-function custom_forward_orbit!(ax, func, x0, params, total_n; linewidth=0.05, markersize=7, dot_color=:black, line_color=:black)
+function custom_trajectory!(ax, func, x0, params, total_n; linewidth=0.05, markersize=7, dot_color=:black, line_color=:black)
     data = DDS.iterate(func, x0, params, total_n)
     x = 1:total_n
     y = [i[1] for i in data] 
@@ -36,7 +36,7 @@ begin
 
     x0 = 0.5
     p = [4.47458285]
-    custom_forward_orbit!(
+    custom_trajectory!(
         ax, pomeau_manneville, x0, p, total_n;
         markersize=5.0, 
         linewidth=0.04,
@@ -46,7 +46,7 @@ begin
 
     x0 = 0.5
     p = [4.47458285+4*eps]
-    custom_forward_orbit!(
+    custom_trajectory!(
         ax, pomeau_manneville, x0, p, total_n;
         markersize=5.0, 
         linewidth=0.04,

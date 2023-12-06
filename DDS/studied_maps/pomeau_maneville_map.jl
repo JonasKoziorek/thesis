@@ -6,7 +6,7 @@ begin # showing intermittency
     x0 = 0.5
     p = [0.001]
     N = 500
-    DDS.forward_orbit(pomeau_manneville, x0, p, N, 1; markersize=5.0)
+    DDS.trajectory(pomeau_manneville, x0, p, N, 1; markersize=5.0)
 end
 
 begin # showing break point in the bifurcation diagram
@@ -45,7 +45,7 @@ begin # showing intermittency at the break point which spans circa 1000 iters ps
 
     x0 = 0.5
     p = [4.47458]
-    DDS.forward_orbit(pomeau_manneville, x0, p, total_n, 1; 
+    DDS.trajectory(pomeau_manneville, x0, p, total_n, 1; 
         ax_aspect=5, 
         markersize=7.0, 
         resolution=(2000,500), 
@@ -60,7 +60,7 @@ begin # showing intermittency at the break point which spans circa 2000 iters ps
 
     x0 = 0.5
     p = [4.4745824]
-    DDS.forward_orbit(pomeau_manneville, x0, p, total_n, 1; 
+    DDS.trajectory(pomeau_manneville, x0, p, total_n, 1; 
         ax_aspect=5, 
         markersize=7.0, 
         resolution=(2000,500), 
@@ -75,7 +75,7 @@ begin # showing intermittency at the break point which spans circa 4000 iters ps
 
     x0 = 0.5
     p = [4.4745828]
-    DDS.forward_orbit(pomeau_manneville, x0, p, total_n, 1; 
+    DDS.trajectory(pomeau_manneville, x0, p, total_n, 1; 
         ax_aspect=5, 
         markersize=7.0, 
         resolution=(2000,500), 
@@ -90,7 +90,7 @@ begin # showing intermittency at the break point which spans circa 6000 iters ps
 
     x0 = 0.5
     p = [4.47458285]
-    DDS.forward_orbit(pomeau_manneville, x0, p, total_n, 1; 
+    DDS.trajectory(pomeau_manneville, x0, p, total_n, 1; 
         ax_aspect=5, 
         markersize=7.0, 
         resolution=(2000,500), 
@@ -105,7 +105,7 @@ begin # showing intermittency at the break point which spans circa 10000 iters p
 
     x0 = 0.5
     p = [4.4745829]
-    DDS.forward_orbit(pomeau_manneville, x0, p, total_n, 1; 
+    DDS.trajectory(pomeau_manneville, x0, p, total_n, 1; 
         ax_aspect=5, 
         markersize=7.0, 
         resolution=(2000,500), 
@@ -120,7 +120,7 @@ begin # showing intermittency at the break point which spans circa 15000 iters p
 
     x0 = 0.5
     p = [4.474582915]
-    DDS.forward_orbit(pomeau_manneville, x0, p, total_n, 1; 
+    DDS.trajectory(pomeau_manneville, x0, p, total_n, 1; 
         ax_aspect=5, 
         markersize=7.0, 
         resolution=(2000,500), 
@@ -150,7 +150,7 @@ begin # other type different type of intermittency at the break point near zero
     x0 = 0.5
     p = [-0.00001]
     # p = [4.6196]
-    DDS.forward_orbit(pomeau_manneville, x0, p, total_n, 1; 
+    DDS.trajectory(pomeau_manneville, x0, p, total_n, 1; 
         ax_aspect=5, 
         markersize=7.0, 
         resolution=(2000,500), 
@@ -165,7 +165,7 @@ begin # interesting evolution around 3
 
     x0 = 0.5
     p = [3.000219]
-    DDS.forward_orbit(pomeau_manneville, x0, p, total_n, 1; 
+    DDS.trajectory(pomeau_manneville, x0, p, total_n, 1; 
         ax_aspect=5, 
         markersize=7.0, 
         resolution=(2000,500), 
@@ -194,7 +194,7 @@ begin # 12 plots that show how "chaos" or some dynamics is born after leaving la
     x0 = 0.5
     for i = 12:-1:1
         p = [3.0 + 10.0^(-i)]
-        plot = DDS.forward_orbit(pomeau_manneville, x0, p, total_n, 1; 
+        plot = DDS.trajectory(pomeau_manneville, x0, p, total_n, 1; 
             ax_aspect=5, 
             markersize=7.0,
             resolution=(2000,500), 
@@ -222,7 +222,7 @@ begin
 
     x0 = 0.5
     p = [46.9782]
-    DDS.forward_orbit(pomeau_manneville, x0, p, total_n, 1; 
+    DDS.trajectory(pomeau_manneville, x0, p, total_n, 1; 
         ax_aspect=5, 
         markersize=7.0, 
         resolution=(2000,500), 
@@ -273,7 +273,7 @@ begin
     x0 = 0.5
     p = [4.47458265]
     # p_range = 4.474582911:step:4.474582999
-    DDS.forward_orbit(pomeau_manneville, x0, p, total_n, 1; 
+    DDS.trajectory(pomeau_manneville, x0, p, total_n, 1; 
         ax_aspect=5, 
         markersize=7.0, 
         resolution=(2000,500), 
@@ -329,7 +329,7 @@ begin
     step_ =1/5* 1e-8
     for p in BigFloat("4.4745829135"):step_:BigFloat("4.4745829165")
         # p_range = 4.474582911:step:4.474582999
-        display(DDS.forward_orbit(pomeau_manneville, x0, p, total_n, 1; 
+        display(DDS.trajectory(pomeau_manneville, x0, p, total_n, 1; 
             ax_aspect=5, 
             markersize=7.0, 
             resolution=(2000,500), 

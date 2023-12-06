@@ -53,7 +53,7 @@ begin # showing intermittency at the break point of henon map
     x0 = [0.0, 0.0]
     p = [1.2264, 0.3]
     x_index = 1
-    DDS.forward_orbit(
+    DDS.trajectory(
         henon, x0, p, total_n, x_index;
         ax_aspect=5, 
         markersize=7.0, 
@@ -70,7 +70,7 @@ begin # intermittency again
     x0 = [0.0, 0.0]
     p = [1.226617, 0.3]
     x_index = 1
-    DDS.forward_orbit(
+    DDS.trajectory(
         henon, x0, p, total_n, x_index;
         ax_aspect=5, 
         markersize=7.0, 
@@ -89,7 +89,7 @@ begin # showing intermittency at the break point of henon map
     for i in LinRange(1.22661730, 1.22661735, 10)
         p = [i, 0.3]
         x_index = 1
-        display(DDS.forward_orbit(
+        display(DDS.trajectory(
             henon, x0, p, total_n, x_index;
             ax_aspect=5, 
             markersize=7.0, 

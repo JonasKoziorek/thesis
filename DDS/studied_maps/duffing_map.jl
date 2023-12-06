@@ -57,7 +57,7 @@ begin
     p0 = [2.5302, 0.2]
     x_index = 1
     p_index = 1
-    DDS.forward_orbit(
+    DDS.trajectory(
         duffing, x0, p0, total_n, x_index; 
         markersize=5.0,
         xtick_period=1000,
@@ -90,7 +90,7 @@ begin # closer look
     display(DDS.bifurcation_diagram(duffing, x0, p0, p_index, p_range, total_n, last_n, x_index))
 end
 
-begin # intermittent forward_orbit
+begin # intermittent trajectory
     total_n = 30000
 
     for p in LinRange(BigFloat("2.45043963"), BigFloat("2.45043964"), 10)
@@ -98,7 +98,7 @@ begin # intermittent forward_orbit
         p0 = [p, 0.0001]
         x_index = 1
         p_index = 1
-        display(DDS.forward_orbit(
+        display(DDS.trajectory(
             duffing, x0, p0, total_n, x_index; 
             markersize=5.0,
             xtick_period=2000,
