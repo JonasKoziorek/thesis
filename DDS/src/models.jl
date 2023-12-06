@@ -9,7 +9,7 @@ function henon(x, p)
     a, b = p
     xn = 1 - a*x^2 + y
     yn = b*x
-    return (xn, yn)
+    return [xn, yn]
 end
 
 function pikovsky(z, p)
@@ -36,7 +36,7 @@ function rulkov(u, p)
     α, β, σ = p
     xn = α/(1.0+x^2) + y
     yn = y - σ*x - β
-    return (xn, yn)
+    return [xn, yn]
 end
 
 function standard(x, p)
@@ -44,7 +44,7 @@ function standard(x, p)
     k = p[1]
     xn = x + y + k*sin(x)
     yn = y + k*sin(x)
-    return (xn, yn)
+    return [xn, yn]
 end
 
 # source:
@@ -57,5 +57,5 @@ function duffing(x, p)
     a, b = p
     xn = y
     yn = -b*x + a*y - y^3
-    return (xn, yn)
+    return [xn, yn]
 end

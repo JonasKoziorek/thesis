@@ -17,7 +17,7 @@ begin # shows difference between scatter plots in bifurcation diagrams for speci
         p = [4.47458]
         p_range = LinRange(BigFloat("4.4745829135"), BigFloat("4.474582916501"), 135)
         # p_range = LinRange(BigFloat("4.4745829135"), BigFloat("4.474582916501"), 165)
-        @time plotting_data, raw_data = DDS.bifurcation_data(pomeau_manneville, x0, p, 1, p_range, total_n, last_n, 1)
+        @time plotting_data = DDS.bifurcation_data(pomeau_manneville, x0, p, 1, p_range, total_n, last_n, 1)
         x = [x for (x,y) in plotting_data]
         y = [y for (x,y) in plotting_data]
         index = findfirst(x->x==last_n, last_ns)
@@ -40,7 +40,7 @@ begin # more precise comparison of two Bifurcation diagrams that differ # 86 sec
         x0=0.5
         p = [4.47458]
         p_range = LinRange(BigFloat("4.4745829135"), BigFloat("4.474582916501"), 900)
-        @time plotting_data, raw_data = DDS.bifurcation_data(pomeau_manneville, x0, p, 1, p_range, total_n, last_n, 1)
+        @time plotting_data = DDS.bifurcation_data(pomeau_manneville, x0, p, 1, p_range, total_n, last_n, 1)
         x = [x for (x,y) in plotting_data]
         y = [y for (x,y) in plotting_data]
         index = findfirst(x->x==last_n, last_ns)
@@ -68,7 +68,7 @@ begin # takes about 260 seconds to finish
         x0=0.5
         p = [4.47458]
         p_range = LinRange(BigFloat("4.4745829135")-eps_, BigFloat("4.474582916501")+eps_, 1000)
-        @time plotting_data, raw_data = DDS.bifurcation_data(pomeau_manneville, x0, p, 1, p_range, total_n, last_n, 1)
+        @time plotting_data = DDS.bifurcation_data(pomeau_manneville, x0, p, 1, p_range, total_n, last_n, 1)
         x = [x for (x,y) in plotting_data]
         y = [y for (x,y) in plotting_data]
         index = findfirst(x->x==last_n, last_ns)
@@ -92,7 +92,7 @@ begin
         x0=0.5
         p = [4.47458]
         p_range = LinRange(BigFloat("4.4745829135")-eps_, BigFloat("4.474582916501")+eps_, 200)
-        @time plotting_data, raw_data = DDS.bifurcation_data(pomeau_manneville, x0, p, 1, p_range, total_n, last_n, 1)
+        @time plotting_data = DDS.bifurcation_data(pomeau_manneville, x0, p, 1, p_range, total_n, last_n, 1)
         x = [x for (x,y) in plotting_data]
         y = [y for (x,y) in plotting_data]
         index = findfirst(x->x==last_n, last_ns)
@@ -116,7 +116,7 @@ begin
         x0=0.5
         p = [4.47458]
         p_range = LinRange(BigFloat("4.4745829135")-eps_, BigFloat("4.474582916501")+eps_, 200)
-        @time plotting_data, raw_data = DDS.bifurcation_data(pomeau_manneville, x0, p, 1, p_range, total_n, last_n, 1)
+        @time plotting_data = DDS.bifurcation_data(pomeau_manneville, x0, p, 1, p_range, total_n, last_n, 1)
         x = [x for (x,y) in plotting_data]
         y = [y for (x,y) in plotting_data]
         index = findfirst(x->x==last_n, last_ns)

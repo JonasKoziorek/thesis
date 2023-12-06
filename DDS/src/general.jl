@@ -6,17 +6,10 @@
 #   return new iteration based of x based on evolution rule 
 # end
 
-function iterate(func, x0, params, total_n::Int64)
-    if total_n == 0
-        return x0
-    else
-        results = []
-        step!(results, func, x0, params)
-        for t=2:total_n
-            step!(results, func, last(results), params)
-        end
-        return results
-    end
+function iterate(func, x0, p, n::Int64)
+    container = Vector{typeof(x0)}(undef, n+1)
+    iterate!(func, x0, p, n, container)
+    return container
 end
 
 function iterate!(map, x0, p, n, container)

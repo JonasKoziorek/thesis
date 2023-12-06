@@ -20,7 +20,7 @@ begin
         p_index = 1
 
         p_range = LinRange(BigFloat("1.22661730"), BigFloat("1.22661735"), 300)
-        @time plotting_data, _ = DDS.bifurcation_data(henon, x0, p, p_index, p_range, total_n, last_n, x_index)
+        @time plotting_data = DDS.bifurcation_data(henon, x0, p, p_index, p_range, total_n, last_n, x_index)
 
         x = [x for (x,y) in plotting_data]
         y = [y for (x,y) in plotting_data]

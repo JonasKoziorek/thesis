@@ -1,12 +1,12 @@
 function trajectory(func, x0, params, total_n, index_x; kwargs...)
-    x = 1:total_n
+    x = 0:total_n
     data = iterate(func, x0, params, total_n)
     y = [i[index_x] for i in data] 
     return trajectory_plot(x, y,; kwargs...)
 end
 
 function trajectory!(figure, func, x0, params, total_n, index_x; kwargs...)
-    x = 1:total_n
+    x = 0:total_n
     data = iterate(func, x0, params, total_n)
     y = [i[index_x] for i in data] 
     return trajectory_axis(figure, x, y; kwargs...)

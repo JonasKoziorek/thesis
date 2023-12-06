@@ -16,7 +16,7 @@ begin
         x0=0.5
         p = [3.82842710]
         p_range = LinRange(BigFloat("3.828427110"), BigFloat("3.828427115"), 100)
-        @time plotting_data, raw_data = DDS.bifurcation_data(logistic, x0, p, 1, p_range, total_n, last_n, 1)
+        @time plotting_data = DDS.bifurcation_data(logistic, x0, p, 1, p_range, total_n, last_n, 1)
         x = [x for (x,y) in plotting_data]
         y = [y for (x,y) in plotting_data]
         ticks = LinRange(3.828427110, 3.828427115, 4)

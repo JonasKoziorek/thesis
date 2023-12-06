@@ -7,7 +7,7 @@ using LaTeXStrings
 
 function custom_trajectory!(ax, func, x0, params, total_n; linewidth=0.05, markersize=7, dot_color=:black, line_color=:black)
     data = DDS.iterate(func, x0, params, total_n)
-    x = 1:total_n
+    x = 0:total_n
     y = [i[1] for i in data] 
     CairoMakie.lines!(ax, x, y; color=line_color, linewidth=linewidth)
     CairoMakie.scatter!(ax, x, y, marker = :circle, markersize = markersize, color = dot_color)

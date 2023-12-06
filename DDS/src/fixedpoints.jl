@@ -44,43 +44,6 @@ function DL_rule(x, β, C, g)
     return xn
 end
 
-# function DL(
-#         map,
-#         param,
-#         order,
-#         seeds;
-#         bintol::Float64 = 1e-8,
-#         kwargs...
-#     )
-#     fps = [BinarySearchTree{Float64}(nothing) for i = 1:order+1]
-#     l = length(seeds)
-#     for i = 1:l
-#         [insert!(fps[i], x, bintol) for x in seeds[i]]
-#     end
-#     for cur_p = l+1:order
-#         l = length(fps[cur_p])
-#         a = 1.0
-#         while true
-#             β = exp(a)
-#             for i = cur_p-2:cur_p-1
-#                 detect_orbits(fps[cur_p], map, param, cur_p, fps[i], β;bintol=bintol,kwargs...)
-#             end
-#             detect_orbits(fps[cur_p+1], map, param, cur_p+1, fps[cur_p], β;bintol=bintol,kwargs...)
-#             for i = cur_p-1:cur_p
-#                 detect_orbits(fps[i], map, param, i, fps[cur_p+1], β;bintol=bintol,kwargs...)
-#             end
-#             new_l = length(fps[cur_p])
-#             if new_l == l
-#                 break
-#             else
-#                 l = new_l
-#                 a += 1.0
-#             end
-#         end
-#     end
-#     return fps
-# end
-
 function DL(
         map,
         param,
@@ -106,13 +69,6 @@ function DL(
     end
     return fps[1]
 end
-
-# function fixed_points2(map_, param, order, x_range)
-#     nth_ds = nth_composition(map_, order)
-#     g(x) = nth_ds(x, param) - x
-#     rts = roots(g, Interval(x_range...))
-#     return mid.(interval.(rts))
-# end
 
 function fixed_points(map, param, order, x_range)
     disttol = 1e-8
@@ -225,50 +181,9 @@ function to_seed(arr, bintol)
 
 end
 
-function newton_fps(
-    map,
-    param,
-    order,
-    x_range;
-    bintol::Float64 = 1e-10,
-    disttol::Float64 = 1e-14
-    )
-    nth_map = nth_composition(map, order)
-    fps = BinarySearchTree{Float64}(nothing)
-    l = length(fps)
-    seeds = LinRange(x_range..., max(15, 1000*order))
-    g(x) = nth_map(x, param)-x
-    while true
-        for s in seeds
-            new_root, status = newton_raphson(
-                g,
-                (x)->ForwardDiff.derivative(g, x),
-                s
-            )
-            if status
-                container = iterate(map, new_root, param, order)
-                for e in container
-                    if abs(g(e)) < disttol 
-                        if !search(fps, e, bintol)
-                            insert!(fps, e, bintol)
-                        end
-                    end
-                end
-            end
-        end
-        new_l = length(fps)
-        if new_l == l
-            break
-        else
-            l = new_l
-        end
-    end
-    return to_array(fps)
-end
-
 function newton_raphson(f, df, x0, max_iterations=100, tolerance=1e-10)
     x = x0
-    for iteration in 1:max_iterations
+    for _ in 1:max_iterations
         x -= f(x) / df(x)
         if abs(f(x)) < tolerance
             return x, true
