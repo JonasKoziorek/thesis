@@ -22,17 +22,23 @@ function _detect_orbits!(map, param, order, seed, C, β, disttol, FP, g, bintol)
         for _ in 1:max(100, 4*β)
             xn = DL_rule(x, β, C, g)
             if abs(g(xn)) < disttol
-                iterate!(map, xn, param, order, container) 
-                for e in container
-                    if abs(g(e)) < disttol 
-                        if !search(FP, e, bintol)
-                            insert!(FP, e, bintol)
-                        end
-                    end
-                end
+# function newton_raphson(f, df, x0, max_iterations=100, tolerance=1e-10)
+                add_fps!(container, map, g, FP, xn, param, order, disttol, bintol)
                 break
             end
             x = xn
+        end
+    end
+end
+
+function add_fps!(container, map, g, FP, xn, param, order, disttol, bintol)
+    iterate!(map, xn, param, order, container) 
+    for e in container
+        e, _ = newton_raphson(g, x->ForwardDiff.derivative(g, x), e, 5)
+        if abs(g(e)) < disttol 
+            if !search(FP, e, bintol)
+                insert!(FP, e, bintol)
+            end
         end
     end
 end
@@ -55,7 +61,7 @@ function DL(
     fps = [BinarySearchTree{Float64}(nothing)]
     l = length(fps[1])
     a = 1.0
-    seed = to_seed(LinRange(x_range..., min(15, 5*order)), bintol)
+    seed = to_seed(LinRange(x_range..., max(30, 5*order)), bintol)
     while true
         β = exp(a)
         detect_orbits(fps[1], map, param, order, seed, β;bintol=bintol,kwargs...)
@@ -160,7 +166,6 @@ function _to_array!(node, arr, index)
     return index
 end
 
-
 import Base.length
 function length(bst::BinarySearchTree)
     return _length(bst.root)
@@ -189,5 +194,5 @@ function newton_raphson(f, df, x0, max_iterations=100, tolerance=1e-10)
             return x, true
         end
     end
-    0, false
+    x, false
 end
