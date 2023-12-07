@@ -1,9 +1,11 @@
 function find_change(periodic_orbits, params)
     ranges = Tuple{Float64, Float64}[]
     prev_o = periodic_orbits[1]
+    infty = maximum(periodic_orbits)
     for i in 2:length(periodic_orbits)
         new_o = periodic_orbits[i]
-        if prev_o != new_o
+        # if prev_o != new_o
+        if prev_o == infty && new_o != infty
             push!(ranges, (params[i-1], params[i])) 
         end
         prev_o = new_o

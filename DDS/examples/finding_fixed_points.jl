@@ -7,7 +7,7 @@ begin
     param = [3.5823]
     # param = [3.5814]
     param = [3.70]
-    order = 6
+    order = 10
 
     nth_logistic = DDS.nth_composition(logistic, order)
     x_range = (0, 1)

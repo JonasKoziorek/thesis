@@ -7,9 +7,10 @@ begin
     logistic = DDS.logistic
 
     param_index = 1
-    param_range = LinRange(3.43, 3.66, 170)
+    # param_range = LinRange(3.55, 3.66, 1400)
+    param_range = LinRange(3.56, 3.66, 700)
     x_range = (0.0, 1.0)
-    orbit_limit = 18
+    orbit_limit = 16
     bifurcation_intervals = DDS.localize_bifurcation(
         logistic, 
         param_index, 
@@ -27,7 +28,8 @@ begin
     ax = DDS.bifurcation_diagram!(fig[1,1], logistic, x0, param, param_index, param_range2, total_n, last_n;ax_aspect=2)
     ax.ylabel = ""
     ax.xlabel = ""
-    colors = [DDS.RED, DDS.BLUE]
+    # colors = [DDS.RED, DDS.BLUE]
+    colors = [DDS.RED, DDS.RED]
     i = 0
     height_ = [0.25, 1.0]
     for (l, r) in bifurcation_intervals
