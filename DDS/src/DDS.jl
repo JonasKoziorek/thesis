@@ -13,6 +13,7 @@ include("trajectory.jl")
 include("fixedpoints.jl")
 include("localize_bifurcations.jl")
 include("localize_intermittency.jl")
+include("colorize_bifurcation_diag.jl")
 
 const FIGURES_DIRECTORY = "./Figures/"
 
