@@ -10,8 +10,11 @@ function pick_index(data, index)
     return [i[index] for i in data]
 end
 
-function bifurcation_data(func, x0, params, param_index, param_range, total_n, sampling_n, index_x=1)
+function bifurcation_data(func, x0, params, param_index, param_range, total_n, sampling_n, index_x=1; left_p=nothing, right_p=nothing)
     plotting_data = Vector{Tuple{Float64, Float64}}(undef, 0)
+    if !isnothing(left_p) && !isnothing(right_p)
+        param_range = filter(x->x<left_p || x>right_p, collect(param_range))
+    end
     for  param_value in param_range
         params[param_index] = param_value
         raw_data = iterate(func, x0, params, total_n)

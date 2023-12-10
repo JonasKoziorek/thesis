@@ -132,7 +132,7 @@ end
 begin
     total_n = 1000
     last_n = 50
-    p_range = LinRange(3.8284, 3.8285, 10000)
+    p_range = LinRange(3.82835, 3.8285, 10000)
     figure = Figure()
     left_p = 1+sqrt(8)-2.5*1e-5
     right_p = 1+sqrt(8)-1e-7
@@ -145,7 +145,7 @@ begin
     nth_logistic = (x, p) -> map_(x+x0, p) - x0
     f(p) = nth_logistic(0, [p])^(-0.5)
     colorrange = [f(left_p), f(right_p)];
-    cmap = :Reds
+    cmap = :rainbow
     Colorbar(figure[1, 2], colorrange = colorrange, colormap = cmap, label="average laminar phase length")
     display(figure)
 end
