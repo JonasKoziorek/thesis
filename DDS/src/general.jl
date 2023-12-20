@@ -14,20 +14,9 @@ end
 
 function iterate!(map, x0, p, n, container)
     container[1] = x0
-    x = x0
     for i = 2:n+1
-        x = map(x, p)
-        container[i] = x
+        container[i] = map(container[i-1], p)
     end
-end
-
-function step(func, previous_x, params)
-    new_x = func(previous_x, params)
-    return new_x
-end
-
-function step!(container, func, previous_x, params)
-    push!(container, step(func, previous_x, params))
 end
 
 function jacobian(map)

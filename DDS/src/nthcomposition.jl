@@ -1,7 +1,7 @@
 function nth_composite(func, x0, params, n_order)
     x = x0
     for i = 1:n_order
-        x = step(func, x, params)
+        x = func(x, params)
     end
     return x
 end
