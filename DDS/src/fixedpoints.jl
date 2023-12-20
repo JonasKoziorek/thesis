@@ -22,7 +22,6 @@ function _detect_orbits!(map, param, order, seed, C, β, disttol, FP, g, bintol)
         for _ in 1:max(100, 4*β)
             xn = DL_rule(x, β, C, g)
             if abs(g(xn)) < disttol
-# function newton_raphson(f, df, x0, max_iterations=100, tolerance=1e-10)
                 add_fps!(container, map, g, FP, xn, param, order, disttol, bintol)
                 break
             end
