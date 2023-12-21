@@ -34,8 +34,6 @@ function color_bif_diag_axis(figure, plotting_data, plotting_data2, param_name, 
             push!(colors, L(p))
         end
     end
-    # println(new_plotting_data)
-    # println(colors)
     println(colorrange)
     scatter!(ax, plotting_data, marker = :circle, markersize = markersize, color = color)
     scatter!(ax, plotting_data2; marker=:circle, color=colors, colormap = cmap, markersize=markersize+2, colorrange = colorrange)
