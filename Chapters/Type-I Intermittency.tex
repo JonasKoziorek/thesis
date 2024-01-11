@@ -15,7 +15,7 @@ For better understanding of intermittency modern statistical theory has been dev
 \cite{Elaskar2017}
 \par
 The theory of intermittency is very broad.
-This thesis is concerned with intermittency type I and it's detection.
+This thesis is concerned with intermittency type I and its detection.
 
 \section{Mathematical Motivation}
 Intermittency is a behavior during which seemingly periodic phases in the trajectory of DDS are abrupted by chaotic bursts.
@@ -35,7 +35,7 @@ This pattern goes on.
     \label{fig:intermittent_trajectory_example}
 \end{figure}
 
-Trajectory in Figure \ref{fig:intermittent_trajectory_example} exhibits type I intermittency which is related to \hyperref[def:saddle_node_bif]{saddle-node bifurcation} or it's inverse.
+Trajectory in Figure \ref{fig:intermittent_trajectory_example} exhibits type I intermittency which is related to \hyperref[def:saddle_node_bif]{saddle-node bifurcation} or its inverse.
 Saddle-node bifurcation is a bifurcation where tangent of a curve passes through the identity line.
 \par
 Let's say we have a bifurcation point for parameter $p_{B}$.
@@ -54,13 +54,13 @@ When $p > p_{B}$ is greater but very close to $p_{B}$ a channel forms.
 \end{figure}
 
 
-The reason intermittency is born is illustrated in Figure \ref{fig:intermittent_cobweb_example}.
+The reason why intermittency arises is illustrated in Figure \ref{fig:intermittent_cobweb_example}.
 When dynamical system $f_P$ is about to undergo saddle-node or inverse saddle-node bifurcation as parameter $P$ changes, graph of $f_P$ is getting closer to identity function $g(x)=x$.
 Just before they touch small passage is formed between the two curves.
 If point $x_n$ gets injected into the narrow passage, it takes many iterations for it to get out of this passage again.
 The closer together the curve of $f_P$ and identity function are the narrower the passage is and the longer it gets to iterate through it.
 An illustration of the iteration through narrow passage is in Figure \ref{fig:intermittent_cobweb_example} plot B.
-This iteration corresponds to first laminar phase from Figure \ref{fig:intermittent_trajectory_example}.
+This iteration corresponds to first laminar phase in Figure \ref{fig:intermittent_trajectory_example}.
 While the point is travelling throug a narrow passage, on trajectory it looks as if he was not moving.
 Hence it looks periodic.
 However this seemingly periodic behavior is fake since once the point iterates through the narrow passage it moves chaotically once again.
@@ -75,7 +75,7 @@ However this seemingly periodic behavior is fake since once the point iterates t
 \section{Numerical Simulation}
 We propose that type I intermittency occurs when there is "breakpoint" in bifurcation diagram between chaotic behavior on the left and periodic behavior on the right.
 % Such break point is illustrated in Figure \ref{fig:complex_logistic} subplot c and d.
-We haven't found literature to support this claim yet.
+We have not found literature to support this claim yet.
 However, our numerical simulations support this claim.
 Results are presented in figures \ref{fig:complex_pomeau_manneville}, \ref{fig:complex_logistic}, \ref{fig:complex_henon}, \ref{fig:complex_duffing}.
 In plots marked as D in each of these figures, the breakpoint in bifurcation diagram is shown.
@@ -111,7 +111,7 @@ Figure \ref{fig:ambiguous_bif_diag} shows two trajectories for two distinct para
 Both are close to intermittency threshold (break point) $p_{sn}$ and it holds $p_1 < p_2 < p_{sn}$.
 Trajectory for parameter $p_1$ is plotted with red color in \ref{fig:ambiguous_bif_diag}.
 Trajectory for $p_2$ is blue.
-Since $p_2$ is closer to intermittency threshold $p_{sn}$, laminar phases of it's trajectories are longer.
+Since $p_2$ is closer to intermittency threshold $p_{sn}$, laminar phases of its trajectories are longer.
 % Parameters $p_1$ and $p_2$ can be selected arbitrarily as long as theso that the laminar phases are long enough and similar situation as in Figure \ref{fig:ambiguous_bif_diag} occurs.
 Chaotic burst of trajectory with longer laminar phase occurs in the middle of two laminar phases of trajectory with shorter laminar phases.
 In our case chaotic burst $b$ occurs between chaotic bursts $a$ and $c$.

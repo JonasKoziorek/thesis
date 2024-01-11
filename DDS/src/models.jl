@@ -50,7 +50,7 @@ end
 # source:
 # Natiq, H., Roy, A., Banerjee, S. et al. Enhancing chaos in multistability regions of Duffing map for an image encryption algorithm
 # equation 1
-# can't find original source of this equation
+# cannot find original source of this equation
 
 function duffing(x, p)
     x, y = x

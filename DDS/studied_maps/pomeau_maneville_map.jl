@@ -188,7 +188,7 @@ begin
     DDS.bifurcation_diagram(pomeau_manneville, x0, p, 1, p_range, total_n, last_n; title="Bifurcation diagram of Pomeau-manneville map\n$total_n iterations, sampling last $last_n")
 end
 
-begin # 12 plots that show how "chaos" or some dynamics is born after leaving last stable point 3, eg. looks at the neighborhood of 3 from the right
+begin # 12 plots that show how "chaos" or some dynamics is "born" after leaving last stable point 3, eg. looks at the neighborhood of 3 from the right
     total_n = 10000
 
     x0 = 0.5
