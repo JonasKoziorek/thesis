@@ -118,18 +118,16 @@ begin
         xticks = LinRange(left_boundary, right_boundary, 8),
     )
     ax2.xlabel = L"a"
-    ax2.ylabel = L"{$ x_{n}: n \in [%$(total_n - last_n), %$total_n]$}"
+    ax2.ylabel = L"x"
     ax2.xlabelsize = LATEX_FONT_SIZE
     ax2.ylabelsize = LATEX_FONT_SIZE
     lines!(ax2, [lower1_1_param, lower1_1_param], [low, high], color=lower1_1_color, linewidth = CLINEWIDTH)
     lines!(ax2, [left_boundary, right_boundary, right_boundary, left_boundary, left_boundary], [low, low, high, high, low], color=RED, linewidth=CLINEWIDTH+2)
 
-
-    for (label, layout) in zip(["A", "B", "C", "D", "E"], [upper_grid[1,1], upper_grid[1,3], grid[2:3, 1], lower_grid1, lower_grid2])
-        Label(layout[1, 1, TopLeft()], label,
-            font = :bold,
-            padding = (0, 5, 5, 0),
-            halign = :right)
+    for (label, layout) in zip(["(a)", "(b)", "(c)", "(d)", "(e)"], [upper_grid[1,1], upper_grid[1,3], grid[2:3, 1], lower_grid1, lower_grid2])
+        Label(layout[1, 1, Bottom()], label,
+            padding = (0, 0, 0, 120),
+            halign = :center)
     end
 
     rowgap!(grid, 100)
