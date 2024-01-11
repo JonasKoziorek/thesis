@@ -23,10 +23,9 @@ begin
         color=BLUE
     )
     ax.xlabel = L"r"
-    # ax.ylabel = L"{$ x_{n}: n \in [%$(total_n - last_n), %$total_n]$}"
-    ax.ylabel = ""
+    ax.ylabel = L"x"
     ax.xlabelsize = LATEX_FONT_SIZE
-    ax.ylabelsize = LATEX_FONT_SIZE - 4
+    ax.ylabelsize = LATEX_FONT_SIZE
 
     display(fig)
 
