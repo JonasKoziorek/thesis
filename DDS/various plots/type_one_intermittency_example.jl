@@ -98,11 +98,10 @@ begin
     lines!(ax, [left_, right_, right_, left_, left_], [low, low, high, high, low], color=RED, linewidth=3)
 
 
-    for (label, layout) in zip(["A", "B"], [fig[1,1], fig[1,2]])
-        Label(layout[1, 1, TopLeft()], label,
-            font = :bold,
-            padding = (0, 5, 5, 0),
-            halign = :right)
+    for (label, layout) in zip(["(a)", "(b)"], [fig[1,1], fig[1,2]])
+        Label(layout[1, 1, Bottom()], label,
+            padding = (0, 0, 0, 80),
+            halign = :center)
     end
 
 
@@ -110,7 +109,6 @@ begin
 
     file_path = DDS.FIGURES_DIRECTORY * NAME2
     save(file_path, fig)
-end
 
 # @draw begin
 @png begin
@@ -121,11 +119,12 @@ end
     placeimage(img, Point(-w/2, -h/2), 1.0)
     sethue(RED)
     setline(3)
-    lower_right = Point(135, 170)
-    upper_right = Point(135, -233)
-    upper_left = Point(-200,-145)
-    lower_left = Point(-200,-126)
+    lower_right = Point(137, 137)
+    upper_right = Point(135, -263)
+    upper_left = Point(-200,-175)
+    lower_left = Point(-204,-158)
     line(lower_left, lower_right, :stroke)
     line(upper_left, upper_right, :stroke)
 # end 1200 600
 end 1200 600 file_path
+end

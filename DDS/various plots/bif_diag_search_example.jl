@@ -32,7 +32,7 @@ begin
     colors = [DDS.RED, DDS.RED]
     i = 0
     height_ = [0.25, 1.0]
-    for (l, r) in bifurcation_intervals
+    for (l, r, _) in bifurcation_intervals
         color = colors[i%2+1]
         lines!(ax, [l, l], [height_...], color=color)
         lines!(ax, [r, r], [height_...], color=color)
