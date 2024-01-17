@@ -1,12 +1,11 @@
-function find_change(periodic_orbits, params)
-    ranges = Tuple{Float64, Float64}[]
+function find_change(periodic_orbits, params, infty)
+    ranges = Tuple{Float64, Float64, Int64}[]
     prev_o = periodic_orbits[1]
-    infty = maximum(periodic_orbits)
     for i in 2:length(periodic_orbits)
         new_o = periodic_orbits[i]
         # if prev_o != new_o
         if prev_o == infty && new_o != infty
-            push!(ranges, (params[i-1], params[i])) 
+            push!(ranges, (params[i-1], params[i], new_o)) 
         end
         prev_o = new_o
     end
@@ -17,15 +16,16 @@ function localize_bifurcation(map, param_index, param_range, orbit_order_limit, 
     periodic_orbits = [
         find_order(map, x_range, orbit_order_limit, param_index, [param]) for param in param_range
     ]
-    return find_change(periodic_orbits, param_range)
+    infty = orbit_order_limit + 1
+    return find_change(periodic_orbits, param_range, infty)
 end
 
 function find_order(map, x_range, orbit_order_limit, param_index, param)
     for o in 1:orbit_order_limit
         sfps = stable_fixed_points(map, param, o, x_range)
-        l = length(sfps)
-        if l == o
-            return l
+        len = length(sfps)
+        if len == o
+            return len
         end
     end
     return orbit_order_limit + 1

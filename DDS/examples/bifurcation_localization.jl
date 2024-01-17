@@ -28,7 +28,7 @@ begin
     # colors = [:red, :blue]
     colors = [:red, :red]
     i = 0
-    for (l, r) in bifurcation_intervals
+    for (l, r, _) in bifurcation_intervals
         color = colors[i%2+1]
         lines!(ax, [l, l], [x_range...], color=color)
         lines!(ax, [r, r], [x_range...], color=color)
