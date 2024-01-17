@@ -77,3 +77,25 @@
 * after I write something he can give me feedback and point me to new directions
 * next meeting on 4.12.2023
 * use term bifurcation diagram instead of orbit diagram, if needed define term bifurcation diagram in a way I need
+
+## 15.1.2024
+
+### Tasks
+
+* next meeting on 5.2.2024
+* send thesis until 28.1.2024
+* next time he will give in depth review of the thesis
+
+## 17.1.2024 (My own notes)
+
+Possible chapter names:
+
+* Introduction
+* Theory overview
+  * Discrete dynamical systems
+  * Logistic map
+  * Intermittency
+* Intermittency Detection
+* Software implementation
+* Conclusion
+* Appendices
