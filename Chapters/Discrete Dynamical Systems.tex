@@ -1,0 +1,217 @@
+\section{Discrete Dynamical Systems}
+
+\begin{definition}[Discrete dynamical system]
+    A discrete dynamical system (abbr. DDS) is a tuple (X, f) where X is a non-empty set and $f: X \rightarrow X$ is a map \cite{Brin20100706}.
+    Set X is called a state space.
+    Set X is invariant under $f$ if and only if $f(X) \subseteq X$, moreover set $X$ is strongly inveriant if and only if $f(X) = X$.
+    Map $f$ is called an evolution rule. 
+    If map $f$ depends on a parameter $p$, we denote it as $f_p$.
+\end{definition}
+
+\begin{example}
+   Throughout this thesis we will focus on the so called Logistic Map. 
+   It is defined as a DDS $([0, 1], \mathbb{L}_{r})$ where $\mathbb{L}_{r}: [0,1] \rightarrow [0,1]$, $\mathbb{L}_{r}(x) = rx(1-x)$ for $r \in [0, 4]$.
+\end{example}
+
+\begin{definition}[n-th iteration]
+    One iteration of map $f$ for initial condition $x_0$ is represented by equation
+    \begin{eqnarray}
+        x_{1}  & = & f(x_{0})
+    \end{eqnarray}
+    $n$-th iteration of $x_0$ is
+    \begin{equation}
+    x_{n} = f^{n}(x_0) =
+        \begin{cases}
+            x_0 & \text{if } n = 0\\
+            \underbrace{f \circ f \circ \cdots \circ f}_\text{$n$ times}(x_0) & \text{if } n > 0 
+        \end{cases}
+    \end{equation}
+    Hence $f^{n}$ is $n$-fold composition of map f.
+\end{definition}
+
+
+\begin{definition}[Trajectory]
+    Let $(X, f)$ be a DDS. Successive iterates of $f$ with initial condition $x_0 \in X$ form a trajectory $T(f, x_0)$ where
+    \begin{eqnarray}
+        T(f, x_0) = f^0(x_0), f^1(x_0), f^2(x_0), f^3(x_0), \cdots  = x_0, x_1, x_2, x_3, \cdots
+    \end{eqnarray}
+    For $n \leq m$ we define
+    \begin{eqnarray}
+        T_{n}^{m}(f, x_0) = x_n, \cdots, x_m
+    \end{eqnarray}
+\end{definition}
+
+\begin{remark}
+    An Example of a trajectory is shown in Figure \ref{fig:trajectory_example}.
+\end{remark}
+
+% \begin{figure}[!h]
+%     \centering
+%     \includegraphics[width=1.0\textwidth]{DDS/Figures/logistic_map_trajectory_example.png}
+%     \caption{Trajectory $T_{0}^{80}(\mathbb{L}_p, 0.5)$ for logistic map $\mathbb{L}$ with parameter $p=3.841$}
+%     \label{fig:trajectory_example}
+% \end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \begin{subfigure}{0.495\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{DDS/Figures/logistic_map_trajectory_example1.png}
+        \caption{$T_{0}^{80}(\mathbb{L}_{3.85} ,0.5)$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.495\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{DDS/Figures/logistic_map_trajectory_example2.png}
+        \caption{$T_{0}^{80}(\mathbb{L}_{3.86} ,0.5)$}
+    \end{subfigure}
+
+    \caption{Example trajectories of logistic map $\mathbb{L}$.}
+    \label{fig:trajectory_example}
+\end{figure}
+
+\label{def:fixed point}
+\begin{definition}[Fixed point]
+    Let $(X, f)$ be a DDS. Point $x \in X$ is called a fixed point of $f$ if it holds $f(x) = x$.
+    We denote set of all fixed points of $f$ as $Fix(f)$ \cite{Devaney20211026}.
+\end{definition}
+
+\begin{definition}[Stable fixed point]
+    Let $(X \subseteq \mathbb{R}, f)$ be a DDS. Let $f$ be differentiable on $X$. Fixed point $x \in X$ is stable if $|\frac{d{f(x)}}{dx}| < 1$.
+    We call this point attracting.
+\end{definition}
+
+\begin{definition}[Unstable fixed point]
+    Let $(X \subseteq \mathbb{R}, f)$ be a DDS. Let $f$ be differentiable on $X$. Fixed point $x \in X$ is unstable if $|\frac{d{f(x)}}{dx}| > 1$.
+    We call this point repelling.
+\end{definition}
+
+\begin{definition}[Periodic point]
+    Let $(X, f)$ be a DDS. Point $x \in X$ is called $n$-periodic if $f^{n}(x)=x$.
+    We denote set of all $n$-periodic points of $f$ as $Per_{n}(f)$. \cite{Devaney20211026}
+\end{definition}
+
+\begin{definition}[Periodic orbit]
+    Let $(X \subseteq \mathbb{R}, f)$ be a DDS. Let $f$ be differentiable on $X$. For periodic point $x_0$ the set $\{f^{n}(x_0):n \in \mathbb{N}\}$ is called periodic orbit.
+    If $x_0$ is attracting, we call periodic orbit stable (abbr. PO).
+    If $x_0$ is repelling, we call periodic orbit unstable (abbr. UPO).
+\end{definition}
+
+\begin{theorem}
+    Let ($\mathbb{R}$, $\mathbb{L}_r$) be a DDS. Then there exists at most one stable periodic orbit for each $r$. \cite[p.~74]{Devaney20211026}
+\end{theorem}
+
+\begin{proof}
+    Proof can be found in \cite[p.~74]{Devaney20211026}.
+\end{proof}
+
+\label{def:cobweb}
+\begin{remark}[Cobweb diagram]
+    Cobweb diagrams are a visual tools for understanding long term behavior of a DDS.
+    Pseudocode \ref{cobweb_alg} illustrates construction of cobweb diagram.
+    Example of cobweb diagram can be seen in Figure \ref{fig:cobweb_diag_example}.
+\end{remark}
+
+\begin{algorithm}
+\caption{Cobweb Diagram Construction}\label{cobweb_alg}
+\begin{algorithmic}[1]
+\Statex \textbf{parameter description:}
+\Statex $f$: evolution rule
+\Statex $x_0$: initial state
+\Statex $p$: parameter of $f$
+\Statex $x_{range}$: range of $x$ values
+\Statex $n$: number of iterations
+\Statex
+
+\Function{CobwebDiag}{$f$, $x_0$, $p$, $x_{range}$, $n$}
+\State plot graph of $f_p(x)$ for $x \in x_{range}$
+\State plot identity $g(x)=x$ for $x \in x_{range}$
+\For{$i$ from $0$ to $n$}
+\State plot line from $(f_{p}^{i}(x_0), f_{p}^{i}(x_0))$ to $(f_{p}^{i}(x_0), f_{p}^{i+1}(x_0))$
+\State plot line from $(f_{p}^{i}(x_0), f_{p}^{i+1}(x_0))$ to $(f_{p}^{i+1}(x_0), f_{p}^{i+1}(x_0))$
+\EndFor
+\EndFunction
+
+\end{algorithmic}
+\end{algorithm}
+
+% \begin{figure}[!h]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{DDS/Figures/logistic_map_cobweb_diag_example.png}
+%     \caption{CobwebDiag($f = \mathbb{L}^2$, $x_0 = 0.6$, $p = 3.81$, $x_{range} = [0, 1]$, $n = 5$)}
+%     \label{fig:cobweb_diag_example}
+% \end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \begin{subfigure}{0.495\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{DDS/Figures/logistic_map_cobweb_diag_example1.png}
+        \caption{$f = \mathbb{L}^2$, $x_0 = 0.6$, $p = 3.6$, $x_{range} = [0, 1]$, $n = 50$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.495\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{DDS/Figures/logistic_map_cobweb_diag_example2.png}
+        \caption{$f = \mathbb{L}^2$, $x_0 = 0.6$, $p = 3.81$, $x_{range} = [0, 1]$, $n = 50$}
+    \end{subfigure}
+
+    \caption{Examples of cobweb diagram for second iterate of logistic map $\mathbb{L}^2$}
+    \label{fig:cobweb_diag_example}
+\end{figure}
+
+\label{def:bifurcation}
+\begin{definition}[Bifurcation]
+    Bifurcation occurs when qualiative behavior of DDS $f$ changes as parameter varies.
+\end{definition}
+
+\label{def:bifurcation_point}
+\begin{definition}[Bifurcation point]
+    Parameter at which \hyperref[def:bifurcation]{bifurcation} occurs.
+\end{definition}
+
+% \label{def:saddle_node_bif}
+% \begin{definition} \textbf{(Saddle-node bifurcation)} \\
+%     To be defined.
+% \end{definition}
+
+\label{def: bif_diag} 
+\begin{remark}[Bifurcation diagram]
+    Bifurcation diagrams are visual representations of a DDS.
+    They show us how qualitative behavior of $f_P(x_0)$ change for varying parameters P.
+    Bifurcation diagrams illustrate \hyperref[def:bifurcation]{bifurcations} and help us identify \hyperref[def:bifurcation_point]{bifurcation points}.
+    Construction of a bifurcation diagram is illustrated in Pseudocode \ref{bif_diag_alg}.
+    Example of a bifurcation diagram can be seen in Figure \ref{fig:bif_diag_example}.
+\end{remark}
+
+\begin{algorithm}
+\caption{Bifurcation Diagram Construction}\label{bif_diag_alg}
+\begin{algorithmic}[1]
+\Statex \textbf{parameter description:}
+\Statex $f$: evolution rule
+\Statex $x_0$: initial condition
+\Statex $p_{range}$: range of parameters for which trajectory will be computed
+\Statex $n_{total}$: trajectories will be iterated for $n_{total}$ iterations
+\Statex $n_{last}$: $n_{last}$ iterations of a trajectory will be plotted
+\Statex
+
+\Function{BifDiag}{$f$, $x_0$, $p_{range}$, $n_{total}$, $n_{last}$}
+\For{parameter $p$ in $p_{range}$}
+    \State $data \leftarrow T_{n_{total}-n_{last}}^{n_{total}}(f_p, x_0)$
+    \For{$y$ in $data$}
+        \State plot point $(p, y)$ onto canvas
+    \EndFor
+\EndFor
+\EndFunction
+
+\end{algorithmic}
+\end{algorithm}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{DDS/Figures/logistic_map_bif_diag_example.png}
+    \caption{BifDiag($f = \mathbb{L}$, $x_0 = 0.5$, $p_{range} = [2.81,3.87]$ sampled to $1000$ points, $n_{total} = 5000$, $n_{last} = 500$)}
+    \label{fig:bif_diag_example}
+\end{figure}
+
+% More precise theoretical background can be found at \cite{Devaney20211026,Elaskar2017,Lynch2014}.

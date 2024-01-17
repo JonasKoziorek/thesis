@@ -13,8 +13,8 @@ This algorithm consists of 4 core parts
 We will discuss each part in the following sections.
 
 \section{UPO detection}
-Our goal is to ultimately find regions in the bifurcation diagram where intermittency type I occurs.
-As noted in chapter \ref{chap:intermittency_review} we suppose that intermittency type I is present at "breakpoints" in the bifurcation diagram.
+Our goal is to ultimately find regions in the bifurcation diagram where intermittency type-I occurs.
+As noted in chapter \ref{chap:intermittency_review} we suppose that intermittency type-I is present at "breakpoints" in the bifurcation diagram.
 Such breakpoint can be seen for example in Figure \ref{fig:complex_logistic}.
 \par
 The breakpoints are characterized by shift from chaotic to periodic behavior.
@@ -115,6 +115,19 @@ An example of the found breakpoint is illustrated in Figure \ref{fig:break_point
 
 
 \section{Coloring}
-Coloring part is not implemented yet. Some statistical theory is needed.
+The goal of this phase is to color the neighborhood of the breakpoint to warn about its ambiguity.
+We have identified the paramters at which the breakpoint occurs in the previous steps.
+Now we will use statistical methods to determine the average laminar phase length $l_{avg}$ in proximity of the breakpoint.
+These statistical methods are described in \cite{Elaskar2022}.
+
+\subsection{Description of the algorithm}
+We will use the fact that the average laminar length for 
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{DDS/Figures/logistic_map_coloring_example.png}
+    \caption{Bifurcation diagram coloring example}
+    \label{fig:coloring_example}
+\end{figure}
 
 \endinput

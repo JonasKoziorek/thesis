@@ -1,12 +1,13 @@
-\chapter{Type I Intermittency}
-\label{chap:intermittency_review}
+% \chapter{Type-I Intermittency}
+% \label{chap:intermittency_review}
+\section{Type-I Intermittency}
 
 \section{History}
 Intermittency is one type of transition between chaos and periodicity.
 The investigation of intermittency was initiated in 1980 by Pomeau and Manneville \cite{Pomeau1980}.
 They were trying to explain an intermittent phenomenon in the fluid dynamics of convective fluids.
 During this phenomenon, long periodic behaviour was abrupted by a chaotic bursts as the experiment control parameter changed.
-Subsequently, Pomeau and Manneville found analogous behaviour in the Lorenz system \cite{Lorenz2004}.
+Subsequently, Pomeau and Manneville found analogous behaviour in the Lorenz system.
 Through a numerical study of this system, they introduced the concept of intermittency and classified it into three categories. \cite{Pomeau1980}
 \par
 Since then the study of intermittency has grown considerably.
@@ -15,7 +16,7 @@ For better understanding of intermittency modern statistical theory has been dev
 \cite{Elaskar2017}
 \par
 The theory of intermittency is very broad.
-This thesis is concerned with intermittency type I and its detection.
+This thesis is concerned with intermittency type-I and its detection.
 
 \section{Mathematical Motivation}
 Intermittency is a behavior during which seemingly periodic phases in the trajectory of DDS are abrupted by chaotic bursts.
@@ -35,8 +36,8 @@ This pattern goes on.
     \label{fig:intermittent_trajectory_example}
 \end{figure}
 
-Trajectory in Figure \ref{fig:intermittent_trajectory_example} exhibits type I intermittency which is related to \hyperref[def:saddle_node_bif]{saddle-node bifurcation} or its inverse.
-Saddle-node bifurcation is a bifurcation where tangent of a curve passes through the identity line.
+Trajectory in Figure \ref{fig:intermittent_trajectory_example} exhibits type-I intermittency which is related to \hyperref[def:saddle_node_bif]{saddle-node bifurcation} or its inverse.
+Saddle-node bifurcation is a bifurcation where tangent of a graph of an evolution rule passes through the identity line as parameter changes.
 \par
 Let's say we have a bifurcation point for parameter $p_{B}$.
 At this point local map of the system touches the identity line in exactly one spot, in other words the system has fixed point in the area of touching.
@@ -73,7 +74,7 @@ However this seemingly periodic behavior is fake since once the point iterates t
 \end{figure}
 
 \section{Numerical Simulation}
-We propose that type I intermittency occurs when there is "breakpoint" in bifurcation diagram between chaotic behavior on the left and periodic behavior on the right.
+We propose that type-I intermittency occurs when there is a "breakpoint" in bifurcation diagram between chaotic behavior on the left and periodic behavior on the right.
 % Such break point is illustrated in Figure \ref{fig:complex_logistic} subplot c and d.
 We have not found literature to support this claim yet.
 However, our numerical simulations support this claim.
@@ -134,4 +135,4 @@ A person not knowing about intermittency could be misled.
 It would be useful to have a tool that would warn a person looking at bifurcation diagram about underlying intermittency and ambiguity it is causing.
 We will try to develop such tool in the next chapter.
 
-\endinput
+% \endinput

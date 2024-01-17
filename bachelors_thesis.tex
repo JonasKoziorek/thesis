@@ -4,7 +4,7 @@
 \usepackage[autostyle=true]{csquotes} % enhanced support for quotation marks, support for biblatex package
 \usepackage[backend=biber, style=iso-numeric, alldates=iso]{biblatex} % bibliography
 \usepackage{dcolumn} % numeric column type
-\usepackage{subfig} % subtables and subfigures
+% \usepackage{subfig} % subtables and subfigures
 \usepackage[julia]{diplomalst}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -12,6 +12,8 @@
 
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage{subcaption}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -26,7 +28,7 @@
 
 \ThesisSupervisor{prof. RNDr. Marek Lampart, Ph.D.}
 
-\CzechThesisTitle{Algoritmická detekce intermitence type I}
+\CzechThesisTitle{Algoritmická detekce intermitence type-I}
 
 \EnglishThesisTitle{Algorithmic detection of type-I intermittency}
 
@@ -73,17 +75,16 @@
 
 % Your text starts here...
 \input{Chapters/Introduction.tex}
-\input{Chapters/Mathematical Background.tex}
-% \input{Chapters/SelectedModels.tex}
-\input{Chapters/Type-I Intermittency.tex}
+\input{Chapters/Theory Overview.tex}
+\input{Chapters/Selected Models.tex}
 \input{Chapters/Intermittency Detection.tex}
-% \input{Chapters/Implementation.tex}
+\input{Chapters/Software Implementation.tex}
 \input{Chapters/Conclusion.tex}
 
 \printbibliography[heading=bibintoc]
 
 \appendix
-% \input{Chapters/Appendix_codes.tex}
-\input{Chapters/Appendix_complex_figures.tex}
+% \input{Chapters/Appending Complex Figures.tex}
+% \input{Chapters/Appendix Codes.tex}
 
 \end{document}
