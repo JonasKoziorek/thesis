@@ -37,10 +37,7 @@ function process_param_value!(func, x0, params, param_index, param_value, total_
     bifurcation_plot_point!(plot_points, param_value, sampled_data)
 end
 
-function bifurcation_data(func, x0, params, param_index, param_range, total_n, sampling_n, index_x=1; left_p=nothing, right_p=nothing)
-    if !isnothing(left_p) && !isnothing(right_p)
-        param_range = filter(x->x<left_p || x>right_p, collect(param_range))
-    end
+function bifurcation_data(func, x0, params, param_index, param_range, total_n, sampling_n, index_x=1)
     plotting_data, raw_data, sampled_data, plot_points, seqlen = prepare_data(total_n, sampling_n, param_range, x0)
     i = 0
     for param_value in param_range

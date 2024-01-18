@@ -6,12 +6,12 @@ begin
     x0=0.5
     x_range = (0.0, 1.0)
     param = [3.8]
-    param_range = LinRange(3.6, 3.68, 300)
+    param_range = LinRange(3.6, 3.9, 300)
     param_index = 1
 end
 
 begin
-    orbit_limit = 16
+    orbit_limit = 12
     @time bifurcation_intervals = DDS.localize_bifurcation(
         logistic, 
         param_index, 
@@ -57,22 +57,35 @@ begin
 end
 
 begin
-    index = 4
-    param = [boundaries[index][2]]
-    order = boundaries[index][3]
-
-    nth_logistic = DDS.nth_composition(logistic, order)
-    sfps = DDS.stable_fixed_points(logistic, param, order, x_range)
-    bif_point = sfps[1]
+    index = 1
+    left_p, right_p, order = boundaries[index]
+    left_p, right_p, bif_point = DDS.find_boundary(logistic, x_range, left_p, right_p, order, (50, 150), (900, 1100))
 
     # param_range = LinRange(left_p-0.001, left_p+0.001, 300)
     total_n = 1000
     last_n = 200
     figure = Figure()
-    left_p = boundaries[index][1] - 1e-4
-    right_p = boundaries[index][1] - 1e-6
-    ax = DDS.colorize_bif_diag!(figure[1,1], logistic, x0, param, param_index, param_range, order, total_n, last_n, left_p, right_p, bif_point;param_name="")
+    ax = DDS.colorize_bifurcation_diagram_single!(figure[1,1], logistic, x0, param, param_index, param_range, order, total_n, last_n, left_p, right_p, bif_point;param_name="")
     ax.xlabel = ""
     ax.ylabel = ""
     display(figure)
+end
+
+begin
+    fig = Figure()
+    ax = Axis(fig[1,1])
+    param_range2 = param_range
+    color_ranges = []
+    for i in eachindex(boundaries)
+        left_p, right_p, order = boundaries[i]
+        left_p, right_p, bif_point = DDS.find_boundary(logistic, x_range, left_p, right_p, order, (50, 150), (900, 1100))
+        param_range2 = DDS.cut_param_range(param_range2, left_p, right_p)
+        strip_ = DDS.colorize_strip(logistic, x0, param, param_index, order, left_p, right_p, bif_point)
+        scatter!(ax, strip_.data; marker=:circle, color=strip_.colors, colormap = :rainbow, markersize=3, colorrange = strip_.crange)
+        append!(color_ranges, strip_.crange)
+    end
+    plotting_data = DDS.bifurcation_data(logistic, x0, param, param_index, param_range2, 1000, 100)
+    scatter!(ax, plotting_data, marker = :circle, markersize = 1.0, color = :black)
+    Colorbar(fig[1,2], colorrange = (minimum(color_ranges), maximum(color_ranges)), colormap = :rainbow, label="average laminar phase length")
+    display(fig)
 end

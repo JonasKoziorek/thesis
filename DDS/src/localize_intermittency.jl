@@ -11,7 +11,6 @@ function intermittency_region_left(
     a, b = param_range
     prev_param = a
     for param in LinRange(a, b, partition+1)
-        # println("Region Left Iter: $current_iter")
         if current_iter == max_iter
             return prev_param
         end
@@ -39,7 +38,6 @@ function intermittency_region_right(
     a, b = param_range
     prev_param = b
     for param in LinRange(b, a, partition+1)
-        # println("Region Right Iter: $current_iter")
         if current_iter == max_iter
             return prev_param
         end
