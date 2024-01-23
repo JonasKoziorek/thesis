@@ -59,9 +59,11 @@ function intermittency_region(
         x_range::Tuple{Real, Real}; 
         kwargs...
     )
-    l = intermittency_region_left(map, param_range, o, x_range; kwargs...)
-    r = intermittency_region_right(map, param_range, o, x_range; kwargs...)
-    return (l, r)
+    thread_left = Threads.@spawn intermittency_region_left(deepcopy(map), deepcopy(param_range), deepcopy(o), deepcopy(x_range); deepcopy(kwargs)...)
+    thread_right = Threads.@spawn intermittency_region_right(deepcopy(map), deepcopy(param_range), deepcopy(o), deepcopy(x_range); deepcopy(kwargs)...)
+    left::Float64 = fetch(thread_left)
+    right::Float64 = fetch(thread_right)
+    return left, right
 end
 
 function plot_intermittency_region(

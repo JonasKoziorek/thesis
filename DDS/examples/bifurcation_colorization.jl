@@ -6,16 +6,11 @@ begin
     param = [3.8]
 end
 
-begin
-    total_n = 1000
-    last_n = 200
-    p_range = LinRange(3.82835, 3.8285, 2000)
+begin 
+    p_range = LinRange(3.82828, 3.82848, 70)
     figure = Figure()
-    left_p = 1+sqrt(8)-2.5*1e-5
-    right_p = 1+sqrt(8)-1e-6
-    bif_point = 0.15992881844625645
     n_order = 3
-    ax = DDS.colorize_bifurcation_diagram_single!(figure[1,1], logistic, 0.5, param, 1, p_range, n_order, total_n, last_n, left_p, right_p, bif_point;param_name="")
+    @time ax = DDS.colorize_bifurcation_diagram!(figure[1,1], logistic, 0.5, param, (0.0, 1.0), p_range, 1, n_order)
     display(figure)
 end
 
@@ -24,11 +19,40 @@ begin
     x0=0.2
     x_range = (0.0, 1.0)
     param = [3.8]
-    param_range = LinRange(3.60, 3.65, 300)
+    param_range = LinRange(3.6263, 3.6267, 70)
     param_index = 1
 
-    orbit_limit = 12
+    orbit_limit = 16
     fig = Figure()
-    ax = DDS.colorize_bifurcation_diagram!(fig, logistic, x0, param, x_range, param_range, param_index, orbit_limit)
+    @time ax = DDS.colorize_bifurcation_diagram!(fig, logistic, x0, param, x_range, param_range, param_index, orbit_limit)
+    display(fig)
+end
+
+begin
+    x0=0.2
+    x_range = (0.0, 1.0)
+    param = [3.8]
+    # param_range = LinRange(3.6, 3.8, 6002)
+    param_range = LinRange(3.62, 3.65, 6000)
+    param_index = 1
+
+    orbit_limit = 20
+    fig = Figure()
+    @time ax = DDS.colorize_bifurcation_diagram!(fig, DDS.logistic, x0, param, x_range, param_range, param_index, orbit_limit)
+    display(fig)
+end
+
+# random map as other example
+begin
+    func(x, p) = p[1]*x*(1-x^4)
+    x0=0.2
+    x_range = (0.0, 1.0)
+    param = [1.8]
+    param_range = LinRange(1.5, 2.0, 1000)
+    param_index = 1
+
+    orbit_limit = 10
+    fig = Figure()
+    @time ax = DDS.colorize_bifurcation_diagram!(fig, func, x0, param, x_range, param_range, param_index, orbit_limit)
     display(fig)
 end

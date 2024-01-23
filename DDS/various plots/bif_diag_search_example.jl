@@ -13,6 +13,7 @@ begin
     orbit_limit = 16
     bifurcation_intervals = DDS.localize_bifurcation(
         logistic, 
+        x0,
         param_index, 
         param_range, 
         orbit_limit, 

@@ -14,6 +14,7 @@ begin
     orbit_limit = 12
     @time bifurcation_intervals = DDS.localize_bifurcation(
         logistic, 
+        x0,
         param_index, 
         param_range, 
         orbit_limit, 
@@ -57,32 +58,17 @@ begin
 end
 
 begin
-    index = 1
-    left_p, right_p, order = boundaries[index]
-    left_p, right_p, bif_point = DDS.find_boundary(logistic, x_range, left_p, right_p, order, (50, 150), (900, 1100))
-
-    # param_range = LinRange(left_p-0.001, left_p+0.001, 300)
-    total_n = 1000
-    last_n = 200
-    figure = Figure()
-    ax = DDS.colorize_bifurcation_diagram_single!(figure[1,1], logistic, x0, param, param_index, param_range, order, total_n, last_n, left_p, right_p, bif_point;param_name="")
-    ax.xlabel = ""
-    ax.ylabel = ""
-    display(figure)
-end
-
-begin
-    fig = Figure()
-    ax = Axis(fig[1,1])
+    @time fig = Figure()
+    @time ax = Axis(fig[1,1])
     param_range2 = param_range
     color_ranges = []
     for i in eachindex(boundaries)
         left_p, right_p, order = boundaries[i]
-        left_p, right_p, bif_point = DDS.find_boundary(logistic, x_range, left_p, right_p, order, (50, 150), (900, 1100))
+        left_p, right_p, bif_point = DDS.specify_intermittency_bounds(logistic, x_range, left_p, right_p, order, (50, 150), (900, 1100))
         param_range2 = DDS.cut_param_range(param_range2, left_p, right_p)
         strip_ = DDS.colorize_strip(logistic, x0, param, param_index, order, left_p, right_p, bif_point)
-        scatter!(ax, strip_.data; marker=:circle, color=strip_.colors, colormap = :rainbow, markersize=3, colorrange = strip_.crange)
-        append!(color_ranges, strip_.crange)
+        scatter!(ax, strip_.data; marker=:circle, color=strip_.colors, colormap = :rainbow, markersize=3, colorrange = strip_.color_range)
+        append!(color_ranges, strip_.color_range)
     end
     plotting_data = DDS.bifurcation_data(logistic, x0, param, param_index, param_range2, 1000, 100)
     scatter!(ax, plotting_data, marker = :circle, markersize = 1.0, color = :black)

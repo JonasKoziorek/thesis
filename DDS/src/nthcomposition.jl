@@ -1,4 +1,4 @@
-function nth_composite(func, x0, params, n_order)
+function nth_composite(func::F, x0, params, n_order) where {F<:Function}
     x = x0
     for i = 1:n_order
         x = func(x, params)
@@ -6,7 +6,7 @@ function nth_composite(func, x0, params, n_order)
     return x
 end
 
-function nth_composition(func, n_order)
+function nth_composition(func::F, n_order) where {F<:Function}
     f(x, params) = nth_composite(func, x, params, n_order)
     return f
 end
@@ -22,7 +22,7 @@ function plot_nth_composition!(fig, func, x_range, params, n_order, identity_lin
     x, y = plot_nth_composition_data(func, x_range, params, n_order)
     ax = Axis(fig, 
             xlabel=L"x", 
-            ylabel=L"f^%$(n_order)(x)",
+            ylabel=L"f^{%$(n_order)}(x)",
             title=title
         )
     ax.aspect = ax_aspect
@@ -33,7 +33,7 @@ function plot_nth_composition!(fig, func, x_range, params, n_order, identity_lin
     return ax
 end
 
-function plot_nth_composition(func, x_range, params, n_order, identity_line=false; ax_aspect=1, title="", kwargs...)
+function plot_nth_composition(func::F, x_range, params, n_order, identity_line=false; ax_aspect=1, title="", kwargs...) where {F<:Function}
     x, y = plot_nth_composition_data(func, x_range, params, n_order)
     fig = Figure()
     ax = Axis(fig[1,1], 

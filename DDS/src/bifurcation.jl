@@ -12,37 +12,37 @@ function bifurcation_plot_point!(plot_points::Vector{Tuple{Float64, Float64}}, p
     end
 end
 
-function pick_index!(data::Vector, index::Int)
+function pick_index!(data::Vector, indexed_data::Vector, index::Int)
     for i in 1:length(data)
-        data[i] = data[i][index]
+        indexed_data[i] = data[i][index]
     end
 end
 
 function prepare_data(total_n, sampling_n, param_range, x0)
     seqlen = sampling_n + 1
     plotting_data = Vector{Tuple{Float64, Float64}}(undef, seqlen*length(param_range))
-    # raw_data = Vector{typeof(x0)}(undef, total_n+1)
-    raw_data = Vector{Any}(undef, total_n+1)
-    # sampled_data = Vector{typeof(x0)}(undef, sampling_n+1)
-    sampled_data = Vector{Any}(undef, sampling_n+1)
+    raw_data = Vector{typeof(x0)}(undef, total_n+1)
+    indexed_data = Vector{typeof(x0[1])}(undef, total_n+1)
+    sampled_data = Vector{typeof(x0)}(undef, sampling_n+1)
     plot_points = Vector{Tuple{Float64, Float64}}(undef, sampling_n+1)
-    return plotting_data, raw_data, sampled_data, plot_points, seqlen
+    return plotting_data, raw_data, indexed_data, sampled_data, plot_points, seqlen
 end
 
-function process_param_value!(func, x0, params, param_index, param_value, total_n, sampling_n, index_x, raw_data, sampled_data, plot_points)
+function process_param_value!(func::F, x0, params, param_index, param_value, total_n, sampling_n, index_x, raw_data, indexed_data, sampled_data, plot_points) where {F<:Function}
+    !(params isa Vector) && (params = [params])
     params[param_index] = param_value
     iterate!(func, x0, params, total_n, raw_data)
-    pick_index!(raw_data, index_x)
-    sample!(sampled_data, raw_data, sampling_n)
+    pick_index!(raw_data, indexed_data, index_x)
+    sample!(sampled_data, indexed_data, sampling_n)
     bifurcation_plot_point!(plot_points, param_value, sampled_data)
 end
 
-function bifurcation_data(func, x0, params, param_index, param_range, total_n, sampling_n, index_x=1)
-    plotting_data, raw_data, sampled_data, plot_points, seqlen = prepare_data(total_n, sampling_n, param_range, x0)
+function bifurcation_data(func::F, x0, params, param_index, param_range, total_n, sampling_n, index_x=1) where {F<:Function}
+    plotting_data, raw_data, indexed_data, sampled_data, plot_points, seqlen = prepare_data(total_n, sampling_n, param_range, x0)
     i = 0
     for param_value in param_range
         j = i*seqlen + 1
-        process_param_value!(func, x0, params, param_index, param_value, total_n, sampling_n, index_x, raw_data, sampled_data, plot_points)
+        process_param_value!(func, x0, params, param_index, param_value, total_n, sampling_n, index_x, raw_data, indexed_data, sampled_data, plot_points)
         @views plotting_data[j:j+seqlen-1] = plot_points
         i += 1
     end

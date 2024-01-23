@@ -2,6 +2,7 @@ module DDS
 
 using CairoMakie, Luxor 
 using ForwardDiff
+using InteractiveUtils
 
 include("selected_colors.jl")
 include("general.jl")
