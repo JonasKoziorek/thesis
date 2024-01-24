@@ -20,15 +20,16 @@ begin
         x_range
     )
 
-    fig = Figure()
+    fig=Figure(resolution=(1000, 500))
     param_range2 = LinRange(param_range[1], param_range[end], 2000)
     param_index = 1
     total_n = 1000
     last_n = 100
 
     ax = DDS.bifurcation_diagram!(fig[1,1], logistic, x0, param, param_index, param_range2, total_n, last_n;ax_aspect=2)
-    ax.ylabel = ""
-    ax.xlabel = ""
+    ax.xlabel = L"p"
+    ax.ylabel = L"\mathbb{L}_{p}"
+    ax.ylabelsize = 22
     # colors = [DDS.RED, DDS.BLUE]
     colors = [DDS.RED, DDS.RED]
     i = 0

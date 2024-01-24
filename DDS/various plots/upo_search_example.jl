@@ -11,7 +11,7 @@ begin
     x_range = (0, 1)
     fps = DDS.fixed_points(logistic, param, order, x_range)
 
-    fig = Figure(resolution=(1000,600))
+    fig = Figure(resolution=(1000,500))
 
     ax_aspect = 2
     identity_line = true
