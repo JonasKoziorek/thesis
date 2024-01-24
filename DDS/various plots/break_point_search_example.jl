@@ -10,7 +10,7 @@ begin
     partition = 2
     max_iter = 10*partition
     x_range = (0.0, 1.0)
-    fig=Figure()
+    fig=Figure(resolution=(1000, 500))
     ax = DDS.plot_intermittency_region(
         fig[1,1],
         DDS.logistic,
@@ -23,8 +23,9 @@ begin
         max_iter=max_iter,
         partition=partition
     )
-    ax.xlabel = ""
-    ax.ylabel = ""
+    ax.xlabel = L"p"
+    ax.ylabel = L"\mathbb{L}_{p}"
+    ax.ylabelsize = 22
     ax.aspect=2
     display(fig)
 

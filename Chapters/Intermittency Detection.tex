@@ -52,16 +52,16 @@ Pseudocode for the naive global search is presented in Algorithm \ref{alg:naive_
     \caption{Naive global search}
     \label{alg:naive_global_search}
     \begin{algorithmic}[1]
-        \State $f \gets$ system
-        \State $p_a \gets$ left boundary of the parameter space
-        \State $p_b \gets$ right boundary of the parameter space
-        \State $n \gets$ number of samples in the parameter space
-        \State $m \gets$ number of iterations
-        \State $o \gets$ maximum period to check
-        \State $p \gets p_a$
-        \State $p_{step} \gets \frac{p_b - p_a}{n}$
-        \State $x_0 \gets$ initial condition
-        \While{$p \leq p_b$}
+        \Statex $f \gets$ system
+        \Statex $p_{A} \gets$ left boundary of the parameter space
+        \Statex $p_{B} \gets$ right boundary of the parameter space
+        \Statex $n \gets$ number of samples in the parameter space
+        \Statex $m \gets$ number of iterations
+        \Statex $o \gets$ maximum period to check
+        \Statex $x_0 \gets$ initial condition
+        \State $p \gets p_{A}$
+        \State $p_{step} \gets \frac{p_{B} - p_{A}}{n}$
+        \While{$p \leq p_{B}$}
             \State $x_1 \gets f_{p}^{m}(x_0)$
             \For{$i \gets 1$ to $o$}
                 \State $x_2 \gets f_{p}^{i}(x_1)$
@@ -108,11 +108,11 @@ The pseudocode for BWJ algorithm is presented in Algorithm \ref{alg:bwj}.
     \caption{Bu-Wang-Jiang (BWJ)}
     \label{alg:bwj}
     \begin{algorithmic}[1]
-        \State $f \gets$ system
-        \State $p \gets$ period
-        \State $seeds \gets$ seeds
-        \State $maxiter \gets$ maximum number of iterations
-        \State $tol \gets$ tolerance for determining a fixed point
+        \Statex $f \gets$ system
+        \Statex $p \gets$ period
+        \Statex $seeds \gets$ seeds
+        \Statex $maxiter \gets$ maximum number of iterations
+        \Statex $tol \gets$ tolerance for determining a fixed point
         \For{each s in seeds}
             \State $\textbf{x}_{0} \gets s$
             \While{current iteration $< maxiter$}
@@ -153,6 +153,73 @@ Example of the results of the algorithm are shown in the Figure \ref{fig:bif_dia
     \label{fig:bif_diag_search_example}
 \end{figure}
 
+\section{Local Search}
+The previous section introduced a so called global search, an approach to find approximate intervals in the parameter space where a breakpoint occurs.
+In this section we will develop an algorithm to find the precise location of each breakpoint.
+These locations will be later used to color the bifurcation diagram in proximity of the breakpoint.
+\par
+The fundamental idea behind the local search is similar to the one used in the global search.
+We will search through the parameter space and determine the period of each parameter.
+However, instead of searching through the whole parameter space we will only search through the intervals found in the global search.
+These intervals are special because we know several facts about them.
+Their left boundary in nonperiodic and their right boundary is periodic of period some $n$. We know this $n$ from the global search.
+We would like to push the left boundary close to the left side of the breakpoint.
+The same applies for the right boundary.
+On example result of a local search can be seen in Figure \ref{fig:break_point_search_example}.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1.0\textwidth]{DDS/Figures/break_point_search_example.png}
+    \caption{Example result of the local search}
+    \label{fig:break_point_search_example}
+\end{figure}
+
+
+
+\par
+We will start with the left boundary. We want to get it as close to the breakpoint as possible.
+To do this we will use combination of BWJ algorithm and a binary search.
+For each parameter $p$ in the interval $(p_{A}, p_{B})$ identified during the global search we are able to determine whether $f_{p}$ is $n$-periodic or not.
+That will tell us whether we are on the left or right side of the breakpoint.
+We start by halving the interval so that we have $[p_{A}, \frac{p_{A}+p_{B}}{2}, p_{B}]$.
+If $\frac{p_{A}+p_{B}}{2}$ is $n$-periodic then we know that the breakpoint is in the interval $[\frac{p_{A}+p_{B}}{2}, p_{B}]$.
+If $\frac{p_{A}+p_{B}}{2}$ is nonperiodic then we know that the breakpoint is in the interval $[p_{A}, \frac{p_{A}+p_{B}}{2}]$.
+With the new interval we perform the same process again recursively.
+We repeat the halving process for some desired number of iterations $maxiter$.
+Pseudocode for the local search of the left boundary can be seen in Algorithm \ref{alg:local_search}.
+
+\begin{algorithm}[!h]
+    \caption{Local search - left boundary}
+    \label{alg:local_search}
+    \begin{algorithmic}[1]
+        \Statex $f \gets$ system
+        \Statex $p_{A} \gets$ left boundary of the parameter space
+        \Statex $p_{B} \gets$ right boundary of the parameter space
+        \Statex $n \gets$ period of $f{p_{B}}$
+        \Statex $maxiter \gets$ number of iterations
+        \State $p_{C} \gets \frac{p_{A}+p_{B}}{2}$
+        \State $i \gets$ current iteration
+        \If{$i = maxiter$}
+            \State left boundary of the breakpoint is $p_{A}$
+        \EndIf
+        \If{$f_{p_{C}}$ is $n$-periodic}
+            \State repeat the algorithm with the same arguments except $p_{B} \gets p_{C}$ and $i \gets i+1$
+        \Else
+            \State repeat the algorithm with the same arguments except $p_{A} \gets p_{C}$ and $i \gets i+1$
+        \EndIf
+    \end{algorithmic}
+\end{algorithm}
+
+\par
+The Algorithm \ref{alg:local_search} searches only for left boundary. Search for right boundary can be done analogically.
+The complete local search is the local search of the left boundary and local search of the right boundary.
+These two boundaries approximate precise location of a breakpoint.
+By taking their average $p_{avg}$ we get a good approximation of the parameter at which the breakpoint occurs.
+\par
+In this section we have introduced an algorithm to which gives good approximation of the parameter at which the breakpoint occurs.
+This parameter is also the bifurcation point at which a saddle-node bifurcation occurs.
+This saddle-node bifurcation is the reason of the type-I intermittency on the right side of the break point.
+The next section will describe how to visually warn about the locations of type-I intermittency.
 
 % \section{UPO detection}
 % Our goal is to ultimately find regions in the bifurcation diagram where intermittency type-I occurs.
@@ -214,8 +281,8 @@ Example of the results of the algorithm are shown in the Figure \ref{fig:bif_dia
 
 % \section{Global Search}
 % Thanks to algorithm from the previous section we are able to find potential intervals in the bifurcation diagram containing type-I intermittency.
-% We start by selecting range of parameters $(p_a, p_b)$ in which we would like to search for intermittency.
-% We discretize $(p_a, p_b)$ to $n$ uniformly spaced samples.
+% We start by selecting range of parameters $(p_{A}, p_{B})$ in which we would like to search for intermittency.
+% We discretize $(p_{A}, p_{B})$ to $n$ uniformly spaced samples.
 % We go through each sample $p$ and check if it is $f_p$ is $m$-periodic.
 % We only check periods $m$ until a certain limit $m_{limit}$.
 % If we cannot detect any period we simply denote this boundary point as $m_{limit}+1$ which can be understood as infinity.
@@ -235,25 +302,25 @@ Example of the results of the algorithm are shown in the Figure \ref{fig:bif_dia
 %     \label{fig:bif_diag_search_example}
 % \end{figure}
 
-\section{Local Search}
-Once we identify suspicious intervals through global search we can search locally for precise location of a breakpoint.
-Again we utilize the ability to determine number of period of $f_p$ for some $p$.
-Since we know that to the left of the breakpoint there is no periodicity and to the right there is always the same periodicity, we can effectively search for the midpoint.
-We can use similar approach as in the traditional binary search.
-We start with an interval found by global search.
-We know that left boundary has no periodicity and right boundary has periodicity.
-We split the interval and check if the boundaries retain its properties.
-If property at the boundary changes we simply update the initial interval and start the algorithm recursively again.
-This way we are able to precisely locate the breakpoint parameter.
-\par
-An example of the found breakpoint is illustrated in Figure \ref{fig:break_point_search_example}.
+% \section{Local Search}
+% Once we identify suspicious intervals through global search we can search locally for precise location of a breakpoint.
+% Again we utilize the ability to determine number of period of $f_p$ for some $p$.
+% Since we know that to the left of the breakpoint there is no periodicity and to the right there is always the same periodicity, we can effectively search for the midpoint.
+% We can use similar approach as in the traditional binary search.
+% We start with an interval found by global search.
+% We know that left boundary has no periodicity and right boundary has periodicity.
+% We split the interval and check if the boundaries retain its properties.
+% If property at the boundary changes we simply update the initial interval and start the algorithm recursively again.
+% This way we are able to precisely locate the breakpoint parameter.
+% \par
+% An example of the found breakpoint is illustrated in Figure \ref{fig:break_point_search_example}.
 
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=1.0\textwidth]{DDS/Figures/break_point_search_example.png}
-    \caption{Local search example}
-    \label{fig:break_point_search_example}
-\end{figure}
+% \begin{figure}[!h]
+%     \centering
+%     \includegraphics[width=1.0\textwidth]{DDS/Figures/break_point_search_example.png}
+%     \caption{Local search example}
+%     \label{fig:break_point_search_example}
+% \end{figure}
 
 
 \section{Coloring}
