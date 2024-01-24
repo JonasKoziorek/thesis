@@ -19,6 +19,7 @@ begin
     ax = DDS.plot_nth_composition!(fig[1,1], logistic, LinRange(x_range..., 2000), param, order, identity_line;ax_aspect=ax_aspect)
     ax.ylabelsize = 25
     ax.xlabelsize = 25
+    ax.ylabel = L"\mathbb{L}_{%$(param[1])}^{%$order}"
     scatter!(ax, fps, Float64[nth_logistic(x, param) for x in fps], color=DDS.BLUE)
     display(fig)
 

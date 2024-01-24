@@ -7,8 +7,8 @@ begin
     logistic = DDS.logistic
 
     param_index = 1
-    # param_range = LinRange(3.55, 3.66, 1400)
-    param_range = LinRange(3.56, 3.66, 700)
+    # param_range = LinRange(3.55, 3.66, 700)
+    param_range = LinRange(3.58, 3.66, 4000)
     x_range = (0.0, 1.0)
     orbit_limit = 16
     bifurcation_intervals = DDS.localize_bifurcation(

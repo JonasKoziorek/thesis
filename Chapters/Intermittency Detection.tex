@@ -1,97 +1,239 @@
 \chapter{Intermittency Detection}
 Last chapter introduced the problem of ambiguity of bifurcation diagram.
-In this chapter we will develop an algorithm that will graphically warn about underlying intermittency and its ambiguity.
-This algorithm consists of 4 core parts
+This chapter introduces an algorithm that aims to detect the ambiguity.
+The algorithm consists of 3 core parts
 
 \begin{description}
-    \item [UPO detection] -- detecting all periodic orbits
-	\item [Global Search] -- searching through bifurcation diagram to find potential intervals with intermittency
-	\item [Local Search] -- searching for breakpoint in an interval that contains intermittency
-	\item [Coloring] -- coloring neighborhood of the breakpoint to warn about it
+	\item [Global Search] -- searching for areas where breakpoint occurs
+	\item [Local Search] -- searching for precise location of the breakpoint
+	\item [Coloring] -- coloring the bifurcation diagram in proximity of the breakpoint
 \end{description}
 
-We will discuss each part in the following sections.
+Each of these parts are described in the following sections.
+The last section of this chapter combines all the parts together.
 
-\section{UPO detection}
-Our goal is to ultimately find regions in the bifurcation diagram where intermittency type-I occurs.
-As noted in chapter \ref{chap:intermittency_review} we suppose that intermittency type-I is present at "breakpoints" in the bifurcation diagram.
-Such breakpoint can be seen for example in Figure \ref{fig:complex_logistic}.
+\section{Global Search}
+The initial phase of the algorithm aims to find approximate parameter intervals during which type-I intermittency occurs.
+More specifically, parameter intervals containing a breakpoint are identified.
 \par
-The breakpoints are characterized by shift from chaotic to periodic behavior.
-Periodic behavior on one side of the breakpoint in the neighborhood of it always has some fixed period $n$.
-Hence the system has $n$ stable fixed points on one side of the breakpoint.
-On the other side the behavior is dynamic and there are no stable fixed points.
-If we could quickly determine whether system for chosen parameter $p$ is periodic or not we could use this knowledge to find the breakpoints.
-The reason for that is that on one side of the breakpoint the check of periodicity would always yield infinity and on the other side it would yield period $n$.
-We could use this knowledge to get arbitralily close to the breakpoint.
+A breakpoint is a parameter value at which the system transitions from chaotic/intermittent behavior to periodic one.
+The breakpoints we are interested in have chaotic behaviour on the left side and periodic behavior on the right side.
+Each breakpoint can be identified by a unique number $n$ such that on the right side the behavior is $n$-periodid.
+If we could search through the parameter space and determine the period of the system for each parameter value we could easily find the breakpoints.
+To do that we would need an algorithm to determine the period of the system for any given parameter value.
 \par
-To check whether a system $f_P$ is $n$ periodic we just need to determine the number of stable fixed points of system $f^{n}_P$.
-If number of the stable fixed points is $n$ then system $f_P$ is $n$ periodic.
-If we know that $x_0$ is a stable fixed point of $f^{n}_P$ then we know that it is $n$ periodic point.
-The remaining $n-1$ points of the stable periodic orbit can be found by iterating $f_P(x_0)$ $(n-1)$-times.
-However how do we reliably and algorithmically get the first periodic orbit?
+If system has stable $n$-periodic orbit or the system starts evolving at unstable $n$-periodic point then the system is $n$-periodic or eventually $n$-periodic.
+We know that logistic map $\mathbb{L}_p$ can only have at most one unique stable $n$-periodic orbit for parameter $p$.
+That means that if we find a stable $n$-periodic orbit for parameter $p$ then we know that $\mathbb{L}_p$ is $n$-periodic.
+At least in the case where initial condition isn't an unstable periodic point.
+To find out whether $\mathbb{L}_p$ has a stable $n$-periodic orbit we need to find fixed points of $\mathbb{L}_p, \mathbb{L}_{p}^{2}, \mathbb{L}_{p}^{3}, \dots$ and determine their stability.
+Hence a smallest $n$ for which $\mathbb{L}_{p}^{n}(x^{*})=x^{*}$ and $x^{*}$ is stable is the period of $\mathbb{L}_p$.
 \par
-Finding a fixed point of $f^{n}_{P}$ is a question of finding a root of $g(x) = f^{n}_{P}(x) - x$.
-Standard root finding algorithm such as Newton-Raphson algorithm can be used to finds roots of $g(x)$.
-However for high $n$ it becomes difficult to find these roots since there is too many of them and a chance of converging to a stable fixed point decreases.
-Since our algorithm requires certainty that we found complete stable periodic orbit we decided to take another approach.
+There exist algorithms for finding all fixed points of a system.
+These algorithms are quite efficient and can be used to for high-dimensional systems.
+However, our aim is to search through the whole parameter space in search of breakpoints.
+This search requires to find fixed points for hundreds or thousands of parameters in the parameter space.
+Even though existing algorithms search for fixed points efficiently, they are not efficient enough for our use case.
+They will come in handy later in the algorithm but for now we need to find a way to approximate period of a system simply.
 \par
-Other option is to find all periodic orbits and determine their stability.
-There exist quick algorithm to determine all periodic orbits.
-By using it we will always have certainty that we found all stable periodic orbits.
+When we see a periodic behavior in a bifurcation diagram, it means that the system is periodic or eventually periodic for a specific initial condition $x_0$.
+In other words there exists $m > 0$ such that $f^{i}(x)=x$ is periodic for $i \geq m$.
+A naive approach to determine whether a system is periodic is to simply iterate the system for some large enough $m$ and check whether $f^{m}(x)=f^{m+i}(x)$.
+That implies that point $x$ is eventually periodic (or periodic) of period $i$.
+\par
+Simple check presented in the last paragraph fails to be precise in areas with intermittency.
+The first $m$ iterations could end up in the laminar phase which might be deemed as periodic.
+It also fails when the system is eventually periodic for some $n > m$, eg. higher than our parameter $m$.
+Regardless of it's flaws this simple check seems to be good enough for our naive search through the parameter space.
+It's much quicker than finding all fixed points for each parameter and it's precise enough for our use case.
+Pseudocode for the naive global search is presented in Algorithm \ref{alg:naive_global_search}.
 
-\subsection{Schmelcher-Diakonos algorithm}
-Schmelcher and Diakonos came up with a general algorithm for detecting complete set of unstable periodic orbits.
-The algorithm transforms the original system so that its unstable fixed points become stable.
-Additionally their basins of attraction are long and convergence to each unstable orbit is probable.
-However number of system transformations grow very quickly for high dimentional systems and computation becomes too long.
-At the same time parameter $\lambda$ has to be specified correctly to ensure convergence but there is no general way of how to choose this parameter. \cite{Schmelcher1997}
+\begin{algorithm}[!h]
+    \caption{Naive global search}
+    \label{alg:naive_global_search}
+    \begin{algorithmic}[1]
+        \State $f \gets$ system
+        \State $p_a \gets$ left boundary of the parameter space
+        \State $p_b \gets$ right boundary of the parameter space
+        \State $n \gets$ number of samples in the parameter space
+        \State $m \gets$ number of iterations
+        \State $o \gets$ maximum period to check
+        \State $p \gets p_a$
+        \State $p_{step} \gets \frac{p_b - p_a}{n}$
+        \State $x_0 \gets$ initial condition
+        \While{$p \leq p_b$}
+            \State $x_1 \gets f_{p}^{m}(x_0)$
+            \For{$i \gets 1$ to $o$}
+                \State $x_2 \gets f_{p}^{i}(x_1)$
+                \If{$x_2 = x_1$}
+                    \State $f_p$ is $i$-periodic
+                \EndIf
+            \EndFor
+            \State $p \gets p + p_{step}$
+        \EndWhile
+    \end{algorithmic}
+\end{algorithm}
 
-\subsection{Davidchack-Lai algorithm}
-Davidchack and Lai extended SD algorithm so that it works as a hybrid between Newton-Raphson algorithm and SD algorithm.
-They propose that to find UPOs of period $n$ one can use UPOs of period $n-1$ and $n+1$.
-This technique is supposed to reduce number of iterations significantly compared to SD algorithm. \cite{Davidchack1999}
-
-\subsection{Our implementation}
-DL algorithm is supposed to be superior to SD algorithm.
-Even though there the DL algoritm is described in \cite{Davidchack1999,Davidchack2001,Klebanoff2001} we were not able to implement it in a way that would fulfill its advertised performance.
-Since the algorithm is over 20 years old and there are no implementations of it online we had to resort to our own version.
+With this algorithm we approximate the period of a system for each parameter in sampled parameter space.
+If the algorithm doesn't find any periodicity for some parameter $p$ then we can assume that the system is chaotic for this parameter.
+Our goal is to look for breakpoints, eg. regions where there is a shift from chaotic (non-periodic) behavior to periodic one.
+To do that we look at the results from the previous algorithm and identify places where two neighboring parameters change from no period to some period $n$.
+As noted previously, the Naive global search is not very precise. For that reason we will verify the parameters near the identified breakpoint with an algorithm for detection of periodic orbits.
 \par
-Our version simply the DL evolution rule but does not use previously UPOs as seeds.
-We choose seeds uniformly from an interval as it was suggested for SD algorithm \cite{Schmelcher1997}.
-We use efficient binary search tree structure which makes the algorithm efficient enough for our use case.
-Example of the results of the algorithm are shown in the Figure \ref{fig:upo_search_example}.
+There are several efficient algorithms for unstable periodic orbits (UPOs) detection.
+These algorithms are able to identify all points $x^{*}$ for which $f(x^{*})^{n}=x^{*}$ for any $n$.
+The modern algorithms include Schmelcher-Diakonos algorithm \cite{Schmelcher1997}, Davidchack-Lai algorithm \cite{Davidchack1999,Davidchack2001,Klebanoff2001} and Bu-Wang-Jiang algorithm \cite{Bu2004}.
+An example of the results of the algorithm is shown in the Figure \ref{fig:upo_search_example}.
 
 \begin{figure}[!h]
     \centering
     \includegraphics[width=1.0\textwidth]{DDS/Figures/upo_search_example.png}
-    \caption{All unstable periodic orbits}
+    \caption{Fixed points of $\mathbb{L}_{3.7}^{6}$}
     \label{fig:upo_search_example}
 \end{figure}
 
-
-\section{Global Search}
-Thanks to algorithm from the previous section we are able to find potential intervals in the bifurcation diagram containing type-I intermittency.
-We start by selecting range of parameters $(p_a, p_b)$ in which we would like to search for intermittency.
-We discretize $(p_a, p_b)$ to $n$ uniformly spaced samples.
-We go through each sample $p$ and check if it is $f_p$ is $m$-periodic.
-We only check periods $m$ until a certain limit $m_{limit}$.
-If we cannot detect any period we simply denote this boundary point as $m_{limit}+1$ which can be understood as infinity.
-Since we know period of each sample we simply compare periods of neighboring samples.
-If we spot a difference between period of sample $a$ and sample $b$, then a bifurcation must have occured in the interval $(a, b)$.
-Additionally if $a=m_{limit}+1$ and $b \leq m_{limit}+1$ then we have found an interval which potentionally contains a breakpoint.
 \par
-Figure \ref{fig:bif_diag_search_example} illustrates global search through bifurcation diagram of logistic map for periods up to 18.
-Two lines of the same color represent an interval in which bifurcation occurs.
-We are looking for breakpoints associated with saddle-node bifurcations.
-These breakpoints are hence also identified by this search.
+It is worth mentioning that finding fixed points can be achiaved using standard methods too.
+For example Newton-Raphson algorithm can be used to find roots of $g(x) = f(x)^{n} - x$.
+However for high $n$ it becomes difficult to find these roots since there is too many of them and a chance of converging to a stable fixed point decreases.
+Comparison of basins of convergence of the Newton-Raphson method, Schmelchel-Diakonos algorithm and Davidchack-Lai algorithm can be seen in \cite{Davidchack1999}.
+Another example is to use methods from theory of mathematical optimization.
+Minimizing the following function $J(x)= \norm{f^{p}(x)-x}^{2}$ will yield a $p$-periodic point of $f$ \cite{Fuh2009}.
+\par
+We have decided to include the Bu-Wang-Jiang algorithm (BWJ) in our implementation.
+It's easy to implement and works well for our use case.
+The pseudocode for BWJ algorithm is presented in Algorithm \ref{alg:bwj}.
+
+\begin{algorithm}[!h]
+    \caption{Bu-Wang-Jiang (BWJ)}
+    \label{alg:bwj}
+    \begin{algorithmic}[1]
+        \State $f \gets$ system
+        \State $p \gets$ period
+        \State $seeds \gets$ seeds
+        \State $maxiter \gets$ maximum number of iterations
+        \State $tol \gets$ tolerance for determining a fixed point
+        \For{each s in seeds}
+            \State $\textbf{x}_{0} \gets s$
+            \While{current iteration $< maxiter$}
+                \State $J(\textbf{x}_{0}) = \partial f^{p}(\textbf{x}_{0}) / \partial \textbf{x}$ is jacobian at $\textbf{x}_{0}$
+                \State $Q \gets (cI-J(\textbf{x}_{0}))(J(\textbf{x}_{0})-I)^{-1}$ where $I$ is identity matrix, $c \in (-1, 1)$ is a constant 
+                \State $\textbf{x}_1 \gets f^{p}(\textbf{x}_{0}) + Q(f(\textbf{x}_{0})^{p}-\textbf{x}_{0})$
+                \If{$\norm{f^{p}(\textbf{x}_1)-\textbf{x}_1} < tol$}
+                    \State $\textbf{x}_{1}$ is a fixed point of $f^{p}$
+                \EndIf
+                \State $\textbf{x}_{0} \gets \textbf{x}_{1}$
+            \EndWhile
+        \EndFor
+    \end{algorithmic}
+\end{algorithm}
+
+The $seeds$ parameter is a set of initial conditions from which the algorithm starts searching for fixed points.
+They can be chosen as a uniformly sampled interval (if $x \in \mathbb{R}$) or grid (if $x \in \mathbb{R}^{n}$) in the state space.
+Our version of the algorithm includes several optimizations suitable for our use case.
+JBW will find all fixed points of a system but we are only looking for fixed points that are stable.
+We are working with the logistic map for which we know that there can be at most one stable periodic orbit.
+That means that if we find $n$ stable fixed points for the system $\mathbb{L}_{p}^{n}$ we terminate the algorithm.
+If we find a fixed point $x^{*}$ of $\mathbb{L}_{p}^{n}$, we iterate $x^{*}$ $n$ times and check whether resulting points are also fixed points.
+Before the algorithm starts we use similar idea as in the Naive global search. We iterate the system $f^{n}(s)$ $m$ times for arbitrary ititial seed $s$ and check whether the resulting point is $n$-periodic.
+These optimizations make the algorithm more efficient for our use case.
+The advantage of using BWJ algorithm to determine periodicity of a system $f_{p}$ is that it is reliable even if $f_{p}$ exhibits intermittency for parameter $p$.
+\par
+In this section we have introduced an algorithm to perform global search for breakpoints in the parameter space.
+First we discretize the parameter space and we use the Naive global search to approximate periodicity of each parameter.
+Then we look at neighboring pairs of parameters where there is nonperiodicity on the left side and periodicity on the right side.
+We verify that Naive global search determined periodicity for these pairs correctly using BWJ algorithm which isn't prone to effects of intermittency.
+In the end we have ranges of parameters where we expect a breakpoint to occur.
+Example of the results of the algorithm are shown in the Figure \ref{fig:bif_diag_search_example}.
 
 \begin{figure}[!h]
     \centering
     \includegraphics[width=1.0\textwidth]{DDS/Figures/bif_diag_search_example.png}
-    \caption{Global search example}
+    \caption{Example of a Global search}
     \label{fig:bif_diag_search_example}
 \end{figure}
+
+
+% \section{UPO detection}
+% Our goal is to ultimately find regions in the bifurcation diagram where intermittency type-I occurs.
+% As noted in chapter \ref{chap:intermittency_review} we suppose that intermittency type-I is present at "breakpoints" in the bifurcation diagram.
+% Such breakpoint can be seen for example in Figure \ref{fig:complex_logistic}.
+% \par
+% The breakpoints are characterized by shift from chaotic to periodic behavior.
+% Periodic behavior on one side of the breakpoint in the neighborhood of it always has some fixed period $n$.
+% Hence the system has $n$ stable fixed points on one side of the breakpoint.
+% On the other side the behavior is dynamic and there are no stable fixed points.
+% If we could quickly determine whether system for chosen parameter $p$ is periodic or not we could use this knowledge to find the breakpoints.
+% The reason for that is that on one side of the breakpoint the check of periodicity would always yield infinity and on the other side it would yield period $n$.
+% We could use this knowledge to get arbitralily close to the breakpoint.
+% \par
+% To check whether a system $f_P$ is $n$ periodic we just need to determine the number of stable fixed points of system $f^{n}_P$.
+% If number of the stable fixed points is $n$ then system $f_P$ is $n$ periodic.
+% If we know that $x_0$ is a stable fixed point of $f^{n}_P$ then we know that it is $n$ periodic point.
+% The remaining $n-1$ points of the stable periodic orbit can be found by iterating $f_P(x_0)$ $(n-1)$-times.
+% However how do we reliably and algorithmically get the first periodic orbit?
+% \par
+% Finding a fixed point of $f^{n}_{P}$ is a question of finding a root of $g(x) = f^{n}_{P}(x) - x$.
+% Standard root finding algorithm such as Newton-Raphson algorithm can be used to finds roots of $g(x)$.
+% However for high $n$ it becomes difficult to find these roots since there is too many of them and a chance of converging to a stable fixed point decreases.
+% Since our algorithm requires certainty that we found complete stable periodic orbit we decided to take another approach.
+% \par
+% Other option is to find all periodic orbits and determine their stability.
+% There exist quick algorithm to determine all periodic orbits.
+% By using it we will always have certainty that we found all stable periodic orbits.
+
+% \subsection{Schmelcher-Diakonos algorithm}
+% Schmelcher and Diakonos came up with a general algorithm for detecting complete set of unstable periodic orbits.
+% The algorithm transforms the original system so that its unstable fixed points become stable.
+% Additionally their basins of attraction are long and convergence to each unstable orbit is probable.
+% However number of system transformations grow very quickly for high dimentional systems and computation becomes too long.
+% At the same time parameter $\lambda$ has to be specified correctly to ensure convergence but there is no general way of how to choose this parameter. \cite{Schmelcher1997}
+
+% \subsection{Davidchack-Lai algorithm}
+% Davidchack and Lai extended SD algorithm so that it works as a hybrid between Newton-Raphson algorithm and SD algorithm.
+% They propose that to find UPOs of period $n$ one can use UPOs of period $n-1$ and $n+1$.
+% This technique is supposed to reduce number of iterations significantly compared to SD algorithm. \cite{Davidchack1999}
+
+% \subsection{Our implementation}
+% DL algorithm is supposed to be superior to SD algorithm.
+% Even though there the DL algoritm is described in \cite{Davidchack1999,Davidchack2001,Klebanoff2001} we were not able to implement it in a way that would fulfill its advertised performance.
+% Since the algorithm is over 20 years old and there are no implementations of it online we had to resort to our own version.
+% \par
+% Our version simply the DL evolution rule but does not use previously UPOs as seeds.
+% We choose seeds uniformly from an interval as it was suggested for SD algorithm \cite{Schmelcher1997}.
+% We use efficient binary search tree structure which makes the algorithm efficient enough for our use case.
+% Example of the results of the algorithm are shown in the Figure \ref{fig:upo_search_example}.
+
+% \begin{figure}[!h]
+%     \centering
+%     \includegraphics[width=1.0\textwidth]{DDS/Figures/upo_search_example.png}
+%     \caption{All unstable periodic orbits}
+%     \label{fig:upo_search_example}
+% \end{figure}
+
+
+% \section{Global Search}
+% Thanks to algorithm from the previous section we are able to find potential intervals in the bifurcation diagram containing type-I intermittency.
+% We start by selecting range of parameters $(p_a, p_b)$ in which we would like to search for intermittency.
+% We discretize $(p_a, p_b)$ to $n$ uniformly spaced samples.
+% We go through each sample $p$ and check if it is $f_p$ is $m$-periodic.
+% We only check periods $m$ until a certain limit $m_{limit}$.
+% If we cannot detect any period we simply denote this boundary point as $m_{limit}+1$ which can be understood as infinity.
+% Since we know period of each sample we simply compare periods of neighboring samples.
+% If we spot a difference between period of sample $a$ and sample $b$, then a bifurcation must have occured in the interval $(a, b)$.
+% Additionally if $a=m_{limit}+1$ and $b \leq m_{limit}+1$ then we have found an interval which potentionally contains a breakpoint.
+% \par
+% Figure \ref{fig:bif_diag_search_example} illustrates global search through bifurcation diagram of logistic map for periods up to 18.
+% Two lines of the same color represent an interval in which bifurcation occurs.
+% We are looking for breakpoints associated with saddle-node bifurcations.
+% These breakpoints are hence also identified by this search.
+
+% \begin{figure}[!h]
+%     \centering
+%     \includegraphics[width=1.0\textwidth]{DDS/Figures/bif_diag_search_example.png}
+%     \caption{Global search example}
+%     \label{fig:bif_diag_search_example}
+% \end{figure}
 
 \section{Local Search}
 Once we identify suspicious intervals through global search we can search locally for precise location of a breakpoint.
@@ -129,5 +271,7 @@ We will use the fact that the average laminar length for
     \caption{Bifurcation diagram coloring example}
     \label{fig:coloring_example}
 \end{figure}
+
+\section{Complete algorithm}
 
 \endinput
