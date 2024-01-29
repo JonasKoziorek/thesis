@@ -4,9 +4,9 @@ This chapter introduces an algorithm that aims to detect the ambiguity.
 The algorithm consists of 3 core parts
 
 \begin{description}
-	\item [Global Search] -- searching for areas where breakpoint occurs
-	\item [Local Search] -- searching for precise location of the breakpoint
-	\item [Coloring] -- coloring the bifurcation diagram in proximity of the breakpoint
+	\item [Global Search] -- searching for areas where breakpoints occur
+	\item [Local Search] -- searching for precise locations of breakpoints
+	\item [Coloring] -- coloring the bifurcation diagram in proximity of breakpoints
 \end{description}
 
 Each of these parts are described in the following sections.
@@ -155,22 +155,28 @@ Example of the results of the algorithm are shown in the Figure \ref{fig:bif_dia
 
 \section{Local Search}
 The previous section introduced a so called global search, an approach to find approximate intervals in the parameter space where a breakpoint occurs.
-In this section we will develop an algorithm to find the precise location of each breakpoint.
+In this section we will develop an algorithms to find the precise location of each breakpoint.
 These locations will be later used to color the bifurcation diagram in proximity of the breakpoint.
 \par
-The fundamental idea behind the local search is similar to the one used in the global search.
+This section discusses two algorithms for the local search - Naive Local Search (NLS) and NLPSO (Nested-Layer Particle Swarm Optimization).
+From global search we know two boudaries $(p_A, p_B)$, period of the system with parameter $p_B$ and the fact there there is a breakpoint between $(p_A, p_B)$.
+Next we need to approximate the parameter at which the breakpoint occurs.
+Both NLS and NLPSO solve this problem but they use different approaches.
+
+\subsection{Naive Local Search}
+The fundamental idea behind the Naive Local Search (NLS) is similar to the one used in the global search.
 We will search through the parameter space and determine the period of each parameter.
 However, instead of searching through the whole parameter space we will only search through the intervals found in the global search.
 These intervals are special because we know several facts about them.
 Their left boundary in nonperiodic and their right boundary is periodic of period some $n$. We know this $n$ from the global search.
 We would like to push the left boundary close to the left side of the breakpoint.
 The same applies for the right boundary.
-On example result of a local search can be seen in Figure \ref{fig:break_point_search_example}.
+On example result of a Naive Local Search can be seen in Figure \ref{fig:break_point_search_example}.
 
 \begin{figure}[!h]
     \centering
     \includegraphics[width=1.0\textwidth]{DDS/Figures/break_point_search_example.png}
-    \caption{Example result of the local search}
+    \caption{Example result of the NLS}
     \label{fig:break_point_search_example}
 \end{figure}
 
@@ -186,10 +192,10 @@ If $\frac{p_{A}+p_{B}}{2}$ is $n$-periodic then we know that the breakpoint is i
 If $\frac{p_{A}+p_{B}}{2}$ is nonperiodic then we know that the breakpoint is in the interval $[p_{A}, \frac{p_{A}+p_{B}}{2}]$.
 With the new interval we perform the same process again recursively.
 We repeat the halving process for some desired number of iterations $maxiter$.
-Pseudocode for the local search of the left boundary can be seen in Algorithm \ref{alg:local_search}.
+Pseudocode for the naive local search of the left boundary can be seen in Algorithm \ref{alg:local_search}.
 
 \begin{algorithm}[!h]
-    \caption{Local search - left boundary}
+    \caption{NLS - left boundary}
     \label{alg:local_search}
     \begin{algorithmic}[1]
         \Statex $f \gets$ system
@@ -212,7 +218,7 @@ Pseudocode for the local search of the left boundary can be seen in Algorithm \r
 
 \par
 The Algorithm \ref{alg:local_search} searches only for left boundary. Search for right boundary can be done analogically.
-The complete local search is the local search of the left boundary and local search of the right boundary.
+The complete naive local search is both the search of the left boundary and the search of the right boundary.
 These two boundaries approximate precise location of a breakpoint.
 By taking their average $p_{avg}$ we get a good approximation of the parameter at which the breakpoint occurs.
 \par
@@ -220,6 +226,145 @@ In this section we have introduced an algorithm to which gives good approximatio
 This parameter is also the bifurcation point at which a saddle-node bifurcation occurs.
 This saddle-node bifurcation is the reason of the type-I intermittency on the right side of the break point.
 The next section will describe how to visually warn about the locations of type-I intermittency.
+
+\subsection{Nested-Layer Particle Swarm Optimization}
+This section describes an alternative to the Naive Local Search (NLS) algorithm.
+It achieves the same goal as the NLS but uses different approach.
+This is done by reformulating the original problem as an optimization problem.
+\par
+The NLS introduced in the last subsection approximates the parameter at which the breakpoint occurs.
+It is based on the idea of a binary search.
+However the search for the breakpoint can be rephrased as search for a parameter where saddle-node bifurcation occurs.
+Matsushita, Kurokawa and Kousaka \cite{Matsushita2019} introduced an approach to search for saddle-node bifurcation of a DDS.
+Their method uses the Nested-Layer Particle Swarm Optimization (NLPSO) method.
+They have previously used the same approach to detect period-doubling bifurcations of a DDS \cite{Matsushita20170721}.
+\par
+To understand how NLPSO detection of saddle-node bifurcation works we need to understand the Particle Swarm Optimization (PSO).
+PSO is popular population-based evolutionary algorithm.
+It tracks several particles which represent potential solution.
+Each particle has its own position and velocity. It also tracks its previous best position and score.
+Each article moves through the search space based on its velocity and position.
+Its movement is also influenced by its previous best position and best positions of other particles. \cite{Matsushita2019}
+\par
+Each particle has a position $pos \in \mathbb{R}^{n}$, velocity $vel \in \mathbb{R}^{n}$, best position $bpos \in \mathbb{R}^{n}$ and best score $bscore \in \mathbb{R}$.
+Algorithm also track global best position $g_{pos}$ and global best score $g_{score}$.
+Pseudocode for the PSO algorithm can be seen in Algorithm \ref{alg:pso}.
+The algorith \ref{alg:pso} includes several parameters.
+These paramters are $w$, $c_{1}$ and $c_{2}$.
+We set these parameters as $w=0.729$ and $c_{1}=c_{2}=1.494$ \cite{Matsushita2019}.
+
+\begin{algorithm}[!h]
+    \caption{Particle Swarm Optimization (PSO)}
+    \label{alg:pso}
+    \begin{algorithmic}[1]
+        \Statex $f \gets$ function to minimize. $f: \mathbb{R}^{m} \rightarrow \mathbb{R}$  
+        \Statex $(a, b) \gets$ search-space range
+        \Statex $n \gets$ number of particles
+        \Statex $maxiter \gets$ maximum number of iterations
+        \Statex $tol \gets$ tolerance for determining solution
+        \Statex $w, c_{1}, c_{2} \gets$ parameters described in the text
+        \State Create $n$ particles.
+        \For{each particle}
+            \State $pos$ $m$-dimensional vector of uniform random numbers between $a$ and $b$.
+            \State $vel$ $m$-dimensional zero vector.
+            \State $bpos \gets$ $m$-dimensional vector of uniform random numbers between $a$ and $b$.
+            \State $bscore \gets \infty$
+        \EndFor
+        \State $g_{pos}$ $m$-dimensional vector of uniform random numbers between $a$ and $b$.
+        \State $g_{score} \gets \infty$
+
+        \For{iteration less than $maxiter$}
+            \For{each particle}
+                \State $score \gets f(pos)$ 
+                \If{$score < bscore$}
+                    \State $bscore \gets score$
+                    \State $bpos \gets pos$
+                \EndIf
+                \If{$score < g_{score}$}
+                    \State $g_{score} \gets score$
+                    \State $g_{pos} \gets pos$
+                \EndIf
+            \EndFor
+            \If{$g_{score} < tol$}
+                \State break the loop
+            \EndIf
+            \For{each particle}
+                \State $r_{1}, r_{2} \gets$ random numbers between $0$ and $1$.
+                \State $vel \gets w(vel) + c_{1}r_{1}(bpos-pos) + c_{2}r_{2}(g_{pos}-pos)$
+                \State $pos \gets pos + vel$
+            \EndFor
+        \EndFor
+    \end{algorithmic}
+\end{algorithm}
+
+\par
+The next step is to combine two PSOs.
+One of them will be looking for a parameter $p_b$ at which saddle-node bifurcation occurs.
+The other one will be looking for periodic point $x_b$ corresponding to $p_b$.
+For each PSO we need to define a function to minimize.
+Its worth noticing that the algorithm works for dynamical systems of arbitrary dimensions.
+For that reason the minimization functions are presented in a general form.
+\par
+Let $(\mathbb{R}^{m}, f)$ be a DDS.
+We search for a periodic point $x_0$ for arbitrary parameter $p$.
+When we have selected parameter $p$ we can search for a periodic point $x_0$ by minimizing the function $F$ from Eq. \ref{eq:minimize_x}.
+If $x_0$ is a fixed point of $f^{n}_{p}$ then $x_0$ is an $n$-periodic point of $f$.
+It is a fixed point in case $f^{n}_{p}(x_0)-x_0 = 0$.
+Hence minimizing the $F$ brings us closer to the $n$-periodic point.
+We can use PSO to search for optimal parameter $x_0$ by minimizing $F$.
+
+\begin{equation}
+\label{eq:minimize_x}
+    F(x_0) = \norm{f^{n}_{p}(x_0)-x_0}
+\end{equation}
+
+\par
+Let $(\mathbb{R}^{m}, f)$ be a DDS.
+We search for parameter $p_b$ at which saddle-node bifurcation occurs.
+Saddle-node bifurcation occurs at parameter $p$ when the characteristic equation \ref{eq:characteristic_eq} is equal to $0$, $x_0$ is $n$-periodic point and parameter $\mu = 1$.
+% Aditionally period-doubling bifurcation occurs when the when the characteristic equation \ref{eq:characteristic_eq} is equal to $0$ and parameter $\mu = -1$.
+
+\begin{equation}
+\label{eq:characteristic_eq}
+        \text{det}(Df^{n}_{p}(x_0)-\mu I)
+\end{equation}
+Hence minimize function $G_{mock}(p_0) = |\text{det}(Df^{n}_{p_0}(x_0)-\mu I)|$ for different parameters $p$ would search for saddle-node bifurcation $p_b$.
+However in order to evaluate $G_{mock}$ we need to know $x_0$ which we don't know.
+Thus we can use PSO for minimizing \ref{eq:minimize_x} to find $x_0$ and use $p_0$ as a system parameter that we described in the previous paragraph.
+We want to be sure that found point $x_0$ is $n$-periodic point and thus we only evaluate $G_{mock}$ if PSO converged correctly to $x_0$.
+Updated function $G_{mock}$ is presented in Eq. \ref{eq:minimize_p} and is now called $G$.
+Thus minimizing the function $G$ from Eq. \ref{eq:minimize_p} by PSO finds optimal parameter $p_b$.
+
+\begin{equation}
+\label{eq:minimize_p}
+    G(p) =
+    \begin{cases}
+        |\text{det}(Df^{n}_{p}(x_0)-\mu I)| & \text{if } F(x_0) < C_{pp} \\
+        \infty & otherwise
+    \end{cases}
+\end{equation}
+
+\par
+In previous paragraphs we have described how to use two types of PSOs. 
+The main PSO looks for parameter $p_b$ at which saddle-node bifurcation occurs.
+It does so by minimizing function $G$ from \ref{eq:minimize_p}.
+During every evaluation of $G$ at parameter $p_0$ we need to find $x_0$ which is $n$-periodic point of $f^{n}_{p_0}$.
+That can be achieved by using the second nested PSO which minimizes function $F$ from \ref{eq:minimize_x} by using $p_0$ as parameter in $F$.
+This nesting of PSOs is the reason why this algorithm is called Nested-Layer Particle Swarm Optimization.
+Period $n$ is the same in both functions $F$ and $G$.
+It corresponds to the period of the system at the saddle-node bifurcation.
+Fortunately we know the parameter $n$ from the global search.
+We also know parameter range $(p_A, p_B)$ from the global search which is used in the top-level PSO as search-space range.
+We also know the search-space range for the nested PSO.
+It is because the system is invariant under some set.
+For example for logistic equation we can set the search-space range to $[0, 1]$.
+\par
+In this subsection we described the NLPSO algorithm as an alternative to NLS algorithm.
+Both of these algorithms can be used interchangably when we work with 1D systems.
+However NLPSO is more general and can be used for higher dimensional systems as well.
+In general NLPSO is much better algorithm than NLS.
+Nevertheless it is also harder to implement and understand.
+
 
 % \section{UPO detection}
 % Our goal is to ultimately find regions in the bifurcation diagram where intermittency type-I occurs.
@@ -330,7 +475,6 @@ Now we will use statistical methods to determine the average laminar phase lengt
 These statistical methods are described in \cite{Elaskar2022}.
 
 \subsection{Description of the algorithm}
-We will use the fact that the average laminar length for 
 
 \begin{figure}[!h]
     \centering
