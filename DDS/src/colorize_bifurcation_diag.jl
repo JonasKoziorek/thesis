@@ -35,7 +35,9 @@ function colorize_bifurcation_diagram!(figure, map::F, x0, param, x_range, param
         boundaries[i] = find_intermittency_boundary!(map, x_range, a, b, n_order)
     end
     ax, color_ranges = plot_colorized_bif_diag(figure[1,1], map, x0, param, param_index, param_range, x_range, boundaries)
-    plot_colorbar(figure[1,2], color_ranges)
+    if !isempty(color_ranges)
+        plot_colorbar(figure[1,2], color_ranges)
+    end
     return ax
 end
 
@@ -113,7 +115,7 @@ function specify_intermittency_bounds(map::F, x_range, left_p, right_p, n_order,
             low_bound = find_optimal_low_bound(left_p, low_bound_range, nth_map, sfp)
             high_bound = find_optimal_high_bound(right_p, high_bound_range, nth_map, sfp)
             return low_bound, high_bound, sfp
-        catch e
+        catch
             return (-1, -1, -1)
         end
     end

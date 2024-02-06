@@ -1,5 +1,6 @@
 using DDS
 using CairoMakie
+using BenchmarkTools
 
 # estimation of periodic point
 begin

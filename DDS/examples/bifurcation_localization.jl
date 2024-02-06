@@ -120,8 +120,8 @@ begin
     x0=0.2
     x_range = (0.0, 1.0)
     param = [3.8]
-    # param_range = LinRange(3.6, 3.8, 6002)
-    param_range = LinRange(3.62, 3.65, 3000)
+    param_range = LinRange(3.6, 3.8, 60000)
+    # param_range = LinRange(3.62, 3.65, 3000)
     param_index = 1
     orbit_limit = 20
 
@@ -134,7 +134,7 @@ begin
         x_range
     )
 
-    param_range2 = LinRange(param_range[1], param_range[end], 5000)
+    param_range2 = LinRange(param_range[1], param_range[end], 120000)
     param_index = 1
     total_n = 1000
     last_n = 200

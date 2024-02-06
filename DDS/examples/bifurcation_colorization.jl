@@ -56,3 +56,63 @@ begin
     @time ax = DDS.colorize_bifurcation_diagram!(fig, func, x0, param, x_range, param_range, param_index, orbit_limit)
     display(fig)
 end
+
+# random map as other example
+begin
+    func(x, p) = p[1]*(1-x)*(1-x)
+    x0=0.2
+    x_range = (0.0, 1.0)
+    param = [1.8]
+    param_range = LinRange(1.5, 2.0, 1000)
+    param_index = 1
+
+    orbit_limit = 10
+    fig = Figure()
+    @time ax = DDS.colorize_bifurcation_diagram!(fig, func, x0, param, x_range, param_range, param_index, orbit_limit)
+    display(fig)
+end
+
+# random map as other example
+begin
+    func(x, p) = p[1]*sin(x)
+    x0=0.2
+    x_range = (0.0, 1.0)
+    param = [1.8]
+    param_range = LinRange(1.5, 4.0, 1000)
+    param_index = 1
+
+    orbit_limit = 10
+    fig = Figure()
+    @time ax = DDS.colorize_bifurcation_diagram!(fig, func, x0, param, x_range, param_range, param_index, orbit_limit)
+    display(fig)
+end
+
+# random map as other example
+begin
+    func(x, p) = p[1]*sin(x)*(1-x)
+    x0=0.2
+    x_range = (0.0, 1.0)
+    param = [1.8]
+    param_range = LinRange(3.5, 4.0, 4000)
+    param_index = 1
+
+    orbit_limit = 10
+    fig = Figure()
+    @time ax = DDS.colorize_bifurcation_diagram!(fig, func, x0, param, x_range, param_range, param_index, orbit_limit)
+    display(fig)
+end
+
+# random map as other example
+begin
+    func(x, p) = p[1]*cos(x)*(1-x) * exp(sin(x)) % 1.0
+    x0=0.2
+    x_range = (0.0, 1.0)
+    param = [1.8]
+    param_range = LinRange(2.5, 4.0, 1000)
+    param_index = 1
+
+    orbit_limit = 10
+    fig = Figure()
+    @time ax = DDS.colorize_bifurcation_diagram!(fig, func, x0, param, x_range, param_range, param_index, orbit_limit)
+    display(fig)
+end

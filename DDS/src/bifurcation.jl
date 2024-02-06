@@ -23,7 +23,7 @@ function prepare_data(total_n, sampling_n, param_range, x0)
     plotting_data = Vector{Tuple{Float64, Float64}}(undef, seqlen*length(param_range))
     raw_data = Vector{typeof(x0)}(undef, total_n+1)
     indexed_data = Vector{typeof(x0[1])}(undef, total_n+1)
-    sampled_data = Vector{typeof(x0)}(undef, sampling_n+1)
+    sampled_data = Vector{typeof(x0[1])}(undef, sampling_n+1)
     plot_points = Vector{Tuple{Float64, Float64}}(undef, sampling_n+1)
     return plotting_data, raw_data, indexed_data, sampled_data, plot_points, seqlen
 end
