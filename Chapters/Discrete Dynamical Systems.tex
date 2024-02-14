@@ -4,7 +4,7 @@
     A \emph{discrete dynamical system} (abbr. DDS) is a tuple $\left( X, f \right)$ where X is a non-empty set and $f: X \rightarrow X$ is a map~\cite{Brin20100706}.
     Set X is called a \emph{state space}.
     Set X is \emph{invariant} under $f$ if and only if $f(X) \subseteq X$, moreover set $X$ is \emph{strongly invariant} if and only if $f(X) = X$.
-    If map $f$ depends on a parameter $p$, we denote it as $f_p$.
+    If map $f$ depends on a parameter $p$, it is denoted as $f_p$.
 \end{definition}
 
 \begin{remark}[Logistic map]
@@ -91,9 +91,9 @@
     \begin{eqnarray}
         T(f, x_0) = f^0(x_0), f^1(x_0), f^2(x_0), f^3(x_0), \cdots  = x_0, x_1, x_2, x_3, \cdots
     \end{eqnarray}
-    More precisely, for $n \leq m$ we define
+    More precisely, trajectory between iterates $n$ and $m$, $n \leq m$, is
     \begin{eqnarray}
-        T_{n}^{m}(f, x_0) = x_n, \cdots, x_m
+        T_{n}^{m}(f, x_0) = f^{n}(x_0), f^{n+1}(x_0), \cdots, f^{m-1}(x_0), f^{m}(x_0) = x_n, \cdots, x_m
     \end{eqnarray}
 \end{definition}
 
@@ -142,19 +142,19 @@
 \label{def:fixed point}
 \begin{definition}[Fixed point]
     Let $\left( \mathbb{R}, f \right)$ be a DDS. Point $x \in X$ is called a \emph{fixed point} of $f$ if it holds $f(x) = x$.
-    We denote the set of all fixed points of $f$ as $\emph{Fix}(f)$~\cite{Devaney20211026}.
+    The set of all fixed point of $f$ is denoted as $\emph{Fix}(f)$~\cite{Devaney20211026}.
 \end{definition}
 
 \label{def:sfp}
 \begin{definition}[Stable fixed point]
     Let $\left(\mathbb{R}, f\right)$ be a DDS, $f:\mathbb{R} \rightarrow \mathbb{R}$. Let $f$ be differentiable on $X$. Fixed point $x \in X$ is \emph{stable} if $|f'(x)| < 1$.
-    We call this point \emph{attracting}.
+    This point is called \emph{attracting}.
 \end{definition}
 
 \label{def:ufp}
 \begin{definition}[Unstable fixed point]
     Let $\left(\mathbb{R}, f\right)$ be a DDS, $f:\mathbb{R} \rightarrow \mathbb{R}$. Let $f$ be differentiable on $X$. Fixed point $x \in X$ is \emph{unstable} if $|f'(x)| > 1$.
-    We call this point \emph{repelling}.
+    This point is called \emph{repelling}.
 \end{definition}
 
 \begin{remark}
@@ -167,7 +167,7 @@
     \par
     \textcolor{red}{
     Direct evaluation of $\mathbb{L}_{r}(x)=x$ yields Fix$(\mathbb{L}_{r}) = \{ 0, (r-1)/r \}$.
-    By evaluating the derivative of $\mathbb{L}_{r}$ at these points, we can determine whether the fixed point is attracting or repelling.
+    By evaluating the derivative of $\mathbb{L}_{r}$ at these points, stability of the fixed point can be determined.
     Hence the fixed point $0$ is attracting if $r \in (0, 1)$ and repelling if $r \in (1, 4)$.
     The fixed point $(r-1)/r$ is attracting if $r \in (1, 3)$ and repelling if $r \in (0, 1) \cup (3, 4) $.
     }
@@ -209,13 +209,13 @@
 
 \begin{definition}[Periodic point]
     Let $\left( \mathbb{R}, f\right)$ be a DDS. Point $x \in X$ is called \emph{$n$-periodic} if $f^{n}(x)=x$.
-    We denote the set of all $n$-periodic points of $f$ as $\emph{Per}_{n}(f)$.~\cite{Devaney20211026}
+    The set of all $n$-periodic points of $f$ is denoted as $\emph{Per}_{n}(f)$.~\cite{Devaney20211026}
 \end{definition}
 
 \begin{definition}[Periodic orbit]
     Let $\left(\mathbb{R}, f\right)$ be a DDS. Let $f$ be differentiable on $X$. For periodic point $x_0$ the set $\{f^{n}(x_0):n \in \mathbb{N}\}$ is called periodic orbit.
-    If $x_0$ is attracting, we call periodic orbit stable.
-    If $x_0$ is repelling, we call periodic orbit unstable (abbr. UPO).
+    If $x_0$ is attracting, periodic orbit is called stable.
+    If $x_0$ is repelling, periodic orbit is called unstable (abbr. UPO).
 \end{definition}
 
 \begin{theorem}
@@ -370,7 +370,7 @@
 \begin{remark}
     \textcolor{red}{
     In Figure~\ref{fig:bif_diag_example} it is visible that small change of a parameter can cause qualitatively different behavior of the DDS.
-    When the qualitative change occurs, we say that bifurcation has occurred.
+    When the qualitative change occurs, it is said that bifurcation has occurred.
     An example of a bifurcation point is $r = 1+\sqrt{8} \approx 3.82842$. For this $r$ the $\mathbb{L}_{r}$ changes its behavior from seemingly chaotic to $3$-periodic. 
     Another example of a bifurcation point is $r \approx 3.446$. For this $r$ the $\mathbb{L}_{r}$ changes its behavior from $2$-periodic to $4$-periodic.
     }

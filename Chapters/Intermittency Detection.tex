@@ -23,35 +23,35 @@ The initial phase of the algorithm aims to find approximate parameter intervals 
 More specifically, parameter intervals containing a breakpoint are identified.
 \par
 A breakpoint is a parameter value at which the system transitions from chaotic/intermittent behavior to periodic one.
-The breakpoints we are interested in have chaotic behaviour on the left side and periodic behavior on the right side.
+The breakpoints of interest have chaotic behaviour on the left side and periodic behavior on the right side.
 Each breakpoint can be identified by a unique number $n$ such that on the right side the behavior is $n$-periodic.
-If we could search through the parameter space and determine the period of the system for each parameter value we could easily find the breakpoints.
-To do that we would need an algorithm to determine the period of the system for any given parameter value.
+If parameter space could be searched through and the period of the system for each parameter value could be determined, the breakpoints could be easily found.
+To do that an algorithm to determine the period of the system for any given parameter value is needed.
 \par
 If system has stable $n$-periodic orbit or the system starts evolving at unstable $n$-periodic point then the system is $n$-periodic or eventually $n$-periodic.
-We know that Logistic map $\mathbb{L}_r$ can only have at most one unique stable $n$-periodic orbit for parameter $r$.
-That means that if we find a stable $n$-periodic orbit for parameter $r$ then we know that $\mathbb{L}_r$ is $n$-periodic.
-At least in the case where initial condition isn't an unstable periodic point.
-To find out whether $\mathbb{L}_r$ has a stable $n$-periodic orbit we need to find fixed points of $\mathbb{L}_r, \mathbb{L}_{r}^{2}, \mathbb{L}_{r}^{3}, \dots$ and determine their stability.
+It is known that the Logistic map $\mathbb{L}_r$ can only have at most one unique stable $n$-periodic orbit for parameter $r$.
+That means that if a stable $n$-periodic orbit is found for parameter $r$ then it is known that $\mathbb{L}_r$ is $n$-periodic.
+At least in the case where initial condition is not an unstable periodic point.
+To find out whether $\mathbb{L}_r$ has a stable $n$-periodic orbit it is needed to find fixed points of $\mathbb{L}_r, \mathbb{L}_{r}^{2}, \mathbb{L}_{r}^{3}, \dots$ and determine their stability.
 Hence a smallest $n$ for which $\mathbb{L}_{r}^{n}(x^{*})=x^{*}$ and $x^{*}$ is stable is the period of $\mathbb{L}_r$.
 \par
 There exist algorithms for finding all fixed points of an arbitrary dynamical system.
 These algorithms are quite efficient and can be used to for high-dimensional systems.
-However, our aim is to search through the whole parameter space in search of breakpoints.
+However, the aim is to search through the whole parameter space in search of breakpoints.
 This search requires to find fixed points for hundreds or thousands of parameters in the parameter space.
-Even though existing algorithms search for fixed points efficiently, they are not efficient enough for our use case.
-They will come in handy later in the algorithm but for now we need to find a way to approximate period of a system simply.
+Even though existing algorithms search for fixed points efficiently, they are not efficient enough.
+They will come in handy later in the algorith but for now it is needed to find a way to approximate period of a system quickly.
 \par
-When we see a periodic behavior in a bifurcation diagram, it means that the system is periodic or eventually periodic for a specific initial condition $x_0$.
+When periodic behavior is present in a bifurcation diagram, it means that the system is periodic or eventually periodic for a specific initial condition $x_0$.
 In other words there exists $m > 0$ such that $f^{i}(x)=x$ is periodic for $i \geq m$.
 A naive approach to determine whether a system is periodic is to simply iterate the system for some large enough $m$ and check whether $f^{m}(x)=f^{m+i}(x)$.
 That implies that point $x$ is eventually periodic (or periodic) of period $i$.
 \par
 Simple check presented in the last paragraph fails to be precise in areas with intermittency.
 The first $m$ iterations could end up in the laminar phase which might be deemed as periodic.
-It also fails when the system is eventually periodic for some $n > m$, eg. higher than our parameter $m$.
-Regardless of it's flaws this simple check seems to be good enough for our naive search through the parameter space.
-It's much quicker than finding all fixed points for each parameter and it's precise enough for our use case.
+It also fails when the system is eventually periodic for some $n > m$, eg. higher than the parameter $m$.
+Regardless of its flaws this simple check seems to be good enough for the naive search through the parameter space.
+It is much quicker than finding all fixed points for each parameter and it is precise enough.
 Pseudocode for the naive global search is presented in Algorithm~\ref{alg:naive_global_search}.
 
 \begin{algorithm}[!h]
@@ -80,11 +80,11 @@ Pseudocode for the naive global search is presented in Algorithm~\ref{alg:naive_
     \end{algorithmic}
 \end{algorithm}
 
-With this algorithm we approximate the period of a system for each parameter in sampled parameter space.
-If the algorithm doesn't find any periodicity for some parameter $p$ then we can assume that the system is chaotic for this parameter.
-Our goal is to look for breakpoints, eg. regions where there is a shift from chaotic (non-periodic) behavior to periodic one.
-To do that we look at the results from the previous algorithm and identify places where two neighboring parameters change from no period to some period $n$.
-As noted previously, the Naive global search is not very precise. For that reason we will verify the parameters near the identified breakpoint with an algorithm for detection of periodic orbits.
+This algorithm is able to approximate the period of a system for each parameter in the parameter space.
+If the algorithm does not find any periodicity for some parameter $p$ then it is assumed that the system is chaotic for this parameter.
+The goal is to look for breakpoints, eg. regions where there is a shift from chaotic (non-periodic) behavior to periodic one.
+To do that it is needed to use the results from the previous algorithm and identify places where two neighboring parameters change from no period to some period $n$.
+As noted previously, the Naive global search is not very precise. For that reason verification of the parameters near the identified breakpoint with an algorithm for detection of periodic orbits is conducted.
 \par
 There are several efficient algorithms for unstable periodic orbits (UPOs) detection.
 These algorithms are able to identify all points $x^{*}$ for which $f(x^{*})^{n}=x^{*}$ for any $n$.
@@ -112,7 +112,7 @@ Another example is to use methods from theory of mathematical optimization.
 Minimizing the following function $J(x)= \norm{f^{p}(x)-x}^{2}$ will yield a $p$-periodic point of $f$~\cite{Fuh2009}.
 \par
 We have decided to include the Bu-Wang-Jiang algorithm (BWJ) in our implementation.
-It's easy to implement and works well for our use case.
+It is easy to implement and works well enough.
 The pseudocode for BWJ algorithm is presented in Algorithm~\ref{alg:bwj}.
 
 \begin{algorithm}[!h]
@@ -142,19 +142,20 @@ The pseudocode for BWJ algorithm is presented in Algorithm~\ref{alg:bwj}.
 The $seeds$ parameter is a set of initial conditions from which the algorithm starts searching for fixed points.
 They can be chosen as a uniformly sampled interval (if $x \in \mathbb{R}$) or grid (if $x \in \mathbb{R}^{n}$) in the state space.
 Our version of the algorithm includes several optimizations suitable for our use case.
-BWJ will find all fixed points of a system but we are only looking for fixed points that are stable.
-We are working with the Logistic map for which we know that there can be at most one stable periodic orbit.
-That means that if we find $n$ stable fixed points for the system $\mathbb{L}_{r}^{n}$ we terminate the algorithm.
-If we find a fixed point $x^{*}$ of $\mathbb{L}_{r}^{n}$, we iterate $x^{*}$ $n$ times and check whether resulting points are also fixed points.
-Before the algorithm starts we use similar idea as in the Naive global search. We iterate the system $f^{n}(s)$ $m$ times for arbitrary ititial seed $s$ and check whether the resulting point is $n$-periodic.
-These optimizations make the algorithm more efficient for our use case.
+BWJ is able to find all fixed points of a system but only the stable fixed points are of interest are needed.
+Logistic map is known to have at most one stable periodic orbit for each parameter $r$.
+That means that after finding $n$ stable fixed points for the system $\mathbb{L}_{r}^{n}$ the algorithm can be terminated.
+After finding a fixed point $x^{*}$ of $\mathbb{L}_{r}^{n}$, iteration of $x^{*}$ $n$ times is performed and check whether resulting points are also fixed points is conducted.
+Before the algorithm starts similar idea as in the Naive global search is used.
+The system $f^{n}(s)$ is iterated $m$ times for arbitrary ititial seed $s$ and check whether the resulting point is $n$-periodic is performed.
+These optimizations make the algorithm more efficient.
 The advantage of using BWJ algorithm to determine periodicity of a system $f_{p}$ is that it is reliable even if $f_{p}$ exhibits intermittency for parameter $p$.
 \par
-In this section we have introduced an algorithm to perform global search for breakpoints in the parameter space.
-First we discretize the parameter space and we use the Naive global search to approximate periodicity of each parameter.
-Then we look at neighboring pairs of parameters where there is nonperiodicity on the left side and periodicity on the right side.
-We verify that Naive global search determined periodicity for these pairs correctly using BWJ algorithm which isn't prone to effects of intermittency.
-In the end we have ranges of parameters where we expect a breakpoint to occur.
+This section has introduced an algorithm to perform global search for breakpoints in the parameter space.
+Firstly discretization of the parameter space is performed and the Naive global search is used to approximate periodicity of each parameter.
+Afterwards neighboring pairs with nonperiodicity on the left side and periodicity on the right side are identified.
+It is verified that Naive global search determined periodicity for these pairs correctly by using BWJ algorithm which is not prone to the effects of intermittency.
+Finally ranges of parameters where a breakpoint occurance is expected are identified.
 Example of the results of the algorithm are shown in the Figure~\ref{fig:bif_diag_search_example}.
 
 \begin{figure}[!h]
@@ -170,22 +171,22 @@ Example of the results of the algorithm are shown in the Figure~\ref{fig:bif_dia
 
 \section{Local Search}
 The previous section introduced a so called global search, an approach to find approximate intervals in the parameter space where a breakpoint occurs.
-In this section we will develop an algorithms to find the precise location of each breakpoint.
+This section introduces an algorithm to find the precise location of each breakpoint.
 These locations will be later used to color the bifurcation diagram in proximity of the breakpoint.
 \par
 This section discusses two algorithms for the local search - Naive Local Search and Nested-Layer Particle Swarm Optimization.
-From global search we know two boudaries $(p_A, p_B)$, period of the system with parameter $p_B$ and the fact there there is a breakpoint between $(p_A, p_B)$.
-Next we need to approximate the parameter at which the breakpoint occurs.
+The global search has already identified two boundaries $(p_A, p_B)$, period of the system with parameter $p_B$ and the fact there there is a breakpoint between $(p_A, p_B)$.
+Subsequently it is needed to approximate the parameter at which the breakpoint occurs.
 Both NLS and NLPSO solve this problem but they use different approaches.
 
 \subsection{Naive Local Search}
 The fundamental idea behind the Naive Local Search (NLS) is similar to the one used in the global search.
-We will search through the parameter space and determine the period of each parameter.
-However, instead of searching through the whole parameter space we will only search through the intervals found in the global search.
-These intervals are special because we know several facts about them.
-Their left boundary in nonperiodic and their right boundary is periodic of period some $n$. We know this $n$ from the global search.
-We would like to push the left boundary close to the left side of the breakpoint.
-The same applies for the right boundary.
+Parameter space will be searched through and the period of the system for each parameter value will be determined.
+However, instead of performing the search for the whole parameter space, the search will be performed only in the intervals found in the global search.
+These intervals are special because several facts about them are known.
+Their left boundary is nonperiodic and their right boundary is periodic of period some $n$.
+The $n$ is known from the global search.
+The goal is to push the left boundary close to the left side of the breakpoint and the right boundary close to the right side of the breakpoint.
 On example result of a NLS is given in Figure~\ref{fig:break_point_search_example}.
 
 \begin{figure}[!h]
@@ -198,15 +199,16 @@ On example result of a NLS is given in Figure~\ref{fig:break_point_search_exampl
 
 
 \par
-We will start with the left boundary. We want to get it as close to the breakpoint as possible.
-To do this we will use combination of BWJ algorithm and a binary search.
-For each parameter $p$ in the interval $(p_{A}, p_{B})$ identified during the global search we are able to determine whether $f_{p}$ is $n$-periodic or not.
-That will tell us whether we are on the left or right side of the breakpoint.
-We start by halving the interval so that we have $[p_{A}, \frac{p_{A}+p_{B}}{2}, p_{B}]$.
-If $\frac{p_{A}+p_{B}}{2}$ is $n$-periodic then we know that the breakpoint is in the interval $[\frac{p_{A}+p_{B}}{2}, p_{B}]$.
-If $\frac{p_{A}+p_{B}}{2}$ is nonperiodic then we know that the breakpoint is in the interval $[p_{A}, \frac{p_{A}+p_{B}}{2}]$.
-With the new interval we perform the same process again recursively.
-We repeat the halving process for some desired number of iterations $maxiter$.
+Firstly the left boundary is searched.
+It is desirable to get it as close to the breakpoint as possible.
+To do this combination of BWJ algorithm and a binary search is used.
+For each parameter $p$ in the interval $(p_{A}, p_{B})$ identified during the global search a check whether $f_{p}$ is $n$-periodic or not is performed.
+That determines whether the breakpoint is on the left or right side of the parameter.
+In the beginning the interval is halved in a way that $[p_{A}, \frac{p_{A}+p_{B}}{2}, p_{B}]$ is obtained.
+If $\frac{p_{A}+p_{B}}{2}$ is $n$-periodic then it is known that the breakpoint is in the interval $[\frac{p_{A}+p_{B}}{2}, p_{B}]$.
+If $\frac{p_{A}+p_{B}}{2}$ is nonperiodic then it is known that the breakpoint is in the interval $[p_{A}, \frac{p_{A}+p_{B}}{2}]$.
+Using the new interval the same process is repeated recursively.
+The halving process is repeated for some desired number of iterations $maxiter$.
 Pseudocode for the NLS of the left boundary is given in Algorithm~\ref{alg:local_search}.
 
 \begin{algorithm}[!h]
@@ -235,9 +237,9 @@ Pseudocode for the NLS of the left boundary is given in Algorithm~\ref{alg:local
 The Algorithm~\ref{alg:local_search} searches only for left boundary. Search for right boundary can be done analogically.
 The complete NLS is both the search of the left boundary and the search of the right boundary.
 These two boundaries approximate precise location of a breakpoint.
-By taking their average $p_{avg}$ we get a good approximation of the parameter at which the breakpoint occurs.
+By calculating the average $p_{avg}$ of the left and right boundary, a good approximation of the parameter at which the breakpoint occurs is obtained.
 \par
-In this section we have introduced an algorithm to which gives good approximation of the parameter at which the breakpoint occurs.
+This section introduces an algorithm which approximates the parameter at which the breakpoint occurs.
 This parameter is also the bifurcation point at which a saddle-node bifurcation occurs.
 This saddle-node bifurcation is the reason of the type-I intermittency on the right side of the break point.
 The next section will describe how to visually warn about the locations of type-I intermittency.
@@ -254,7 +256,7 @@ Matsushita, Kurokawa and Kousaka~\cite{Matsushita2019} introduced an approach to
 Their method uses the Nested-Layer Particle Swarm Optimization (NLPSO) method.
 They have previously used the same approach to detect period-doubling bifurcations of a DDS~\cite{Matsushita20170721}.
 \par
-To understand how NLPSO detection of saddle-node bifurcation works we need to understand the Particle Swarm Optimization (PSO).
+Understanding how NLPSO detection of saddle-node bifurcation works requires understanding of the Particle Swarm Optimization (PSO).
 PSO is popular population-based evolutionary algorithm.
 It tracks several particles which represent potential solution.
 Each particle has its own position and velocity. It also tracks its previous best position and score.
@@ -266,7 +268,7 @@ Algorithm also track global best position $g_{pos}$ and global best score $g_{sc
 Pseudocode for the PSO algorithm is given in Algorithm~\ref{alg:pso}.
 The algorith~\ref{alg:pso} includes several parameters.
 These paramters are $w$, $c_{1}$ and $c_{2}$.
-We set these parameters as $w=0.729$ and $c_{1}=c_{2}=1.494$~\cite{Matsushita2019}.
+They shall be set as $w=0.729$ and $c_{1}=c_{2}=1.494$~\cite{Matsushita2019}.
 
 \begin{algorithm}[!h]
     \caption{Particle Swarm Optimization (PSO)}
@@ -316,17 +318,17 @@ We set these parameters as $w=0.729$ and $c_{1}=c_{2}=1.494$~\cite{Matsushita201
 The next step is to combine two PSOs.
 One of them will be looking for a parameter $p_b$ at which saddle-node bifurcation occurs.
 The other one will be looking for periodic point $x_b$ corresponding to $p_b$.
-For each PSO we need to define a function to minimize.
+Each PSO requites a function that is to be minimized.
 Its worth noticing that the algorithm works for dynamical systems of arbitrary dimensions.
 For that reason the minimization functions are presented in a general form.
 \par
 Let $(\mathbb{R}^{m}, f)$ be a DDS.
-We search for a periodic point $x_0$ for arbitrary parameter $p$.
-When we have selected parameter $p$ we can search for a periodic point $x_0$ by minimizing the function $F$ from Eq.~\ref{eq:minimize_x}.
+Search for a periodic point $x_0$ for an arbitrary parameter $p$ is performed.
+After selecting parameter $p$, a search for a periodic point $x_0$ is performed by minimizing the function $F$ from Eq.~\ref{eq:minimize_x}.
 If $x_0$ is a fixed point of $f^{n}_{p}$ then $x_0$ is an $n$-periodic point of $f$.
 It is a fixed point in case $f^{n}_{p}(x_0)-x_0 = 0$.
 Hence minimizing the $F$ brings us closer to the $n$-periodic point.
-We can use PSO to search for optimal parameter $x_0$ by minimizing $F$.
+PSO can be used to search for optimal parameter $x_0$ by minimizing $F$.
 
 \begin{equation}
 \label{eq:minimize_x}
@@ -335,7 +337,7 @@ We can use PSO to search for optimal parameter $x_0$ by minimizing $F$.
 
 \par
 Let $(\mathbb{R}^{m}, f)$ be a DDS.
-We search for parameter $p_b$ at which saddle-node bifurcation occurs.
+A search for parameter $p_b$ at which saddle-node bifurcation occurs is performed.
 Saddle-node bifurcation occurs at parameter $p$ when the characteristic equation~\ref{eq:characteristic_eq} is equal to $0$, $x_0$ is $n$-periodic point and parameter $\mu = 1$.
 % Aditionally period-doubling bifurcation occurs when the when the characteristic equation~\ref{eq:characteristic_eq} is equal to $0$ and parameter $\mu = -1$.
 
@@ -344,9 +346,9 @@ Saddle-node bifurcation occurs at parameter $p$ when the characteristic equation
         \text{det}(Df^{n}_{p}(x_0)-\mu I)
 \end{equation}
 Hence minimize function $G_{mock}(p_0) = |\text{det}(Df^{n}_{p_0}(x_0)-\mu I)|$ for different parameters $p$ would search for saddle-node bifurcation $p_b$.
-However in order to evaluate $G_{mock}$ we need to know $x_0$ which we don't know.
-Thus we can use PSO for minimizing~\ref{eq:minimize_x} to find $x_0$ and use $p_0$ as a system parameter that we described in the previous paragraph.
-We want to be sure that found point $x_0$ is $n$-periodic point and thus we only evaluate $G_{mock}$ if PSO converged correctly to $x_0$.
+However in order to evaluate $G_{mock}$ it is needed to know $x_0$ which is currently unknown.
+Thus a PSO can be used for minimizing~\ref{eq:minimize_x} to find $x_0$ and use $p_0$ as a system parameter that was described in the previous paragraph.
+It is important to be sure that found point $x_0$ is $n$-periodic point and thus $G_{mock}$ is only evaluated if PSO converged correctly to $x_0$.
 Updated function $G_{mock}$ is presented in Eq.~\ref{eq:minimize_p} and is now called $G$.
 Thus minimizing the function $G$ from Eq.~\ref{eq:minimize_p} by PSO finds optimal parameter $p_b$.
 
@@ -360,26 +362,25 @@ Thus minimizing the function $G$ from Eq.~\ref{eq:minimize_p} by PSO finds optim
 \end{equation}
 
 \par
-In previous paragraphs we have described how to use two types of PSOs. 
+The previous paragraphs described how to use the two types of PSOs.
 The main PSO looks for parameter $p_b$ at which saddle-node bifurcation occurs.
 It does so by minimizing function $G$ from~\ref{eq:minimize_p}.
-During every evaluation of $G$ at parameter $p_0$ we need to find $x_0$ which is $n$-periodic point of $f^{n}_{p_0}$.
+During every evaluation of $G$ at parameter $p_0$ it is needed to find $x_0$ which is $n$-periodic point of $f^{n}_{p_0}$.
 That can be achieved by using the second nested PSO which minimizes function $F$ from~\ref{eq:minimize_x} by using $p_0$ as parameter in $F$.
 This nesting of PSOs is the reason why this algorithm is called Nested-Layer Particle Swarm Optimization.
 Period $n$ is the same in both functions $F$ and $G$.
 It corresponds to the period of the system at the saddle-node bifurcation.
-Fortunately we know the parameter $n$ from the global search.
-We also know parameter range $(p_A, p_B)$ from the global search which is used in the top-level PSO as search-space range.
-We also know the search-space range for the nested PSO.
+Fortunately the parameter $n$ is known from the global search.
+Parameter range $(p_A, p_B)$ is also known from the global search and is used in the top-level PSO as search-space range.
+The search-space range used for the nested PSO is also known.
 It is because the system is invariant under some set.
-For example for Logistic equation we can set the search-space range to $[0, 1]$.
+For example for the Logistic equation, the search-space range can be set to $[0, 1]$.
 \par
-In this subsection we described the NLPSO algorithm as an alternative to NLS algorithm.
-Both of these algorithms can be used interchangably when we work with 1D systems.
+This subsection described the NLPSO algorithm as an alternative to NLS algorithm.
+Both of these algorithms can be used interchangably when dealing with 1D systems.
 However NLPSO is more general and can be used for higher dimensional systems as well.
 In general NLPSO is much better algorithm than NLS.
 Nevertheless it is also harder to implement and understand.
-
 
 % \section{UPO detection}
 % Our goal is to ultimately find regions in the bifurcation diagram where intermittency type-I occurs.
@@ -485,8 +486,8 @@ Nevertheless it is also harder to implement and understand.
 
 \section{Coloring}
 The goal of this phase is to color the neighborhood of the breakpoint to warn about its ambiguity.
-We have identified the paramters at which the breakpoint occurs in the previous steps.
-Now we will use statistical methods to determine the average laminar phase length $l_{avg}$ in proximity of the breakpoint.
+Parameters at which the breakpoint occurs were found in the previous steps.
+Now statistical methods are used to determine the average laminar phase length $l_{avg}$ in proximity of the breakpoint.
 These statistical methods are described in~\cite{Elaskar2022}.
 
 \subsection{Description of the algorithm}

@@ -1,5 +1,3 @@
-% \chapter{Type-I Intermittency}
-% \label{chap:intermittency_review}
 \section{Type-I Intermittency}
 
 \section{History}
@@ -45,7 +43,7 @@ This pattern goes on.
 Trajectory in Figure~\ref{fig:intermittent_trajectory_example} exhibits type-I intermittency which is related to \hyperref[def:saddle_node_bif]{saddle-node bifurcation} or its inverse.
 Saddle-node bifurcation is a bifurcation where tangent of a graph of a map passes through the identity line as parameter changes.
 \par
-Let's say we have a bifurcation point for parameter $p_{B}$.
+Let parameter $p_{B}$ be a bifurcation point.
 At this point local map of the system touches the identity line in exactly one spot, in other words the system has fixed point in the area of touching.
 For parameters $p < p_{B}$ there are two fixed points, curve is intersected in two places.
 For parameters $p > p_{B}$ there is no fixed point since the curve left the identity line.
@@ -105,7 +103,7 @@ In plots marked as E in each of these figures, intermittent evolution near the b
 Since left side of the breakpoint is chaotic and right side is periodic, there must be a transition from chaos to stability.
 This transition is related to intermittency and narrow passage mentioned in Figure~\ref{fig:intermittent_cobweb_example}.
 (Claim) The breakpoint corresponds to the value of saddle-node bifurcation.
-We can call this breakpoint $\epsilon_{sn}$.
+This breakpoint shall be denoted as $\epsilon_{sn}$.
 The closer the parameter $\epsilon$ gets to breakpoint $\epsilon_{sn}$ the narrower the passage gets.
 Hence it takes more iterations to iterate through the passage.
 Hence laminar phases visible in the trajectory get longer and longer as $\epsilon$ gets closer to $\epsilon_{sn}$.
@@ -118,7 +116,7 @@ When $\epsilon = \epsilon_{sn}$ behavior is periodic.
 How does bifurcation diagram look for an intermittent region?
 During the creation of a bifurcation diagram some fixed number of iterations are plotted.
 Based on the number of total iterations and number of last iterations being plotted the bifurcation diagram may differ.
-If we are plotting a subsection of trajectory that corresponds only to the laminar phase, behavior during the turbulent phase is ommited.
+When plotting a subsection of trajectory that corresponds only to the laminar phase, behavior during the turbulent phase is ommited.
 This causes bifurcation diagram to look different depending on how many iterations are made and how long the sample period is.
 \par
 \begin{figure}[!h]
@@ -144,18 +142,7 @@ Since $p_2$ is closer to intermittency threshold $p_{sn}$, laminar phases of its
 % Parameters $p_1$ and $p_2$ can be selected arbitrarily as long as theso that the laminar phases are long enough and similar situation as in Figure~\ref{fig:ambiguous_bif_diag} occurs.
 Chaotic burst of trajectory with longer laminar phase occurs in the middle of two laminar phases of trajectory with shorter laminar phases.
 In our case chaotic burst $b$ occurs between chaotic bursts $a$ and $c$.
-If we create two bifurcation diagrams with total number of iterations $0.95 c$ and plotting last $c-(b-0.25(b-a))$ or $c-(b-0.75(b-a))$ we get two distinct bifurcation diagram.
-
-
-% \begin{figure}[!h]
-%     \centering
-%     \includegraphics[width=1.0\textwidth]{DDS/Figures/pomeau_manneville_bif_comparison_big.png}
-%     \caption{
-%         An example of the ambiguous bifurcation diagrams.
-%         The bifurcation diagrams are constructed for the Pomeau-Manneville map $f_{\epsilon} = (1+\epsilon)x+(1-\epsilon)x^2 \pmod{1}$. 
-%     }
-%     \label{fig:ambiguous_bif_diag_example}
-% \end{figure}
+When creating two bifurcation diagrams with total number of iterations $0.95 c$ and plotting last $c-(b-0.25(b-a))$ or $c-(b-0.75(b-a))$ iterations, two distinct bifurcation diagrams are obtained.
 
 \begin{figure}[!h]
     \centering
@@ -209,6 +196,4 @@ A question arises what do we expect from bifurcation diagram when we create it?
 The Figure~\ref{fig:ambiguous_bif_diag_example} clearly shows that the same region of bifurcation diagram can look very different.
 A person not knowing about intermittency could be misled.
 It would be useful to have a tool that would warn a person looking at bifurcation diagram about underlying intermittency and ambiguity it is causing.
-We will try to develop such tool in the next chapter.
-
-% \endinput
+The next chapter introduces such tool.
