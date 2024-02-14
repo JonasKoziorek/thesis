@@ -14,6 +14,7 @@ function local_map(x, p)
 end
 
 begin
+    MarkerSize = 18
     x = -0.5:0.0001:0.5
     x2 = -0.6:0.0001:0.6
     x0 = -0.5
@@ -28,23 +29,22 @@ begin
         xlabelsize = 35,
         ylabelsize = 35,
         )
-    hidedecorations!(ax, grid=true, label=false)
+    # hidedecorations!(ax, grid=true, label=false)
     lines!(ax, x, local_map.(x, p1), color=:black) # above line
     lines!(ax, x, local_map.(x, p2), color=:black) # touching line
     lines!(ax, x, local_map.(x, p3), color=:black) # below line
     lines!(ax, x2, x2, color=:black, linestyle=:dash)
 
     bif1 = (0, 0)
-    scatter!(ax, [bif1], color=DDS.RED) # above line
+    scatter!(ax, [bif1], color=DDS.RED, markersize=MarkerSize) # above line
 
     bif2 = (sqrt(-p3[1]), sqrt(-p3[1]))
     bif3 = (-sqrt(-p3[1]), -sqrt(-p3[1]))
-    scatter!(ax, [bif2, bif3], color=DDS.BLUE) # above line
+    scatter!(ax, [bif2, bif3], color=DDS.BLUE, markersize=MarkerSize) # above line
     display(fig)
 
 
     save(file_path, fig)
-end
 
 @png begin
 # @draw begin
@@ -57,10 +57,12 @@ end
     sethue("black")
     setline(4)
     fontsize(26)
-    x = -300
-    y = 110
+    x = -265
+    y = 90
     text(L"p < p_{B}", Point(x, y+50), halign=:center, valign=:baseline)
     text(L"p = p_{B}", Point(x, y), halign=:center, valign=:baseline)
     text(L"p > p_{B}", Point(x, y-50), halign=:center, valign=:baseline)
 # end 800 600
 end 800 600 file_path
+
+end

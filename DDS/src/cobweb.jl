@@ -16,16 +16,18 @@ function plot_cobweb_data(func, x0, params, total_n, n_order=1, starting_x=0)
 end
 
 function plot_cobweb_axis!(figure, x1, x2, y1, y2, n_order; identity_line_color=:black, function_line_color=:black, cobweb_line_color=RED, last_point_color=RED, ax_aspect=1, title="", function_line_size = 1.5, identity_line_size = 1.5, dot_size = 9, cobweb_line_size = 1.5)
+    n = n_order # don't delete
     ax = Axis(figure, 
             xlabel=L"$x$", 
-            ylabel=L"$f^{%$(n_order)}(x)$",
+            ylabel=L"$f^{%$(n)}(x)$",
             title=title
         )
     ax.aspect = ax_aspect
     lines!(x1, y1; color=function_line_color, linewidth=function_line_size)
     lines!(x1, x1; linestyle=:dash, color=identity_line_color, linewidth=identity_line_size)
     lines!(x2, y2; color=cobweb_line_color, linewidth=cobweb_line_size)
-    scatter!(x2[end], y2[end]; marker=:circle, color=last_point_color, markersize=dot_size)
+    # scatter!(x2[end], y2[end]; marker=:circle, color=last_point_color, markersize=dot_size)
+    scatter!(x2[1:2:end], y2[2:2:end]; marker=:circle, color=last_point_color, markersize=dot_size)
     return ax
 end
 

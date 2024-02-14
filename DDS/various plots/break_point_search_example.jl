@@ -24,7 +24,7 @@ begin
         partition=partition
     )
     ax.xlabel = L"p"
-    ax.ylabel = L"\mathbb{L}_{p}"
+    ax.ylabel = L"\mathbb{L}_{r}"
     ax.ylabelsize = 22
     ax.aspect=2
     display(fig)

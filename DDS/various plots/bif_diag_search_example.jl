@@ -28,7 +28,7 @@ begin
 
     ax = DDS.bifurcation_diagram!(fig[1,1], logistic, x0, param, param_index, param_range2, total_n, last_n;ax_aspect=2)
     ax.xlabel = L"p"
-    ax.ylabel = L"\mathbb{L}_{p}"
+    ax.ylabel = L"\mathbb{L}_{r}"
     ax.ylabelsize = 22
     # colors = [DDS.RED, DDS.BLUE]
     colors = [DDS.RED, DDS.RED]

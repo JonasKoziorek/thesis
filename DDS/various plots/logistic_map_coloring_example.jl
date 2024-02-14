@@ -13,7 +13,7 @@ begin
     fig = Figure()
     ax = DDS.colorize_bifurcation_diagram!(fig, logistic, x0, param, x_range, param_range, param_index, orbit_limit)
     ax.xlabel = L"p"
-    ax.ylabel = L"\mathbb{L}_{p}"
+    ax.ylabel = L"\mathbb{L}_{r}"
     ax.ylabelsize = 22
     display(fig)
 

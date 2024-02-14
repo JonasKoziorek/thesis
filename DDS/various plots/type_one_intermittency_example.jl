@@ -12,7 +12,7 @@ begin
     FONTSIZE = 20
 
     fig = Figure(
-        resolution = (1000, 400),
+        resolution = (1000, 330),
         fontsize=FONTSIZE,
     )
 
@@ -28,7 +28,7 @@ begin
         linewidth=0.04, 
         line_color = :black,
         dot_color = BLUE,
-        title="Trajectory of Pomeau-Manneville map for ϵ=$(p[1]), x0=$(x0)",
+        # title="Trajectory of Pomeau-Manneville map for ϵ=$(p[1]), x0=$(x0)",
     )
     ax.xlabelsize = LATEX_FONT_SIZE
     ax.ylabelsize = LATEX_FONT_SIZE
@@ -57,10 +57,11 @@ begin
         fontsize=FONTSIZE,
     )
 
-    x = LinRange(0.151, 0.1545, 2000)
+    x_range = (low, high)
+    x = LinRange(x_range..., 2000)
     x0=0.5
     p = [4.47458]
-    total_n = 460
+    total_n = 461
     n_order = 2
     starting_x = 40
     ax = DDS.plot_cobweb!(
@@ -73,7 +74,7 @@ begin
         function_line_size=2.5,
         identity_line_size=2.5,
     )
-    ax.xticks = LinRange(0.151, 0.1545, 6)
+    ax.xticks = LinRange(x_range..., 6)
     ax.xlabelsize = LATEX_FONT_SIZE
     ax.ylabelsize = LATEX_FONT_SIZE
     lines!(ax, [left_, right_, right_, left_, left_], [low, low, high, high, low], color=RED, linewidth=3)
@@ -81,7 +82,7 @@ begin
 
     x = LinRange(0.13, 0.17, 2000)
     x0=0.5
-    p = [4.474580]
+    p = [4.47458]
     total_n = 472
     n_order = 2
     starting_x = 38

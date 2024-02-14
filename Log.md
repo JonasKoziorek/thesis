@@ -11,7 +11,7 @@
 
 ### Tasks
 
-* generate bifurcation diagram for logistic map
+* generate bifurcation diagram for Logistic map
 * generate bifurcation diagram for rulkov map
 
 
@@ -46,7 +46,7 @@
 
 * see if you can understand the transition from intermittency to stability through examination of timeseries at the break point
 * lyapunov exponent - see if the timeseries displaying intermittency exhibits chaos
-* logistic equation for r from -2 to 4
+* Logistic equation for r from -2 to 4
 * read about route to chaos, period doubling
 
 ### Advice
@@ -99,3 +99,17 @@ Possible chapter names:
 * Software implementation
 * Conclusion
 * Appendices
+
+
+## 5.2.2024 (Meeting with supervisor)
+
+He pointed out several ways to improve the text.
+Some of them are these:
+
+* once you define abbreviation object (OBJ) use the shortcut from that moment on in the text
+* be careful about whether a fraction should be inline or not. If fraction is in the text write a/b. If it is in an equation write \frac{a}{b}
+* don't be afraid of literature, cite more, if you don't read the whole article it's fine
+* important definitions and words need to contrast the text - definition in roman where needed or in italics where needed, I found the \emph command for this
+* Use the same format for all pseudocodes.
+* Use the same format for all the captions of each figure. I decided to follow the format of the article Intermittency Reinjection in The Logistic Map. Describe well what is in the figure. Include parameters. Make captions self standing. Start with capital letter. End with a period.
+* Keep consistent throughout the text

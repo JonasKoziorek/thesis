@@ -1,11 +1,3 @@
-# this is how func param should look like
-# function f(x, p, n)
-#   x ... vector of variables
-#   p ... vector of parameters
-#   n ... current time 
-#   return new iteration based of x based on evolution rule 
-# end
-
 function iterate(func::F, x0, p, n::Int64) where {F<:Function}
     container = Vector{typeof(x0)}(undef, n+1)
     iterate!(func, x0, p, n, container)

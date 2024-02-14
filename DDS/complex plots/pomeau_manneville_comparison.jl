@@ -106,26 +106,52 @@ begin
     println("-----------")
 end
 
+
+# trying to create 4 separate plots and use them in subfigure in latex later
 begin
+    size_ = (800, 300)
     total_n = 25000
-    last_ns = [1000, 5000, 11100, 24999]
-    arr = []
-    l = @layout [a ; b; c; d]
+    last_ns = [13000, 11100, 5000, 1000]
     eps_ = BigFloat("0.000000005")
+    i = 1
     for last_n in last_ns
         x0=0.5
         p = [4.47458]
-        p_range = LinRange(BigFloat("4.4745829135")-eps_, BigFloat("4.474582916501")+eps_, 200)
+        p_range = LinRange(BigFloat("4.4745829135")-eps_, BigFloat("4.474582916501")+eps_, 400)
         @time plotting_data = DDS.bifurcation_data(pomeau_manneville, x0, p, 1, p_range, total_n, last_n, 1)
         x = [x for (x,y) in plotting_data]
         y = [y for (x,y) in plotting_data]
         index = findfirst(x->x==last_n, last_ns)
         ticks = LinRange(4.4745829135-Float64(eps_), 4.4745829165+Float64(eps_), 4)
-        p = diff_scatter(x, y, ticks, total_n, last_n, x0, L"$\varepsilon$", title="Total iterations: $total_n, plotting last $last_n iterations")
-        push!(arr, p)
+        p = diff_scatter2(x, y, ticks, total_n, last_n, x0, L"$\varepsilon$", size_, title="")
+
+        file_path = DDS.FIGURES_DIRECTORY * "pomeau_manneville_bif_comparison_big{$i}.png"
+        savefig(file_path)
+        i+=1
     end
-    Plots.scatter(arr..., layout=l, size=(800, 1000))
-    file_path = DDS.FIGURES_DIRECTORY * "pomeau_manneville_bif_comparison_big.png"
-    @time savefig(file_path)
     println("-----------")
+end
+
+
+begin
+    Plots.scatter(
+        x, 
+        y, 
+        markercolor=BLUE, 
+        markerstrokewidth=0,
+        markersize=1.5, 
+        legend=false, 
+        # xticks = (ticks, string.(ticks)),
+        # xlabel = x_axis_name,
+        ylabel = L"$x$",
+        # title=title,
+        titlefontsize=11,
+        top_margin = 10px,
+        bottom_margin = 10px,
+        left_margin = 40px,
+        right_margin = 40px,
+        xlabelfontsize = 17,
+        ylabelfontsize = 17,
+        # size = size,
+    )
 end

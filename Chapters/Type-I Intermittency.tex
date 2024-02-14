@@ -4,16 +4,16 @@
 
 \section{History}
 Intermittency is one type of transition between chaos and periodicity.
-The investigation of intermittency was initiated in 1980 by Pomeau and Manneville \cite{Pomeau1980}.
+The investigation of intermittency was initiated in 1980 by Pomeau and Manneville~\cite{Pomeau1980}.
 They were trying to explain an intermittent phenomenon in the fluid dynamics of convective fluids.
 During this phenomenon, long periodic behaviour was abrupted by a chaotic bursts as the experiment control parameter changed.
-Subsequently, Pomeau and Manneville found analogous behaviour in the Lorenz system.
-Through a numerical study of this system, they introduced the concept of intermittency and classified it into three categories. \cite{Pomeau1980}
+Subsequently, Pomeau and Manneville found analogous behaviour in the Lorenz system [cite here].
+Through a numerical study of this system, they introduced the concept of intermittency and classified it into three categories.~\cite{Pomeau1980}
 \par
 Since then the study of intermittency has grown considerably.
 Many new types of intermittent behaviors were found and investigated.
 For better understanding of intermittency modern statistical theory has been developed.
-\cite{Elaskar2017}
+~\cite{Elaskar2017}
 \par
 The theory of intermittency is very broad.
 This thesis is concerned with intermittency type-I and its detection.
@@ -22,9 +22,9 @@ This thesis is concerned with intermittency type-I and its detection.
 Intermittency is a behavior during which seemingly periodic phases in the trajectory of DDS are abrupted by chaotic bursts.
 Periodic phases are called laminar.
 Phases with chaotic bursts are called turbulent phases.
-This naming convention originated in fluid dynamics which motivated study of intermittency. \cite{Pomeau1980}
+This naming convention originated in fluid dynamics which motivated study of intermittency.~\cite{Pomeau1980}
 \\
-In Figure \ref{fig:intermittent_trajectory_example} you can see an example of intermittency.
+In Figure~\ref{fig:intermittent_trajectory_example} you can see an example of intermittency.
 Seemingly 2-periodic behavior which last for about 1000 iteration is interrupted by short chaotic bursts.
 These chaotic bursts transform back into 2-periodic behavior.
 This pattern goes on.
@@ -32,36 +32,48 @@ This pattern goes on.
 \begin{figure}[!h]
     \centering
     \includegraphics[width=1.0\textwidth]{DDS/Figures/type_one_intermittency_example1.png}
-    \caption{Trajectory exhibiting intermittency}
+    \caption{
+        \textcolor{red}{
+        Trajectory exhibiting intermittency. 
+        Displays $T^{5500}_{0}(f_{\epsilon}, x_0)$ where $f_{\epsilon} = (1+\epsilon)x+(1-\epsilon)x^2 \pmod{1}$ is the Pomeau-Manneville map. 
+        Parameters are $x_0 = 0.5$ and $\epsilon = 4.47458$.
+        }
+    }
     \label{fig:intermittent_trajectory_example}
 \end{figure}
 
-Trajectory in Figure \ref{fig:intermittent_trajectory_example} exhibits type-I intermittency which is related to \hyperref[def:saddle_node_bif]{saddle-node bifurcation} or its inverse.
-Saddle-node bifurcation is a bifurcation where tangent of a graph of an evolution rule passes through the identity line as parameter changes.
+Trajectory in Figure~\ref{fig:intermittent_trajectory_example} exhibits type-I intermittency which is related to \hyperref[def:saddle_node_bif]{saddle-node bifurcation} or its inverse.
+Saddle-node bifurcation is a bifurcation where tangent of a graph of a map passes through the identity line as parameter changes.
 \par
 Let's say we have a bifurcation point for parameter $p_{B}$.
 At this point local map of the system touches the identity line in exactly one spot, in other words the system has fixed point in the area of touching.
 For parameters $p < p_{B}$ there are two fixed points, curve is intersected in two places.
 For parameters $p > p_{B}$ there is no fixed point since the curve left the identity line.
-This relation is illustrated in Figure \ref{fig:saddle_node_bifurcation}.
-Red dot in Figure \ref{fig:saddle_node_bifurcation} is a fixed point for curve at bifurcation point $p_{B}$.
-Blue dots in Figure \ref{fig:saddle_node_bifurcation} are fixed points for curve for parameter $p < p_{B}$.
+This relation is illustrated in Figure~\ref{fig:saddle_node_bifurcation}.
+Red dot in Figure~\ref{fig:saddle_node_bifurcation} is a fixed point for curve at bifurcation point $p_{B}$.
+Blue dots in Figure~\ref{fig:saddle_node_bifurcation} are fixed points for curve for parameter $p < p_{B}$.
 When $p > p_{B}$ is greater but very close to $p_{B}$ a channel forms.
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.7\textwidth]{DDS/Figures/intermittency_i_local_map.png}
-    \caption{Saddle-node bifurcation}
+    \caption{
+        \textcolor{red}{
+        An example of saddle-node bifurcation. 
+        Shows type-I intermittency local map $p + x + x^2$ for different parameters. 
+        The bifurcation parameter is $p_B = 0$.
+        }
+    }
     \label{fig:saddle_node_bifurcation}
 \end{figure}
 
 
-The reason why intermittency arises is illustrated in Figure \ref{fig:intermittent_cobweb_example}.
-When dynamical system $f_P$ is about to undergo saddle-node or inverse saddle-node bifurcation as parameter $P$ changes, graph of $f_P$ is getting closer to identity function $g(x)=x$.
+The reason why intermittency arises is illustrated in Figure~\ref{fig:intermittent_cobweb_example}.
+When dynamical system $f_p$ is about to undergo saddle-node or inverse saddle-node bifurcation as parameter $p$ changes, graph of $f_p$ is getting closer to identity function $g(x)=x$.
 Just before they touch small passage is formed between the two curves.
 If point $x_n$ gets injected into the narrow passage, it takes many iterations for it to get out of this passage again.
-The closer together the curve of $f_P$ and identity function are the narrower the passage is and the longer it gets to iterate through it.
-An illustration of the iteration through narrow passage is in Figure \ref{fig:intermittent_cobweb_example} plot B.
-This iteration corresponds to first laminar phase in Figure \ref{fig:intermittent_trajectory_example}.
+The closer together the curve of $f_p$ and identity function are the narrower the passage is and the longer it gets to iterate through it.
+An illustration of the iteration through narrow passage is in Figure~\ref{fig:intermittent_cobweb_example} plot B.
+This iteration corresponds to first laminar phase in Figure~\ref{fig:intermittent_trajectory_example}.
 While the point is travelling throug a narrow passage, on trajectory it looks as if he was not moving.
 Hence it looks periodic.
 However this seemingly periodic behavior is fake since once the point iterates through the narrow passage it moves chaotically once again.
@@ -69,21 +81,29 @@ However this seemingly periodic behavior is fake since once the point iterates t
 \begin{figure}[!h]
     \centering
     \includegraphics[width=1.0\textwidth]{DDS/Figures/type_one_intermittency_example2.png}
-    \caption{Intermittency in cobweb diagram}
+    \caption{
+        \textcolor{red}{
+        Cobweb diagram of an intermittent trajectory. 
+        (a) Cobweb diagram of $T^{472}_{38}(f_{\epsilon}^{2}, x_0)$. 
+        (b) Cobweb diagram of $T^{461}_{40}(f_{\epsilon}^{2}, x_0)$. 
+        In both (a) and (b) $f_{\epsilon} = (1+\epsilon)x+(1-\epsilon)x^2 \pmod{1}$ is the Pomeau-Manneville map. 
+        Parameters are $x_0 = 0.5$ and $\epsilon = 4.47458$.
+        }
+    }
     \label{fig:intermittent_cobweb_example}
 \end{figure}
 
 \section{Numerical Simulation}
-We propose that type-I intermittency occurs when there is a "breakpoint" in bifurcation diagram between chaotic behavior on the left and periodic behavior on the right.
-% Such break point is illustrated in Figure \ref{fig:complex_logistic} subplot c and d.
+We propose that type-I intermittency occurs when there is a breakpoint in bifurcation diagram between chaotic behavior on the left and periodic behavior on the right.
+% Such break point is illustrated in Figure~\ref{fig:complex_logistic} subplot c and d.
 We have not found literature to support this claim yet.
 However, our numerical simulations support this claim.
-Results are presented in figures \ref{fig:complex_pomeau_manneville}, \ref{fig:complex_logistic}, \ref{fig:complex_henon}, \ref{fig:complex_duffing}.
+Results are presented in Figures~\ref{fig:complex_pomeau_manneville},~\ref{fig:complex_logistic},~\ref{fig:complex_henon},~\ref{fig:complex_duffing}.
 In plots marked as D in each of these figures, the breakpoint in bifurcation diagram is shown.
 In plots marked as E in each of these figures, intermittent evolution near the breakpoint is shown.
 \par
 Since left side of the breakpoint is chaotic and right side is periodic, there must be a transition from chaos to stability.
-This transition is related to intermittency and narrow passage mentioned in Figure \ref{fig:intermittent_cobweb_example}.
+This transition is related to intermittency and narrow passage mentioned in Figure~\ref{fig:intermittent_cobweb_example}.
 (Claim) The breakpoint corresponds to the value of saddle-node bifurcation.
 We can call this breakpoint $\epsilon_{sn}$.
 The closer the parameter $\epsilon$ gets to breakpoint $\epsilon_{sn}$ the narrower the passage gets.
@@ -94,6 +114,7 @@ When $\epsilon = \epsilon_{sn}$ behavior is periodic.
 (End Of Claim)
 
 \section{Ambiguous Bifurcation Diagram}
+\label{sec:ambiguous_bif_diag}
 How does bifurcation diagram look for an intermittent region?
 During the creation of a bifurcation diagram some fixed number of iterations are plotted.
 Based on the number of total iterations and number of last iterations being plotted the bifurcation diagram may differ.
@@ -103,34 +124,89 @@ This causes bifurcation diagram to look different depending on how many iteratio
 \begin{figure}[!h]
     \centering
     \includegraphics[width=1.0\textwidth]{DDS/Figures/bif_diag_ambiguity_creation_sketch.png}
-    \caption{Creation of ambiguous bifurcation diagram}
+    \caption{
+        \textcolor{red}{
+        Sketch describing how to create ambiguous bifurcation diagram. 
+        Red graph shows $T^{17000}_{0}(f_{4.47458285}, x_0)$. 
+        Blue graph shows $T^{17000}_{0}(f_{4.47458285+4 \cdot 10^{-8}}, x_0)$. 
+        In both graphs $f_{\epsilon} = (1+\epsilon)x+(1-\epsilon)x^2 \pmod{1}$ is the Pomeau-Manneville map and $x_0 = 0.5$.
+        }
+    }
     \label{fig:ambiguous_bif_diag}
 \end{figure}
 
 To illustrate this ambiguity in bifurcation diagram, one can simply create a generic example.
-Figure \ref{fig:ambiguous_bif_diag} shows two trajectories for two distinct parameters $p_1$ and $p_2$.
+Figure~\ref{fig:ambiguous_bif_diag} shows two trajectories for two distinct parameters $p_1$ and $p_2$.
 Both are close to intermittency threshold (break point) $p_{sn}$ and it holds $p_1 < p_2 < p_{sn}$.
-Trajectory for parameter $p_1$ is plotted with red color in \ref{fig:ambiguous_bif_diag}.
+Trajectory for parameter $p_1$ is plotted with red color in Figure~\ref{fig:ambiguous_bif_diag}.
 Trajectory for $p_2$ is blue.
 Since $p_2$ is closer to intermittency threshold $p_{sn}$, laminar phases of its trajectories are longer.
-% Parameters $p_1$ and $p_2$ can be selected arbitrarily as long as theso that the laminar phases are long enough and similar situation as in Figure \ref{fig:ambiguous_bif_diag} occurs.
+% Parameters $p_1$ and $p_2$ can be selected arbitrarily as long as theso that the laminar phases are long enough and similar situation as in Figure~\ref{fig:ambiguous_bif_diag} occurs.
 Chaotic burst of trajectory with longer laminar phase occurs in the middle of two laminar phases of trajectory with shorter laminar phases.
 In our case chaotic burst $b$ occurs between chaotic bursts $a$ and $c$.
 If we create two bifurcation diagrams with total number of iterations $0.95 c$ and plotting last $c-(b-0.25(b-a))$ or $c-(b-0.75(b-a))$ we get two distinct bifurcation diagram.
 
 
+% \begin{figure}[!h]
+%     \centering
+%     \includegraphics[width=1.0\textwidth]{DDS/Figures/pomeau_manneville_bif_comparison_big.png}
+%     \caption{
+%         An example of the ambiguous bifurcation diagrams.
+%         The bifurcation diagrams are constructed for the Pomeau-Manneville map $f_{\epsilon} = (1+\epsilon)x+(1-\epsilon)x^2 \pmod{1}$. 
+%     }
+%     \label{fig:ambiguous_bif_diag_example}
+% \end{figure}
+
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=1.0\textwidth]{DDS/Figures/pomeau_manneville_bif_comparison_big.png}
-    \caption{Example of ambiguous bifurcation diagrams}
+    \begin{subfigure}{1.0\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{DDS/Figures/pomeau_manneville_bif_comparison_big{1}.png}
+        \caption{}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{1.0\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{DDS/Figures/pomeau_manneville_bif_comparison_big{2}.png}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}{1.00\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{DDS/Figures/pomeau_manneville_bif_comparison_big{3}.png}
+        \caption{}
+    \end{subfigure}
+\end{figure}
+
+\begin{figure}[!h] \ContinuedFloat
+    \centering
+    \begin{subfigure}{1.00\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{DDS/Figures/pomeau_manneville_bif_comparison_big{4}.png}
+        \caption{}
+    \end{subfigure}
+
+    \caption{
+        \textcolor{red}{ 
+        An example of ambiguous bifurcation diagrams.
+        The bifurcation diagrams are constructed for the Pomeau-Manneville map $f_{\epsilon} = (1+\epsilon)x+(1-\epsilon)x^2 \pmod{1}$. 
+        For each of the diagrams the initial condition is $x_0 = 0.5$, parameter intervals are sampled to $400$ uniformly spaced points and $25000$ iterations are computed. 
+        (a) $13000$ last iterations are plotted. 
+        (b) $11100$ last iterations are plotted. 
+        (c) $5000$ last iterations are plotted. 
+        (d) $1000$ last iterations are plotted. 
+        }
+    }
     \label{fig:ambiguous_bif_diag_example}
 \end{figure}
 
-This is illustrated in Figure \ref{fig:ambiguous_bif_diag_example}.
+
+
+
+This is illustrated in Figure~\ref{fig:ambiguous_bif_diag_example}.
 Figure shows that bifurcation diagrams differ significantly when number of total iterations is the same but number of last iterations being plotted is different.
 \par
 A question arises what do we expect from bifurcation diagram when we create it?
-The Figure \ref{fig:ambiguous_bif_diag_example} clearly shows that the same region of bifurcation diagram can look very different.
+The Figure~\ref{fig:ambiguous_bif_diag_example} clearly shows that the same region of bifurcation diagram can look very different.
 A person not knowing about intermittency could be misled.
 It would be useful to have a tool that would warn a person looking at bifurcation diagram about underlying intermittency and ambiguity it is causing.
 We will try to develop such tool in the next chapter.

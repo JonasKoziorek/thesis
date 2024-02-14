@@ -59,8 +59,6 @@ begin
 
     file_path = DDS.FIGURES_DIRECTORY * "bif_diag_ambiguity_creation_sketch.png"
     save(file_path, fig)
-end
-
 
 # @draw begin
 @png begin
@@ -99,3 +97,5 @@ end
     text(L"c", Point(x, y), halign=:center, valign=:baseline)
 # end 1000 250
 end 1000 250 file_path
+
+end

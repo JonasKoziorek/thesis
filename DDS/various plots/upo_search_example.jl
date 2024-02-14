@@ -9,7 +9,7 @@ begin
 
     nth_logistic = DDS.nth_composition(logistic, order)
     x_range = (0, 1)
-    fps = DDS.fixed_points(logistic, param, order, x_range)
+    fps = DDS.fixed_points(logistic, param, order, x_range; method=:DL)
 
     fig = Figure(resolution=(1000,500))
 

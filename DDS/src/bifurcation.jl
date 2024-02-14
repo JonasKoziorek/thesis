@@ -6,7 +6,7 @@ function sample!(sampled_data::Vector, data::Vector, sampling_n::Int)
     end
 end
 
-function bifurcation_plot_point!(plot_points::Vector{Tuple{Float64, Float64}}, param_value::Float64, data::Vector)
+function bifurcation_plot_point!(plot_points::Vector{Tuple{Float64, Float64}}, param_value::AbstractFloat, data::Vector)
     for i in 1:length(data)
         plot_points[i] = (param_value, data[i])
     end
@@ -57,7 +57,7 @@ function bifurcation_diagram(func, x0, params, param_index, param_range, total_n
     return fig
 end
 
-function bifurcation_diagram!(figure, func, x0, params, param_index, param_range, total_n, sampling_n, index_x=1;  resolution = (800, 500), param_name = "parameter", kwargs...)
+function bifurcation_diagram!(figure, func, x0, params, param_index, param_range, total_n, sampling_n, index_x=1; param_name = "parameter", kwargs...)
     plotting_data = bifurcation_data(func, x0, params, param_index, param_range, total_n, sampling_n, index_x)
     ax = bifurcation_diagram_axis(figure, plotting_data, param_name; kwargs...)
     return ax
