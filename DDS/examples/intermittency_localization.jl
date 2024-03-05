@@ -19,7 +19,6 @@ begin
         (a, b),
         n_order,
         x_range;
-        roundtol=5,
         max_iter=max_iter,
         partition=partition
     )
@@ -44,7 +43,6 @@ begin
         (a, b),
         n_order,
         x_range;
-        roundtol=5,
         max_iter=max_iter,
         partition=partition
     )

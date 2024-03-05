@@ -2,32 +2,32 @@
 \label{sec:software}
 
 This chapter discusses the software used for numerical computations in this thesis.
-Some explanation of the source code used for generating everything in this thesis is also included.
+An explanation of the source code used for generating everything in this thesis is also included.
 
 \section{Julia Programming Language}
 Numerical simulations play a crucial role in the field of dynamical systems.
-Analytical approach is often impossible and numerical simulation is the only option.
-In the past it was common to use Fortran or C for fast numerical simulations.
-However these languages are low-level and require a lot of effort and skill to write even simple programs.
-Later Matlab and Python became popular in the scientific world.
+The analytical approach is often impossible, and numerical simulation is the only option.
+In the past, it was common to use Fortran or C for fast numerical simulations.
+However, these languages are low-level and require a lot of effort and skill to write even simple programs.
+Later, Matlab and Python became popular in the scientific world.
 The ease of sharing code and writing human-readable programs made them a good choice for many scientists.
-However, Matlab is a proprietary software and Python is an interpreted language which makes it slow.
+However, Matlab is proprietary software, and Python is an interpreted language which makes it slow.
 \par
 Julia is a high-level programming language with a syntax similar to Matlab and Python.
-It aims to bridge a gap between dynamically typed languages like Python and statically typed languages like C.
-The language is designed in a way that it allows you to write high level code that is as fast as low level code.
+It aims to bridge the gap between dynamically typed languages like Python and statically typed languages like C.
+The language is designed in a way that it allows you to write high-level code that is as fast as low-level code.
 Code written in Julia resembles mathematical abstraction because of its use of generic types and multiple dispatch. 
-Sharing code with other scientists is easy because Julia is open-source, free and has big community. 
-Ability to access low-level details enables user to achieve maximum performance.
-Other features include built-in package manager, meta-programming, optional typing, just-in-time compilation and more.
+Sharing code with other scientists is easy because Julia is open source, free, and has a large community. 
+The ability to access low-level details enables the user to achieve maximum performance.
+Other features include built-in package manager, meta-programming, optional typing, just-in-time compilation, and more.
 It is also suitable for parallel and distributed computing.~\cite{Bezanson2017,Bezanson20181024}
 \par
 Thanks to its vibrant community of scientists and developers, Julia has a lot of packages for scientific computing.
-One of the notable ones is DynamicalSystems.jl open source library.
+One of the notable ones is the DynamicalSystems.jl open source library.
 It provides a framework and efficient algorithms for computation with dynamical systems.
-Generic algorithms work both for discrete time and continuous time dynamical systems.
-Library contains algorithms for many subfields of dynamical systems theory.~\cite{Datseris2018}
-List of some of the features is presented in the following list:
+Generic algorithms work both for discrete-time and continuous-time dynamical systems.
+The library contains algorithms for many subfields of dynamical systems theory.~\cite{Datseris2018}
+The list of some of the features is presented in the following list:
 \begin{itemize}
     \item Delay coordinates embedding.
     \item Poincaré surface of sections.
@@ -43,12 +43,12 @@ List of some of the features is presented in the following list:
 DynamicalSystems.jl package was not used in this thesis because better control and understanding of the algorithms was needed.
 \par
 Julia is well suited for numerical simulations in the field of dynamical systems.
-Such simulations often require many different mathematical algorithms and methods.
-Support for differential equation solvers, linear algebra solvers, automatic evaluation of jacobians, rootfinding algorithms etc. are all needed.
-Need for high quality plotting libraries that are easy to use is also important.
-Interactive developent via REPL and Jupyter notebooks is also a big advantage.
-One of the big advantages is great support for profilling, benchmarking and alrogithm optimization.
-Every scientist without skills of a computer scientist can write track down bottlenecks and limit number of heap allocations.
+Such simulations often require many mathematical algorithms and methods.
+Support for differential equation solvers, linear algebra solvers, automatic evaluation of Jacobians, root-finding algorithms, etc. are all needed.
+The need for high-quality plotting libraries that are easy to use is also important.
+Interactive development via REPL and Jupyter notebooks is also a big advantage.
+One of the main advantages is the great support for profiling, benchmarking, and algorithm optimization.
+Every scientist without the skills of a computer scientist can track down bottlenecks and limit number of heap allocations.
 Good support for multi-threading and parallel computing is also a big advantage.
 Many of the algorithms used in this thesis are easily parallelizable.
 Julia can also run on a supercomputer~\cite{Regier2016-vq}
@@ -56,29 +56,29 @@ Julia can also run on a supercomputer~\cite{Regier2016-vq}
 [Add table comparing computation time between julia, python and matlab]
 
 \section{Implementation commentary}
-This section includes commentary about the source code used for generating everything in this thesis.
+This section includes commentary on the source code used to generate everything in this thesis.
 \par
-All data, plots and results included in this thesis were generated using Julia programming language.
-The whole source code is available on github [add link] and as an attachment to this thesis.
-For the purposes of exploration of this thesis I have created my own library called DDS.jl (Discrete Dynamical Systems).
-The main features include:
+All data, plots, and results included in this thesis were generated using Julia programming language.
+The whole source code is available on Github [add link] and as an attachment to this thesis.
+For the purposes of exploration of this thesis, I have created my own library called DDS.jl (Discrete Dynamical Systems).
+The main features include the following.
 \begin{itemize}
-    \item Support of multi dimensional discrete dynamical systems.
+    \item Support of multidimensional discrete dynamical systems.
     \item Trajectory generation and its plots.
     \item Cobweb diagram generation.
     \item Bifurcation diagram generation.
-    \item Automatic differentiation and jacobians of arbitrary system.
+    \item Automatic differentiation and Jacobians of an arbitrary system.
     \item Davidchack-Lai algorithm.
     \item Bu-Wang-Jiang algorithm.
     \item Global search, Local search and Colorization algorithms.
 \end{itemize}
 Many of the algorithms are parallelizable.
-Bifurcation diagrams can be generated in parallel by splitting up the parameter space.
-Local search can run in parallel by computing left boundary estimation and right boundary estimation separately.
-Local search can also run in parallel for each interval found in global search.
+Bifurcation diagrams can be generated in parallel by splitting the parameter space.
+Local search can run in parallel by computing the left boundary estimation and the right boundary estimation separately.
+Local search can also run in parallel for each interval found in the global search.
 Global search can run in parallel by splitting up the parameter space.
 \par
-All plots were creating using Julia plotting packages [cite makie.jl, plots.jl, pyplot.jl].
-2D Vector graphics was creates using the Luxor.jl package [cite Luxor.jl].
+All plots were created using Julia plotting packages [cite makie.jl, plots.jl, pyplot.jl].
+2D Vector graphics was created using the Luxor.jl package [cite Luxor.jl].
 
 \endinput

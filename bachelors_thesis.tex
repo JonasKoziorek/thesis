@@ -1,6 +1,6 @@
 % First of all, include a document class and options
 \documentclass[english,bachelor]{diploma}
-% There are some addtional packages
+% There are some additional packages
 \usepackage[autostyle=true]{csquotes} % enhanced support for quotation marks, support for biblatex package
 \usepackage[backend=biber, style=iso-numeric, alldates=iso]{biblatex} % bibliography
 \usepackage{dcolumn} % numeric column type
@@ -13,6 +13,7 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{subcaption}
+\usepackage{amssymb}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -29,7 +30,7 @@
 
 \ThesisSupervisor{prof. RNDr. Marek Lampart, Ph.D.}
 
-\CzechThesisTitle{Algoritmická detekce intermitence type-I}
+\CzechThesisTitle{Algoritmická detekce intermitence typu I}
 
 \EnglishThesisTitle{Algorithmic detection of type-I intermittency}
 
@@ -37,13 +38,50 @@
 
 \ThesisAssignmentFileName{ThesisAssignment.pdf}
 
-\Acknowledgement{I would like to thank ... }
+\Acknowledgement{
+    \textcolor{red}{
+    I would like to thank prof. RNDr. Marek Lampart, Ph.D. who guided me through the process of writing this thesis. 
+    I would also like to thank to all my teachers at VŠB-TUO who taught me so much in such a short time.
+    }
+}
 
-\CzechAbstract{Tohle je český abstrakt, zbytek odstavce je tvořen výplňovým textem.}
-\CzechKeywords{intermitence typu I, diskrétní dynamické systémy, logistické zobrazení, pevný bod, programovací jazyk Julia}
+\CzechAbstract{
+    \textcolor{red}{
+    Cílem práce je vyvinout algoritmus k detekci intermitence typu I v diskrétních dynamických systémech.
+    Intermitence v dynamickém systému je jev, kdy se stav systému mění mezi zdánlivě stabilním a chaotickým.
+    Text se zaměřuje na intermitenci typu I, která je spojena se sedlovou bifurkací.
+    Nejprve je představena teorie diskrétních dynamických systémů a intermitence typu I.
+    Dále je vedena diskuze o významu detekce intermitence typu I.
+    Kombinací několika algoritmů od jiných autorů je detekce dosažena pro logistické zobrazení.
+    Výsledky detekce jsou prezentovány graficky pomocí vybarvení bifurkačního diagramu.
+    Nakonec je vedena diskuze o implementaci v programovacím jazyce Julia.
+    }
+    }
 
-\EnglishAbstract{This is English abstract.}
-\EnglishKeywords{type-I intermittency, discrete dynamical systems, Logistic map, fixed point, Julia programming language}
+\CzechKeywords{
+    \textcolor{red}{
+    intermitence typu I; diskrétní dynamické systémy; logistické zobrazení; pevný bod; sedlová bifurkace; průměrná délka laminární fáze; programovací jazyk Julia; bifurkační diagram
+    }
+    }
+
+\EnglishAbstract{
+    \textcolor{red}{
+    The goal of the thesis is to develop an algorithm for detection of type-I intermittency in discrete dynamical systems.
+    Intermittency in a dynamical system is a phenomenon where the state of the system alternates between being seemingly stable and chaotic.
+    The focus of the text is on the type-I intermittency which is associated with saddle-node bifurcations.
+    Firstly, the theory of discrete dynamical systems and of type-I intermittency is introduced.
+    Furthermore, the importance of detection of type-I intermittency is discussed.
+    By combining several algorithms of other authors, the detection is achieved for the Logistic map.
+    The results of the detection is presented graphically through colorization of a bifurcation diagram.
+    Lastly the implementation in Julia programming language is discussed.
+    }
+    }
+
+\EnglishKeywords{
+    \textcolor{red}{
+    type-I intermittency; discrete dynamical systems; Logistic map; fixed point; saddle-node bifurcation; average laminar phase length; Julia programming language; bifurcation diagram
+    }
+    }
 
 \AddAcronym{DDS}{discrete dynamical system}
 \AddAcronym{UPO}{unstable periodic orbit}
@@ -53,6 +91,7 @@
 \AddAcronym{NLS}{Naive Local Search}
 \AddAcronym{PSO}{Particle Swarm Optimization}
 \AddAcronym{NLPSO}{Nested-Layer Particle Swarm Optimization}
+\AddAcronym{LSGO}{Local Search using Global Optimization}
 
 % Bibliography resources for BibLaTeX
 \addbibresource{bibliography.bib}
@@ -88,7 +127,7 @@
 \printbibliography[heading=bibintoc]
 
 \appendix
-% \input{Chapters/Appending Complex Figures.tex}
+\input{Chapters/Appending Complex Figures.tex}
 % \input{Chapters/Appendix Codes.tex}
 
 \end{document}

@@ -113,3 +113,9 @@ Some of them are these:
 * Use the same format for all pseudocodes.
 * Use the same format for all the captions of each figure. I decided to follow the format of the article Intermittency Reinjection in The Logistic Map. Describe well what is in the figure. Include parameters. Make captions self standing. Start with capital letter. End with a period.
 * Keep consistent throughout the text
+
+## 15.2.2024 (My notes)
+Things I could do:
+
+* Benchmarks of the local search methods - average time, iterations, f_calls etc.
+* Basins of attraction

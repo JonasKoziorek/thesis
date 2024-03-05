@@ -2,6 +2,10 @@ using DDS
 using CairoMakie
 
 begin
+    LATEX_FONT_SIZE = 35
+    FONTSIZE = 25
+    RESOLUTION = (950, 500)
+
     x0=0.5
     param = [3.8]
     logistic = DDS.logistic
@@ -20,7 +24,7 @@ begin
         x_range
     )
 
-    fig=Figure(resolution=(1000, 500))
+    fig=Figure(resolution=RESOLUTION, fontsize=FONTSIZE)
     param_range2 = LinRange(param_range[1], param_range[end], 2000)
     param_index = 1
     total_n = 1000
@@ -29,7 +33,10 @@ begin
     ax = DDS.bifurcation_diagram!(fig[1,1], logistic, x0, param, param_index, param_range2, total_n, last_n;ax_aspect=2)
     ax.xlabel = L"p"
     ax.ylabel = L"\mathbb{L}_{r}"
-    ax.ylabelsize = 22
+    ax.ylabelsize = ax.xlabelsize = LATEX_FONT_SIZE
+    ax.limits = (param_range[1], param_range[end], nothing, nothing)
+    ax.xticks = LinRange(param_range[1], param_range[end], 6)
+
     # colors = [DDS.RED, DDS.BLUE]
     colors = [DDS.RED, DDS.RED]
     i = 0

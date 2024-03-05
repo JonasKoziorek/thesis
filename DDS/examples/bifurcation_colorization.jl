@@ -16,7 +16,7 @@ end
 
 begin
     logistic = DDS.logistic
-    x0=0.2
+    x0=0.5
     x_range = (0.0, 1.0)
     param = [3.8]
     param_range = LinRange(3.6263, 3.6267, 70)
@@ -29,7 +29,7 @@ begin
 end
 
 begin
-    x0=0.2
+    x0=0.5
     x_range = (0.0, 1.0)
     param = [3.8]
     # param_range = LinRange(3.6, 3.8, 6002)

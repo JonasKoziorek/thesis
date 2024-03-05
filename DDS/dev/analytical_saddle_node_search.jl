@@ -80,9 +80,16 @@ function objective(input)
     return result
 end
 
+begin
+# bounds1 = BoxConstrainedSpace(lb = [0.0;3.6], ub = [1.0;4.0])
+# bounds2 = BoxConstrainedSpace(lb = [0.0;3.581], ub = [1.0;3.5825])
+
+bounds1 = BoxConstrainedSpace(lb = [0.0;3.0], ub = [1.0;4.0])
+bounds2 = BoxConstrainedSpace(lb = [0.0;3.0], ub = [1.0;3.8])
+
 function objective(input; order=3)
     x, r = input
-    T1 = DDS.itera0e(L, x, r, order-1)
+    T1 = DDS.iterate(L, x, r, order-1)
     L_n = DDS.nth_composition(L, order)
     T2 = L_n.(T1, r)
     J = DDS.jacobian(L_n)
@@ -91,15 +98,54 @@ function objective(input; order=3)
 end
 
 f(x) = objective(x; order=3)
-bounds = BoxConstrainedSpace(lb = [0.0;3.6], ub = [1.0;4.0])
-result = optimize(f, bounds, ECA())
+result = optimize(f, bounds1, ECA())
 x = result.best_sol.x
+println("order: 3, type: 1, f_calls: $(result.f_calls), x_min: $(result.best_sol.f)")
 
 g(x) = objective(x;order=12)
-bounds = BoxConstrainedSpace(lb = [0.0;3.581], ub = [1.0;3.5825])
-result = optimize(g, bounds, ECA())
+result = optimize(g, bounds2, ECA())
 x = result.best_sol.x
+println("order: 12, type: 1, f_calls: $(result.f_calls), x_min: $(result.best_sol.f)")
 
+
+function objective2(input; order=3)
+    x, r = input
+    L_n = DDS.nth_composition(L, order)
+    J = DDS.jacobian(L_n)
+    result = (L_n(x, r)-x)^2 + (J(x, r)-1)^2
+    return result
+end
+
+f(x) = objective2(x; order=3)
+result = optimize(f, bounds1, ECA())
+x = result.best_sol.x
+println("order: 3, type: 2, f_calls: $(result.f_calls), x_min: $(result.best_sol.f)")
+
+g(x) = objective2(x;order=12)
+result = optimize(g, bounds2, ECA())
+x = result.best_sol.x
+println("order: 12, type: 2, f_calls: $(result.f_calls), x_min: $(result.best_sol.f)")
+
+function objective3(input; order=3)
+    x, r = input
+    T1 = DDS.iterate(L, x, r, order-1)
+    L_n = DDS.nth_composition(L, order)
+    T2 = L_n.(T1, r)
+    J = DDS.jacobian(L_n)
+    result = sum((T2.-T1) .^ 2) + sum((J.(T1, r).-1).^2)
+    return result
+end
+
+f(x) = objective3(x; order=3)
+result = optimize(f, bounds1, ECA())
+x = result.best_sol.x
+println("order: 3, type: 3, f_calls: $(result.f_calls), x_min: $(result.best_sol.f)")
+
+g(x) = objective3(x;order=12)
+result = optimize(g, bounds2, ECA())
+x = result.best_sol.x
+println("order: 12, type: 3, f_calls: $(result.f_calls), x_min: $(result.best_sol.f)")
+end
 
 
 using Plots

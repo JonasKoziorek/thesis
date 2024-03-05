@@ -6,7 +6,6 @@ function intermittency_region_left(
         current_iter = 0; # for recursion purposes
         max_iter=15,
         partition=2, # divide param_range to partition subintervals
-        roundtol=5
     )
     a, b = param_range
     prev_param = a
@@ -33,7 +32,6 @@ function intermittency_region_right(
         current_iter = 0; # for recursion purposes
         max_iter=15, 
         partition=2, # divide param_range to partition subintervals
-        roundtol = 5
     )
     a, b = param_range
     prev_param = b

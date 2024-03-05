@@ -18,6 +18,7 @@ include("localize_bifurcations.jl")
 include("localize_intermittency.jl")
 include("colorize_bifurcation_diag.jl")
 include("NLPSO.jl")
+include("intermittency.jl")
 
 const FIGURES_DIRECTORY = "./Figures/"
 

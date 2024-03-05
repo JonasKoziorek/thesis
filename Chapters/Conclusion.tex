@@ -1,7 +1,67 @@
 \chapter{Conclusion}
 
-The aim of this thesis was to develop an alorithm for automatic detection of type-I intermittency.
-In the first chaper the theory of discrete dynamical systems and type-I intermittency is introduced.
-Subsequently importance of detection of type-I intermittency is presented and consequences of its neglection is discussed.
+\textcolor{red}{
+This thesis presented an approach for the detection of type I interference in discrete dynamical systems.
+The main body of the text was divided into three chapters.
+}
+\par
+\textcolor{red}{
+The first section of Chapter 2 establishes basic concepts from the theory of discrete dynamical systems.
+Tools such as bifurcation diagrams, cobweb diagrams, and trajectory plots are introduced and used throughout the text to support the concepts.
+Fixed points, periodic points, and their stability are also introduced.
+The visualization tools are applied to the Logistic map.
+Fixed points are computed for the first iterate of the Logistic map and their stability is analyzed.
+}
+\par
+\textcolor{red}{
+The second section of Chapter 2 establishes the phenomenon of type-I intermittency.
+Motivation behind this type of intermittency is provided and illustrated through Figures.
+An ambiguity of the bifurcation diagram is brought up, and the creation of such an ambiguous diagram is shown.
+Furthermore, a theory behind the laminar phase length is introduced.
+The characteristic relation is explained.
+A verification of the characteristic relation is carried out for the Logistic map.
+}
+\par
+\textcolor{red}{
+Chapter 3 deals with the development of the algorithm for the detection of type I intermittency.
+The Chapter has three sections - Global search, Local search and Colorization.
+These sections correspond to the three sub-parts of the algorithm.
+}
+\textcolor{red}{
+The Global search section comes up with the idea of a Naive global search.
+Additionally, it presents the Bu-Wang-Jiang algorithm for computation of periodic orbits.
+In general, the Global search subpart of the algorithm intends to find approximate locations of the breakpoints in the bifurcation diagram.
+Global search is applied to the Logistic map and the results are presented.
+}
+\par
+\textcolor{red}{
+The Local search section presents three algorithms - Naive local search, Nested-Layer Particle Swarm Optimization, and Local search through global optimization.
+These three algorithms can be used to find the exact location of the breakpoints in the bifurcation diagram by using information from the Global search.
+Local search is applied to the Logistic map and the results are presented.
+}
+\par
+\textcolor{red}{
+The Colorization sections deal with the colorization of the bifurcation diagram.
+It builds on top of the Global search and Local search.
+It utilizes the characteristic relation developed in the previous chapter.
+An algorithm for optimal colorization bounds is presented.
+Colorization is applied to the Logistic map and the results are presented.
+}
+\par
+\textcolor{red}{
+Chapter 4 discusses the software.
+It talks about the Julia programming language and its ecosystem.
+Additionally, it mentions some information about the code used for the numerical experiments and plot creation.
+}
+
+\textcolor{red}{
+Overall, the thesis aimed to develop an algorithm for the detection of type-I intermittency in discrete dynamical systems.
+This aim was achieved for the Logistic map.
+There is a great potential for further development of the algorithm.
+Firstly understanding how reliable and robust the algorithm is.
+Secondly generalizing the algorithm to other systems and systems of high dimensions.
+Thirdly, creating algorithms for detection of other types of intermittency.
+Lastly, implementing the algorithm for continuous dynamical systems.
+}
 
 \endinput

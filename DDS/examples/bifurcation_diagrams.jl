@@ -7,6 +7,13 @@ begin # logistic map
     DDS.bifurcation_diagram(DDS.logistic, x0, p, 1, p_range, 1000, 100)
 end
 
+begin # logistic map in the negative range
+    x0 = 0.5
+    p = [3.85]
+    p_range = LinRange(-1.75,-1.730, 8000)
+    DDS.bifurcation_diagram(DDS.logistic, x0, p, 1, p_range, 1000, 100)
+end
+
 begin
     function sin_f(x, p)
         x = x[1]

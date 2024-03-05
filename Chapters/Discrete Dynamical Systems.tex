@@ -3,36 +3,36 @@
 \begin{definition}[Discrete dynamical system]
     A \emph{discrete dynamical system} (abbr. DDS) is a tuple $\left( X, f \right)$ where X is a non-empty set and $f: X \rightarrow X$ is a map~\cite{Brin20100706}.
     Set X is called a \emph{state space}.
-    Set X is \emph{invariant} under $f$ if and only if $f(X) \subseteq X$, moreover set $X$ is \emph{strongly invariant} if and only if $f(X) = X$.
+    The set X is \emph{ invariant} under $f$ if and only if $f(X) \subseteq X$, the set $X$ is \emph{strongly invariant} if and only if $f(X) = X$.
     If map $f$ depends on a parameter $p$, it is denoted as $f_p$.
 \end{definition}
 
 \begin{remark}[Logistic map]
     \textcolor{red}{
-    This thesis primarily focuses on the so called Logistic map.
+    The dynamical system that will be used in most of the examples throughout the text is called the Logistic map.
     This map might be considered the most widely known discrete dynamical system [cite here].
     Although it is mathematically very simple, it exhibits a wide range of complex behavior.
-    Logistic map was popularized by May~\cite{May19760610}.
-    Originally the map was used to represent population dynamics in an environment with limited resources.
+    The Logistic map was popularized by May~\cite{May19760610}.
+    Originally, the map was used to represent population dynamics in an environment with limited resources.
     }
     \par
     \textcolor{red}{
     Mathematically, Logistic map can be thought of as a DDS of the form $\left( [0, 1], \mathbb{L}_{r} \right)$ where $\mathbb{L}_{r}: [0,1] \rightarrow [0,1]$, $\mathbb{L}_{r}(x) = rx(1-x)$.
-    In order to ensure that $x$ stays in the range $[0,1]$, parameter $r$ is chosen from range $r \in [0, 4]$.
+    To ensure that $x$ remains in the range $[0,1]$, the parameter $r$ is chosen from the range $r \in [0, 4]$.
     }
     \par
     \textcolor{red}{
     As mentioned earlier, Logistic map was used as a simple model for population dynamics.
-    Variable $x$ represents a population of some species.
+    The variable $x$ represents a population of some species.
     $x$ is understood as a normalized population.
     $1$ means that the population is at its maximum and $0$ means that the population is extinct.
-    Parameter $r$ represents the growth rate of the population in each generation. [cite here]
+    The parameter $r$ represents the growth rate of the population in each generation. [cite here]
     }
 \end{remark}
 
 \begin{definition}[\textit{$\mathbf{n}$}-th iteration]
     Let $\left( X, f \right)$ be a DDS. 
-    The first iteration of map $f$ for initial condition $x_0$ is represented by equation
+    The first iteration of the map $f$ for the initial condition $x_0$ is represented by equation
     \begin{eqnarray}
         x_{1}  & = & f(x_{0})
     \end{eqnarray}
@@ -44,23 +44,23 @@
             \underbrace{f \circ f \circ \cdots \circ f}_\text{$n$ times}(x_0) & \text{if } n > 0. 
         \end{cases}
     \end{equation}
-    Hence $f^{n}$ is $n$-fold composition of the map f.
+    Therefore, $f^{n}$ is the $n$-fold composition of the map f.
 \end{definition}
 
 \begin{definition}[Graph]
 \textcolor{red}{
-    Let $\left( X, f \right)$ be a DDS. A graph of $f$ is graph of $f(x)$ for each $x \in X$.
+    Let $\left( X, f \right)$ be a DDS. A graph of $f$ is a plot of $f(x)$ for each $x \in X$.
 }
 \end{definition}
 
 \begin{remark}
     \textcolor{red}{
-    An example of a graph of $\mathbb{L}$ is shown in Figure~\ref{fig:logistic_graph_example}.
+    An example of a graph of $\mathbb{L}_{r}$ is shown in Figure~\ref{fig:logistic_graph_example}.
     }
     \par
     \textcolor{red}{
     It is sometimes useful to plot the graph of $n$-th iteration of $f$.
-    The Figure~\ref{fig:logistic_nthcomp_example} shows an example of the graph of $n$-th iteration of $\mathbb{L}_{3.8}$ for different $n$.
+     Figure~\ref{fig:logistic_nthcomp_example} shows an example of the graph of $n$-th iteration of $\mathbb{L}_{3.8}$ for different $n$.
     }
 \end{remark}
 
@@ -87,11 +87,10 @@
 \end{figure}
 
 \begin{definition}[Trajectory]
-    Let $\left( \mathbb{R}, f \right)$ be a DDS. Successive iterates of $f$ with initial condition $x_0 \in X$ form a trajectory $T(f, x_0)$ where
-    \begin{eqnarray}
+    Let $\left( \mathbb{R}, f \right)$ be a DDS. Successive iterations of $f$ with initial condition $x_0 \in X$ form a trajectory $T(f, x_0)$ where \begin{eqnarray}
         T(f, x_0) = f^0(x_0), f^1(x_0), f^2(x_0), f^3(x_0), \cdots  = x_0, x_1, x_2, x_3, \cdots
     \end{eqnarray}
-    More precisely, trajectory between iterates $n$ and $m$, $n \leq m$, is
+    More precisely, the trajectory between iterates $n$ and $m$, $n \leq m$, is
     \begin{eqnarray}
         T_{n}^{m}(f, x_0) = f^{n}(x_0), f^{n+1}(x_0), \cdots, f^{m-1}(x_0), f^{m}(x_0) = x_n, \cdots, x_m
     \end{eqnarray}
@@ -100,26 +99,26 @@
 \begin{remark}
     \textcolor{red}{
     Generating a trajectory is the most basic tool for understanding a DDS.
-    Plotting the trajectory as a graph is a simple way to visualize the short-term behavior of the system.
-    The graph of a trajectory shows, for example, whether the system is periodic, chaotic or intermittent. (Intermittency will be explained later.)
+    Plotting the trajectory is a simple way to visualize the short-term behavior of the system.
+    The graph of a trajectory shows, for example, whether the system is periodic, chaotic, or intermittent. (Intermittency will be explained later.)
     }
     \par
     \textcolor{red}{
     An example of trajectories of the Logistic map is shown in Figure~\ref{fig:trajectory_example}.
-    For each trajectory, projection onto a single line is also provided.
-    Understanding how projections relate to the original trajectories is important for understanding other tools for analysing a DDS.
+    For each trajectory, a projection onto a single line is also provided.
+    Understanding how projections relate to the original trajectories is important to understand other tools for analyzing a DDS.
     }
 \end{remark}
 
 \begin{figure}[!h]
     \centering
-    \begin{subfigure}{0.495\textwidth}
+    \begin{subfigure}{0.6\textwidth}
         \centering
         \includegraphics[width=\textwidth]{DDS/Figures/logistic_map_trajectory_example1.png}
         \caption{}
     \end{subfigure}
     \hfill
-    \begin{subfigure}{0.495\textwidth}
+    \begin{subfigure}{0.6\textwidth}
         \centering
         \includegraphics[width=\textwidth]{DDS/Figures/logistic_map_trajectory_example2.png}
         \caption{}
@@ -159,16 +158,16 @@
 
 \begin{remark}
     \textcolor{red}{
-        It is worthy to note what the conditions from Definitions~\ref{def:sfp} and \ref{def:ufp} stand for.
+        It is worth noting what the conditions from Definitions~\ref{def:sfp} and \ref{def:ufp} stand for.
         The point of stability detection is linear approximation, that is replacing the original function by its tangent in the proximity of the fixed point.
         This approach can be generalized to $n$-dimensional system, that is functions $f: \mathbb{R}^{n} \rightarrow \mathbb{R}^{n}$.
-        It is done by by evaluating absolute values of eigenvalues of the Jacobian matrix of $f$ at the fixed point.
+        It is done by evaluating absolute values of eigenvalues of the Jacobian matrix of $f$ at the fixed point.
     }
     \par
     \textcolor{red}{
     Direct evaluation of $\mathbb{L}_{r}(x)=x$ yields Fix$(\mathbb{L}_{r}) = \{ 0, (r-1)/r \}$.
     By evaluating the derivative of $\mathbb{L}_{r}$ at these points, stability of the fixed point can be determined.
-    Hence the fixed point $0$ is attracting if $r \in (0, 1)$ and repelling if $r \in (1, 4)$.
+    Hence, the fixed point $0$ is attracting if $r \in (0, 1)$ and repelling if $r \in (1, 4)$.
     The fixed point $(r-1)/r$ is attracting if $r \in (1, 3)$ and repelling if $r \in (0, 1) \cup (3, 4) $.
     }
     \par
@@ -208,12 +207,12 @@
 \end{figure}
 
 \begin{definition}[Periodic point]
-    Let $\left( \mathbb{R}, f\right)$ be a DDS. Point $x \in X$ is called \emph{$n$-periodic} if $f^{n}(x)=x$.
+    Let $\left( \mathbb{R}, f\right)$ be a DDS. The point $x \in X$ is called \emph{$n$-periodic} if $f^{n}(x)=x$.
     The set of all $n$-periodic points of $f$ is denoted as $\emph{Per}_{n}(f)$.~\cite{Devaney20211026}
 \end{definition}
 
 \begin{definition}[Periodic orbit]
-    Let $\left(\mathbb{R}, f\right)$ be a DDS. Let $f$ be differentiable on $X$. For periodic point $x_0$ the set $\{f^{n}(x_0):n \in \mathbb{N}\}$ is called periodic orbit.
+    Let $\left(\mathbb{R}, f\right)$ be a DDS. Let $f$ be differentiable on $X$. For the periodic point $x_0$ the set $\{f^{n}(x_0):n \in \mathbb{N}\}$ is called a periodic orbit.
     If $x_0$ is attracting, periodic orbit is called stable.
     If $x_0$ is repelling, periodic orbit is called unstable (abbr. UPO).
 \end{definition}
@@ -223,21 +222,21 @@
 \end{theorem}
 
 \begin{proof}
-    Proof can be found in~\cite[p.~74]{Devaney20211026}.
+    The proof can be found in~\cite[p.~74]{Devaney20211026}.
 \end{proof}
 
 \label{def:cobweb}
 \begin{remark}[Cobweb diagram]
     \textcolor{red}{
     Cobweb diagrams are a visual tools for understanding long term behavior of a DDS.
-    They are closely related to the trajectory of a DDS and projection of the trajectory onto a line.
-    They are useful, for example, for determining whether a fixed point is attracting or repelling. (These terms will be explained later.)
+    They are closely related to the trajectory of a DDS and the projection of the trajectory onto a line.
+    Furthermore, they are useful, for example, for determining whether a fixed point is attracting or repelling.
     }
     \par
     \textcolor{red}{
     An example of cobweb diagrams is given in Figure~\ref{fig:cobweb_diag_example}.
     Projections onto a line are also provided.
-    Note the similarity between the Figures~\ref{fig:trajectory_example} and~\ref{fig:cobweb_diag_example}.
+    Note the similarity between Figures~\ref{fig:trajectory_example} and~\ref{fig:cobweb_diag_example}.
     }
     \par
     \textcolor{red}{
@@ -247,13 +246,13 @@
 
 \begin{figure}[!h]
     \centering
-    \begin{subfigure}{0.495\textwidth}
+    \begin{subfigure}{0.6\textwidth}
         \centering
         \includegraphics[width=\textwidth]{DDS/Figures/logistic_map_cobweb_diag_example1.png}
         \caption{}
     \end{subfigure}
     \hfill
-    \begin{subfigure}{0.495\textwidth}
+    \begin{subfigure}{0.6\textwidth}
         \centering
         \includegraphics[width=\textwidth]{DDS/Figures/logistic_map_cobweb_diag_example2.png}
         \caption{}
@@ -294,14 +293,14 @@
 \label{def:bifurcation}
 \begin{definition}[Bifurcation]
     Let $\left( X, f_p \right)$ be a DDS.
-    \emph{Bifurcation} occurs when qualiative behavior of $f_p$ changes as parameter $p$ slightly changes.
+    \emph{Bifurcation} occurs when the qualitative behavior of $f_p$ changes as the parameter $p$ slightly changes.
 \end{definition}
 
 \label{def:bifurcation_point}
 \begin{definition}[Bifurcation point]
     Let $\left( X, f_p \right)$ be a DDS.
-    \emph{Bifurcatoin point} is a value of a parameter $p$ at which bifurcation occurs.
-    Qualitative behavior of the system changes when parameter is moved slightly around the bifurcation point.
+    \emph{Bifurcation point} is a value of a parameter $p$ at which bifurcation occurs.
+    The qualitative behavior of the system changes when the parameter is moved slightly around the bifurcation point.
 \end{definition}
 
 % \label{def:saddle_node_bif}
@@ -312,16 +311,16 @@
 \label{def: bif_diag} 
 \begin{remark}[Bifurcation diagram]
     \textcolor{red}{
-    Bifurcation diagram is a tool for global, long-term analysis of a DDS.
-    It shows how qualitative behavior of an arbitrary system $f_P(x_0)$ changes for varying parameter P.
-    It helps to identify stable regions, chaotic regions and intermittent regions. (Intermittency will be explained later.)
-    Bifurcation diagram is especially useful for identifying bifurcations.
+    Bifurcation diagram is a tool for the long-term global analysis of a DDS.
+    It shows how the qualitative behavior of an arbitrary system $f_P(x_0)$ changes for varying parameter P.
+    It helps to identify stable regions, chaotic regions, and intermittent regions. (Intermittency will be explained later.)
+    The bifurcation diagram is especially useful for identifying bifurcations.
     }
     \par
     \textcolor{red}{
     An example of a bifurcation diagram is given in Figure~\ref{fig:bif_diag_example}.
-    Notice the similarity with Figures~\ref{fig:trajectory_example} and~\ref{fig:cobweb_diag_example}, especially the projections onto a line.
-    Bifurcation diagram is generated as an union of these projections for various parameters.
+    Notice the similarity to Figures~\ref{fig:trajectory_example} and~\ref{fig:cobweb_diag_example}, especially the projections onto a line.
+    The bifurcation diagram is generated as an union of these projections for various parameters.
     Projections fall into one of two categories:
     \begin{itemize}
         \item{A set of isolated points. This case corresponds to the periodic trajectory.}

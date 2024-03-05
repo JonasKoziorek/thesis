@@ -1,33 +1,98 @@
 \chapter{Introduction}
 \label{sec:Introduction}
 
-The field of dynamical systems is a modern branch of mathematics that studies complex systems.
-Its main goal is to understand the long term behavior of systems that evolve in time.
-Real-world models from physics, biology, engineering as well as purely theoretical models are being studies.
-Subfields such as chaos theory and fractals are part of this field that caught a lot of attention from the general public.
-The buzzword "butterfly effect" coined by Edward Lorenz, famous for the Lorenz attractor~\cite{Lorenz2004}, has been used in many movies and books.
-\par
-Dynamical systems are difficult to study analytically but also numerically.
-
 \textcolor{red}{
-% The mathematical theory of dynamical systems develops dynamical notions and their relations.
-% On the other hand, there is a desire to quantify developed qualifications, which is done numerically by numerous procedures.
-The mathematical theory of dynamical systems studies dynamic concepts and their interconnections.
-Conversely, there is a desire to quantify these conceptual advancements, achieved through various numerical procedures.
+Real world systems such as climate, economics, population dynamics or celestial mechanics are complex.
+In fact, they are so complex that, before the advent of computers, some of these systems were immune to thorough scientific exploration.
+Fortunately, as technology had advanced, the scientific community was able to tackle increasingly complicated systems and problems.
+At the heart of the study of complex systems is the theory of dynamical systems \cite{Devaney20211026, Hirsch2013, Strogatz201854}.
+}
+\par
+\textcolor{red}{
+Dynamical systems theory serves as a foundational framework for understanding the behavior of systems that evolve over time, encompassing a diverse array of phenomena across various scientific disciplines.
+From celestial mechanics~\cite{Holmes1990} to population dynamics~\cite{Hastings1993,Hadeler2001}, from climate modeling~\cite{Ghil2023} to neural networks~\cite{Cessac2009, Vogt2020, Li2019}, disease spread~\cite{Ritelli20210930} to logistics~\cite{Kumara2003}, dynamical systems theory provides a unified language to describe the evolution of complex systems.
+}
+\par
+\textcolor{red}{
+At its core, a dynamical system is characterized by a set of rules that govern how its state changes over time.
+These rules can be deterministic or stochastic, linear or nonlinear, discrete or continuous.
+The study of dynamical systems involves analyzing the long-term behavior of these systems, seeking to understand their stability, periodicity, chaos, and other emergent properties.
+Many algorithms are being developed seeking to detect, control, and predict the dynamical properties.
+}
+\par
+\textcolor{red}{
+A dynamical property that is central to this thesis is called intermittency.
+Intermittency is a fascinating phenomenon of dynamical systems, where seemingly stable behavior can abruptly transition to chaotic behavior, only to return to stability just as unexpectedly.
+The mathematical study of intermittency originated in the 1980s through observation of the intermittent transition to turbulence in convective fluids \cite{Pomeau1980}.
+Since then, the phenomenon has garnered significant attention across diverse scientific disciplines due to its relevance in explaining phenomena such as climate variability [cite here], neuronal firing patterns [cite here], and stock market fluctuations [cite here], among others.
+}
+\par
+\textcolor{red}{
+Understanding intermittency poses theoretical and practical challenges.
+Theoretical investigations delve into the mathematical foundations of intermittency, seeking to unravel the underlying mechanisms that govern its occurrence~\cite{Elaskar2017, Elaskar2023}.
+Practical applications, on the other hand, often involve the identification, detection, and characterization of intermittent behavior in real-world systems, paving the way for predictive modeling and control strategies.
+}
+\par
+\textcolor{red}{
+Detection of intermittent behavior is the main aim of this thesis, more specifically detection of type-I intermittency~\cite{Pomeau1980,Bussac1982,Elaskar2022,DelRio2014}.
+This type is one of the most well-known and studied types that have been discovered.
+It has been observed in several real-world systems \cite{Zebrowski2004,Zebrowski2005,Parthimos2001,Aikawa1990,Shiau1995,Storchi2010,Dimitriu2008,Chiriac20070701}.
+Developing better algorithmic tools to deal with this dynamical property is an important step towards better understanding and managing complex systems exhibiting type-I intermittency.
+With improved algorithms, researchers and practitioners can more effectively detect, analyze, and predict intermittent behavior, allowing a deeper understanding of the underlying dynamics and facilitating more informed decision-making in various domains.
 }
 
+% Dynamical systems theory stands as a fundamental pillar in understanding the intricate behaviors exhibited by various natural and engineered systems.
+% From celestial bodies to ecological populations, from electronic circuits to chemical reactions, the underlying dynamics of these systems often manifest in complex and sometimes unpredictable ways.
+% Among the phenomena that challenge our comprehension is intermittency, a phenomenon characterized by irregular alternations between periods of stability and sudden bursts of activity.
 
-Many algorithms are being developed to detect and measure various dynamical properties and to control and predict the behavior of dynamical systems.
-The initial aim was to study the phenomena called intermittency.
-Intermittency is a characteristics of a system during which system alternates between seemingly predictable and chaotic behavior.
-Even though there is many types of intermittency, this text is focused on the type-I intermittency.
-It turns out that that type-I intermittency leads to ambiguity of a bifurcation diagram, a tool commonly used for global analysis of a system.
-Hence enhancing bifurcation diagram with warning about underlying type-I intermittency could be a useful tool for scientists and engineers.
+
+% Overall, dynamical systems theory provides a powerful framework for studying the behavior of complex systems across diverse scientific domains.
+% By uncovering the underlying principles governing the evolution of dynamic systems, this theory enables us to better understand and predict the behavior of natural and engineered systems alike.
+
+
+% This thesis deal with the field of mathematics called dynamical systems \cite{Devaney20211026, Hirsch2013, Strogatz201854}.
+% This modern branch of mathematics studies complex systems.
+% Its main goal is to understand the long term behavior of systems that evolve in time.
+% Real-world models from physics, biology, engineering as well as purely theoretical models are being studied [cite here].
+% Subfields such as chaos theory and fractals are part of this field that caught a lot of attention from the general public.
+% The buzzword "butterfly effect" coined by Edward Lorenz, famous for the Lorenz attractor~\cite{Lorenz2004}, has been used in many movies and books.
+% \par
+% \textcolor{red}{
+% Dynamical systems are difficult to study analytically but also numerically.
+% The mathematical theory of dynamical systems studies dynamic concepts and their interconnections.
+% Conversely, there is a desire to quantify these conceptual advancements, achieved through various numerical procedures.
+% Many algorithms are being developed to detect and measure various dynamical properties and to control and predict the behavior of dynamical systems.
+% }
+% \par
+% \textcolor{red}{
+% This thesis is focused on dynamical property called intermittency \cite{Elaskar2023}.
+% Intermittency is a phenomenon where the dynamical system changes between seemingly periodic and chaotic behavior.
+% The mathematical study of intermittency originated in 1980s through observation of intermittent transition to turbulence in convective fluids \cite{Pomeau1980}.
+% % Nowadays, the study of intermittency has grown considerably \cite{Elaskar2017}.
+% % This phenomenon is exhibited by both continuous and discrete dynamical systems \cite{Devaney20211026, Hirsch2013, Strogatz201854}.
+% In fact, first numerical experiments of intermittency were dealing with a continuous system \cite{Manneville1980-2,Pomeau1980}.
+% }
+% \par
+
 
 \bigskip
 
+\textcolor{red}{
+This thesis aims to construct an algorithmic approach for detection of type-I intermittency in type of dynamical systems called discrete.
+However, before such approach can be developed, several notions from the standard theory have to be introduced.
+}
+\par
+\textcolor{red}{
 The thesis is organized as follows:
-
-
+}
+\textcolor{red}{
+\begin{description}
+	\item \textbf{Chapter 1} -- provides motivation behind the thesis.
+	\item \textbf{Chapter 2} -- introduces the theory of discrete dynamical systems and type-I intermittency.
+	\item \textbf{Chapter 3} -- develops a method for detection of type-I intermittency.
+	\item \textbf{Chapter 4} -- discusses the software implementation.
+	\item \textbf{Chapter 5} -- concludes the findings of this thesis.
+\end{description}
+}
 
 \endinput
