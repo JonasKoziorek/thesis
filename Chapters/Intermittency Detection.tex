@@ -338,7 +338,7 @@ For that reason the minimization functions are presented in a general form.
 \par
 Let $(\mathbb{R}^{m}, f)$ be a DDS.
 Search for a periodic point $x_0$ for an arbitrary parameter $p$ is performed.
-After selecting parameter $p$, a search for a periodic point $x_0$ is performed by minimizing the function $F$ from Eq.~\ref{eq:minimize_x}.
+After selecting parameter $p$, a search for a periodic point $x_0$ is performed by minimizing the function $F$ from Equation~\eqref{eq:minimize_x}.
 If $x_0$ is a fixed point of $f^{n}_{p}$ then $x_0$ is an $n$-periodic point of $f$.
 It is a fixed point in case $f^{n}_{p}(x_0)-x_0 = 0$.
 Hence, minimizing the $F$ brings us closer to the $n$-periodic point.
@@ -352,8 +352,8 @@ PSO can be used to search for optimal parameter $x_0$ by minimizing $F$.
 \par
 Let $(\mathbb{R}^{m}, f)$ be a DDS.
 A search for parameter $p_b$ at which saddle-node bifurcation occurs is performed.
-Saddle-node bifurcation occurs at parameter $p$ when the characteristic Equation~\ref{eq:characteristic_eq} is equal to $0$, $x_0$ is $n$-periodic point and parameter $\mu = 1$.
-% Aditionally period-doubling bifurcation occurs when the when the characteristic Equation~\ref{eq:characteristic_eq} is equal to $0$ and parameter $\mu = -1$.
+Saddle-node bifurcation occurs at parameter $p$ when the characteristic equation~\ref{eq:characteristic_eq} is equal to $0$, $x_0$ is $n$-periodic point and parameter $\mu = 1$.
+% Aditionally period-doubling bifurcation occurs when the when the characteristic equation~\ref{eq:characteristic_eq} is equal to $0$ and parameter $\mu = -1$.
 
 \begin{equation}
 \label{eq:characteristic_eq}
@@ -363,8 +363,8 @@ Hence minimize function $G_{mock}(p_0) = |\text{det}(Df^{n}_{p_0}(x_0)-\mu I)|$ 
 However, in order to evaluate $G_{mock}$ it is needed to know $x_0$ which is currently unknown.
 Thus, a PSO can be used for minimizing~\ref{eq:minimize_x} to find $x_0$ and use $p_0$ as a system parameter that was described in the previous paragraph.
 It is important to be sure that found point $x_0$ is $n$-periodic point and thus $G_{mock}$ is only evaluated if PSO converged correctly to $x_0$.
-Updated function $G_{mock}$ is presented in Eq.~\ref{eq:minimize_p} and is now called $G$.
-Thus minimizing the function $G$ from Eq.~\ref{eq:minimize_p} by PSO finds optimal parameter $p_b$.
+Updated function $G_{mock}$ is presented in Equation~\eqref{eq:minimize_p} and is now called $G$.
+Thus minimizing the function $G$ from Equation~\eqref{eq:minimize_p} by PSO finds optimal parameter $p_b$.
 
 \begin{equation}
 \label{eq:minimize_p}
