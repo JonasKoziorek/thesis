@@ -123,7 +123,7 @@ The local map \ref{eq:int_I_local_map} is related to the saddle-node bifurcation
 During saddle-node bifurcation, two fixed points combine into one.
 This fixed point shall be denoted $x^{*}$.
 Let $(X, f)$ be a DDS. Suppose that $f$ undergoes saddle-node bifurcation and $x^{*}$ is the mentioned fixed point.
-The pre-reinjection point $x_p$ is a point such that there exists a point $x_r = f(x_p)$ and $x_r \in I_l$ is in the laminar interval $I_l = \langle x^{*}-c, x^{*}+c \rangle$.
+The pre-reinjection point $x_p$ is a point such that there exists a point $x_r = f(x_p)$ and $x_r \in I_l$ is in the laminar interval $I_l = [ x^{*}-c, x^{*}+c ]$.
 The point $x_r$ shall be called a reinjected point.
 $c$ is relatively small number corresponding to the width of the laminar region.
 In this case, the laminar region is considered to be an interval around $x^{*}$.
@@ -155,7 +155,7 @@ Note that the curve in subfigure (b) locally resembles the local map \ref{eq:int
         (b) shows a close-up to a region of interest. 
         The red dots are the pre-reinjection points.
         The blue dots are point reinjected into the laminar interval.
-        Laminar interval $I_l = \langle x^{*}-c, x^{*}+c \rangle$ for $c = 0.03$.
+        Laminar interval $I_l = [ x^{*}-c, x^{*}+c ]$ for $c = 0.03$.
         $I_l$ shown in as orange line.
         $x^{*}$ is shown as a green dot.
         }
@@ -213,7 +213,7 @@ The simulation can be conducted in the same way for $x^{*}_{2}$ and $x^{*}_{3}$.
 \textcolor{red}{
 The goal is to compute the average laminar length $l_{avg}$ for a point traveling through the laminar region around $x^{*}_{1}$.
 The laminar region exists for the parameters $r$ slightly less than $r^{*}_{1}$.
-In the experiment $30$ parameters $r$ were randomly chosen from the interval $\langle r^{*}-10^{-5}, r^{*}-10^{-13} \rangle$.
+In the experiment $30$ parameters $r$ were randomly chosen from the interval $[ r^{*}-10^{-5}, r^{*}-10^{-13} ]$.
 Subsequently, the corresponding $\varepsilon$ parameters were calculated.
 }
 \par
@@ -237,7 +237,7 @@ Next reinjection points $x$ are calculated.
 \par
 \textcolor{red}{
 To calculate the reinjection points corresponding to one of the $30$ $r$'s, the following procedure is used.
-A point $x$ is randomly chosen from $\langle 0-x^{*}_{1}, 1-x^{*}_{1} \rangle$.
+A point $x$ is randomly chosen from $[ 0-x^{*}_{1}, 1-x^{*}_{1} ]$.
 Consequently, a check is conducted if the point gets reinjected into laminar interval.
 In other words, check if $| \mathbb{L}_{shift}(x) | < c$.
 The procedure is repeated until $N = 4000$ reinjected points are obtained.
@@ -295,7 +295,7 @@ That implies that the characteristic relation of type-I intermittency holds.
         Average laminar length $l_{avg}$ was measured for $N = 4000$ reinjected points.
         Laminar lengths were obtained using Eq.~\ref{eq:laminar_length}. 
         Parameter $c$ is fixed as $0.01, 0.03, 0.05$ or $0.07$.
-        $30$ parameters $r$ were randomly chosen from interval $\langle r^{*}-10^{-5}, r^{*}-10^{-13} \rangle$.
+        $30$ parameters $r$ were randomly chosen from interval $[ r^{*}-10^{-5}, r^{*}-10^{-13} ]$.
         The $30$ corresponding $\varepsilon$ parameters were calculated.
         The red points are the numerical $l_{avg}$ results.
         The colorful lines are a linear fit of the numerical results.

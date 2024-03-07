@@ -200,7 +200,7 @@ An example of the NLS is shown in Figure~\ref{fig:break_point_search_example}.
     \caption{
         \textcolor{red}{
         An example of the Naive local search.
-        The bifurcation diagram of the Logistic map $\mathbb{L}_{r}$ for $r \in \langle 3.825, 3.83 \rangle$ is displayed.
+        The bifurcation diagram of the Logistic map $\mathbb{L}_{r}$ for $r \in [ 3.825, 3.83 ]$ is displayed.
         The bifurcation diagram consists of projections of $T_{900}^{1000}(\mathbb{L}_{r}, 0.5)$.
         Left and right estimates of the period $3$ breakpoint are detected.
         They are displayed as red lines.
@@ -591,7 +591,7 @@ However, the average laminar lengths can get arbitrary large.
 It is convenient to color only parameters $p$ that have average laminar lengths between $L$ and $U$. 
 $L$ denotes the lower bound and $U$ denotes the upper bound.
 For example $L$ can be set to $100$ and $U$ to $1000$.
-The next step is to find parameters $p_L$ and $p_U$ such that parameters $p$ between $p_L$ and $p_U$ have $l_{avg}$ from range $\langle L, U \rangle$.
+The next step is to find parameters $p_L$ and $p_U$ such that parameters $p$ between $p_L$ and $p_U$ have $l_{avg}$ from range $[ L, U ]$.
 }
 \par
 \textcolor{red}{
@@ -634,8 +634,8 @@ This way both $p_L$ and $p_U$ is obtained.
 \par
 \textcolor{red}{
 To finish the coloring procedure, bifurcation diagram is constructed.
-A color range is defined for numbers in range $\langle l_{avg}$ for $p_L, l_{avg}$ for $p_U \rangle$.
-The trajectory projections for parameters $p \in \langle p_L, p_U \rangle$ are colored using this color range.
+A color range is defined for numbers in range $[ l_{avg}$ for $p_L, l_{avg}$ for $p_U ]$.
+The trajectory projections for parameters $p \in [ p_L, p_U ]$ are colored using this color range.
 The same coloring procedure is repeated for all breakpoint parameters found in the local search.
 }
 \par
@@ -652,7 +652,7 @@ However, the user can always zoom in to the breakpoint if needed and then the co
     \caption{
         \textcolor{red}{
         An example of the colorization of a single breakpoint.
-        The bifurcation diagram of the Logistic map $\mathbb{L}_{r}$ for $r \in \langle 3.6263, 3.6267 \rangle$ is displayed.
+        The bifurcation diagram of the Logistic map $\mathbb{L}_{r}$ for $r \in [ 3.6263, 3.6267 ]$ is displayed.
         The bifurcation diagram consists of projections of $T_{900}^{1000}(\mathbb{L}_{r}, 0.5)$.
         The breakpoint of period $6$ is detected and colored.
         }
@@ -685,7 +685,7 @@ An example of the complete algorithm is shown in Figure~\ref{fig:complete_colori
     \caption{
         \textcolor{red}{
         An example of the full Colorization algorithm.
-        The bifurcation diagram of the Logistic map $\mathbb{L}_{r}$ for $r \in \langle 3.62, 3.65 \rangle$ is displayed.
+        The bifurcation diagram of the Logistic map $\mathbb{L}_{r}$ for $r \in [ 3.62, 3.65 ]$ is displayed.
         The bifurcation diagram consists of projections of $T_{900}^{1000}(\mathbb{L}_{r}, 0.5)$.
         Breakpoints of period up to $20$ are detected and colored.
         }
