@@ -63,7 +63,7 @@ begin
 # @draw begin
 @png begin
   origin()
-    img = readpng("Figures/bif_diag_ambiguity_creation_sketch.png")
+    img = readpng(DDS.FIGURES_DIRECTORY * "bif_diag_ambiguity_creation_sketch.png")
     w = img.width
     h = img.height
     # scale(0.4, 0.4)

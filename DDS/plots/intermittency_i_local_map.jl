@@ -49,7 +49,7 @@ begin
 @png begin
 # @draw begin
   origin()
-    img = readpng("Figures/intermittency_i_local_map.png")
+    img = readpng(DDS.FIGURES_DIRECTORY * "intermittency_i_local_map.png")
     w = img.width
     h = img.height
     # scale(0.4, 0.4)

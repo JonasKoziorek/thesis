@@ -20,6 +20,6 @@ include("colorize_bifurcation_diag.jl")
 include("NLPSO.jl")
 include("intermittency.jl")
 
-const FIGURES_DIRECTORY = "./Figures/"
+const FIGURES_DIRECTORY = "../Figures/"
 
 end # module DDS
