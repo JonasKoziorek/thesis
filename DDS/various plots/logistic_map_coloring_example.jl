@@ -19,7 +19,7 @@ begin
     last_n = 100
     ax = DDS.colorize_bifurcation_diagram!(fig, logistic, x0, param, x_range, param_range, param_index, orbit_limit;total_n=total_n, last_n=last_n)
     ax.xlabel = L"r"
-    ax.ylabel = L"T_{%$(total_n-last_n)}^{%$(total_n)}(\mathcal{L}_{r}, %$(x0))"
+    ax.ylabel = L"\mathcal{T}_{%$(total_n-last_n)}^{%$(total_n)}(\mathcal{L}_{r}, %$(x0))"
     ax.ylabelsize = ax.xlabelsize = LATEX_FONT_SIZE
     display(fig)
 

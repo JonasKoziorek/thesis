@@ -31,7 +31,7 @@ begin
         last_n=last_n
     )
     ax.xlabel = L"r"
-    ax.ylabel = L"T_{%$(total_n-last_n)}^{%$(total_n)}(\mathcal{L}_{r}, %$(x0))"
+    ax.ylabel = L"\mathcal{T}_{%$(total_n-last_n)}^{%$(total_n)}(\mathcal{L}_{r}, %$(x0))"
     ax.ylabelsize = LATEX_FONT_SIZE
     ax.xlabelsize = LATEX_FONT_SIZE
     ax.aspect=2

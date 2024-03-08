@@ -92,7 +92,7 @@
     \end{eqnarray}
     More precisely, the trajectory between iterates $n$ and $m$, $n \leq m$, is
     \begin{eqnarray}
-        T_{n}^{m}(f, x_0) = f^{n}(x_0), f^{n+1}(x_0), \cdots, f^{m-1}(x_0), f^{m}(x_0) = x_n, \cdots, x_m
+        \mathcal{T}_{n}^{m}(f, x_0) = f^{n}(x_0), f^{n+1}(x_0), \cdots, f^{m-1}(x_0), f^{m}(x_0) = x_n, \cdots, x_m
     \end{eqnarray}
 \end{definition}
 
@@ -127,7 +127,7 @@
     \caption{
         \textcolor{red}{ 
         Trajectories and their projections onto a line.
-        Both cases (a) and (b) show a trajectory $T_{50}^{100}(\mathcal{L}_{r}, 0.5)$ (left) and a projection of the trajectory onto a single line (right). 
+        Both cases (a) and (b) show a trajectory $\mathcal{T}_{50}^{100}(\mathcal{L}_{r}, 0.5)$ (left) and a projection of the trajectory onto a single line (right). 
         (a) chaotic behavior, $r = 3.828$. 
         (b) $3$-periodic behavior, $r = 3.829$. 
         }
@@ -255,7 +255,7 @@
 
     \caption{
         \textcolor{darkred}{
-        Cobweb diagrams of a trajectory $T_{50}^{100}(\mathcal{L}_{r}, 0.5)$ and a projection of the trajectory onto a line. 
+        Cobweb diagrams of a trajectory $\mathcal{T}_{50}^{100}(\mathcal{L}_{r}, 0.5)$ and a projection of the trajectory onto a line. 
         Dashed diagonal line: identity function. 
         (a) $r = 3.828$. 
         (b) $r = 3.829$. 
@@ -334,7 +334,7 @@
         \textcolor{darkred}{
         Bifurcation diagram of $\mathcal{L}_{r}$ for $x_0 = 0.5$ and $r \in I := [ 2.81, 3.87 ]$. 
         Interval $I$ is sampled to $1000$ points. 
-        Trajectories $T_{4500}^{5000}(\mathcal{L}_{r}, x_0)$ are plotted.
+        Trajectories $\mathcal{T}_{4500}^{5000}(\mathcal{L}_{r}, x_0)$ are plotted.
         }
     }
     \label{fig:bif_diag_example}
@@ -350,7 +350,7 @@
 \Statex $n_{last} \gets$ $n_{last}$ iterations of a trajectory will be plotted
 
 \For{parameter $p$ in $p_{range}$}
-    \State $data \leftarrow T_{n_{total}-n_{last}}^{n_{total}}(f_p, x_0)$
+    \State $data \leftarrow \mathcal{T}_{n_{total}-n_{last}}^{n_{total}}(f_p, x_0)$
     \For{$y$ in $data$}
         \State plot point $(p, y)$ onto canvas
     \EndFor
