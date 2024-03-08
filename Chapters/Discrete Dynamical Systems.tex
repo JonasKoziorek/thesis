@@ -55,7 +55,7 @@
 
 \begin{remark}
     \textcolor{red}{
-    An example of a graph of $\mathbb{L}_{r}$ is shown in Figure~\ref{fig:logistic_graph_example}.
+    A graph of $\mathbb{L}_{r}$ is shown in Figure~\ref{fig:logistic_graph_example}.
     }
     \par
     \textcolor{red}{
@@ -69,7 +69,7 @@
     \includegraphics[width=0.5\textwidth]{DDS/Figures/logistic_graph_example.png}
     \caption{
         \textcolor{red}{
-        Graphs of the Logistic map $\mathbb{L}_{r}$ for different parameters $r$.
+        Graphs of $\mathbb{L}_{r}$ for different parameters $r$.
         }
     }
     \label{fig:logistic_graph_example}
@@ -80,7 +80,7 @@
     \includegraphics[width=1.0\textwidth]{DDS/Figures/logistic_nthcomp_example.png}
     \caption{
         \textcolor{red}{
-        Graphs of the Logistic map $\mathbb{L}_{3.8}^{n}$ for different $n$.
+        Graphs of $\mathbb{L}_{3.8}^{n}$ for different $n$.
         }
     }
     \label{fig:logistic_nthcomp_example}
@@ -126,13 +126,10 @@
 
     \caption{
         \textcolor{red}{ 
-        An example of trajectories and their projections onto a line. 
+        Trajectories and their projections onto a line.
         Both cases (a) and (b) show a trajectory $T_{50}^{100}(\mathbb{L}_{r}, 0.5)$ (left) and a projection of the trajectory onto a single line (right). 
-        Case~(a) exhibits chaotic behavior.
-        Case~(b) exhibits $3$-periodic behavior.
-        Parameters: 
-        (a) $r = 3.828$. 
-        (b) $r = 3.829$. 
+        (a) chaotic behavior, $r = 3.828$. 
+        (b) $3$-periodic behavior, $r = 3.829$. 
         }
     }
     \label{fig:trajectory_example}
@@ -192,15 +189,13 @@
     \end{subfigure}
 
     \caption{
-        \textcolor{red}{ 
-        Two fixed points of the Logistic map $\mathbb{L}_{r}$ and their stability. 
-        The red color represents stability. 
-        The red fixed point is attracting.
-        The blue color represents instability. 
-        The blue fixed point is repelling.
-        Parameters: 
-        (a) $r = 2.3$. 
-        (b) $r = 3.3$. 
+        \textcolor{darkred}{ 
+        Two fixed points of $\mathbb{L}_{r}$ and their stability. 
+        Parameters: (a) $r = 2.3$ and (b) $r = 3.3$. 
+        Red region: region of stability.
+        Red point (a): attracting fixed point.
+        Blue region: region of instability.
+        Blue point (b): repelling fixed point.
         }
     }
     \label{fig:fixed_points_stability_example}
@@ -259,10 +254,9 @@
     \end{subfigure}
 
     \caption{
-        \textcolor{red}{
+        \textcolor{darkred}{
         Cobweb diagrams of a trajectory $T_{50}^{100}(\mathbb{L}_{r}, 0.5)$ and a projection of the trajectory onto a line. 
-        Dashed diagonal line represents the identity function. 
-        Parameters: 
+        Dashed diagonal line: identity function. 
         (a) $r = 3.828$. 
         (b) $r = 3.829$. 
         }
@@ -337,11 +331,10 @@
     \centering
     \includegraphics[width=0.9\textwidth]{DDS/Figures/logistic_map_bif_diag_example.png}
     \caption{
-        \textcolor{red}{
-        An example of the bifurcation diagram. 
-        Diagram is constructed for Logistic map $\mathbb{L}_{r}$ for parameters $r \in [ 2.81, 3.87 ]$. 
-        Parameter interval is sampled to $1000$ points. 
-        Trajectories are iterated for $5000$ iterations and last $500$ iterations are plotted.
+        \textcolor{darkred}{
+        Bifurcation diagram of $\mathbb{L}_{r}$ for $x_0 = 0.5$ and $r \in I := [ 2.81, 3.87 ]$. 
+        Interval $I$ is sampled to $1000$ points. 
+        Trajectories $T_{4500}^{5000}(\mathbb{L}_{r}, x_0)$ are plotted.
         }
     }
     \label{fig:bif_diag_example}

@@ -2,7 +2,7 @@ using DDS
 using CairoMakie
 
 begin
-    LATEX_FONT_SIZE = 35
+    LATEX_FONT_SIZE = 30
     FONTSIZE = 25
     RESOLUTION = (950, 500)
 
@@ -31,9 +31,10 @@ begin
     last_n = 100
 
     ax = DDS.bifurcation_diagram!(fig[1,1], logistic, x0, param, param_index, param_range2, total_n, last_n;ax_aspect=2)
-    ax.xlabel = L"p"
-    ax.ylabel = L"\mathbb{L}_{r}"
-    ax.ylabelsize = ax.xlabelsize = LATEX_FONT_SIZE
+    ax.xlabel = L"r"
+    ax.ylabel = L"T_{%$(total_n-last_n)}^{%$(total_n)}(\mathbb{L}_{r}, %$(x0))"
+    ax.xlabelsize = LATEX_FONT_SIZE
+    ax.ylabelsize = LATEX_FONT_SIZE
     ax.limits = (param_range[1], param_range[end], nothing, nothing)
     ax.xticks = LinRange(param_range[1], param_range[end], 6)
 

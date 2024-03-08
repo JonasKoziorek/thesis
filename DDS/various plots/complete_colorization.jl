@@ -2,8 +2,10 @@ using DDS
 using CairoMakie
 
 begin
-    LATEX_FONT_SIZE = 40
-    FONTSIZE = 30
+    LATEX_FONT_SIZE = 30
+    FONTSIZE = 20
+    RESOLUTION = (1000, 500)
+
     logistic = DDS.logistic
     x0=0.5
     x_range = (0.0, 1.0)
@@ -12,12 +14,12 @@ begin
     param_index = 1
 
     orbit_limit = 20
-    fig = Figure(fontsize=FONTSIZE)
+    fig = Figure(resolution=RESOLUTION, fontsize=FONTSIZE)
     total_n = 1000
     last_n = 100
     ax = DDS.colorize_bifurcation_diagram!(fig, DDS.logistic, x0, param, x_range, param_range, param_index, orbit_limit;total_n=total_n, last_n=last_n)
-    ax.xlabel = L"p"
-    ax.ylabel = L"\mathbb{L}_{r}"
+    ax.xlabel = L"r"
+    ax.ylabel = L"T_{%$(total_n-last_n)}^{%$(total_n)}(\mathbb{L}_{r}, %$(x0))"
     ax.ylabelsize = ax.xlabelsize = LATEX_FONT_SIZE
     display(fig)
 

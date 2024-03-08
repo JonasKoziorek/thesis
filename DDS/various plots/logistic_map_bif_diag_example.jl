@@ -6,7 +6,7 @@ begin
     FONTSIZE = 20
 
     fig = Figure(
-        resolution = (1000, 500),
+        resolution = (900, 500),
         fontsize=FONTSIZE,
     )
 
@@ -23,7 +23,7 @@ begin
         color=BLUE
     )
     ax.xlabel = L"r"
-    ax.ylabel = L"x"
+    ax.ylabel = L"T_{%$(total_n-last_n)}^{%$(total_n)}(\mathbb{L}_{r}, %$(x0))"
     ax.xlabelsize = LATEX_FONT_SIZE
     ax.ylabelsize = LATEX_FONT_SIZE
 

@@ -2,6 +2,10 @@ using DDS
 using CairoMakie
 
 begin
+    LATEX_FONT_SIZE = 30
+    FONTSIZE = 25
+    RESOLUTION = (950, 500)
+
     a, b = 3.825, 3.83
     n_order = 3
     x0 = 0.5
@@ -12,7 +16,7 @@ begin
     x_range = (0.0, 1.0)
     total_n = 1000
     last_n = 100
-    fig=Figure(resolution=(1000, 500))
+    fig=Figure(resolution=RESOLUTION, fontsize=FONTSIZE)
     ax = DDS.plot_intermittency_region(
         fig[1,1],
         DDS.logistic,
@@ -26,9 +30,10 @@ begin
         total_n=total_n,
         last_n=last_n
     )
-    ax.xlabel = L"p"
-    ax.ylabel = L"\mathbb{L}_{r}"
-    ax.ylabelsize = 22
+    ax.xlabel = L"r"
+    ax.ylabel = L"T_{%$(total_n-last_n)}^{%$(total_n)}(\mathbb{L}_{r}, %$(x0))"
+    ax.ylabelsize = LATEX_FONT_SIZE
+    ax.xlabelsize = LATEX_FONT_SIZE
     ax.aspect=2
     ax.limits = (a, b, nothing, nothing)
     ax.xticks = LinRange(a, b, 6)

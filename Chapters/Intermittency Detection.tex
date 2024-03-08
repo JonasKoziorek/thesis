@@ -95,9 +95,8 @@ An example of the Davidchack-Lai algorithm is shown in Figure~\ref{fig:upo_searc
     \centering
     \includegraphics[width=1.0\textwidth]{DDS/Figures/upo_search_example.png}
     \caption{
-        \textcolor{red}{
-        All fixed points of sixth iterate of Logistic map $\mathbb{L}_{r}^{6}$ for $r = 3.7$.
-        These fixed points were detected using the Davidchack-Lai algorithm.
+        \textcolor{darkred}{
+        Detection of the fixed point of $\mathbb{L}_{r}^{6}$ for $r = 3.7$ using the DL algorithm.
         }
     }
     \label{fig:upo_search_example}
@@ -162,10 +161,10 @@ Example of the algorithm results are shown in Figure~\ref{fig:bif_diag_search_ex
     \centering
     \includegraphics[width=1.0\textwidth]{DDS/Figures/bif_diag_search_example.png}
     \caption{
-        \textcolor{red}{
-        An example of a Global search of the Logistic map $\mathbb{L}_{r}$.
+        \textcolor{darkred}{
+        Global search of $\mathbb{L}_{r}$.
         The bifurcation diagram consists of projections of $T_{900}^{1000}(\mathbb{L}_{r}, 0.5)$.
-        Estimations of breakpoints of period up to $16$ are detected and shown.
+        Red lines: detected breakpoints up to period $16$.
         }
     }
     \label{fig:bif_diag_search_example}
@@ -198,12 +197,10 @@ An example of the NLS is shown in Figure~\ref{fig:break_point_search_example}.
     \centering
     \includegraphics[width=1.0\textwidth]{DDS/Figures/break_point_search_example.png}
     \caption{
-        \textcolor{red}{
-        An example of the Naive local search.
-        The bifurcation diagram of the Logistic map $\mathbb{L}_{r}$ for $r \in [ 3.825, 3.83 ]$ is displayed.
+        \textcolor{darkred}{
+        Naive local search of $\mathbb{L}_{r}$ for $r \in [ 3.825, 3.83 ]$.
         The bifurcation diagram consists of projections of $T_{900}^{1000}(\mathbb{L}_{r}, 0.5)$.
-        Left and right estimates of the period $3$ breakpoint are detected.
-        They are displayed as red lines.
+        Red lines: Left and right estimates of the period $3$ breakpoint.
         Left estimate is found using Algorithm~\ref{alg:local_search} with parameters $p_A = 3.825$, $p_B = 3.83$, $n = 3$ and $maxiter = 20$.
         Right estimate is found analogically.
         }
@@ -648,15 +645,14 @@ However, the user can always zoom in to the breakpoint if needed and then the co
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.8\textwidth]{DDS/Figures/logistic_map_coloring_example.png}
-    \label{fig:coloring_example}
     \caption{
-        \textcolor{red}{
-        An example of the colorization of a single breakpoint.
-        The bifurcation diagram of the Logistic map $\mathbb{L}_{r}$ for $r \in [ 3.6263, 3.6267 ]$ is displayed.
-        The bifurcation diagram consists of projections of $T_{900}^{1000}(\mathbb{L}_{r}, 0.5)$.
-        The breakpoint of period $6$ is detected and colored.
+        \textcolor{darkred}{
+        Colorization of a single breakpoint of $\mathbb{L}_{r}$ for $r \in I := [ 3.6263, 3.6267 ]$.
+        Algorithm~\ref{alg:optimal_bound} was used to specify the colorization bounds.
+        The bifurcation diagram consists of projections $T_{900}^{1000}(\mathbb{L}_{r}, 0.5)$ for $r \in I$.
         }
     }
+    \label{fig:coloring_example}
 \end{figure}
 
 \section{Complete algorithm}
@@ -683,11 +679,10 @@ An example of the complete algorithm is shown in Figure~\ref{fig:complete_colori
     \centering
     \includegraphics[width=0.9\textwidth]{DDS/Figures/complete_colorization.png}
     \caption{
-        \textcolor{red}{
-        An example of the full Colorization algorithm.
-        The bifurcation diagram of the Logistic map $\mathbb{L}_{r}$ for $r \in [ 3.62, 3.65 ]$ is displayed.
+        \textcolor{darkred}{
+        Full Colorization of $\mathbb{L}_{r}$ for $r \in [ 3.62, 3.65 ]$.
         The bifurcation diagram consists of projections of $T_{900}^{1000}(\mathbb{L}_{r}, 0.5)$.
-        Breakpoints of period up to $20$ are detected and colored.
+        Colorful lines: areas near the detected breakpoints (up to period $20$).
         }
     }
     \label{fig:complete_colorization}

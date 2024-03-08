@@ -22,6 +22,7 @@
 % my own commands
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand\norm[1]{\lVert#1\rVert}
+\definecolor{darkred}{RGB}{139,0,0}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -83,9 +84,11 @@
     }
     }
 
+% \AddAcronym{$\mathcal{L}_{r}$}{Logistic map}
+\AddAcronym{$\mathcal{P}_{\varepsilon}$}{Pomeau-Manneville map}
 \AddAcronym{DDS}{discrete dynamical system}
 \AddAcronym{UPO}{unstable periodic orbit}
-% \AddAcronym{DL}{Davidchack-Lai algorithm}
+\AddAcronym{DL}{Davidchack-Lai algorithm}
 % \AddAcronym{SD}{Schmelcher-Diakonos algorithm}
 \AddAcronym{BWJ}{Bu-Wang-Jiang algorithm}
 \AddAcronym{NLS}{Naive Local Search}
@@ -113,21 +116,21 @@
 
 % Do theses contain any tables? If so, print the list of table and then move to the next page.
 % If not, delete the next two macros.
-\listoftables
-\clearpage
+% \listoftables
+% \clearpage
 
 % Your text starts here...
-\input{Chapters/Introduction.tex}
+% \input{Chapters/Introduction.tex}
 \input{Chapters/Theory Overview.tex}
 % \input{Chapters/Selected Models.tex}
 \input{Chapters/Intermittency Detection.tex}
-\input{Chapters/Software.tex}
-\input{Chapters/Conclusion.tex}
+% \input{Chapters/Software.tex}
+% \input{Chapters/Conclusion.tex}
 
 \printbibliography[heading=bibintoc]
 
 \appendix
-\input{Chapters/Appending Complex Figures.tex}
+% \input{Chapters/Appending Complex Figures.tex}
 % \input{Chapters/Appendix Codes.tex}
 
 \end{document}
