@@ -75,6 +75,11 @@ begin
         identity_line_size=2.5,
     )
     ax.xticks = LinRange(x_range..., 6)
+
+
+    ax.xlabel = L"x"
+    ax.ylabel = L"\mathcal{P}_{%$(p[1])}^{%$(n_order)}(x)"
+
     ax.xlabelsize = LATEX_FONT_SIZE
     ax.ylabelsize = LATEX_FONT_SIZE
     lines!(ax, [left_, right_, right_, left_, left_], [low, low, high, high, low], color=RED, linewidth=3)
@@ -94,6 +99,9 @@ begin
         last_point_color=BLUE,
         cobweb_line_size=2.5
     )
+
+    ax.xlabel = L"x"
+    ax.ylabel = L"\mathcal{P}_{%$(p[1])}^{%$(n_order)}(x)"
     ax.xlabelsize = LATEX_FONT_SIZE
     ax.ylabelsize = LATEX_FONT_SIZE
     lines!(ax, [left_, right_, right_, left_, left_], [low, low, high, high, low], color=RED, linewidth=3)
@@ -112,8 +120,8 @@ begin
     save(file_path, fig)
 
 # @draw begin
-@png begin
-  origin()
+Luxor.@png begin
+  Luxor.origin()
     img = readpng(file_path)
     w = img.width
     h = img.height
