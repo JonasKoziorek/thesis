@@ -38,7 +38,7 @@ begin
     lines!(ax, x, logistic.(x, p), color=PURPLE, label=L"$r=%$(p[1])$", linewidth=LINEWIDTH)
 
     ax.xlabel = L"$x$"
-    ax.ylabel = L"$\mathbb{L}_{r}(x)$"
+    ax.ylabel = L"$\mathcal{L}_{r}(x)$"
     ax.xlabelsize = LATEX_FONT_SIZE
     ax.ylabelsize = LATEX_FONT_SIZE
 

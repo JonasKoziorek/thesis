@@ -17,7 +17,7 @@
     }
     \par
     \textcolor{red}{
-    Mathematically, Logistic map can be thought of as a DDS of the form $\left( [0, 1], \mathbb{L}_{r} \right)$ where $\mathbb{L}_{r}: [0,1] \rightarrow [0,1]$, $\mathbb{L}_{r}(x) = rx(1-x)$.
+    Mathematically, Logistic map can be thought of as a DDS of the form $\left( [0, 1], \mathcal{L}_{r} \right)$ where $\mathcal{L}_{r}: [0,1] \rightarrow [0,1]$, $\mathcal{L}_{r}(x) = rx(1-x)$.
     To ensure that $x$ remains in the range $[0,1]$, the parameter $r$ is chosen from the range $r \in [0, 4]$.
     }
     \par
@@ -55,12 +55,12 @@
 
 \begin{remark}
     \textcolor{red}{
-    A graph of $\mathbb{L}_{r}$ is shown in Figure~\ref{fig:logistic_graph_example}.
+    A graph of $\mathcal{L}_{r}$ is shown in Figure~\ref{fig:logistic_graph_example}.
     }
     \par
     \textcolor{red}{
     It is sometimes useful to plot the graph of $n$-th iteration of $f$.
-     Figure~\ref{fig:logistic_nthcomp_example} shows an example of the graph of $n$-th iteration of $\mathbb{L}_{3.8}$ for different $n$.
+     Figure~\ref{fig:logistic_nthcomp_example} shows an example of the graph of $n$-th iteration of $\mathcal{L}_{3.8}$ for different $n$.
     }
 \end{remark}
 
@@ -69,7 +69,7 @@
     \includegraphics[width=0.5\textwidth]{DDS/Figures/logistic_graph_example.png}
     \caption{
         \textcolor{red}{
-        Graphs of $\mathbb{L}_{r}$ for different parameters $r$.
+        Graphs of $\mathcal{L}_{r}$ for different parameters $r$.
         }
     }
     \label{fig:logistic_graph_example}
@@ -80,7 +80,7 @@
     \includegraphics[width=1.0\textwidth]{DDS/Figures/logistic_nthcomp_example.png}
     \caption{
         \textcolor{red}{
-        Graphs of $\mathbb{L}_{3.8}^{n}$ for different $n$.
+        Graphs of $\mathcal{L}_{3.8}^{n}$ for different $n$.
         }
     }
     \label{fig:logistic_nthcomp_example}
@@ -127,7 +127,7 @@
     \caption{
         \textcolor{red}{ 
         Trajectories and their projections onto a line.
-        Both cases (a) and (b) show a trajectory $T_{50}^{100}(\mathbb{L}_{r}, 0.5)$ (left) and a projection of the trajectory onto a single line (right). 
+        Both cases (a) and (b) show a trajectory $T_{50}^{100}(\mathcal{L}_{r}, 0.5)$ (left) and a projection of the trajectory onto a single line (right). 
         (a) chaotic behavior, $r = 3.828$. 
         (b) $3$-periodic behavior, $r = 3.829$. 
         }
@@ -162,14 +162,14 @@
     }
     \par
     \textcolor{red}{
-    Direct evaluation of $\mathbb{L}_{r}(x)=x$ yields Fix$(\mathbb{L}_{r}) = \{ 0, (r-1)/r \}$.
-    By evaluating the derivative of $\mathbb{L}_{r}$ at these points, stability of the fixed point can be determined.
+    Direct evaluation of $\mathcal{L}_{r}(x)=x$ yields Fix$(\mathcal{L}_{r}) = \{ 0, (r-1)/r \}$.
+    By evaluating the derivative of $\mathcal{L}_{r}$ at these points, stability of the fixed point can be determined.
     Hence, the fixed point $0$ is attracting if $r \in (0, 1)$ and repelling if $r \in (1, 4)$.
     The fixed point $(r-1)/r$ is attracting if $r \in (1, 3)$ and repelling if $r \in (0, 1) \cup (3, 4) $.
     }
     \par
     \textcolor{red}{
-    Figure~\ref{fig:fixed_points_stability_example} displays two fixed points of the Logistic map $\mathbb{L}_{r}$.
+    Figure~\ref{fig:fixed_points_stability_example} displays two fixed points of the Logistic map $\mathcal{L}_{r}$.
     One fixed point is attracting and one is repelling. Test for stability is portrayed graphically.
     }
 \end{remark}
@@ -190,7 +190,7 @@
 
     \caption{
         \textcolor{darkred}{ 
-        Two fixed points of $\mathbb{L}_{r}$ and their stability. 
+        Two fixed points of $\mathcal{L}_{r}$ and their stability. 
         Parameters: (a) $r = 2.3$ and (b) $r = 3.3$. 
         Red region: region of stability.
         Red point (a): attracting fixed point.
@@ -213,7 +213,7 @@
 \end{definition}
 
 \begin{theorem}
-    Let $\left(\mathbb{R}, \mathbb{L}_r\right)$ be a DDS. Then there exists at most one stable periodic orbit for each $r$.~\cite[p.~74]{Devaney20211026}
+    Let $\left(\mathbb{R}, \mathcal{L}_r\right)$ be a DDS. Then there exists at most one stable periodic orbit for each $r$.~\cite[p.~74]{Devaney20211026}
 \end{theorem}
 
 \begin{proof}
@@ -255,7 +255,7 @@
 
     \caption{
         \textcolor{darkred}{
-        Cobweb diagrams of a trajectory $T_{50}^{100}(\mathbb{L}_{r}, 0.5)$ and a projection of the trajectory onto a line. 
+        Cobweb diagrams of a trajectory $T_{50}^{100}(\mathcal{L}_{r}, 0.5)$ and a projection of the trajectory onto a line. 
         Dashed diagonal line: identity function. 
         (a) $r = 3.828$. 
         (b) $r = 3.829$. 
@@ -332,9 +332,9 @@
     \includegraphics[width=0.9\textwidth]{DDS/Figures/logistic_map_bif_diag_example.png}
     \caption{
         \textcolor{darkred}{
-        Bifurcation diagram of $\mathbb{L}_{r}$ for $x_0 = 0.5$ and $r \in I := [ 2.81, 3.87 ]$. 
+        Bifurcation diagram of $\mathcal{L}_{r}$ for $x_0 = 0.5$ and $r \in I := [ 2.81, 3.87 ]$. 
         Interval $I$ is sampled to $1000$ points. 
-        Trajectories $T_{4500}^{5000}(\mathbb{L}_{r}, x_0)$ are plotted.
+        Trajectories $T_{4500}^{5000}(\mathcal{L}_{r}, x_0)$ are plotted.
         }
     }
     \label{fig:bif_diag_example}
@@ -363,7 +363,7 @@
     \textcolor{red}{
     In Figure~\ref{fig:bif_diag_example} it is visible that small change of a parameter can cause qualitatively different behavior of the DDS.
     When the qualitative change occurs, it is said that bifurcation has occurred.
-    An example of a bifurcation point is $r = 1+\sqrt{8} \approx 3.82842$. For this $r$ the $\mathbb{L}_{r}$ changes its behavior from seemingly chaotic to $3$-periodic. 
-    Another example of a bifurcation point is $r \approx 3.446$. For this $r$ the $\mathbb{L}_{r}$ changes its behavior from $2$-periodic to $4$-periodic.
+    An example of a bifurcation point is $r = 1+\sqrt{8} \approx 3.82842$. For this $r$ the $\mathcal{L}_{r}$ changes its behavior from seemingly chaotic to $3$-periodic. 
+    Another example of a bifurcation point is $r \approx 3.446$. For this $r$ the $\mathcal{L}_{r}$ changes its behavior from $2$-periodic to $4$-periodic.
     }
 \end{remark}

@@ -27,7 +27,7 @@ begin
     ax.xlabelsize = 25
     ax.limits=LIMITS
     ax.xlabel = L"$x$"
-    ax.ylabel = L"$\mathbb{L}_{%$(param[1])}(x)$"
+    ax.ylabel = L"$\mathcal{L}_{%$(param[1])}(x)$"
     ax.xlabelsize = LATEX_FONT_SIZE
     ax.ylabelsize = LATEX_FONT_SIZE
 
@@ -101,7 +101,7 @@ begin
     ax.xlabelsize = 25
     ax.limits=LIMITS
     ax.xlabel = L"$x$"
-    ax.ylabel = L"$\mathbb{L}_{%$(param[1])}(x)$"
+    ax.ylabel = L"$\mathcal{L}_{%$(param[1])}(x)$"
     ax.xlabelsize = LATEX_FONT_SIZE
     ax.ylabelsize = LATEX_FONT_SIZE
 

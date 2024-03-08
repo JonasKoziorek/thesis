@@ -29,11 +29,11 @@ If the parameter space could be searched through and the period of the system fo
 To do that, an algorithm is needed to determine the period of the system for any given parameter value.
 \par
 If system has stable $n$-periodic orbit or the system starts to evolve at an unstable $n$-periodic point, then the system is $n$-periodic or eventually $n$-periodic.
-It is known that the Logistic map $\mathbb{L}_r$ can only have at most one unique stable $n$-periodic orbit for the parameter $r$.
-This means that if a stable $n$-periodic orbit is found for parameter $r$, then it is known that $\mathbb{L}_r$ is $n$-periodic.
+It is known that the Logistic map $\mathcal{L}_r$ can only have at most one unique stable $n$-periodic orbit for the parameter $r$.
+This means that if a stable $n$-periodic orbit is found for parameter $r$, then it is known that $\mathcal{L}_r$ is $n$-periodic.
 At least in the case where the initial condition is not an unstable periodic point.
-To find out whether $\mathbb{L}_r$ has a stable $n$ periodic orbit, it is necessary to find fixed points of $\mathbb{L}_r, \mathbb{L}_{r}^{2}, \mathbb{L}_{r}^{3}, \dots$ and determine their stability.
-Therefore, the smallest $n$ for which $\mathbb{L}_{r}^{n}(x^{*})=x^{*}$ and $x^{*}$ are stable is the period of $\mathbb{L}_r$.
+To find out whether $\mathcal{L}_r$ has a stable $n$ periodic orbit, it is necessary to find fixed points of $\mathcal{L}_r, \mathcal{L}_{r}^{2}, \mathcal{L}_{r}^{3}, \dots$ and determine their stability.
+Therefore, the smallest $n$ for which $\mathcal{L}_{r}^{n}(x^{*})=x^{*}$ and $x^{*}$ are stable is the period of $\mathcal{L}_r$.
 \par
 There exist algorithms for finding all fixed points of an arbitrary dynamical system.
 These algorithms are quite efficient and can be used for high-dimensional systems.
@@ -96,7 +96,7 @@ An example of the Davidchack-Lai algorithm is shown in Figure~\ref{fig:upo_searc
     \includegraphics[width=1.0\textwidth]{DDS/Figures/upo_search_example.png}
     \caption{
         \textcolor{darkred}{
-        Detection of the fixed point of $\mathbb{L}_{r}^{6}$ for $r = 3.7$ using the DL algorithm.
+        Detection of the fixed point of $\mathcal{L}_{r}^{6}$ for $r = 3.7$ using the DL algorithm.
         }
     }
     \label{fig:upo_search_example}
@@ -143,8 +143,8 @@ They can be chosen as a uniformly sampled interval (if $x \in \mathbb{R}$) or gr
 Our version of the algorithm includes several optimizations suitable for our use case.
 BWJ is able to find all fixed points of a system but only the stable fixed points are of interest are needed.
 Logistic map is known to have at most one stable periodic orbit for each parameter $r$.
-That means that after finding $n$ stable fixed points for the system $\mathbb{L}_{r}^{n}$ the algorithm can be terminated.
-After finding a fixed point $x^{*}$ of $\mathbb{L}_{r}^{n}$, iterations of $x^{*}$ $n$ times are performed and check whether resulting points are also fixed points is conducted.
+That means that after finding $n$ stable fixed points for the system $\mathcal{L}_{r}^{n}$ the algorithm can be terminated.
+After finding a fixed point $x^{*}$ of $\mathcal{L}_{r}^{n}$, iterations of $x^{*}$ $n$ times are performed and check whether resulting points are also fixed points is conducted.
 Before the algorithm starts, a similar idea as in the Naive global search is used.
 The system $f^{n}(s)$ is iterated $m$ times for arbitrary initial seed $s$ and check whether the resulting point is $n$-periodic is performed.
 These optimizations make the algorithm more efficient.
@@ -162,8 +162,8 @@ Example of the algorithm results are shown in Figure~\ref{fig:bif_diag_search_ex
     \includegraphics[width=1.0\textwidth]{DDS/Figures/bif_diag_search_example.png}
     \caption{
         \textcolor{darkred}{
-        Global search of $\mathbb{L}_{r}$.
-        The bifurcation diagram consists of projections of $T_{900}^{1000}(\mathbb{L}_{r}, 0.5)$.
+        Global search of $\mathcal{L}_{r}$.
+        The bifurcation diagram consists of projections of $T_{900}^{1000}(\mathcal{L}_{r}, 0.5)$.
         Red lines: detected breakpoints up to period $16$.
         }
     }
@@ -198,8 +198,8 @@ An example of the NLS is shown in Figure~\ref{fig:break_point_search_example}.
     \includegraphics[width=1.0\textwidth]{DDS/Figures/break_point_search_example.png}
     \caption{
         \textcolor{darkred}{
-        Naive local search of $\mathbb{L}_{r}$ for $r \in [ 3.825, 3.83 ]$.
-        The bifurcation diagram consists of projections of $T_{900}^{1000}(\mathbb{L}_{r}, 0.5)$.
+        Naive local search of $\mathcal{L}_{r}$ for $r \in [ 3.825, 3.83 ]$.
+        The bifurcation diagram consists of projections of $T_{900}^{1000}(\mathcal{L}_{r}, 0.5)$.
         Red lines: Left and right estimates of the period $3$ breakpoint.
         Left estimate is found using Algorithm~\ref{alg:local_search} with parameters $p_A = 3.825$, $p_B = 3.83$, $n = 3$ and $maxiter = 20$.
         Right estimate is found analogically.
@@ -647,9 +647,9 @@ However, the user can always zoom in to the breakpoint if needed and then the co
     \includegraphics[width=0.8\textwidth]{DDS/Figures/logistic_map_coloring_example.png}
     \caption{
         \textcolor{darkred}{
-        Colorization of a single breakpoint of $\mathbb{L}_{r}$ for $r \in I := [ 3.6263, 3.6267 ]$.
+        Colorization of a single breakpoint of $\mathcal{L}_{r}$ for $r \in I := [ 3.6263, 3.6267 ]$.
         Algorithm~\ref{alg:optimal_bound} was used to specify the colorization bounds.
-        The bifurcation diagram consists of projections $T_{900}^{1000}(\mathbb{L}_{r}, 0.5)$ for $r \in I$.
+        The bifurcation diagram consists of projections $T_{900}^{1000}(\mathcal{L}_{r}, 0.5)$ for $r \in I$.
         }
     }
     \label{fig:coloring_example}
@@ -680,8 +680,8 @@ An example of the complete algorithm is shown in Figure~\ref{fig:complete_colori
     \includegraphics[width=0.9\textwidth]{DDS/Figures/complete_colorization.png}
     \caption{
         \textcolor{darkred}{
-        Full Colorization of $\mathbb{L}_{r}$ for $r \in [ 3.62, 3.65 ]$.
-        The bifurcation diagram consists of projections of $T_{900}^{1000}(\mathbb{L}_{r}, 0.5)$.
+        Full Colorization of $\mathcal{L}_{r}$ for $r \in [ 3.62, 3.65 ]$.
+        The bifurcation diagram consists of projections of $T_{900}^{1000}(\mathcal{L}_{r}, 0.5)$.
         Colorful lines: areas near the detected breakpoints (up to period $20$).
         }
     }

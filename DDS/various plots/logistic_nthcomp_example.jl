@@ -33,12 +33,12 @@ begin
     lin5 = lines!(ax2, x, funcs[5].(x, p), color=PURPLE, label=L"$n=4$", linewidth=LINEWIDTH)
 
     ax.xlabel = L"$x$"
-    ax.ylabel = L"$\mathbb{L}_{%$(p[1])}^{n}(x)$"
+    ax.ylabel = L"$\mathcal{L}_{%$(p[1])}^{n}(x)$"
     ax.xlabelsize = LATEX_FONT_SIZE
     ax.ylabelsize = LATEX_FONT_SIZE
 
     ax2.xlabel = L"$x$"
-    ax2.ylabel = L"$\mathbb{L}_{%$(p[1])}^{n}(x)$"
+    ax2.ylabel = L"$\mathcal{L}_{%$(p[1])}^{n}(x)$"
     ax2.xlabelsize = LATEX_FONT_SIZE
     ax2.ylabelsize = LATEX_FONT_SIZE
 

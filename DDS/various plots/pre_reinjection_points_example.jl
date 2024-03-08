@@ -38,7 +38,7 @@ begin
     scatter!(ax, [(0, min)], color=GREEN, markersize=POINT_SIZE+8)
 
     ax.xlabel = L"$x$"
-    ax.ylabel = L"$\mathbb{L}_{%$(p[1])}^{%$(n_order)}(x)$"
+    ax.ylabel = L"$\mathcal{L}_{%$(p[1])}^{%$(n_order)}(x)$"
     ax.xlabelsize = LATEX_FONT_SIZE
     ax.ylabelsize = LATEX_FONT_SIZE
     ax.xticks = ax.yticks = round.(LinRange(0, 1, 6) .- xstar, digits=2)
@@ -68,7 +68,7 @@ begin
     scatter!(ax, [(0, min)], color=GREEN, markersize=POINT_SIZE+8)
 
     ax.xlabel = L"$x$"
-    ax.ylabel = L"$\mathbb{L}_{%$(p[1])}^{%$(n_order)}(x)$"
+    ax.ylabel = L"$\mathcal{L}_{%$(p[1])}^{%$(n_order)}(x)$"
     ax.xlabelsize = LATEX_FONT_SIZE
     ax.ylabelsize = LATEX_FONT_SIZE
     ax.limits = (-c-step, c+step, nothing, nothing)

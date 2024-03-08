@@ -36,7 +36,7 @@ begin
         dot_size=POINT_SIZE,
         # title = "Cobweb diagram of $total_n iterations of logistic map with r=$(p[1]) and x0=$(x0)"
     )
-    ax.ylabel = L"\mathbb{L}^{%$(n_order)}_{%$(p[1])}(x)"
+    ax.ylabel = L"\mathcal{L}^{%$(n_order)}_{%$(p[1])}(x)"
     ax.xlabelsize = LATEX_FONT_SIZE
     ax.ylabelsize = LATEX_FONT_SIZE
     ax.yticks = YTICKS
@@ -79,7 +79,7 @@ begin
         dot_size=POINT_SIZE,
         # title = "Cobweb diagram of $total_n iterations of logistic map with r=$(p[1]) and x0=$(x0)"
     )
-    ax.ylabel = L"\mathbb{L}^{%$(n_order)}_{%$(p[1])}(x)"
+    ax.ylabel = L"\mathcal{L}^{%$(n_order)}_{%$(p[1])}(x)"
     ax.xlabelsize = LATEX_FONT_SIZE
     ax.ylabelsize = LATEX_FONT_SIZE
     ax.yticks = YTICKS
