@@ -3,7 +3,7 @@ using DDS
 begin # logistic map
     x0 = 0.5
     p = [3.85]
-    p_range = LinRange(-2,4, 8000)
+    p_range = LinRange(0,4, 8000)
     DDS.bifurcation_diagram(DDS.logistic, x0, p, 1, p_range, 1000, 100)
 end
 
