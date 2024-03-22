@@ -1,4 +1,5 @@
 \chapter{Intermittency Detection}
+\label{chapter:intdetection}
 Section \ref{sec:ambiguous_bif_diag} of the previous chapter introduced the problem of ambiguity of the bifurcation diagram.
 This chapter introduces an algorithm that aims to detect the ambiguity.
 The algorithm consists of 3 core parts.
@@ -19,6 +20,7 @@ Each of these parts are described in the following sections.
 The last section of this chapter combines all the parts together.
 
 \section{Global Search}
+\label{sec:globsearch}
 The initial phase of the algorithm aims to find approximate parameter intervals during which type-I intermittency occurs.
 More specifically, parameter intervals that contain a breakpoint are identified.
 \par
@@ -50,12 +52,13 @@ That implies that point $x$ is eventually periodic (or periodic) of period $i$.
 Simple check presented in the last paragraph is not precise in areas with intermittency.
 The first $m$ iterations could end up in the laminar phase, which might be deemed periodic.
 It also fails when the system is eventually periodic for some $n > m$, e.g. higher than the parameter $m$.
-Regardless of its flaws, this simple check seems to be good enough for the naive search through the parameter space.
+\textcolor{darkred}{Regardless of its flaws, this naive approach seems to be good enough to search quickly through the parameter space.}
 It is much quicker than finding all fixed points for each parameter, and it is precise enough.
-The pseudocode for the naive global search is presented in Algorithm~\ref{alg:naive_global_search}.
+\textcolor{darkred}{This approach shall be called Naive Global Search (NGS)}.
+The pseudocode for the NGS is presented in Algorithm~\ref{alg:naive_global_search}.
 
 \begin{algorithm}[!h]
-    \caption{Naive global search}
+    \caption{Naive Global Search}
     \label{alg:naive_global_search}
     \begin{algorithmic}[1]
         \Statex $f \gets$ map
@@ -84,16 +87,16 @@ This algorithm is able to approximate the period of a system for each parameter 
 If the algorithm does not find any periodicity for some parameter $p$, then it is assumed that the system is chaotic for this parameter.
 The goal is to look for breakpoints, e.g. regions where there is a shift from chaotic (non-periodic) behavior to periodic one.
 To do that it is needed to use the results of the previous algorithm and identify places where two neighboring parameters change from no period to some period $n$.
-As noted previously, the Naive global search is not very precise. For that reason, the verification of the parameters near the identified breakpoint is carried out with an algorithm for the detection of periodic orbits.
+As noted previously, the NGS is not very precise. For that reason, the verification of the parameters near the identified breakpoint is carried out with an algorithm for the detection of periodic orbits.
 \par
 There are several efficient algorithms for the detection of unstable periodic orbits (UPOs).
 These algorithms are able to identify all points $x^{*}$ for which $f(x^{*})^{n}=x^{*}$ for any $n$.
-Modern algorithms include the Schmelcher-Diakonos algorithm~\cite{Schmelcher1997}, Davidchack-Lai algorithm~\cite{Davidchack1999, Davidchack2001, Klebanoff2001, Crofts2007} and the Bu-Wang-Jiang algorithm~\cite{Bu2004}.
-An example of the Davidchack-Lai algorithm is shown in Figure~\ref{fig:upo_search_example}.
+Modern algorithms include the Schmelcher-Diakonos (SD) algorithm~\cite{Schmelcher1997,Pingel2000, Pingel2001}, Davidchack-Lai (DL) algorithm~\cite{Davidchack1999, Davidchack2001, Klebanoff2001}, Crofts-Davidchack~\cite{Crofts2005,Crofts2007,Crofts2008,Crofts20090901} and the Bu-Wang-Jiang (BWJ) algorithm~\cite{Bu2004}.
+An example of the DL algorithm is shown in Figure~\ref{fig:upo_search_example}.
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=1.0\textwidth]{Figures/upo_search_example.png}
+    \includegraphics[width=0.95\textwidth]{Figures/upo_search_example.png}
     \caption{
         \textcolor{darkred}{
         Detection of the fixed point of $\mathcal{L}_{r}^{6}$ for $r = 3.7$ using the DL algorithm.
@@ -106,11 +109,11 @@ An example of the Davidchack-Lai algorithm is shown in Figure~\ref{fig:upo_searc
 It is worth mentioning that finding fixed points can also be achieved using standard methods.
 For example, the Newton-Raphson algorithm can be used to find the roots of $g(x) = f(x)^{n} - x$.
 However, for high $n$ it becomes difficult to find these roots, since there are too many of them and the chance of converging to a stable fixed point decreases.
-Comparison of basins of convergence of the Newton-Raphson method, the Schmelcher-Diakonos algorithm, and the Davidchack-Lai algorithm is given in~\cite{Davidchack1999}.
+Comparison of basins of convergence of the Newton-Raphson method, the SD algorithm, and the DL algorithm is given in~\cite{Davidchack1999}.
 Another example is to use methods from the theory of mathematical optimization.
 Minimizing the following function $J(x)= \norm{f^{p}(x)-x}^{2}$ will yield a $p$-periodic point of $f$~\cite{Fuh2009}.
 \par
-We have decided to include the Bu-Wang-Jiang algorithm (BWJ) in our implementation.
+We have decided to include the BWJ in our implementation.
 It is easy to implement and works well enough.
 The pseudocode for the BWJ algorithm is presented in Algorithm~\ref{alg:bwj}.
 
@@ -145,21 +148,21 @@ BWJ is able to find all fixed points of a system but only the stable fixed point
 Logistic map is known to have at most one stable periodic orbit for each parameter $r$.
 That means that after finding $n$ stable fixed points for the system $\mathcal{L}_{r}^{n}$ the algorithm can be terminated.
 After finding a fixed point $x^{*}$ of $\mathcal{L}_{r}^{n}$, iterations of $x^{*}$ $n$ times are performed and check whether resulting points are also fixed points is conducted.
-Before the algorithm starts, a similar idea as in the Naive global search is used.
+Before the algorithm starts, a similar idea as in the NGS is used.
 The system $f^{n}(s)$ is iterated $m$ times for arbitrary initial seed $s$ and check whether the resulting point is $n$-periodic is performed.
 These optimizations make the algorithm more efficient.
 The advantage of using the BWJ algorithm to determine the periodicity of a system $f_{p}$ is that it is reliable even if $f_{p}$ exhibits intermittency for the parameter $p$.
 \par
 This section has introduced an algorithm for performing a global search for breakpoints in the parameter space.
-First, discretization of the parameter space is performed, and the Naive global search is used to approximate periodicity of each parameter.
+First, discretization of the parameter space is performed, and the NGS is used to approximate periodicity of each parameter.
 Afterwards, neighboring pairs with non-periodicity on the left side and periodicity on the right side are identified.
-It is verified that the Naive global search determined the periodicity of these pairs correctly using the BWJ algorithm, which is not prone to the effects of intermittency.
+It is verified that the NGS determined the periodicity of these pairs correctly using the BWJ algorithm, which is not prone to the effects of intermittency.
 Finally, ranges of parameters where a breakpoint is expected are identified.
 Example of the algorithm results are shown in Figure~\ref{fig:bif_diag_search_example}.
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=1.0\textwidth]{Figures/bif_diag_search_example.png}
+    \includegraphics[width=0.95\textwidth]{Figures/bif_diag_search_example.png}
     \caption{
         \textcolor{darkred}{
         Global search of $\mathcal{L}_{r}$.
@@ -175,15 +178,14 @@ The previous section introduced a so-called global search, an approach to find a
 This section introduces an algorithm to find the exact location of each breakpoint.
 These locations will be later used to color the bifurcation diagram in the proximity of the breakpoint.
 \par
-\textcolor{red}{
 This section discusses three algorithms for the local search - Naive Local Search, Nested-Layer Particle Swarm Optimization and Local Search using Global Optimization.
 The global search has already identified two boundaries $(p_A, p_B)$, period of the system with parameter $p_B$ and the fact that there is a breakpoint between $(p_A, p_B)$.
 Subsequently, a better approximation of the parameter at which the breakpoint occurs is needed.
 The three algorithms are able to approximate the parameter using the information from the global search.
 All three algorithms solve the problem, but they use different approaches.
-}
 
 \subsection{Naive Local Search}
+\label{subsec:naive_local_search}
 The fundamental idea behind Naive Local Search (NLS) is similar to the one used in global search.
 Parameter space will be searched through, and the period of the system for each parameter value will be determined.
 However, instead of performing the search for the entire parameter space, the search will be performed only in the intervals found in the global search.
@@ -195,10 +197,10 @@ An example of the NLS is shown in Figure~\ref{fig:break_point_search_example}.
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=1.0\textwidth]{Figures/break_point_search_example.png}
+    \includegraphics[width=0.95\textwidth]{Figures/break_point_search_example.png}
     \caption{
         \textcolor{darkred}{
-        Naive local search of $\mathcal{L}_{r}$ for $r \in [ 3.825, 3.83 ]$.
+        Naive Local Search of $\mathcal{L}_{r}$ for $r \in [ 3.825, 3.83 ]$.
         The bifurcation diagram consists of projections of $\mathcal{T}_{900}^{1000}(\mathcal{L}_{r}, 0.5)$.
         Red lines: Left and right estimates of the period $3$ breakpoint.
         Left estimate is found using Algorithm~\ref{alg:local_search} with parameters $p_A = 3.825$, $p_B = 3.83$, $n = 3$ and $maxiter = 20$.
@@ -216,7 +218,7 @@ It is desirable to get it as close to the breakpoint as possible.
 To do this combination of BWJ algorithm and a binary search is used.
 For each parameter $p$ in the interval $(p_{A}, p_{B})$ identified during the global search a check whether $f_{p}$ is $n$-periodic or not is performed.
 That determines whether the breakpoint is on the left or right side of the parameter.
-In the beginning the interval is halved in a way that $[p_{A}, \frac{p_{A}+p_{B}}{2}, p_{B}]$ is obtained.
+\textcolor{darkred}{In the beginning the interval is halved to obtain two intervals, $[p_{A}, \frac{p_{A}+p_{B}}{2}]$ and $[\frac{p_{A}+p_{B}}{2}, p_{B}]$.}
 If $\frac{p_{A}+p_{B}}{2}$ is $n$-periodic then it is known that the breakpoint is in the interval $[\frac{p_{A}+p_{B}}{2}, p_{B}]$.
 If $\frac{p_{A}+p_{B}}{2}$ is non-periodic then it is known that the breakpoint is in the interval $[p_{A}, \frac{p_{A}+p_{B}}{2}]$.
 Using the new interval the same process is repeated recursively.
@@ -277,9 +279,8 @@ Its movement is also influenced by its previous best position and the best posit
 Each particle has a position $pos \in \mathbb{R}^{n}$, a velocity $vel \in \mathbb{R}^{n}$, a best position $bpos \in \mathbb{R}^{n}$ and a best score $bscore \in \mathbb{R}$.
 The algorithm also tracks global best position $g_{pos}$ and global best score $g_{score}$.
 The pseudocode for the PSO algorithm is given in Algorithm~\ref{alg:pso}.
-The Algorithm~\ref{alg:pso} includes several parameters.
-These parameters are $w$, $c_{1}$ and $c_{2}$.
-They shall be set as $w=0.729$ and $c_{1}=c_{2}=1.494$~\cite{Matsushita2019}.
+In addition, PSO has the parameters $w$, $c_{1}$ and $c_{2}$.
+In Algorithm~\ref{alg:pso} they shall be set as $w=0.729$ and $c_{1}=c_{2}=1.494$~\cite{Matsushita2019}.
 
 \begin{algorithm}[!h]
     \caption{Particle Swarm Optimization (PSO)}
@@ -329,45 +330,33 @@ They shall be set as $w=0.729$ and $c_{1}=c_{2}=1.494$~\cite{Matsushita2019}.
 The next step is to combine two PSOs.
 One of them will be looking for a parameter $p_b$ at which saddle-node bifurcation occurs.
 The other one will be looking for periodic point $x_b$ corresponding to $p_b$.
-Each PSO requites a function that is to be minimized.
+Each PSO requires a function that is to be minimized.
 Its worth noticing that the algorithm works for dynamical systems of arbitrary dimensions.
 For that reason the minimization functions are presented in a general form.
 \par
 Let $(\mathbb{R}^{m}, f)$ be a DDS.
 Search for a periodic point $x_0$ for an arbitrary parameter $p$ is performed.
-After selecting parameter $p$, a search for a periodic point $x_0$ is performed by minimizing the function $F$ from Equation~\eqref{eq:minimize_x}.
+After selecting parameter $p$, a search for a periodic point $x_0$ is performed by minimizing the function $F_{loss}(x_0) = \norm{f^{n}_{p}(x_0)-x_0}$.
 If $x_0$ is a fixed point of $f^{n}_{p}$ then $x_0$ is an $n$-periodic point of $f$.
 It is a fixed point in case $f^{n}_{p}(x_0)-x_0 = 0$.
-Hence, minimizing the $F$ brings us closer to the $n$-periodic point.
-PSO can be used to search for optimal parameter $x_0$ by minimizing $F$.
-
-\begin{equation}
-\label{eq:minimize_x}
-    F(x_0) = \norm{f^{n}_{p}(x_0)-x_0}
-\end{equation}
-
+Hence, minimizing the $F_{loss}$ brings us closer to the $n$-periodic point.
+PSO can be used to search for an optimal parameter $x_0$ by minimizing $F_{loss}$.
 \par
-Let $(\mathbb{R}^{m}, f)$ be a DDS.
 A search for parameter $p_b$ at which saddle-node bifurcation occurs is performed.
-Saddle-node bifurcation occurs at parameter $p$ when the characteristic equation~\ref{eq:characteristic_eq} is equal to $0$, $x_0$ is $n$-periodic point and parameter $\mu = 1$.
-% Aditionally period-doubling bifurcation occurs when the when the characteristic equation~\ref{eq:characteristic_eq} is equal to $0$ and parameter $\mu = -1$.
-
-\begin{equation}
-\label{eq:characteristic_eq}
-        \text{det}(Df^{n}_{p}(x_0)-\mu I)
-\end{equation}
-Hence minimize function $G_{mock}(p_0) = |\text{det}(Df^{n}_{p_0}(x_0)-\mu I)|$ for different parameters $p$ would search for saddle-node bifurcation $p_b$.
-However, in order to evaluate $G_{mock}$ it is needed to know $x_0$ which is currently unknown.
-Thus, a PSO can be used for minimizing~\ref{eq:minimize_x} to find $x_0$ and use $p_0$ as a system parameter that was described in the previous paragraph.
-It is important to be sure that found point $x_0$ is $n$-periodic point and thus $G_{mock}$ is only evaluated if PSO converged correctly to $x_0$.
-Updated function $G_{mock}$ is presented in Equation~\eqref{eq:minimize_p} and is now called $G$.
-Thus minimizing the function $G$ from Equation~\eqref{eq:minimize_p} by PSO finds optimal parameter $p_b$.
+Saddle-node bifurcation occurs at parameter $p$ when the characteristic equation $G_{loss}(p) = \text{det}(Df^{n}_{p}(x_0)-\mu I)$ is equal to $0$, $x_0$ is $n$-periodic point and parameter $\mu = 1$.
+\par
+Hence minimization of $G_{loss}(p) = |\text{det}(Df^{n}_{p}(x_0)-\mu I)|$ for different parameters $p$ would yield saddle-node bifurcation parameter $p_b$.
+However, in order to evaluate $G_{loss}$ it is needed to know $x_0$ which is currently unknown.
+Thus, a PSO can be used for minimizing $F_{loss}(x_{0})$ to find $x_0$ and use $p_0$ as a system parameter that was described in the previous paragraph.
+It is important to be sure that found point $x_0$ is $n$-periodic point and thus $G_{loss}$ is only evaluated if PSO converged correctly to $x_0$.
+Updated function $G_{loss}$ is presented in Equation~\eqref{eq:minimize_p} and is now called $H_{loss}$.
+Thus minimizing the function $H_{loss}$ from Equation~\eqref{eq:minimize_p} by PSO finds optimal parameter $p_b$.
 
 \begin{equation}
 \label{eq:minimize_p}
-    G(p) =
+    H_{loss}(p) =
     \begin{cases}
-        |\text{det}(Df^{n}_{p}(x_0)-\mu I)| & \text{if } F(x_0) < C_{pp}, \\
+        |\text{det}(Df^{n}_{p}(x_0)-\mu I)| & \text{if } F_{loss}(x_0) < C_{pp}, \\
         \infty & \rm{otherwise}
     \end{cases}
 \end{equation}
@@ -375,11 +364,11 @@ Thus minimizing the function $G$ from Equation~\eqref{eq:minimize_p} by PSO find
 \par
 The previous paragraphs described how to use the two types of PSOs.
 The main PSO looks for parameter $p_b$ at which saddle-node bifurcation occurs.
-It does so by minimizing function $G$ from~\ref{eq:minimize_p}.
-During every evaluation of $G$ at parameter $p_0$ it is needed to find $x_0$ which is $n$-periodic point of $f^{n}_{p_0}$.
-That can be achieved by using the second nested PSO which minimizes function $F$ from~\ref{eq:minimize_x} by using $p_0$ as parameter in $F$.
+It does so by minimizing function $H_{loss}$ from~\eqref{eq:minimize_p}.
+During every evaluation of $H_{loss}$ at parameter $p_0$ it is needed to find $x_0$ which is $n$-periodic point of $f^{n}_{p_0}$.
+That can be achieved by using the second nested PSO which minimizes function $F_{loss}$ by using $p_0$ as parameter in $F_{loss}$.
 This nesting of PSOs is the reason why this algorithm is called Nested-Layer Particle Swarm Optimization.
-Period $n$ is the same in both functions $F$ and $G$.
+Period $n$ is the same in both functions $F_{loss}$ and $H_{loss}$.
 It corresponds to the period of the system at the saddle-node bifurcation.
 Fortunately the parameter $n$ is known from the global search.
 Parameter range $(p_A, p_B)$ is also known from the global search and is used in the top-level PSO as search-space range.
@@ -394,22 +383,16 @@ In general NLPSO is much better algorithm than NLS.
 Nevertheless, it is also harder to implement and understand.
 
 \subsection{Local Search using Global Optimization}
-\textcolor{red}{
 The previous subsection introduced the NLPSO algorithm for finding saddle-node bifurcations.
 It achieves its goal by formulating the problem as an optimization problem and by nesting two optimization algorithms into each other.
 However, there exists another approach which also uses global optimization approach.
 This approach shall be called Local Search using Global Optimization (LSGO).
-}
 \par
-\textcolor{red}{
 The LSGO approach formulates the saddle-node bifurcation detection as an optimization problem.
 However, it uses different formulation that the NLPSO.
 As mentioned earlier, detecting saddle-node bifurcations helps to find the regions exhibiting the type-I intermittency.
-}
 \par
-\textcolor{red}{
 The LSGO uses the following formulation:
-}
 \begin{align*} 
 x_0 &= f_{p}^{n}(x_0)\\
 x_1 &= f_{p}^{n}(x_1)\\
@@ -417,11 +400,9 @@ x_1 &= f_{p}^{n}(x_1)\\
 x_n &= f_{p}^{n}(x_n)\\
 \end{align*}
 
-\textcolor{red}{
 In the presented formulation $x_0$ is an $n$-periodic point of $f_{p}$.
 Hence, there are $n$ equations of the form $x_i = f_{p}^{n}(x_i)$ which hold.
 These equations can further be formulated to depend only on the parameter $p$ and point $x_0$.
-}
 
 \begin{align*} 
 f_{p}^{0}(x_0) &= f_{p}^{n}(f_{p}^{0}(x_0)) \\
@@ -430,10 +411,8 @@ f_{p}^{1}(x_0) &= f_{p}^{n}(f_{p}^{1}(x_0)) \\
 f_{p}^{n}(x_0) &= f_{p}^{n}(f_{p}^{n}(x_0)) \\
 \end{align*}
 
-\textcolor{red}{
-Furthermore, if $p$ is a saddle-node bifurcation parameter then for all $\{ x_{i}: i \in [1, n] \}$ it holds $(f_{p}^{n})'(x_i) = 1$. (In one dimensional case.)
+Furthermore, if $p$ is a saddle-node bifurcation parameter then for all $\{ x_{i}: i \in [1, n] \}$ it holds $(f_{p}^{n})'(x_i) = 1$, in one dimensional case.
 Thus, these $n$ equations hold:
-}
 
 \begin{align*} 
 (f_{p}^{n})'(f_{p}^{0}(x_0)) &= 1 \\
@@ -442,12 +421,12 @@ Thus, these $n$ equations hold:
 (f_{p}^{n})'(f_{p}^{n}(x_0)) &= 1 \\
 \end{align*}
 
-\textcolor{red}{
 Combining all these equations yields a system of $2n$ equations.
 Putting all terms on one side results in:
-}
 
-\begin{align*} 
+\begin{equation}
+\label{eq:full_system}
+\begin{aligned} 
 f_{p}^{n}(f_{p}^{0}(x_0)) - f_{p}^{0}(x_0) &= 0 \\
 f_{p}^{n}(f_{p}^{1}(x_0)) - f_{p}^{1}(x_0) &= 0 \\
 \vdots \\
@@ -456,50 +435,35 @@ f_{p}^{n}(f_{p}^{n}(x_0)) - f_{p}^{n}(x_0) &= 0 \\
 (f_{p}^{n})'(f_{p}^{1}(x_0)) - 1 &= 0 \\
 \vdots \\
 (f_{p}^{n})'(f_{p}^{n}(x_0)) - 1 &= 0 \\
-\end{align*}
+\end{aligned}
+\end{equation}
 
-\textcolor{red}{
-Finding analytical solution to the system of equations would yield $p$ at which the saddle-node bifurcation occurs.
+Finding analytical solution to the system of equations~\eqref{eq:full_system} would yield $p$ at which the saddle-node bifurcation occurs.
 Additionally, $x_0$ would be found as well and could be used to retrieve the whole periodic orbit.
 However, finding analytical solution might not be possible and feasible.
 Using tools from theory of optimization might be a better approach.
-}
 \par
-\textcolor{red}{
 Let's define a function $H: \mathbb{R}^{2} \rightarrow \mathbb{R}$ as follows:
-}
 
 \begin{multline*} 
 H(p, x_0) = (f_{p}^{n}(f_{p}^{0}(x_0)) - f_{p}^{0}(x_0))^2 + \dots + (f_{p}^{n}(f_{p}^{n}(x_0)) - f_{p}^{n}(x_0))^2 + \\
     + ((f_{p}^{n})'(f_{p}^{0}(x_0)) -1)^2 + \dots + ((f_{p}^{n})'(f_{p}^{n}(x_0)) -1)^2
 \end{multline*}
 
-\textcolor{red}{
 Function $H$ has global minimum of $0$ at point $(p, x_0) \in \mathbb{R}^{2}$.
 By minimizing this function, such point can be found.
 By setting tolerance criterion for the minimization algorithm low enough, it can be decided whether $p$ is indeed a parameter of saddle-node bifurcation or not.
-}
 \par
-\textcolor{red}{
 Note that the search space might not be the whole $\mathbb{R}^{2}$.
 For instance in the case of the Logistic map the whole search space is $[0, 4] \times [0, 1]$ since $x \in [0,1]$ and $p \in [0,4]$.
 However, the search space can be reduced even further.
 The global search has already identified the intervals $[p_A, p_B]$ in the parameter space where the saddle-node bifurcation occurs.
 Hence, the search space can be reduced to $[p_A, p_B] \times [0, 1]$.
 If the optimization converges with enough precision, then it can be supposed that the parameter at which the breakpoint occurs has been found.
-}
 \par
-\textcolor{red}{
 Furthermore, note that different types of optimization algorithms can be used.
 For example, the Particle Swarm Optimization (PSO) algorithm described earlier can be used.
 In our implementation we used the Evolutionary Centers Algorithm~\cite{MejiadeDios20190913} (ECA)  which has proven to be the most effective.
-}
-\par
-\textcolor{red}{
-This subsection introduced another approach for the Local search.
-This approach formulated the problem as an optimization problem.
-Subsequently, it used global optimization algorithms to find the parameter at which the saddle-node bifurcation occurs.
-}
 
 % \section{UPO detection}
 % Our goal is to ultimately find regions in the bifurcation diagram where intermittency type-I occurs.
@@ -551,50 +515,38 @@ Subsequently, it used global optimization algorithms to find the parameter at wh
 % We use efficient binary search tree structure which makes the algorithm efficient enough for our use case.
 
 \section{Coloring}
-\textcolor{red}{
 The goal of this phase is to color the neighborhood of the breakpoint to warn about its ambiguity.
 Parameters at which the breakpoint occurs were found in the previous steps.
 Theory of type-I intermittency is used to color the neighborhood of the breakpoint.
-}
 
 \subsection{Description of the algorithm}
-\textcolor{red}{
 The local search finds parameters of the parameter space at which the breakpoint occurs.
 Let $p_b$ be one of them.
 It is known that parameters to the left side $p_b$ in its proximity exhibit intermittency.
 Nevertheless, there is a need to quantify how far from $p_b$ is intermittency still occurring.
 Additionally, it is needed to measure how prominent the intermittency is for some $p$ near $p_b$.
-}
 \par
-\textcolor{red}{
 A useful indicator about the intermittent behavior is average laminar length $l_{avg}$ described in Section~\ref{sec:type-I intermittency}.
 The characteristic relation $l_{avg} \varpropto 1 / \sqrt{\varepsilon}$ can be used to estimate the average laminar length.
 Characteristic relation is dependent on the local map around fixed points associated with saddle-node bifurcation.
 Fortunately, these fixed point have been found in the local search.
 Hence, by calculating $\varepsilon$ for each stable fixed point of $f_{p_b}$, $l_{avg}$ can be estimated for laminar region around each fixed point.
 Taking their average yields an estimation of the average laminar length for $p_b$.
-}
 \par
-\textcolor{red}{
 Depending on the parameter $p$ the laminar phases have various lengths.
 Far from to the left of $p_b$ the laminar phases are about $50$ iterations long.
 Very close to the left of $p_b$ the length of the laminar phase can get arbitrary long.
 The closer the parameter $p$ gets to $p_b$ the longer the laminar phase gets.
-}
 \par
-\textcolor{red}{
 To colorize the diagram it is needed to determine the average laminar length for the parameters $p$ to the left of $p_b$ and to compare them.
 However, the average laminar lengths can get arbitrary large.
 It is convenient to color only parameters $p$ that have average laminar lengths between $L$ and $U$. 
 $L$ denotes the lower bound and $U$ denotes the upper bound.
 For example $L$ can be set to $100$ and $U$ to $1000$.
 The next step is to find parameters $p_L$ and $p_U$ such that parameters $p$ between $p_L$ and $p_U$ have $l_{avg}$ from range $[ L, U ]$.
-}
 \par
-\textcolor{red}{
 The idea behind an algorithm to find $p_L$ and $p_U$ is to step to the left from $p_b$ with incrementally smaller steps.
-The algorithm is illustrated in Algorithm~\ref{alg:optimal_bound}
-}
+The algorithm is illustrated in Algorithm~\ref{alg:optimal_bound}.
 
 \begin{algorithm}[!h]
     \caption{Optimal bound search}
@@ -621,30 +573,24 @@ The algorithm is illustrated in Algorithm~\ref{alg:optimal_bound}
     \end{algorithmic}
 \end{algorithm}
 
-\textcolor{red}{
 The Algorithm~\ref{alg:optimal_bound} can be used for finding both $p_L$ and $p_U$.
 The algorithm can be started with $p = p_b$, $s = 0.1$, $i_{m} = 200$, $i_{c} = 0$, $t = 10$.
 For finding $p_L$, initial bound estimate $B = 100$.
 For finding $p_U$, initial bound estimate $B = 1000$.
 This way both $p_L$ and $p_U$ is obtained.
-}
 \par
-\textcolor{red}{
 To finish the coloring procedure, bifurcation diagram is constructed.
 A color range is defined for numbers in range $[ l_{avg}$ for $p_L, l_{avg}$ for $p_U ]$.
 The trajectory projections for parameters $p \in [ p_L, p_U ]$ are colored using this color range.
 The same coloring procedure is repeated for all breakpoint parameters found in the local search.
-}
 \par
-\textcolor{red}{
 The result of the coloring algorithm for the Logistic map is shown in Figure~\ref{fig:coloring_example}.
 Note that when the parameter space is large, the coloring of individual breakpoint is not very useful.
 However, the user can always zoom in to the breakpoint if needed and then the coloring becomes useful.
-}
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.8\textwidth]{Figures/logistic_map_coloring_example.png}
+    \includegraphics[width=0.95\textwidth]{Figures/logistic_map_coloring_example.png}
     \caption{
         \textcolor{darkred}{
         Colorization of a single breakpoint of $\mathcal{L}_{r}$ for $r \in I := [ 3.6263, 3.6267 ]$.
@@ -656,28 +602,22 @@ However, the user can always zoom in to the breakpoint if needed and then the co
 \end{figure}
 
 \section{Complete algorithm}
-\textcolor{red}{
 In the previous sections each part of the algorithm was described.
 It was also pointed out how each part of the algorithm relates to the other parts.
 For clarity, this section explains how to combine all the parts together.
-}
 \par
-\textcolor{red}{
 First, the Global search is used to identify intervals where breakpoint could occur.
 Secondly, the Local search is employed for each of the intervals to find precise parameter, periodicity and the fixed points of the breakpoint.
 Three alternatives for the Local search were introduced.
 Any one of them can be used.
 Lastly, areas next to the found breakpoint are colored using the Coloring method.
 The result is a bifurcation diagram with identified breakpoint whose left neighborhoods are colored.
-}
 \par
-\textcolor{red}{
 An example of the complete algorithm is shown in Figure~\ref{fig:complete_colorization}
-}
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.9\textwidth]{Figures/complete_colorization.png}
+    \includegraphics[width=0.95\textwidth]{Figures/complete_colorization.png}
     \caption{
         \textcolor{darkred}{
         Full Colorization of $\mathcal{L}_{r}$ for $r \in [ 3.62, 3.65 ]$.

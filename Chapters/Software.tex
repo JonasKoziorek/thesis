@@ -11,7 +11,7 @@ In the past, it was common to use Fortran or C for fast numerical simulations.
 However, these languages are low-level and require a lot of effort and skill to write even simple programs.
 Later, Matlab and Python became popular in the scientific world.
 The ease of sharing code and writing human-readable programs made them a good choice for many scientists.
-However, Matlab is proprietary software, and Python is an interpreted language which makes it slow.
+However, Matlab is proprietary software, and Python is an interpreted language which makes the computatithe computationss slow.
 \par
 Julia is a high-level programming language with a syntax similar to Matlab and Python.
 It aims to bridge the gap between dynamically typed languages like Python and statically typed languages like C.
@@ -20,14 +20,15 @@ Code written in Julia resembles mathematical abstraction because of its use of g
 Sharing code with other scientists is easy because Julia is open source, free, and has a large community. 
 The ability to access low-level details enables the user to achieve maximum performance.
 Other features include built-in package manager, meta-programming, optional typing, just-in-time compilation, and more.
-It is also suitable for parallel and distributed computing.~\cite{Bezanson2017,Bezanson20181024}
+It is also suitable for parallel and distributed computing~\cite{Bezanson2017,Bezanson20181024}.
 \par
 Thanks to its vibrant community of scientists and developers, Julia has a lot of packages for scientific computing.
 One of the notable ones is the DynamicalSystems.jl open source library.
 It provides a framework and efficient algorithms for computation with dynamical systems.
 Generic algorithms work both for discrete-time and continuous-time dynamical systems.
 The library contains algorithms for many subfields of dynamical systems theory.~\cite{Datseris2018}
-The list of some of the features is presented in the following list:
+\par
+The list of some of the features is presented in the following list~\cite{DynamicalSystems2024}:
 \begin{itemize}
     \item Delay coordinates embedding.
     \item Poincaré surface of sections.
@@ -38,7 +39,7 @@ The list of some of the features is presented in the following list:
     \item Recurrence quantification analysis.
     \item 0-1 test for chaos.
     \item and much more...
-\end{itemize} [cite the website https://juliadynamics.github.io/DynamicalSystems.jl/dev/contents/]
+\end{itemize}
 
 DynamicalSystems.jl package was not used in this thesis because better control and understanding of the algorithms was needed.
 \par
@@ -53,13 +54,11 @@ Good support for multi-threading and parallel computing is also a big advantage.
 Many of the algorithms used in this thesis are easily parallelizable.
 Julia can also run on a supercomputer~\cite{Regier2016-vq}
 
-[Add table comparing computation time between julia, python and matlab]
-
 \section{Implementation commentary}
 This section includes commentary on the source code used to generate everything in this thesis.
 \par
 All data, plots, and results included in this thesis were generated using Julia programming language.
-The whole source code is available on Github [add link] and as an attachment to this thesis.
+The whole source code is available on Github \url{https://github.com/JonasKoziorek/thesis} and as an attachment to this thesis.
 For the purposes of exploration of this thesis, I have created my own library called DDS.jl (Discrete Dynamical Systems).
 The main features include the following.
 \begin{itemize}
@@ -78,7 +77,7 @@ Local search can run in parallel by computing the left boundary estimation and t
 Local search can also run in parallel for each interval found in the global search.
 Global search can run in parallel by splitting up the parameter space.
 \par
-All plots were created using Julia plotting packages [cite makie.jl, plots.jl, pyplot.jl].
-2D Vector graphics was created using the Luxor.jl package [cite Luxor.jl].
+All plots were created using Julia plotting packages Makie.jl~\cite{Danisch2021} and Plots.jl~\cite{Christ2022}.
+Vector graphics was created using the Luxor.jl package~\cite{Luxor2024}.
 
 \endinput
