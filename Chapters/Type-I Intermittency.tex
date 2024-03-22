@@ -1,7 +1,15 @@
-\section{Type-I Intermittency}
-\label{sec:type-I intermittency}
+\chapter{Type-I Intermittency}
+\label{chap:type-I intermittency}
 
-\subsection{History}
+\textcolor{darkred}{
+This Chapter is concerned with the phenomena of intermittency, especially type-I intermittency.
+Firstly discovery and history of intermittency is mentioned.
+Then intermittency is motivated mathematically.
+Furthermore, the idea of laminar length and charasteristic relation is introduces.
+Lastly, the ambiguity of bifurcation diagram caused by intermittency is shown.
+}
+
+\section{History}
 Intermittency is one type of transition between chaos and periodicity.
 The investigation of intermittency was initiated in 1980 by Pomeau and Manneville~\cite{Pomeau1980}.
 They were trying to explain an intermittent phenomenon in the fluid dynamics of convective fluids.
@@ -13,7 +21,7 @@ Since then, the study of intermittency has grown considerably.
 Many new types of intermittent behaviors were found and investigated.
 For better understanding of intermittency, modern statistical theory has been developed~\cite{Elaskar2017}.
 
-\subsection{Mathematical Motivation}
+\section{Motivation}
 Intermittency is a behavior during which seemingly periodic phases in the trajectory of DDS are abruptly followed by chaotic bursts.
 Periodic phases are called laminar.
 Phases with chaotic bursts are called turbulent phases.
@@ -90,7 +98,7 @@ However, this seemingly periodic behavior is fake since once the point iterates 
     \label{fig:intermittent_cobweb_example}
 \end{figure}
 
-\subsection{Theory}
+\section{Laminar Phase Length}
 
 % \textcolor{red}{
 % As mentioned in the before there are several types of intermittency.
@@ -176,7 +184,7 @@ By calculating laminar length for many reinjected points and some fixed $c$ the 
 However, that is not very practical since it is not always clear how to choose $c$.
 Fortunately, this problem was solved by formulation of so-called characteristic relation of type-I intermittency.
 
-\subsubsection{Characteristic Relation}
+\section{Characteristic Relation}
 To estimate the average laminar length $l_{avg}$ based on the parameter $\varepsilon$ a characteristic relation was formulated~\cite{Elaskar2017}.
 It holds that $l_{avg} \propto 1/\sqrt{\varepsilon}$.
 This relation states that the average laminar $l_{avg}$ length is inversely proportional to the square root of the parameter $\varepsilon$.
@@ -283,7 +291,6 @@ That implies that the characteristic relation of type-I intermittency holds.
     \label{fig:characteristic_relation_fit}
 \end{figure}
 
-
 % \section{Numerical Simulation}
 % We propose that type-I intermittency occurs when there is a breakpoint in bifurcation diagram between chaotic behavior on the left and periodic behavior on the right.
 % % Such break point is illustrated in Figure~\ref{fig:complex_logistic} subplot c and d.
@@ -304,7 +311,7 @@ That implies that the characteristic relation of type-I intermittency holds.
 % When $\varepsilon = \varepsilon_{sn}$ behavior is periodic.
 % (End Of Claim)
 
-\subsection{Ambiguous Bifurcation Diagram}
+\section{Ambiguous Bifurcation Diagram}
 \label{sec:ambiguous_bif_diag}
 How does the bifurcation diagram look for an intermittent region?
 During the creation of a bifurcation diagram, some fixed number of iterations are plotted.
@@ -378,9 +385,6 @@ When creating two bifurcation diagrams with total number of iterations $0.95 c$ 
     \label{fig:ambiguous_bif_diag_example}
 \end{figure}
 
-
-
-
 This is illustrated in Figure~\ref{fig:ambiguous_bif_diag_example}.
 Figure shows that bifurcation diagrams differ significantly when the number of total iterations is the same, but the number of last iterations being plotted is different.
 \par
@@ -389,3 +393,5 @@ A question arises what do we expect from a bifurcation diagram when we create it
 An observer not knowing about intermittency could be misled.
 It would be useful to have a tool that would warn a researcher looking at the bifurcation diagram about underlying intermittency and ambiguity it is causing.
 The next chapter introduces such a tool.
+
+\endinput

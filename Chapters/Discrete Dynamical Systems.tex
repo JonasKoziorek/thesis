@@ -1,9 +1,17 @@
-\section{Discrete Dynamical Systems}
+\chapter{Discrete Dynamical Systems}
+
+\textcolor{darkred}{
+This chapter introduces the reader to the theory of discrete dynamical systems.
+Several standard definitions are provided and explained graphically or computationally.
+Two common visualization tools are described and their algorithms are provided.
+}
+
+\section{Introduction to Theory}
 
 \begin{definition}[Discrete dynamical system]
     A \emph{discrete dynamical system} (abbr. DDS) is a tuple $\left( X, f \right)$ where X is a non-empty set and $f: X \rightarrow X$ is a map~\cite{Brin20100706}.
     Set X is called a \emph{state space}.
-    The set X is \emph{ invariant} under $f$ if and only if $f(X) \subseteq X$, the set $X$ is \emph{strongly invariant} if and only if $f(X) = X$.
+    The set X is \emph{invariant} under $f$ if and only if $f(X) \subseteq X$, the set $X$ is \emph{strongly invariant} if and only if $f(X) = X$.
     If map $f$ depends on a parameter $p$, it is denoted as $f_p$.
 \end{definition}
 
@@ -83,7 +91,7 @@
 \begin{remark}
     Generating a trajectory is the most basic tool for understanding a DDS.
     Plotting the trajectory is a simple way to visualize the short-term behavior of the system.
-    The graph of a trajectory shows, for example, whether the system is periodic, chaotic, or intermittent. (Intermittency is introduced in Section~\ref{sec:type-I intermittency}.)
+    The graph of a trajectory shows, for example, whether the system is periodic, chaotic, or intermittent. (Intermittency is introduced in Chapter~\ref{chap:type-I intermittency}.)
     \par
     An example of trajectories of the Logistic map is shown in Figure~\ref{fig:trajectory_example}.
     For each trajectory, a projection onto a single line is also provided.
@@ -234,7 +242,7 @@
 
 \begin{remark}
 \textcolor{darkred}{
-Theorem~\ref{theorem:single_orbit} will be useful in Subsection~\ref{subsec:naive_local_search} when constructing an algorithm for detection of type-I intermittency.
+Theorem~\ref{theorem:single_orbit} will be useful in Chapter~\ref{chapter:intdetection} when constructing an algorithm for detection of type-I intermittency.
 }
 \end{remark}
 
@@ -314,7 +322,7 @@ Theorem~\ref{theorem:single_orbit} will be useful in Subsection~\ref{subsec:naiv
 \label{def: bif_diag} 
     Bifurcation diagram is a tool for the long-term global analysis of a DDS.
     It shows how the qualitative behavior of an arbitrary system $f_{p}(x_0)$ changes for varying parameter $p$.
-    It helps to identify stable regions, chaotic regions, and intermittent regions. (Intermittency is explained in Section~\ref{sec:type-I intermittency}.)
+    It helps to identify stable regions, chaotic regions, and intermittent regions. (Intermittency is explained in Chapter~\ref{chap:type-I intermittency}.)
     The bifurcation diagram is especially useful for identifying bifurcations.
     \par
     An example of a bifurcation diagram of $\left( [0,1], \mathcal{L}_{r} \right)$ is given in Figure~\ref{fig:bif_diag_example}.
@@ -367,3 +375,5 @@ Theorem~\ref{theorem:single_orbit} will be useful in Subsection~\ref{subsec:naiv
     An example of a bifurcation point is $r = 1+\sqrt{8} \approx 3.82842$. For this $r$, the $\mathcal{L}_{r}$ changes its behavior from seemingly chaotic to $3$-periodic. 
     Another example of a bifurcation point is $r \approx 3.446$. For this $r$, the $\mathcal{L}_{r}$ changes its behavior from $2$-periodic to $4$-periodic.
 \end{remark}
+
+\endinput

@@ -174,11 +174,11 @@ Example of the algorithm results are shown in Figure~\ref{fig:bif_diag_search_ex
 \end{figure}
 
 \section{Local Search}
-The previous section introduced a so-called global search, an approach to find approximate intervals in the parameter space where a breakpoint occurs.
+The previous section introduced a so-called Global search, an approach to find approximate intervals in the parameter space where a breakpoint occurs.
 This section introduces an algorithm to find the exact location of each breakpoint.
 These locations will be later used to color the bifurcation diagram in the proximity of the breakpoint.
 \par
-This section discusses three algorithms for the local search - Naive Local Search, Nested-Layer Particle Swarm Optimization and Local Search using Global Optimization.
+This section discusses three algorithms for the Local search - Naive Local Search, Nested-Layer Particle Swarm Optimization and Local Search using Global Optimization.
 The global search has already identified two boundaries $(p_A, p_B)$, period of the system with parameter $p_B$ and the fact that there is a breakpoint between $(p_A, p_B)$.
 Subsequently, a better approximation of the parameter at which the breakpoint occurs is needed.
 The three algorithms are able to approximate the parameter using the information from the global search.
@@ -526,7 +526,7 @@ It is known that parameters to the left side $p_b$ in its proximity exhibit inte
 Nevertheless, there is a need to quantify how far from $p_b$ is intermittency still occurring.
 Additionally, it is needed to measure how prominent the intermittency is for some $p$ near $p_b$.
 \par
-A useful indicator about the intermittent behavior is average laminar length $l_{avg}$ described in Section~\ref{sec:type-I intermittency}.
+A useful indicator about the intermittent behavior is average laminar length $l_{avg}$ described in Chapter~\ref{chap:type-I intermittency}.
 The characteristic relation $l_{avg} \varpropto 1 / \sqrt{\varepsilon}$ can be used to estimate the average laminar length.
 Characteristic relation is dependent on the local map around fixed points associated with saddle-node bifurcation.
 Fortunately, these fixed point have been found in the local search.
@@ -601,7 +601,7 @@ However, the user can always zoom in to the breakpoint if needed and then the co
     \label{fig:coloring_example}
 \end{figure}
 
-\section{Complete algorithm}
+\section{Complete Algorithm}
 In the previous sections each part of the algorithm was described.
 It was also pointed out how each part of the algorithm relates to the other parts.
 For clarity, this section explains how to combine all the parts together.
