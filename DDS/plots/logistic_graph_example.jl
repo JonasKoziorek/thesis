@@ -12,13 +12,15 @@ begin
     BIF_AX_ASPECT = 0.210
     POINT_SIZE = 15
     LINEWIDTH = 3
+    GRIDCOLOR = RGBAf(0, 0, 0, 0.20)
     width = 4
 
     fig = Figure(
         resolution = RESOLUTION,
         fontsize=FONTSIZE,
     )
-    ax = Axis(fig[1,1])
+    ax = Axis(fig[1,1], )
+    ax.xgridcolor = ax.ygridcolor = GRIDCOLOR
     x = 0:0.0001:1
     x0=0.5
     starting_x = 50

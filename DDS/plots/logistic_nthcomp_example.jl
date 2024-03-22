@@ -12,6 +12,7 @@ begin
     BIF_AX_ASPECT = 0.210
     POINT_SIZE = 15
     LINEWIDTH = 3
+    GRIDCOLOR = RGBAf(0, 0, 0, 0.20)
     width = 4
 
     fig = Figure(
@@ -19,6 +20,7 @@ begin
         fontsize=FONTSIZE,
     )
     ax = Axis(fig[1,1])
+    ax.xgridcolor = ax.ygridcolor = GRIDCOLOR
     x = 0:0.0001:1
     p = [3.8]
 
@@ -29,6 +31,7 @@ begin
     lin3 = lines!(ax, x, funcs[3].(x, p), color=GREEN, label=L"$n=2$", linewidth=LINEWIDTH)
 
     ax2 = Axis(fig[1,2])
+    ax2.xgridcolor = ax2.ygridcolor = GRIDCOLOR
     lin4 = lines!(ax2, x, funcs[4].(x, p), color=LIGHT_BLUE, label=L"$n=3$", linewidth=LINEWIDTH)
     lin5 = lines!(ax2, x, funcs[5].(x, p), color=PURPLE, label=L"$n=4$", linewidth=LINEWIDTH)
 
