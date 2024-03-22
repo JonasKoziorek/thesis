@@ -4,12 +4,6 @@ Section \ref{sec:ambiguous_bif_diag} of the previous chapter introduced the prob
 This chapter introduces an algorithm that aims to detect the ambiguity.
 The algorithm consists of 3 core parts.
 
-% \begin{description}
-% 	\item [1. Global Search] -- searching for areas where breakpoints occur
-% 	\item [2. Local Search] -- searching for precise locations of breakpoints
-% 	\item [3. Coloring] -- coloring the bifurcation diagram in proximity of breakpoints
-% \end{description}
-
 \begin{enumerate}
 	\item \textbf{Global Search} -- searching for areas where breakpoints occur.
 	\item \textbf{Local Search} -- searching for precise locations of breakpoints.
@@ -464,55 +458,6 @@ If the optimization converges with enough precision, then it can be supposed tha
 Furthermore, note that different types of optimization algorithms can be used.
 For example, the Particle Swarm Optimization (PSO) algorithm described earlier can be used.
 In our implementation we used the Evolutionary Centers Algorithm~\cite{MejiadeDios20190913} (ECA)  which has proven to be the most effective.
-
-% \section{UPO detection}
-% Our goal is to ultimately find regions in the bifurcation diagram where intermittency type-I occurs.
-% As noted in chapter~\ref{chap:intermittency_review} we suppose that intermittency type-I is present at "breakpoints" in the bifurcation diagram.
-% Such breakpoint is given for example in Figure~\ref{fig:complex_logistic}.
-% \par
-% The breakpoints are characterized by shift from chaotic to periodic behavior.
-% Periodic behavior on one side of the breakpoint in the neighborhood of it always has some fixed period $n$.
-% Hence the system has $n$ stable fixed points on one side of the breakpoint.
-% On the other side the behavior is dynamic and there are no stable fixed points.
-% If we could quickly determine whether system for chosen parameter $p$ is periodic or not we could use this knowledge to find the breakpoints.
-% The reason for that is that on one side of the breakpoint the check of periodicity would always yield infinity and on the other side it would yield period $n$.
-% We could use this knowledge to get arbitralily close to the breakpoint.
-% \par
-% To check whether a system $f_P$ is $n$ periodic we just need to determine the number of stable fixed points of system $f^{n}_P$.
-% If number of the stable fixed points is $n$ then system $f_P$ is $n$ periodic.
-% If we know that $x_0$ is a stable fixed point of $f^{n}_P$ then we know that it is $n$ periodic point.
-% The remaining $n-1$ points of the stable periodic orbit can be found by iterating $f_P(x_0)$ $(n-1)$-times.
-% However how do we reliably and algorithmically get the first periodic orbit?
-% \par
-% Finding a fixed point of $f^{n}_{P}$ is a question of finding a root of $g(x) = f^{n}_{P}(x) - x$.
-% Standard root finding algorithm such as Newton-Raphson algorithm can be used to finds roots of $g(x)$.
-% However for high $n$ it becomes difficult to find these roots since there is too many of them and a chance of converging to a stable fixed point decreases.
-% Since our algorithm requires certainty that we found complete stable periodic orbit we decided to take another approach.
-% \par
-% Other option is to find all periodic orbits and determine their stability.
-% There exist quick algorithm to determine all periodic orbits.
-% By using it we will always have certainty that we found all stable periodic orbits.
-
-% \subsection{Schmelcher-Diakonos algorithm}
-% Schmelcher and Diakonos came up with a general algorithm for detecting complete set of unstable periodic orbits.
-% The algorithm transforms the original system so that its unstable fixed points become stable.
-% Additionally their basins of attraction are long and convergence to each unstable orbit is probable.
-% However number of system transformations grow very quickly for high dimentional systems and computation becomes too long.
-% At the same time parameter $\lambda$ has to be specified correctly to ensure convergence but there is no general way of how to choose this parameter.~\cite{Schmelcher1997}
-
-% \subsection{Davidchack-Lai algorithm}
-% Davidchack and Lai extended SD algorithm so that it works as a hybrid between Newton-Raphson algorithm and SD algorithm.
-% They propose that to find UPOs of period $n$ one can use UPOs of period $n-1$ and $n+1$.
-% This technique is supposed to reduce number of iterations significantly compared to SD algorithm.~\cite{Davidchack1999}
-
-% \subsection{Our implementation}
-% DL algorithm is supposed to be superior to SD algorithm.
-% Even though there the DL algoritm is described in~\cite{Davidchack1999,Davidchack2001,Klebanoff2001} we were not able to implement it in a way that would fulfill its advertised performance.
-% Since the algorithm is over 20 years old and there are no implementations of it online we had to resort to our own version.
-% \par
-% Our version simply the DL iteration scheme but does not use previously UPOs as seeds.
-% We choose seeds uniformly from an interval as it was suggested for SD algorithm~\cite{Schmelcher1997}.
-% We use efficient binary search tree structure which makes the algorithm efficient enough for our use case.
 
 \section{Coloring}
 The goal of this phase is to color the neighborhood of the breakpoint to warn about its ambiguity.
