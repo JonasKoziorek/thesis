@@ -72,7 +72,7 @@ When $p > p_{B}$ is greater but very close to $p_{B}$ a channel forms.
     \label{fig:saddle_node_bifurcation}
 \end{figure}
 
-
+\textcolor{darkred}{
 The reason why intermittency arises is illustrated in Figure~\ref{fig:intermittent_cobweb_example}.
 When the dynamical system $f_p$ is about to undergo saddle-node or inverse saddle-node bifurcation as parameter $p$ changes, the graph of $f_p$ is getting closer to the identity function $g(x)=x$.
 Just before they touch, a small passage is formed between the two curves.
@@ -80,19 +80,24 @@ If the point $x_n$ gets injected into the narrow passage, it takes many iteratio
 The closer the curve of $f_p$ and the identity function is, the narrower the passage and the longer it gets to iterate through it.
 An illustration of the iteration through narrow passage is in Figure~\ref{fig:intermittent_cobweb_example}~(b).
 This iteration corresponds to the first laminar phase in Figure~\ref{fig:intermittent_trajectory_example}.
-While the point is traveling through a narrow passage, on trajectory it looks as if he was not moving.
-Hence, it looks periodic.
-However, this seemingly periodic behavior is fake since once the point iterates through the narrow passage, it moves chaotically once again.
+While the point is traveling through a narrow passage (Figure~\ref{fig:intermittent_cobweb_example}~(a),~(b)), the trajectory (Figure~\ref{fig:intermittent_cobweb_example}~(c)) looks stable.
+However the point is just trapped in the narrow passage for some finite number of iterations and hence looks periodic.
+Nevertheless, this seemingly periodic behavior is not real, since once the point gets out of the narrow passage, it moves chaotically once again.
+After some time, it gets reinjected back into the narrow passage and the process repeats.
+}
 
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.95\textwidth]{Figures/type_one_intermittency_example2.png}
     \caption{
         \textcolor{darkred}{
+        Subfigures (a) and (b):
         Cobweb diagram of 
         (a) $T^{472}_{38}(\mathcal{P}_{\varepsilon}^{2}, x_0)$ and
-        (b) $T^{461}_{40}(\mathcal{P}_{\varepsilon}^{2}, x_0)$ 
-        for $x_0 = 0.5$ and $\varepsilon = 4.47458$.
+        (b) $T^{461}_{40}(\mathcal{P}_{\varepsilon}^{2}, x_0)$. 
+        Subfigure (c):
+        Trajectory $T^{520}_{0}(\mathcal{P}_{\varepsilon}^{2}, x_0)$.
+        Parameters: $x_0 = 0.5$ and $\varepsilon = 4.47458$.
         }
     }
     \label{fig:intermittent_cobweb_example}

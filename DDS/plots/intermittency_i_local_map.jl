@@ -52,16 +52,17 @@ begin
     img = readpng(DDS.FIGURES_DIRECTORY * "intermittency_i_local_map.png")
     w = img.width
     h = img.height
-    # scale(0.4, 0.4)
+    scalar = 0.65
+    scale(scalar, scalar)
     placeimage(img, Point(-w/2, -h/2), 1.0)
     sethue("black")
     setline(4)
-    fontsize(26)
-    x = -265
-    y = 90
-    text(L"p < p_{B}", Point(x, y+50), halign=:center, valign=:baseline)
+    fontsize(30)
+    x = -350
+    y = 115
+    text(L"p < p_{B}", Point(x, y+60), halign=:center, valign=:baseline)
     text(L"p = p_{B}", Point(x, y), halign=:center, valign=:baseline)
-    text(L"p > p_{B}", Point(x, y-50), halign=:center, valign=:baseline)
+    text(L"p > p_{B}", Point(x, y-60), halign=:center, valign=:baseline)
 # end 800 600
 end 800 600 file_path
 

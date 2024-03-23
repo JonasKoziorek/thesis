@@ -124,7 +124,7 @@ begin
         index = findfirst(x->x==last_n, last_ns)
         ticks = LinRange(4.4745829135-Float64(eps_), 4.4745829165+Float64(eps_), 4)
         x_label = L"\varepsilon"
-        y_label = L"\mathcal{T}_{%$(total_n-last_n)}^{%$(total_n)}(\mathcal{PM}_{\varepsilon}, %$(x0))"
+        y_label = L"\mathcal{T}_{%$(total_n-last_n)}^{%$(total_n)}(\mathcal{P}_{\varepsilon}, %$(x0))"
         p = diff_scatter2(x, y, ticks, x_label, y_label, size_)
 
         file_path = DDS.FIGURES_DIRECTORY * "pomeau_manneville_bif_comparison_big{$i}.png"

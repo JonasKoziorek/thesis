@@ -50,6 +50,7 @@ It also fails when the system is eventually periodic for some $n > m$, e.g. high
 It is much quicker than finding all fixed points for each parameter, and it is precise enough.
 \textcolor{darkred}{This approach shall be called Naive Global Search (NGS)}.
 The pseudocode for the NGS is presented in Algorithm~\ref{alg:naive_global_search}.
+The result of Algorithm~\ref{alg:naive_global_search} is portrayed in Figure~\ref{fig:naive_global_search}.
 
 \begin{algorithm}[!h]
     \caption{Naive Global Search}
@@ -76,6 +77,20 @@ The pseudocode for the NGS is presented in Algorithm~\ref{alg:naive_global_searc
         \EndWhile
     \end{algorithmic}
 \end{algorithm}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Figures/naive_global_search.png}
+    \caption{
+        \textcolor{darkred}{
+        NGS of $\mathcal{L}_{r}$.
+        Grey points: bifurcation diagram constructed of trajectories $\mathcal{T}_{3500}^{4000}(\mathcal{L}_{r}, 0.5)$ for $r \in [3.55, 3.75]$.
+        Blue points: trajectories identified as periodic. 
+        Parameters of Algorithm~\ref{alg:naive_global_search}: $f = \mathcal{L}_{r}$, $p_{A} = 3.55$, $p_{B} = 3.75$, $n=5000$, $m=1800$, $o=40$ and $x_0 = 0.5$.
+        }
+    }
+    \label{fig:naive_global_search}
+\end{figure}
 
 This algorithm is able to approximate the period of a system for each parameter in the parameter space.
 If the algorithm does not find any periodicity for some parameter $p$, then it is assumed that the system is chaotic for this parameter.
