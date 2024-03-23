@@ -331,7 +331,7 @@ Theorem~\ref{theorem:single_orbit} will be useful in Chapter~\ref{chapter:intdet
         \item{A band of points. This is related to more complex phenomena such as chaos or quasi-periodicity.}
     \end{itemize}
     \par
-    Algorithmic construction of a bifurcation diagram is given in Pseudocode~\ref{bif_diag_alg}.
+    Algorithmic construction of a bifurcation diagram is given in Pseudocode~\ref{alg:bif_diag}.
 \end{remark}
 
 \begin{figure}[!h]
@@ -348,7 +348,7 @@ Theorem~\ref{theorem:single_orbit} will be useful in Chapter~\ref{chapter:intdet
 \end{figure}
 
 \begin{algorithm}
-\caption{Bifurcation Diagram Construction}\label{bif_diag_alg}
+\caption{Bifurcation Diagram Construction}\label{alg:bif_diag}
 \begin{algorithmic}[1]
 \Statex $f \gets$ map
 \Statex $x_0 \gets$ initial condition
@@ -357,7 +357,9 @@ Theorem~\ref{theorem:single_orbit} will be useful in Chapter~\ref{chapter:intdet
 \Statex $n_{last} \gets$ $n_{last}$ iterations of a trajectory will be plotted
 
 \For{parameter $p$ in $p_{range}$}
-    \State $data \leftarrow \mathcal{T}_{n_{total}-n_{last}}^{n_{total}}(f_p, x_0)$
+    \State $A \gets n_{total}$
+    \State $B \gets n_{total} - n_{last}$
+    \State $data \gets \mathcal{T}_{B}^{A}(f_p, x_0)$
     \For{$y$ in $data$}
         \State plot point $(p, y)$ onto canvas
     \EndFor

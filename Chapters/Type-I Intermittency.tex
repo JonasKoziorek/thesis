@@ -10,7 +10,7 @@ Lastly, the ambiguity of bifurcation diagram caused by intermittency is shown.
 }
 
 \section{History}
-Intermittency is one type of transition between chaos and periodicity.
+Intermittency is one type of a transition between chaos and periodicity.
 The investigation of intermittency was initiated in 1980 by Pomeau and Manneville~\cite{Pomeau1980}.
 They were trying to explain an intermittent phenomenon in the fluid dynamics of convective fluids.
 During this phenomenon, long periodic behavior was abruptly transformed to bursts of chaotic behavior as the experiment control parameter changed.
@@ -19,7 +19,7 @@ Through a numerical analysis of this system, they introduced the concept of inte
 \par
 Since then, the study of intermittency has grown considerably.
 Many new types of intermittent behaviors were found and investigated.
-For better understanding of intermittency, modern statistical theory has been developed~\cite{Elaskar2017}.
+For better understanding of intermittency, modern theory has been developed~\cite{Elaskar2017}.
 
 \section{Motivation}
 Intermittency is a behavior during which seemingly periodic phases in the trajectory of DDS are abruptly followed by chaotic bursts.
@@ -65,8 +65,8 @@ When $p > p_{B}$ is greater but very close to $p_{B}$ a channel forms.
     \includegraphics[width=0.7\textwidth]{Figures/intermittency_i_local_map.png}
     \caption{
         \textcolor{darkred}{
-        Saddle-node bifurcation of type-I intermittency local map $f(x) = p + x + x^2$ for different parameters. 
-        Bifurcation parameter: $p_B = 0$.
+        Map $f_{p}(x) = p + x + x^2$ for different parameters $p$. 
+        Parameter $p_B = 0$.
         }
     }
     \label{fig:saddle_node_bifurcation}
@@ -122,8 +122,7 @@ The laminar length is the number of iterations a point spends in the laminar reg
 For a mathematical description of laminar length, few other notions need to be explained first.
 \par
 The local map \eqref{eq:int_I_local_map} is related to the saddle-node bifurcation.
-During saddle-node bifurcation, two fixed points combine into one.
-This fixed point shall be denoted $x^{*}$.
+During saddle-node bifurcation, two fixed points combine into one fixed point, which shall be denoted $x^{*}$.
 Let $(X, f)$ be a DDS. Suppose that $f$ undergoes saddle-node bifurcation and $x^{*}$ is the mentioned fixed point.
 The pre-reinjection point $x_p$ is a point such that there exists a point $x_r = f(x_p)$ and $x_r \in I_l$ is in the laminar interval $I_l = [ x^{*}-c, x^{*}+c ]$.
 The point $x_r$ shall be called a reinjected point.
@@ -296,10 +295,10 @@ This causes the bifurcation diagram to look different depending on how many iter
 
 To illustrate this ambiguity in bifurcation diagram, one can simply create a generic example.
 Figure~\ref{fig:ambiguous_bif_diag} shows two trajectories for two distinct parameters $p_1$ and $p_2$.
-Both are close to the intermittency threshold (break point) $p_{sn}$ and it holds $p_1 < p_2 < p_{sn}$.
+Both are close to the breakpoint $p_{b}$ and it holds $p_1 < p_2 < p_{b}$.
 The trajectory for parameter $p_1$ is plotted in red in Figure~\ref{fig:ambiguous_bif_diag}.
 The trajectory for $p_2$ is blue.
-Since $p_2$ is closer to the intermittency threshold $p_{sn}$, the laminar phases of its trajectories are longer.
+Since $p_2$ is closer to the intermittency threshold $p_{b}$, the laminar phases of its trajectories are longer.
 % Parameters $p_1$ and $p_2$ can be selected arbitrarily as long as theso that the laminar phases are long enough and similar situation as in Figure~\ref{fig:ambiguous_bif_diag} occurs.
 Chaotic burst of the trajectory with a longer laminar phase occurs in the middle of two laminar phases of the trajectory with shorter laminar phases.
 In our case, the chaotic burst $b$ occurs between chaotic bursts $a$ and $c$.
@@ -344,8 +343,7 @@ When creating two bifurcation diagrams with total number of iterations $0.95 c$ 
     \label{fig:ambiguous_bif_diag_example}
 \end{figure}
 
-This is illustrated in Figure~\ref{fig:ambiguous_bif_diag_example}.
-Figure shows that bifurcation diagrams differ significantly when the number of total iterations is the same, but the number of last iterations being plotted is different.
+This is illustrated in Figure~\ref{fig:ambiguous_bif_diag_example}, which shows that bifurcation diagrams differ significantly when the number of total iterations is the same, but the number of last iterations being plotted is different.
 \par
 A question arises what do we expect from a bifurcation diagram when we create it?
  Figure~\ref{fig:ambiguous_bif_diag_example} clearly shows that the same region of the bifurcation diagram can look very different.

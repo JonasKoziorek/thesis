@@ -32,7 +32,7 @@ begin # bifurcation diagram
     display(DDS.bifurcation_diagram(henon, x0, p, p_index, p_range, total_n, last_n, x_index))
 end
 
-begin # break point
+begin # breakpoint
     total_n = 1000
     last_n = 50
 
@@ -47,7 +47,7 @@ begin # break point
     display(DDS.bifurcation_diagram(henon, x0, p, p_index, p_range, total_n, last_n, x_index))
 end
 
-begin # showing intermittency at the break point of henon map
+begin # showing intermittency at the breakpoint of henon map
     total_n = 2000
 
     x0 = [0.0, 0.0]
@@ -81,7 +81,7 @@ begin # intermittency again
     )
 end
 
-begin # showing intermittency at the break point of henon map
+begin # showing intermittency at the breakpoint of henon map
     total_n = 26000
 
     x0 = [0.0, 0.0]

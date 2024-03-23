@@ -44,7 +44,7 @@
 * invent name for this phenomena - chaos suppresion, death of chaos
 * see if you can find a way to extend periodic or intermittent subsets of timeseries by changing parameter by small values - try to extend it to being stable for 1000 iterations or longer - try to extend it to being chaotic for 1000 iterations or longer
 
-* see if you can understand the transition from intermittency to stability through examination of timeseries at the break point
+* see if you can understand the transition from intermittency to stability through examination of timeseries at the breakpoint
 * lyapunov exponent - see if the timeseries displaying intermittency exhibits chaos
 * Logistic equation for r from -2 to 4
 * read about route to chaos, period doubling
@@ -65,7 +65,7 @@
 	4. 2d models, their theory and results of numerical experiments, plots 
 	5. conclusion
 * he said I should focus on point 3. and 4.
-* I should create big fancy plot for each model which shows timeseries for different parameters, break point, intermittency near break point and difference between bifurcation diagrams in intermittent regions when changing the sample size, shifting of timeseries when moving the param etc.
+* I should create big fancy plot for each model which shows timeseries for different parameters, breakpoint, intermittency near breakpoint and difference between bifurcation diagrams in intermittent regions when changing the sample size, shifting of timeseries when moving the param etc.
 
 * next meeting on 6.11.2023
 

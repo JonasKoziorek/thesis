@@ -9,7 +9,7 @@ begin # showing intermittency
     DDS.trajectory(pomeau_manneville, x0, p, N, 1; markersize=5.0)
 end
 
-begin # showing break point in the bifurcation diagram
+begin # showing breakpoint in the bifurcation diagram
     total_n = 1000
     last_n = 50
 
@@ -19,7 +19,7 @@ begin # showing break point in the bifurcation diagram
     DDS.bifurcation_diagram(pomeau_manneville, x0, p, 1, p_range, total_n, last_n; title="Bifurcation diagram of Pomeau-manneville map\n$total_n iterations, sampling last $last_n")
 end
 
-begin # showing another break point
+begin # showing another breakpoint
     total_n = 1000
     last_n = 50
 
@@ -29,7 +29,7 @@ begin # showing another break point
     DDS.bifurcation_diagram(pomeau_manneville, x0, p, 1, p_range, total_n, last_n; title="Bifurcation diagram of Pomeau-manneville map\n$total_n iterations, sampling last $last_n")
 end
 
-begin # this is for closer look at the break point
+begin # this is for closer look at the breakpoint
     total_n = 1000
     last_n = 50
 
@@ -40,7 +40,7 @@ begin # this is for closer look at the break point
     DDS.bifurcation_diagram(pomeau_manneville, x0, p, 1, p_range, total_n, last_n; title="Bifurcation diagram of Pomeau-manneville map\n$total_n iterations, sampling last $last_n", markersize=0.5)
 end
 
-begin # showing intermittency at the break point which spans circa 1000 iters psedo stable behavior repeatedly
+begin # showing intermittency at the breakpoint which spans circa 1000 iters psedo stable behavior repeatedly
     total_n = 8500
 
     x0 = 0.5
@@ -55,7 +55,7 @@ begin # showing intermittency at the break point which spans circa 1000 iters ps
     )
 end
 
-begin # showing intermittency at the break point which spans circa 2000 iters psedo stable behavior repeatedly
+begin # showing intermittency at the breakpoint which spans circa 2000 iters psedo stable behavior repeatedly
     total_n = 13000
 
     x0 = 0.5
@@ -70,7 +70,7 @@ begin # showing intermittency at the break point which spans circa 2000 iters ps
     )
 end
 
-begin # showing intermittency at the break point which spans circa 4000 iters psedo stable behavior repeatedly
+begin # showing intermittency at the breakpoint which spans circa 4000 iters psedo stable behavior repeatedly
     total_n = 16000
 
     x0 = 0.5
@@ -85,7 +85,7 @@ begin # showing intermittency at the break point which spans circa 4000 iters ps
     )
 end
 
-begin # showing intermittency at the break point which spans circa 6000 iters psedo stable behavior repeatedly
+begin # showing intermittency at the breakpoint which spans circa 6000 iters psedo stable behavior repeatedly
     total_n = 18000
 
     x0 = 0.5
@@ -100,7 +100,7 @@ begin # showing intermittency at the break point which spans circa 6000 iters ps
     )
 end
 
-begin # showing intermittency at the break point which spans circa 10000 iters psedo stable behavior repeatedly
+begin # showing intermittency at the breakpoint which spans circa 10000 iters psedo stable behavior repeatedly
     total_n = 20000
 
     x0 = 0.5
@@ -115,7 +115,7 @@ begin # showing intermittency at the break point which spans circa 10000 iters p
     )
 end
 
-begin # showing intermittency at the break point which spans circa 15000 iters psedo stable behavior repeatedly
+begin # showing intermittency at the breakpoint which spans circa 15000 iters psedo stable behavior repeatedly
     total_n = 30000
 
     x0 = 0.5
@@ -144,7 +144,7 @@ begin # produce two plots and shows difference between sampling last 10000 and 1
 end
 
 
-begin # other type different type of intermittency at the break point near zero
+begin # other type different type of intermittency at the breakpoint near zero
     total_n = 100000
 
     x0 = 0.5
