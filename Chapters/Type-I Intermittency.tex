@@ -217,7 +217,7 @@ Fortunately, this problem was solved by formulation of so-called characteristic 
 \section{Characteristic Relation}
 To estimate the average laminar length $l_{avg}$ based on the parameter $\varepsilon$ a characteristic relation was formulated~\cite{Elaskar2017}.
 It holds that $l_{avg} \propto 1/\sqrt{\varepsilon}$.
-This relation states that the average laminar $l_{avg}$ length is inversely proportional to the square root of the parameter $\varepsilon$.
+This relation states that the average laminar length $l_{avg}$ is inversely proportional to the square root of the parameter $\varepsilon$.
 Thus, by calculating $\varepsilon$ of the local map in the vicinity of a fixed point $x^{*}$ the $l_{avg}$ can be estimated.
 \par
 To verify that the characteristic relation of type-I intermittency holds, a numerical simulation was conducted.
@@ -245,12 +245,12 @@ Hence, $\varepsilon = | \mathcal{L}_{shift}(0) |$ and $a = \mathcal{L}_{shift}''
 $\varepsilon$ and $a$ are calculated for each of the $30$ random $r$ parameters.
 Next, they are used to calculate the laminar length.
 \par
-To calculate the laminar length $l$ from \eqref{eq:laminar_length} corresponding to one $r$, reinjection point $x$, laminar interval width $c$ and parameters $\varepsilon$ and $a$ are needed.
+To calculate the laminar length $l$ from \eqref{eq:laminar_length} corresponding to one parameter $r$, reinjection point $x$, parameters $c$, $\varepsilon$ and $a$ are needed.
 The laminar interval width $c$ in the experiment was selected as $0.01, 0.03, 0.05$ and $0.07$.
 In the following experiment, $c = 0.01$.
 The same procedure can be done for the remaining $c$'s.
-$c$, $\varepsilon$ and $a$ are known.
-Next reinjection points $x$ are calculated.
+Parameters $c$, $\varepsilon$ and $a$ are known.
+Next, reinjection points $x$ are calculated.
 \par
 To calculate the reinjection points corresponding to one of the $30$ $r$'s, the following procedure is used.
 A point $x$ is randomly chosen from $[ 0-x^{*}_{1}, 1-x^{*}_{1} ]$.
@@ -258,7 +258,7 @@ Consequently, a check is conducted if the point gets reinjected into laminar int
 In other words, check if $| \mathcal{L}_{shift}(x) | < c$.
 The procedure is repeated until $N = 4000$ reinjected points are obtained.
 \par
-For each reinjected point $x$ and the laminar length $l$ is calculated using \eqref{eq:laminar_length}.
+For each reinjected point $x$, the laminar length $l$ is calculated using \eqref{eq:laminar_length}.
 Then, their average is calculated.
 \par
 The procedure is repeated for each of the $30$ $r$'s.
@@ -293,7 +293,7 @@ That implies that the characteristic relation of type-I intermittency holds.
 
     \caption{
         \textcolor{darkred}{ 
-        $x$-axis: $30$ random $r \in [ r^{*}-10^{-5}, r^{*}-10^{-13} ], r^{*} = 1 + \sqrt{8}$ selected, corresponding $\varepsilon$ are calculated.
+        $x$-axis: $30$ random $r \in [ r^{*}-10^{-5}, r^{*}-10^{-13} ], r^{*} = 1 + \sqrt{8}$, selected, corresponding $\varepsilon$ are calculated.
         $y$-axis: average $l_{avg}$ of laminar lengths (Equation~\eqref{eq:laminar_length}) for $4000$ points reinjected into laminar interval $I_{c} = [x^{*}-c, x^{*}+c], c \in \{ 0.01, 0.03, 0.05, 0.07 \}$ is calculated.
         Colorful lines: linear fit.
         Constant $s$: slope of the linear fit.
