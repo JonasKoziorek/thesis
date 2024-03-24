@@ -532,10 +532,10 @@ In our implementation we used the Evolutionary Centers Algorithm~\cite{MejiadeDi
 \section{Coloring}
 The goal of this phase is to color the neighborhood of the breakpoint to warn about its ambiguity.
 Parameters at which the breakpoint occurs were found in the previous steps.
-Theory of type-I intermittency is used to color the neighborhood of the breakpoint.
+Characteristic relation of type-I intermittency is used to color the neighborhood of the breakpoint.
 
 \subsection{Description of the algorithm}
-The local search finds parameters of the parameter space at which the breakpoint occurs.
+The local search found parameters of the parameter space at which the breakpoint occurs.
 Let $p_b$ be one of them.
 It is known that parameters to the left side $p_b$ in its proximity exhibit intermittency.
 Nevertheless, there is a need to quantify how far from $p_b$ is intermittency still occurring.
@@ -544,7 +544,7 @@ Additionally, it is needed to measure how prominent the intermittency is for som
 A useful indicator about the intermittent behavior is average laminar length $l_{avg}$ described in Chapter~\ref{chap:type-I intermittency}.
 The characteristic relation $l_{avg} \varpropto 1 / \sqrt{\varepsilon}$ can be used to estimate the average laminar length.
 Characteristic relation is dependent on the local map around fixed points associated with saddle-node bifurcation.
-Fortunately, these fixed point have been found in the local search.
+Fortunately, these fixed points have been found in the local search.
 Hence, by calculating $\varepsilon$ for each stable fixed point of $f_{p_b}$, $l_{avg}$ can be estimated for laminar region around each fixed point.
 Taking their average yields an estimation of the average laminar length for $p_b$.
 \par
@@ -597,11 +597,11 @@ This way both $p_L$ and $p_U$ is obtained.
 To finish the coloring procedure, bifurcation diagram is constructed.
 A color range is defined for numbers in range $[ l_{avg}$ for $p_L, l_{avg}$ for $p_U ]$.
 The trajectory projections for parameters $p \in [ p_L, p_U ]$ are colored using this color range.
+A trajectory projection at parameter $p$ is colored based on $l_{avg}$ corresponding to $p$.
 The same coloring procedure is repeated for all breakpoint parameters found in the local search.
 \par
-The result of the coloring algorithm for the Logistic map is shown in Figure~\ref{fig:coloring_example}.
-Note that when the parameter space is large, the coloring of individual breakpoint is not very useful.
-However, the user can always zoom in to the breakpoint if needed and then the coloring becomes useful.
+The result of the coloring algorithm for a single breakpoint of the Logistic map is shown in Figure~\ref{fig:coloring_example}.
+Note that in order to see the full range of colors, the bifurcation diagram has to be zoomed-in to the breakpoint.
 
 \begin{figure}[!h]
     \centering
@@ -610,6 +610,8 @@ However, the user can always zoom in to the breakpoint if needed and then the co
         \textcolor{darkred}{
         Colorization of a single breakpoint of $\mathcal{L}_{r}$ for $r \in I := [ 3.6263, 3.6267 ]$.
         Algorithm~\ref{alg:optimal_bound} was used to specify the colorization bounds.
+        Lower bound $L$: $200$.
+        Upper bound $U$: $1000$.
         The bifurcation diagram consists of projections $\mathcal{T}_{900}^{1000}(\mathcal{L}_{r}, 0.5)$ for $r \in I$.
         }
     }
@@ -625,10 +627,11 @@ First, the Global search is used to identify intervals where breakpoint could oc
 Secondly, the Local search is employed for each of the intervals to find precise parameter, periodicity and the fixed points of the breakpoint.
 Three alternatives for the Local search were introduced.
 Any one of them can be used.
-Lastly, areas next to the found breakpoint are colored using the Coloring method.
+Lastly, areas next to the found breakpoint are colored using the Coloring algorithm.
 The result is a bifurcation diagram with identified breakpoints whose left neighborhoods are colored.
 \par
-An example result of the complete algorithm is shown in Figure~\ref{fig:complete_colorization}
+An example result of the complete algorithm is shown in Figure~\ref{fig:complete_colorization}.
+Note that periodic windows (or equivalently breakpoints) that weren't visible at first are detected through this algorithm.
 
 \begin{figure}[!h]
     \centering
