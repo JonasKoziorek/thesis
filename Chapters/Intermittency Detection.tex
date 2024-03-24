@@ -138,7 +138,7 @@ By checking how many periodic points are stable for $f_{p_{A}}$ and $f_{p_{B}}$,
 Detecting periodic points numerically can be approached in a straightforward manner.
 An $n$-periodic point is a fixed point of the $n$-th iterate of a map.
 Hence, finding roots of $f^{n}_{p}(x)-x = 0$ yields all periodic points $x$ of $n$-th iteration of map $f_{p}$.
-Standard root-finding algorithms such as Newton-Raphson can be applied on function $g(x) = f^{n}(x)-x$ to find its roots.
+Standard root-finding algorithms such as Newton-Raphson~\cite{Haeseler1988} can be applied on function $g(x) = f^{n}(x)-x$ to find its roots.
 Newton-Raphson algorithm converges to a single root. To ensure that all roots were found, the search space can be sampled to $N$ seeds.
 Seeds can be created for example as a uniform grid of the search space.
 Detecting roots when $n$ is relatively low is successful with proper seeding, however as $n$ increases, the number of roots increases exponentially \cite{Davidchack1999}.
