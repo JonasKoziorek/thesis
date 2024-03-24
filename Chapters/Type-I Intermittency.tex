@@ -4,7 +4,7 @@
 \textcolor{darkred}{
 This Chapter is concerned with the phenomena of intermittency, especially with type-I intermittency.
 Firstly discovery and history of intermittency is mentioned.
-Then intermittency is motivated mathematically.
+Then the origion of intermittency is motivated.
 Furthermore, the idea of laminar length and charasteristic relation is introduced.
 Lastly, the ambiguity of bifurcation diagram caused by intermittency is shown.
 }
@@ -34,17 +34,15 @@ Some of them are V, X, on-off, eyelet and ring~\cite{Elaskar2022}.
 Intermittency is a behavior during which seemingly periodic phases in the trajectory of DDS are abruptly followed by chaotic bursts.
 Periodic phases are called laminar.
 Phases with chaotic bursts are called turbulent phases.
-This naming convention originated in fluid dynamics which motivated study of intermittency.~\cite{Pomeau1980}
 \par
 \textcolor{darkred}{
-To illustrate the concept of intermittency clearly, a new dynamical system is needed.
-Let $(\mathbb{R}, \mathcal{P}_{\varepsilon})$ be a DDS.
+To illustrate the concept of intermittency, a new dynamical system is needed.
+Let $([0, 1], \mathcal{P}_{\varepsilon})$ be a DDS.
 Map $\mathcal{P}_{\varepsilon}(x) = \left[ (1+\varepsilon)x+(1-\varepsilon)x^2 \right] \mod{1}$ is called the Pomeau-Manneville map~\cite{Manneville1980,Datseris2022}.
-With this map, intermittency is clearly visible in its trajectory.
-This trajectory is diplayed in Figure~\ref{fig:intermittent_trajectory_example}.
+Intermittency is clearly visible in trajectory of $\mathcal{P}_{\varepsilon}$ diplayed in Figure~\ref{fig:intermittent_trajectory_example}.
 Seemingly 2-periodic behavior which lasts for about 1000 iterations is interrupted by short chaotic bursts.
-These chaotic bursts transform into 2-periodic behavior.
-This pattern continues.
+These chaotic bursts soon transform into seemingly 2-periodic behavior.
+This pattern repeats.
 }
 
 \begin{figure}[!h]
@@ -58,17 +56,27 @@ This pattern continues.
     \label{fig:intermittent_trajectory_example}
 \end{figure}
 
-The trajectory in Figure~\ref{fig:intermittent_trajectory_example} exhibits type-I intermittency which is related to \hyperref[def:saddle_node_bif]{saddle-node bifurcation} or its inverse.
-Saddle-node bifurcation is a bifurcation in which the tangent of a graph of a map passes through the identity line as parameter changes.
+\textcolor{darkred}{
+Although there are many types of intermittency, the main focus of this thesis is on type-I intermittency~\cite{Pomeau1980,Bussac1982,DelRio2014}.
+Such type of intermittent behavior arises when a DDS $(X, f_{p})$ is about to undergo a saddle-node bifurcation.
+This type of bifurcation occurs when the tangent of the graph of $f_{p}$ at point $x^{*}$ is equivalent to the identity line.
+Thus, point $x^{*}$ is a fixed point and $f_{p}'(x^{*}) = 1$.
+As the parameter $p$ is slightly altered, point $x^{*}$ either splits into two fixed points or vanishes.
+}
 \par
-Let parameter $p_{B}$ be a bifurcation point.
-At this point, local map of the system touches the identity line in exactly one spot; in other words, the system has fixed point in the area of touching.
-For parameters $p < p_{B}$ there are two fixed points, and the curve is intersected in two places.
-For parameters $p > p_{B}$ there is no fixed point, since the curve left the identity line.
-This relation is illustrated in Figure~\ref{fig:saddle_node_bifurcation}.
-The red dot in Figure~\ref{fig:saddle_node_bifurcation} is a fixed point for the curve at the bifurcation point $p_{B}$.
-The blue dots in Figure~\ref{fig:saddle_node_bifurcation} are fixed points for the curve for the parameter $p < p_{B}$.
-When $p > p_{B}$ is greater but very close to $p_{B}$ a channel forms.
+\textcolor{darkred}{
+An illustration of saddle-node bifurcation is shown in Figure~\ref{fig:saddle_node_bifurcation}.
+A map $f_{p}(x) = p + x + x^2$ is displayed.
+For $p = 0$, there is one single fixed point (red point).
+Tangent of $f_{p}$ at the red point is $1$.
+When $p$ is slightly increased, the fixed point vanishes.
+On the other hand, when $p$ is slightly decreased, two fixed point emerge (blue points).
+Note that if $p$ is decreased by a very small value, a narrow passage is formed between $f_{p}$ and the identity line.
+Imagine that a cobweb diagram (Remark~\ref{def:cobweb}) is initited with initial condition $x_0$ close to the red point.
+In that case it would take many iterations for the point to iterate through the narrow passage.
+The narrower the passage is, the more iterations it would take.
+}
+
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/intermittency_i_local_map.png}
@@ -81,18 +89,17 @@ When $p > p_{B}$ is greater but very close to $p_{B}$ a channel forms.
     \label{fig:saddle_node_bifurcation}
 \end{figure}
 
+\par
 \textcolor{darkred}{
-The reason why intermittency arises is illustrated in Figure~\ref{fig:intermittent_cobweb_example}.
-When the dynamical system $f_p$ is about to undergo saddle-node or inverse saddle-node bifurcation as parameter $p$ changes, the graph of $f_p$ is getting closer to the identity function $g(x)=x$.
-Just before they touch, a small passage is formed between the two curves.
-If the point $x_n$ gets injected into the narrow passage, it takes many iterations for it to get out of this passage again.
-The closer the curve of $f_p$ and the identity function is, the narrower the passage and the longer it gets to iterate through it.
-An illustration of the iteration through narrow passage is in Figure~\ref{fig:intermittent_cobweb_example}~(b).
-This iteration corresponds to the first laminar phase in Figure~\ref{fig:intermittent_trajectory_example}.
-While the point is traveling through a narrow passage (Figure~\ref{fig:intermittent_cobweb_example}~(a),~(b)), the trajectory (Figure~\ref{fig:intermittent_cobweb_example}~(c)) looks stable.
-However the point is just trapped in the narrow passage for some finite number of iterations and hence looks periodic.
-Nevertheless, this seemingly periodic behavior is not real, since once the point gets out of the narrow passage, it moves chaotically once again.
-After some time, it gets reinjected back into the narrow passage and the process repeats.
+Figure~\ref{fig:intermittent_cobweb_example} illustrates the iteration through a narrow passage.
+There, the first laminar phase of Figure~\ref{fig:intermittent_trajectory_example} is displayed through the eyes of a cobweb diagram.
+The trajectory in Figure~\ref{fig:intermittent_trajectory_example} starts off with a chaotic burst but soon transforms into a stable behavior.
+The reason for that is seen in Figure~\ref{fig:intermittent_cobweb_example}(a), the point got trapped in a narrow passage formed between identity line and the graph.
+It takes many iterations for the point to iterate through the passage (Figure~\ref{fig:intermittent_cobweb_example}(b)).
+Figure~\ref{fig:intermittent_cobweb_example}(c) shows a subset of a trajectory in Figure~\ref{fig:intermittent_trajectory_example}.
+The subset corresponds to the iteration through a narrow passage.
+Once the point gets out of the narrow passage, it moves chaotically before it gets reinjected back into the narrow passage.
+The second entrance into the narrow passage corresponds to the second laminar phase of Figure~\ref{fig:intermittent_trajectory_example}.
 }
 
 \begin{figure}[!h]
@@ -112,31 +119,47 @@ After some time, it gets reinjected back into the narrow passage and the process
     \label{fig:intermittent_cobweb_example}
 \end{figure}
 
+\par
+\textcolor{darkred}{
+Intermittency can be though of as a continuous route to chaos (or from chaos).
+Intermittency type-I can be spotted in a bifurcation diagram as a breakpoint or a periodic window.
+Such periodic window can be seen in Figure~\ref{fig:bif_diag_example} at $r = 1+\sqrt{8} \approx 3.82842$.
+At this parameter, the a non-periodic behavior suddently changed to a $3$-periodic behavior.
+The process which caused this change is type-I intermittency.
+When parameter $r$ gets closer and closer to the breakpoint, laminar phases of the trajectories get longer and longer until the whole trajectory is one infinitely long laminar phase.
+}
+
+
 \section{Laminar Phase Length}
 
-For one dimensional maps, type-I intermittency is generated by a local map and a reinjection mechanism.
-The local map for type-I intermittency is formulated in a following way:
+\textcolor{darkred}{
+This section describes the notion of laminar phase length, which is the number of iterations a point spends in the narrow passage.
+This notion and especially the notion of the average laminar phase length (or average laminar length for short) will be used in the next Chapter.
+}
+\par
+\textcolor{darkred}{
+In the following text, the narrow passage from the last section shall be called \emph{laminar region} or \emph{laminar interval}.
+Region outside of the laminar region shall be called \emph{turbulent region}.
+}
+\par
+\textcolor{darkred}{
+The local shape of the graph above (or below) the laminar region determines the type of intermittency.
+The local shape is also called the \emph{local map}.
+For maps with type-I intermittency, the local map is the following:
 \begin{equation}
 \varepsilon + x + a x^2 \label{eq:int_I_local_map}
 \end{equation}
-This local map is the same for any DDS exhibiting type-I intermittency.
-The reinjection mechanism depends on the specific DDS.
-This mechanism dictates how the point is reinjected from the turbulent region to the laminar region.
-Laminar region is the narrow passage described earlier, in which the trajectory is laminar.
-The turbulent region is the region outside the laminar region.
-% The probability that a point gets mapped from the chaotic region back into the laminar region is described by the reinjection probability density function (RPD function).~\cite{Elaskar2022}
+However, a correct local map is not enough for intermittency to occur in a DDS.
+A reinjection mechanism, which reinjects the point from the turbulent region back into the laminar region, has to be present.
+This reinjection mechanism is described by the reinjection probability density function and depends on a specific DDS.
+}
 \par
-In the next chapter, the notion of laminar length and average laminar length will be needed.
-The laminar length is the number of iterations a point spends in the laminar region.
-For a mathematical description of laminar length, few other notions need to be explained first.
-\par
-The local map \eqref{eq:int_I_local_map} is related to the saddle-node bifurcation.
-During saddle-node bifurcation, two fixed points combine into one fixed point, which shall be denoted $x^{*}$.
-Let $(X, f)$ be a DDS. Suppose that $f$ undergoes saddle-node bifurcation and $x^{*}$ is the mentioned fixed point.
-The pre-reinjection point $x_p$ is a point such that there exists a point $x_r = f(x_p)$ and $x_r \in I_l$ is in the laminar interval $I_l = [ x^{*}-c, x^{*}+c ]$.
-The point $x_r$ shall be called a reinjected point.
-The width of the laminar interval $c$ is a relatively small number.
-In this case, the laminar region is considered to be an interval around $x^{*}$.
+\textcolor{darkred}{
+Let $(X, f_{p})$ be a DDS. Suppose that $f_{p}$ undergoes saddle-node bifurcation and $x^{*}$ is the corresponding single fixed point.
+Suppose that $I_l = [ x^{*}-c, x^{*}+c ]$ is the laminar interval for some small $c$.
+A \emph{pre-reinjection point} $x_p$ is a point which gets \emph{reinjected} into $I_l$, which means that there exists a point $x_r = f(x_p)$, $x_r \in I_l$.
+The point $x_r$ shall be called a \emph{reinjected point}.
+}
 \par
 The Figure~\ref{fig:pre_reinjection_example} illustrates the idea of pre-reinjection points and laminar interval $I_l$.
 Note that the curve in subfigure (b) locally resembles the local map \eqref{eq:int_I_local_map} around the point $x^{*}$.
@@ -186,6 +209,7 @@ Solving for $l$ results in:
 
 \par
 Hence for a given reinjected point $x$ and laminar interval width $c$ the laminar length $l$ can be calculated.
+Laminar length means the number of iterations the point has to make to the end of laminar interval.
 By calculating laminar length for many reinjected points and some fixed $c$ the average laminar length $l_{avg}$ can be calculated.
 However, that is not very practical since it is not always clear how to choose $c$.
 Fortunately, this problem was solved by formulation of so-called characteristic relation of type-I intermittency.
