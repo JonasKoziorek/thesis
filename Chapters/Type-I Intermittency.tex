@@ -306,12 +306,43 @@ That implies that the characteristic relation of type-I intermittency holds.
 
 \section{Ambiguous Bifurcation Diagram}
 \label{sec:ambiguous_bif_diag}
-How does the bifurcation diagram look for an intermittent region?
-During the creation of a bifurcation diagram, some fixed number of iterations are plotted.
-Based on the number of total iterations and number of last iterations being plotted, the bifurcation diagram may differ.
-When plotting a subsection of the trajectory that corresponds only to the laminar phase, the behavior during the turbulent phase is omited.
-This causes the bifurcation diagram to look different depending on how many iterations are made and how long the sample period is.
+\textcolor{darkred}{
+Bifurcation diagram (Remark~\ref{def: bif_diag}) is a common tool for scientists and researchers to study long term behavior of a DDS for varying parameters.
+However, type-I intermittency poses a problem to the use of a bifurcation diagram.
+The problem is that type-I intermittency causes the bifurcation diagram to be misleading in the proximity of a breakpoint.
+}
 \par
+\textcolor{darkred}{
+How intermittency might cause the diagram to be misleading can be illustrated as follows:
+Let $(X, f_{p})$ be a DDS.
+Suppose a bifurcation diagram of $f_{p}$ is constructed for some $x_0$, $n_{total}$, $n_{last}$ and $p_{range}$ (see Algorithm~\ref{alg:bif_diag}).
+Next, assume that for parameter $p$, $f_{p}$ is intermittent.
+The bifurcation diagram is constructed by projecting trajectories $\mathcal{T}_{n_{total}-n_{last}}^{n_{total}}(f_{p}, x_0)$.
+If the trajectory constructed for iterations $n \in [n_{total}, n_{total}-n_{last}]$ fully lies in the laminar phase, then only finite number of dots will be displayed on the diagram.
+On the other hand, if the parameter $n_{last}$ is increased, then the projected trajectory might reach the turbulent phase and the diagram will show a band of points.
+This might not be a big deal for individual parameters $p$, but this ambiguity might affect a whole range of parameters $p$ near the breakpoint.
+}
+\par
+\textcolor{darkred}{
+How a whole range of parameters might be affected can be illustrated as follows:
+Suppose that $p_{R}, p_{B}$ are some parameters near the breakpoint $p_{bif}$.
+Assume that $p_{R} \neq p_{B} \wedge p_{R} < p_{B} < p_{bif}$.
+If $p_{R}$ and $p_{B}$ are close enough to $p_{bif}$ they both have intermittent trajectories.
+Additionally, it follows that the laminar phases of $f_{p_{R}}$ are shorter than laminar phases of $f_{p_{B}}$.
+That is because the closer the parameter is to $p_{bif}$, the longer the laminar phases get.
+An example of this can be seen in Figure~\ref{fig:ambiguous_bif_diag}.
+The red trajectory (which is partially hidden behind the blue one) has shorter laminar phases than the blue trajectory.
+Notice the three letters, a, b and c, in the Figure~\ref{fig:ambiguous_bif_diag}.
+These letters correspond to an iteration $n$ at which the a specific chaotic burst occurs.
+Now, two bifurcation diagrams are created using these parameters:
+\begin{enumerate}
+    \item $n_{last} = c-(b-0.25(b-a))$
+    \item $n_{last} = c-(b-0.75(b-a))$
+\end{enumerate}
+Other than that, both 1. and 2. have the same parameters: $n_{total} = 0.95c$ and some $x_0$, $p_{range}$ and $f_{p}$.
+If such two bifurcation diagrams are constructed, they will both look very different in the proximity of $p_{bif}$.
+}
+
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.95\textwidth]{Figures/bif_diag_ambiguity_creation_sketch.png}
@@ -326,16 +357,13 @@ This causes the bifurcation diagram to look different depending on how many iter
     \label{fig:ambiguous_bif_diag}
 \end{figure}
 
-To illustrate this ambiguity in bifurcation diagram, one can simply create a generic example.
-Figure~\ref{fig:ambiguous_bif_diag} shows two trajectories for two distinct parameters $p_1$ and $p_2$.
-Both are close to the breakpoint $p_{b}$ and it holds $p_1 < p_2 < p_{b}$.
-The trajectory for parameter $p_1$ is plotted in red in Figure~\ref{fig:ambiguous_bif_diag}.
-The trajectory for $p_2$ is blue.
-Since $p_2$ is closer to the intermittency threshold $p_{b}$, the laminar phases of its trajectories are longer.
-% Parameters $p_1$ and $p_2$ can be selected arbitrarily as long as theso that the laminar phases are long enough and similar situation as in Figure~\ref{fig:ambiguous_bif_diag} occurs.
-Chaotic burst of the trajectory with a longer laminar phase occurs in the middle of two laminar phases of the trajectory with shorter laminar phases.
-In our case, the chaotic burst $b$ occurs between chaotic bursts $a$ and $c$.
-When creating two bifurcation diagrams with total number of iterations $0.95 c$ and plotting the last $c-(b-0.25(b-a))$ or $c-(b-0.75(b-a))$ iterations, two distinct bifurcation diagrams are obtained.
+\par
+\textcolor{darkred}{
+Figure~\ref{fig:ambiguous_bif_diag_example} shows an example of $4$ bifurcation diagrams of $\mathcal{P}_{\varepsilon}$.
+They are created for the same parameters except for $n_{last}$, which is different for each one of them.
+A phenomenon, which shall be called ambiguity in the bifurcation diagram, can be observed.
+Ambiguity in this context means that each bifurcation diagram looks drastically different for varying $n_{last}$.
+}
 
 \begin{figure}[!h]
     \centering
@@ -376,12 +404,11 @@ When creating two bifurcation diagrams with total number of iterations $0.95 c$ 
     \label{fig:ambiguous_bif_diag_example}
 \end{figure}
 
-This is illustrated in Figure~\ref{fig:ambiguous_bif_diag_example}, which shows that bifurcation diagrams differ significantly when the number of total iterations is the same, but the number of last iterations being plotted is different.
 \par
-A question arises what do we expect from a bifurcation diagram when we create it?
- Figure~\ref{fig:ambiguous_bif_diag_example} clearly shows that the same region of the bifurcation diagram can look very different.
-An observer not knowing about intermittency could be misled.
-It would be useful to have a tool that would warn a researcher looking at the bifurcation diagram about underlying intermittency and ambiguity it is causing.
-The next chapter introduces such a tool.
+\textcolor{darkred}{
+The ambiguity in the bifurcation diagram might be misleading to someone, who is not aware of it.
+A tool that would warn researchers about intermittency and the ambiguity it is causing might be useful.
+Such a tool will be developed in the Chapter~\ref{chapter:intdetection}.
+}
 
 \endinput
