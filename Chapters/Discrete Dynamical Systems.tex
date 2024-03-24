@@ -9,17 +9,17 @@ Two common visualization tools are described and their algorithms are provided.
 \section{Introduction to Theory}
 
 \begin{definition}[Discrete dynamical system]
-    A \emph{discrete dynamical system} (abbr. DDS) is a tuple $\left( X, f \right)$ where X is a non-empty set and $f: X \rightarrow X$ is a map~\cite{Brin20100706}.
+    A \emph{discrete dynamical system} (abbr. DDS) is a tuple $\left( X, f \right)$ where X is a non-empty set and $f: X \rightarrow X$ is a map~\emph{\cite{Brin20100706}}.
     Set X is called a \emph{state space}.
     The set X is \emph{invariant} under $f$ if and only if $f(X) \subseteq X$, the set $X$ is \emph{strongly invariant} if and only if $f(X) = X$.
     If map $f$ depends on a parameter $p$, it is denoted as $f_p$.
 \end{definition}
 
 \begin{remark}[Logistic map]
-    The dynamical system that will be used in most of the examples throughout the text is so-called Logistic map.
+    The dynamical system that will be used in most of the examples throughout the text is the so-called Logistic map.
     This map is very popular because, although it is mathematically very simple, it exhibits a wide range of complex behavior.
     The Logistic map was popularized by May~\cite{May19760610}.
-    He proposed that student should be introduced Logistic map early on in their studies to understand that simple rules can yield complex behavior.
+    He proposed that student should be introduced to Logistic map early on in their studies to understand that simple rules can yield complex behavior.
     \par
     Mathematically, Logistic map can be thought of as a DDS of the form $\left( [0, 1], \mathcal{L}_{r} \right)$ where $\mathcal{L}_{r}: [0,1] \rightarrow [0,1]$, $\mathcal{L}_{r}(x) = rx(1-x)$.
     To ensure that $x$ remains in the range $[0,1]$, the parameter $r$ is chosen from the range $r \in [0, 4]$.
@@ -56,8 +56,8 @@ Two common visualization tools are described and their algorithms are provided.
 \begin{remark}
     A graph of $\mathcal{L}_{r}$ is shown in Figure~\ref{fig:logistic_graph_example}.
     \par
-    It is sometimes useful to generate the graph of $n$-th iteration of $f$ to show its behavior.
-    Figure~\ref{fig:logistic_nthcomp_example} shows an example of the graph of $n$-th iteration of $\mathcal{L}_{3.8}$ for different $n$.
+    It is sometimes useful to generate the graph of $f^{n}$.
+    Figure~\ref{fig:logistic_nthcomp_example} shows an example of the graph of $\mathcal{L}_{3.8}^{n}$ for different $n$.
 \end{remark}
 
 \begin{figure}[!h]
@@ -82,7 +82,7 @@ Two common visualization tools are described and their algorithms are provided.
     Let $\left( X, f \right)$ be a DDS. Successive iterations of $f$ with initial condition $x_0 \in X$ form a \emph{trajectory} $\mathcal{T}(f, x_0)$ where \begin{eqnarray}
         \mathcal{T}(f, x_0) = f^0(x_0), f^1(x_0), f^2(x_0), f^3(x_0), \cdots  = x_0, x_1, x_2, x_3, \cdots
     \end{eqnarray}
-    More precisely, the \emph{trajectory} between iterates $n$ and $m$, $n \leq m$, is
+    Moreover, the \emph{trajectory} between iterates $n$ and $m$, $n \leq m$, is
     \begin{eqnarray}
         \mathcal{T}_{n}^{m}(f, x_0) = f^{n}(x_0), f^{n+1}(x_0), \cdots, f^{m-1}(x_0), f^{m}(x_0) = x_n, \cdots, x_m
     \end{eqnarray}
@@ -124,14 +124,14 @@ Two common visualization tools are described and their algorithms are provided.
 \begin{definition}[Fixed point]
 \label{def:fixed point}
     \textcolor{darkred}{
-    Let $\left( X, f \right)$ be a DDS. Point $x \in X$ is called a \emph{fixed point} of $f$ if it holds $f(x) = x$.
+    Let $\left( X, f \right)$ be a DDS. Point $x \in X$ is called a \emph{fixed point} of $f$ if and only if $f(x) = x$.
     }
 \end{definition}
 
 \begin{definition}[Stable fixed point]
 \label{def:sfp}
     \textcolor{darkred}{
-    Let $\left(\mathbb{R}, f\right)$ be a DDS, $f:\mathbb{R} \rightarrow \mathbb{R}$.
+    Let $\left(X, f\right)$ be a DDS.
     Let $f$ be differentiable on $X$. 
     A fixed point $x \in X$ for which  $|f'(x)| < 1$ is called \emph{attracting} or \emph{stable}.
     }
@@ -140,7 +140,7 @@ Two common visualization tools are described and their algorithms are provided.
 \begin{definition}[Unstable fixed point]
 \label{def:ufp}
     \textcolor{darkred}{
-    Let $\left(\mathbb{R}, f\right)$ be a DDS, $f:\mathbb{R} \rightarrow \mathbb{R}$. 
+    Let $\left(X, f\right)$ be a DDS.
     Let $f$ be differentiable on $X$. 
     A fixed point $x \in X$ for which $|f'(x)| > 1$ is called \emph{repelling} or \emph{unstable}.
     }
@@ -156,16 +156,17 @@ Two common visualization tools are described and their algorithms are provided.
     \par
     Direct evaluation of $\mathcal{L}_{r}(x)=x$ yields Fix$(\mathcal{L}_{r}) = \{ 0, (r-1)/r \}$.
     By evaluating the derivative of $\mathcal{L}_{r}$ at these points, stability of the fixed point can be determined.
-    Hence, the fixed point $0$ is attracting if $r \in (0, 1)$ and repelling if $r \in (1, 4)$.
-    The fixed point $(r-1)/r$ is attracting if $r \in (1, 3)$ and repelling if $r \in (0, 1) \cup (3, 4) $.
     \par
     \textcolor{darkred}{
+    The fixed point $0$ is attracting if $r \in (0, 1)$ and repelling if $r \in (1, 4)$.
     For parameter $r = 1$, the derivative at $x=0$ is $\mathcal{L}_{r}'(0)=1$.
     The map $\mathcal{L}_{r}$ undergoes a so-called saddle-node bifurcation (see Definition~\ref{def:bifurcation}).
-    Consequently, point $x=0$ becomes repelling and point $x=(r-1)/r$ becomes attracting.
+    Consequently, point $x=0$ becomes repelling and an attractive fixed point $x=(r-1)/r$ is created.
     }
     \par
     \textcolor{darkred}{
+    Note that the fixed point $(r-1)/r$ doesn't exist for $r \in (0, 1)$ since $(r-1)/r \notin [0, 1]$. 
+    The fixed point $(r-1)/r$ is attracting if $r \in (1, 3)$ and repelling if $r \in (3, 4) $.
     For parameter $r = 3$, the derivative at $x=(r-1)/r$ is $\mathcal{L}_{r}'((r-1)/r)=-1$.
     The map $\mathcal{L}_{r}$ undergoes a so-called period-doubling bifurcation (see Definition~\ref{def:bifurcation}).
     Consequently, point $x=(r-1)/r$ becomes repelling and $x=0$ stays repelling.
@@ -208,23 +209,23 @@ Two common visualization tools are described and their algorithms are provided.
 \end{figure}
 
 \begin{definition}[Periodic point]
-    Let $\left( X, f\right)$ be a DDS. The point $x \in X$ is called \emph{$n$-periodic} if $f^{n}(x)=x$ for any $n \in \mathbb{N}$.
+    Let $\left( X, f\right)$ be a DDS. The point $x \in X$ is called \emph{$n$-periodic} if $f^{n}(x)=x$ for $n \in \mathbb{N}$.
 \end{definition}
 
 \begin{definition}[Eventually periodic point]
     \textcolor{darkred}{
     Let $\left( X, f\right)$ be a DDS. The point $x \in X$ is called \emph{eventually $n$-periodic} if $x$ is not $n$-periodic but there exists $m>0$ such that $f^{n+i}(x) = f^{i}(x)$ for all $i \geq m$.
-    Hence, $f^{i}(x)$ is $n$-periodic for all $i \geq m$.~\cite{Devaney20211026}
+    Hence, $f^{i}(x)$ is $n$-periodic for all $i \geq m$.~\emph{\cite{Devaney20211026}}
     }
 \end{definition}
 
 \begin{definition}[Periodic orbit]
 \textcolor{darkred}{
-    Let $\left( X, f\right)$ be a DDS.
+    Let $\left( X, f_{p}\right)$ be a DDS.
     Let $x_0$ be an $n$-periodic point.
-    Then the set $\{f^{n+m}(x_0):m \in \mathbb{N}\}$ is called an \emph{$n$-periodic orbit}.
-    The set of all attracting $n$-periodic points of $\left( X, f\right)$ is called \emph{stable periodic orbit} (abbr. SPO).
-    The set of all periodic $n$-periodic points of $\left( X, f\right)$ is called \emph{unstable $n$-periodic orbit} (abbr. UPO).
+    Then the set $O:=\{f_{p}^{n+m}(x_0):m \in \mathbb{N}\}$ is called an \emph{$n$-periodic orbit}.
+    If $x_{0}$ is attracting, then the set $O$ is called \emph{stable periodic orbit} (abbr. SPO).
+    The set of all $n$-periodic points of $f_{p}$ is called \emph{unstable $n$-periodic orbit} (abbr. UPO).
 }
 \end{definition}
 
@@ -303,7 +304,7 @@ Theorem~\ref{theorem:single_orbit} will be useful in Chapter~\ref{chapter:intdet
 \begin{definition}[Bifurcation]
 \label{def:bifurcation}
     Let $\left( X, f_p \right)$ be a DDS.
-    \emph{Bifurcation} occurs when the qualitative behavior of $f_p$ changes as the parameter $p$ slightly changes.
+    A \emph{bifurcation} occurs when the qualitative behavior of $f_p$ changes as the parameter $p$ slightly changes.
 \end{definition}
 
 \begin{definition}[Bifurcation point]
@@ -372,7 +373,9 @@ Theorem~\ref{theorem:single_orbit} will be useful in Chapter~\ref{chapter:intdet
     In Figure~\ref{fig:bif_diag_example} it is visible that small change of a parameter can cause qualitatively different behavior of the DDS's trajectories.
     When the qualitative change occurs, it is said that bifurcation has occurred.
     An example of a bifurcation point is $r = 1+\sqrt{8} \approx 3.82842$. For this $r$, the $\mathcal{L}_{r}$ changes its behavior from seemingly chaotic to $3$-periodic. 
+    This type of bifurcation is called saddle-node bifurcation.
     Another example of a bifurcation point is $r \approx 3.446$. For this $r$, the $\mathcal{L}_{r}$ changes its behavior from $2$-periodic to $4$-periodic.
+    This type of bifurcation is called period-doubling bifurcation.
 \end{remark}
 
 \endinput
