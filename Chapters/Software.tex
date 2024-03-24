@@ -2,20 +2,20 @@
 \label{sec:software}
 
 This chapter discusses the software used for numerical computations in this thesis.
-An explanation of the source code used for generating everything in this thesis is also included.
+A mention of the source code used for in this thesis is also included.
 
 \section{Julia Programming Language}
 Numerical simulations play a crucial role in the field of dynamical systems.
 The analytical approach is often impossible, and numerical simulation is the only option.
 In the past, it was common to use Fortran or C for fast numerical simulations.
-However, these languages are low-level and require a lot of effort and skill to write even simple programs.
+However, these languages require a lot of effort and skill to write even simple programs.
 Later, Matlab and Python became popular in the scientific world.
 The ease of sharing code and writing human-readable programs made them a good choice for many scientists.
-However, Matlab is proprietary software, and Python is an interpreted language which makes the computatithe computationss slow.
+However, Matlab is proprietary software, and Python is an interpreted language which makes the computations slow.
 \par
 Julia is a high-level programming language with a syntax similar to Matlab and Python.
 It aims to bridge the gap between dynamically typed languages like Python and statically typed languages like C.
-The language is designed in a way that it allows you to write high-level code that is as fast as low-level code.
+The language is designed in a way that it allows you to write high-level code that is as fast as C or Fortran while being as readable as Python.
 Code written in Julia resembles mathematical abstraction because of its use of generic types and multiple dispatch. 
 Sharing code with other scientists is easy because Julia is open source, free, and has a large community. 
 The ability to access low-level details enables the user to achieve maximum performance.
@@ -24,8 +24,8 @@ It is also suitable for parallel and distributed computing~\cite{Bezanson2017,Be
 \par
 Thanks to its vibrant community of scientists and developers, Julia has a lot of packages for scientific computing.
 One of the notable ones is the DynamicalSystems.jl open source library.
-It provides a framework and efficient algorithms for computation with dynamical systems.
-Generic algorithms work both for discrete-time and continuous-time dynamical systems.
+It provides a framework and efficient algorithms for computations with dynamical systems.
+Its generic algorithms work both for discrete-time and continuous-time dynamical systems.
 The library contains algorithms for many subfields of dynamical systems theory~\cite{Datseris2018}.
 \par
 The list of some of the features is presented in the following list~\cite{DynamicalSystems2024}:
@@ -47,14 +47,14 @@ Such simulations often require many mathematical algorithms and methods.
 Support for differential equation solvers, linear algebra solvers, automatic evaluation of Jacobians, root-finding algorithms, etc. are all needed.
 The need for high-quality plotting libraries that are easy to use is also important.
 Interactive development via REPL and Jupyter notebooks is also a big advantage.
-One of the main advantages is the great support for profiling, benchmarking, and algorithm optimization.
+One of the main advantages is the great support for profiling, benchmarking, and optimization of algorithms.
 Every scientist without the skills of a computer scientist can track down bottlenecks and limit number of heap allocations.
 Good support for multi-threading and parallel computing is also a big advantage.
 % Many of the algorithms used in this thesis are easily parallelizable.
-Julia can even run on a supercomputer~\cite{Regier2016-vq}
+Julia can even run on a supercomputer~\cite{Regier2016-vq}.
 
 \section{Implementation}
-All data, plots, and results included in this thesis were generated using Julia programming language.
+All data, plots, and results included in this thesis were generated using the Julia programming language.
 The whole source code is available on Github \url{https://github.com/JonasKoziorek/thesis} and as an attachment to this thesis.
 For the purposes of exploration of this thesis, I have created my own library called DDS.jl (Discrete Dynamical Systems).
 The main features include the following.
@@ -69,10 +69,10 @@ The main features include the following.
     \item Global search, Local search and Colorization algorithms.
 \end{itemize}
 Many of the algorithms are parallelizable.
-Bifurcation diagrams can be generated in parallel by splitting the parameter space.
-Local search can run in parallel by computing the left boundary estimation and the right boundary estimation separately.
-Local search can also run in parallel for each interval found in the global search.
-Global search can run in parallel by splitting up the parameter space.
+Bifurcation diagrams were generated in parallel by splitting the parameter space.
+Local search was run in parallel by computing the left boundary estimation and the right boundary estimation separately.
+Local search was also run in parallel for each interval found in the global search.
+Global search was run in parallel by splitting up the parameter space.
 \par
 All plots were created using Julia plotting packages Makie.jl~\cite{Danisch2021} and Plots.jl~\cite{Christ2022}.
 Vector graphics was created using the Luxor.jl package~\cite{Luxor2024}.
