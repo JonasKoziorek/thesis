@@ -324,28 +324,24 @@ An example of NLS for $\mathcal{L}_{r}$ is shown in Figure~\ref{fig:break_point_
 
 
 \subsection{Nested-Layer Particle Swarm Optimization}
-This subsection describes an alternative to the NLS algorithm.
-It achieves the same goal as the NLS, but uses a different approach.
-This is done by reformulating the original problem as an optimization problem.
-\par
 The NLS introduced in the previous subsection approximates the parameter at which the breakpoint occurs.
 It is based on the idea of a binary search.
 However, the search for the breakpoint can be rephrased as a search for a parameter where saddle-node bifurcation occurs.
 Matsushita, Kurokawa, and Kousaka~\cite{Matsushita2019} introduced an approach to search for saddle-node bifurcation of a DDS.
 Their method uses the Nested-Layer Particle Swarm Optimization (NLPSO) method.
-They have previously used the same approach to detect period-doubling bifurcations of a DDS~\cite{Matsushita20170721}.
+In addition, their approach can be used for detection of other types of bifurcations~\cite{Matsushita20170721}.
 \par
 Understanding how NLPSO detection of saddle-node bifurcation works requires understanding of the Particle Swarm Optimization (PSO).
 PSO is a popular population-based evolutionary algorithm.
 It tracks several particles which represent potential solution.
-Each particle has its own position and velocity. It also tracks its previous best position and score.
+Each particle has its own position and velocity. It also tracks its previous best position and score which is evaluated by a cost function.
 Each particle moves through the search space based on its velocity and position.
 Its movement is also influenced by its previous best position and the best positions of other particles.~\cite{Matsushita2019}
 \par
 Each particle has a position $pos \in \mathbb{R}^{n}$, a velocity $vel \in \mathbb{R}^{n}$, a best position $b_{pos} \in \mathbb{R}^{n}$ and a best score $b_{score} \in \mathbb{R}$.
 The algorithm also tracks global best position $g_{pos}$ and global best score $g_{score}$.
 The pseudocode for the PSO algorithm is given in Algorithm~\ref{alg:pso}.
-Parameters in Algorithm~\ref{alg:pso} $w$, $c_{1}$ and $c_{2}$ shall be set as $w=0.729$ and $c_{1}=c_{2}=1.494$~\cite{Matsushita2019}.
+Parameters $w$, $c_{1}$ and $c_{2}$ in Algorithm~\ref{alg:pso} shall be set as $w=0.729$ and $c_{1}=c_{2}=1.494$.~\cite{Matsushita2019}
 
 \begin{algorithm}[!h]
     \caption{Particle Swarm Optimization (PSO)}
@@ -395,53 +391,49 @@ Parameters in Algorithm~\ref{alg:pso} $w$, $c_{1}$ and $c_{2}$ shall be set as $
 The next step is to combine two PSOs.
 One of them will be looking for a parameter $p_b$ at which saddle-node bifurcation occurs.
 The other one will be looking for periodic point $x_b$ corresponding to $p_b$.
-Each PSO requires a function that is to be minimized.
 Its worth noticing that the algorithm works for dynamical systems of arbitrary dimensions.
 For that reason the minimization functions are presented in a general form.
 \par
-Let $(\mathbb{R}^{m}, f)$ be a DDS.
-Search for a periodic point $x_0$ for an arbitrary parameter $p$ is performed.
-After selecting parameter $p$, a search for a periodic point $x_0$ is performed by minimizing the function $F_{loss}(x_0) = \norm{f^{n}_{p}(x_0)-x_0}$.
-If $x_0$ is a fixed point of $f^{n}_{p}$ then $x_0$ is an $n$-periodic point of $f$.
-It is a fixed point in case $f^{n}_{p}(x_0)-x_0 = 0$.
-Hence, minimizing the $F_{loss}$ brings us closer to the $n$-periodic point.
-PSO can be used to search for an optimal parameter $x_0$ by minimizing $F_{loss}$.
-\par
-A search for parameter $p_b$ at which saddle-node bifurcation occurs is performed.
-Saddle-node bifurcation occurs at parameter $p$ when the characteristic equation $G_{loss}(p) = \text{det}(Df^{n}_{p}(x_0)-\mu I)$ is equal to $0$, $x_0$ is $n$-periodic point and parameter $\mu = 1$.
-\par
-Hence, minimization of $G_{loss}(p) = |\text{det}(Df^{n}_{p}(x_0)-\mu I)|$ for different parameters $p$ would yield saddle-node bifurcation parameter $p_b$.
-However, in order to evaluate $G_{loss}$ it is needed to know $x_0$ which is currently unknown.
-Thus, a PSO can be used for minimizing $F_{loss}(x_{0})$ to find $x_0$ and use $p_0$ as a system parameter that was described in the previous paragraph.
-It is important to be sure that found point $x_0$ is $n$-periodic point and thus $G_{loss}$ is only evaluated if PSO converged correctly to $x_0$.
-Updated function $G_{loss}$ is presented in Equation~\eqref{eq:minimize_p} and is now called $H_{loss}$.
-Thus, minimizing the function $H_{loss}$ from Equation~\eqref{eq:minimize_p} by PSO finds optimal parameter $p_b$.
+\textcolor{darkred}{
+Let $(\mathbb{R}^{m}, f_{p})$ be a DDS.
+The first PSO, denoted as PSO1, is searching for a periodic point $x_0$ given some parameter $p_{1}$.
+The PSO1 does this by minimizing the function $F_{loss}(x_0) = \norm{f^{n}_{p_{1}}(x_0)-x_0}$.
+Furthermore, another PSO, denoted as PSO2, is searching for a parameter $p_{b}$ which corresponds to a saddle-node bifurcation.
+It achieves that by minimizing the function $G_{loss}$~\eqref{eq:minimize_p}.
+Note that $G_{loss}$ has a minimum of $0$ in case that $p = p_{b}$ and $x_{0}$ is a periodic point corresponding to $p_{b}$.
+Tolerance $tol$ in~\eqref{eq:minimize_p} specifies whether $F_{loss}$ is close enough to the solution.
+}
 
 \begin{equation}
 \label{eq:minimize_p}
-    H_{loss}(p) =
+    G_{loss}(p) =
     \begin{cases}
-        |\text{det}(Df^{n}_{p}(x_0)-\mu I)| & \text{if } F_{loss}(x_0) < C_{pp}, \\
+        |\text{det}(Df^{n}_{p}(x_0)-I)| & \text{if } F_{loss}(x_0) < tol, \\
         \infty & \rm{otherwise}
     \end{cases}
 \end{equation}
 
+\textcolor{darkred}{
+PSO2 has to evaluate its loss function $G_{loss}(p)$ during its runtime.
+However, in order to evaluate $G_{loss}(p)$, it needs to know a periodic point $x_0$ of $f_{p}$.
+To do that, it uses PSO1 and sets its parameter $p_{1} = p$.
+Consequently, PSO1 converges to a periodic point of $f_{p}$, if there is any.
+This nesting of two PSOs enables the PSO2 to converge to a saddle-node bifurcation parameter $p_{b}$.
+}
 \par
-The previous paragraphs described how to use the two types of PSOs.
-The main PSO looks for parameter $p_b$ at which saddle-node bifurcation occurs.
-It does so by minimizing function $H_{loss}$ from~\eqref{eq:minimize_p}.
-During every evaluation of $H_{loss}$ at parameter $p_0$ it is needed to find $x_0$ which is $n$-periodic point of $f^{n}_{p_0}$.
-That can be achieved by using the second nested PSO which minimizes function $F_{loss}$ by using $p_0$ as parameter in $F_{loss}$.
-This nesting of PSOs is the reason why this algorithm is called Nested-Layer Particle Swarm Optimization.
-Period $n$ is the same in both functions $F_{loss}$ and $H_{loss}$.
-It corresponds to the period of the system at the saddle-node bifurcation.
-Fortunately the parameter $n$ is known from the Global Search.
-Parameter range $(p_A, p_B)$ is also known from the Global Search and is used in the top-level PSO as search-space range.
-The search-space range used for the nested PSO is also known.
-It is because the system is invariant under some set.
-For example for the Logistic equation, the search-space range can be set to $[0, 1]$.
+\textcolor{darkred}{
+To initiate PSO2, information from the Global Search can be used.
+Suppose that $[p_{A}, p_{B}]$ is the interval identified during the Global Search of a DDS $(X, f_{p})$.
+Furthermore, it is known that $f_{p_{A}}$ is non-periodic and $f_{p_{B}}$ is $m$-periodic.
+Then, the parameters of PSO2 (Algorithm~\ref{alg:pso}) can be chosen as follows: $f = f_{p}$, $(a, b) = (p_{A}, p_{B})$, $n = m$, $maxiter = 500$ and $tol = 10^{-6}$.
+The parameters of PSO1 can be chosen equivalently, except $(a, b)$ has to be chosen with respect to $f_{p}$.
+Since $X$ is invariant under $f_{p}$, $(a, b)$ can be chosen appropriately.
+For example for the Logistic map, $(a, b)$ of PSO1 can be set to $[0, 1]$.
+}
+
 
 \subsection{Local Search using Global Optimization}
+
 The previous subsection introduced the NLPSO algorithm for finding saddle-node bifurcations.
 It achieves its goal by formulating the problem as an optimization problem and by nesting two optimization algorithms into each other.
 However, there exists another approach which also uses global optimization approach.
