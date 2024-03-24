@@ -501,9 +501,8 @@ H(p, x_0) = (f_{p}^{n}(f_{p}^{0}(x_0)) - f_{p}^{0}(x_0))^2 + \dots + (f_{p}^{n}(
     + ((f_{p}^{n})'(f_{p}^{0}(x_0)) -1)^2 + \dots + ((f_{p}^{n})'(f_{p}^{n}(x_0)) -1)^2
 \end{multline*}
 
-Function $H$ has global minimum of $0$ at point $(p, x_0) \in \mathbb{R}^{2}$.
-By minimizing this function, such point can be found.
-By setting tolerance criterion for the minimization algorithm low enough, it can be decided whether $p$ is indeed a parameter of saddle-node bifurcation or not.
+Function $H$ has global minimum of $0$ at point $(p_{b}, x_0) \in \mathbb{R}^{2}$ where $p_{b}$ is the saddle-node bifurcation parameter and $x_0$ is the corresponding periodic point.
+By minimizing $H$ such point can be found, if the solution exists.
 \par
 Note that the search space might not be the whole $\mathbb{R}^{2}$.
 For instance in the case of the Logistic map the search space is $[0, 4] \times [0, 1]$ since $p \in [0,4]$ and $x \in [0,1]$.
