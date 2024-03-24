@@ -239,7 +239,7 @@ The approximate breakpoint locations evaluated by this algorithm are shown in Fi
     \includegraphics[width=0.95\textwidth]{Figures/bif_diag_search_example.png}
     \caption{
         \textcolor{darkred}{
-        Global search of $\mathcal{L}_{r}$.
+        Global Search of $\mathcal{L}_{r}$.
         The bifurcation diagram consists of projections of $\mathcal{T}_{900}^{1000}(\mathcal{L}_{r}, 0.5)$.
         Red lines: detected breakpoints up to period $16$.
         }
@@ -249,56 +249,34 @@ The approximate breakpoint locations evaluated by this algorithm are shown in Fi
 
 \section{Local Search}
 
-The previous section introduced a so-called Global search, an approach to find approximate intervals in the parameter space where a breakpoint occurs.
+The previous section introduced a so-called Global Search, an approach to find approximate intervals in the parameter space where a breakpoint occurs.
 This section introduces an algorithm to find the exact location of each breakpoint.
 These locations will be later used to color the bifurcation diagram in the proximity of the breakpoint.
 \par
 This section discusses three algorithms for the Local search - Naive Local Search, Nested-Layer Particle Swarm Optimization and Local Search using Global Optimization.
-The global search has already identified two boundaries $(p_A, p_B)$, period of the system with parameter $p_B$ and the fact that there is a breakpoint between $(p_A, p_B)$.
+The Global Search has already identified two boundaries $(p_A, p_B)$, period of the system at parameter $p_B$ and the fact that there is a breakpoint between $(p_A, p_B)$.
 Subsequently, a better approximation of the parameter at which the breakpoint occurs is needed.
 The three algorithms are able to approximate the parameter using the information from the Global Search.
 All three algorithms solve the problem, but they use different approaches.
 
 \subsection{Naive Local Search}
 \label{subsec:naive_local_search}
-The fundamental idea behind Naive Local Search (NLS) is similar to the one used in global search.
-Parameter space will be searched through, and the period of the system for each parameter value will be determined.
-However, instead of performing the search for the entire parameter space, the search will be performed only in the intervals found in the global search.
-These intervals are special because several facts about them are known.
-Their left boundary is non-periodic, and their right boundary is periodic of some period $n$.
-The $n$ is known from the global search.
-The goal is to push the left boundary close to the left side of the breakpoint and the right boundary close to the right side of the breakpoint.
-An example of the NLS is shown in Figure~\ref{fig:break_point_search_example}.
 
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.95\textwidth]{Figures/break_point_search_example.png}
-    \caption{
-        \textcolor{darkred}{
-        Naive Local Search of $\mathcal{L}_{r}$ for $r \in [ 3.825, 3.83 ]$.
-        The bifurcation diagram consists of projections of $\mathcal{T}_{900}^{1000}(\mathcal{L}_{r}, 0.5)$.
-        Red lines: Left and right estimates of the period $3$ breakpoint.
-        Left estimate is found using Algorithm~\ref{alg:local_search} with parameters $p_A = 3.825$, $p_B = 3.83$, $n = 3$ and $maxiter = 20$.
-        Right estimate is found analogically.
-        }
-    }
-    \label{fig:break_point_search_example}
-\end{figure}
-
-
-
+\textcolor{darkred}{
+Naive Local Search (NLS) uses the approximate intervals containing a breakpoint that were found during the Global Search and finds precise location of the breakpoint through combination of the binary search and BWJ algorithm.
+}
 \par
-Firstly the left boundary is searched.
-It is desirable to get it as close to the breakpoint as possible.
-To do this combination of BWJ algorithm and a binary search is used.
-For each parameter $p$ in the interval $(p_{A}, p_{B})$ identified during the global search a check whether $f_{p}$ is $n$-periodic or not is performed.
-That determines whether the breakpoint is on the left or right side of the parameter.
-\textcolor{darkred}{In the beginning the interval is halved to obtain two intervals, $[p_{A}, \frac{p_{A}+p_{B}}{2}]$ and $[\frac{p_{A}+p_{B}}{2}, p_{B}]$.}
-If $\frac{p_{A}+p_{B}}{2}$ is $n$-periodic then it is known that the breakpoint is in the interval $[\frac{p_{A}+p_{B}}{2}, p_{B}]$.
-If $\frac{p_{A}+p_{B}}{2}$ is non-periodic then it is known that the breakpoint is in the interval $[p_{A}, \frac{p_{A}+p_{B}}{2}]$.
-Using the new interval the same process is repeated recursively.
+\textcolor{darkred}{
+Suppose that $[p_{A}, p_{B}]$ is the interval identified during the Global Search.
+Furthermore, it is known that $f_{p_{A}}$ is non-periodic and $f_{p_{B}}$ is $n$-periodic.
+Next, split the interval $[p_{A}, p_{B}]$ to obtain two intervals, $[p_{A}, \frac{p_{A}+p_{B}}{2}]$ and $[\frac{p_{A}+p_{B}}{2}, p_{B}]$.
+If $\frac{p_{A}+p_{B}}{2}$ is $n$-periodic then it is known that the breakpoint is in the interval $[p_{A}, \frac{p_{A}+p_{B}}{2}]$.
+If $\frac{p_{A}+p_{B}}{2}$ is non-periodic then it is known that the breakpoint is in the interval $[\frac{p_{A}+p_{B}}{2}, p_{B}]$.
+Whether a parameter is $n$-periodic or not is determined using the BWJ algorithm.
+The new interval is halved again and the process is repeated recursively.
 The halving process is repeated for some desired number of iterations $maxiter$.
 Pseudocode for the NLS of the left boundary is given in Algorithm~\ref{alg:local_search}.
+}
 
 \begin{algorithm}[!h]
     \caption{NLS - left boundary}
@@ -323,10 +301,27 @@ Pseudocode for the NLS of the left boundary is given in Algorithm~\ref{alg:local
 \end{algorithm}
 
 \par
-The Algorithm~\ref{alg:local_search} searches only for left boundary. Search for right boundary can be done analogically by reversing the direction of the search.
+The Algorithm~\ref{alg:local_search} searches only for the left boundary. Search for the right boundary can be done analogically by reversing the direction of the search.
 The complete NLS is both the search of the left boundary and the search of the right boundary.
 These two boundaries approximate precise location of a breakpoint.
 By calculating the average $p_{avg}$ of the left and right boundary, a good approximation of the parameter at which the breakpoint occurs is obtained.
+An example of NLS for $\mathcal{L}_{r}$ is shown in Figure~\ref{fig:break_point_search_example}.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Figures/break_point_search_example.png}
+    \caption{
+        \textcolor{darkred}{
+        NLS of $\mathcal{L}_{r}$ for $r \in [ 3.825, 3.83 ]$.
+        The bifurcation diagram consists of projections of $\mathcal{T}_{900}^{1000}(\mathcal{L}_{r}, 0.5)$.
+        Red lines: Left and right estimates of the period $3$ breakpoint.
+        Left estimate is found using Algorithm~\ref{alg:local_search} with parameters $p_A = 3.825$, $p_B = 3.83$, $n = 3$ and $maxiter = 20$.
+        Right estimate is found analogically.
+        }
+    }
+    \label{fig:break_point_search_example}
+\end{figure}
+
 
 \subsection{Nested-Layer Particle Swarm Optimization}
 This subsection describes an alternative to the NLS algorithm.
@@ -440,8 +435,8 @@ That can be achieved by using the second nested PSO which minimizes function $F_
 This nesting of PSOs is the reason why this algorithm is called Nested-Layer Particle Swarm Optimization.
 Period $n$ is the same in both functions $F_{loss}$ and $H_{loss}$.
 It corresponds to the period of the system at the saddle-node bifurcation.
-Fortunately the parameter $n$ is known from the global search.
-Parameter range $(p_A, p_B)$ is also known from the global search and is used in the top-level PSO as search-space range.
+Fortunately the parameter $n$ is known from the Global Search.
+Parameter range $(p_A, p_B)$ is also known from the Global Search and is used in the top-level PSO as search-space range.
 The search-space range used for the nested PSO is also known.
 It is because the system is invariant under some set.
 For example for the Logistic equation, the search-space range can be set to $[0, 1]$.
@@ -521,7 +516,7 @@ By setting tolerance criterion for the minimization algorithm low enough, it can
 Note that the search space might not be the whole $\mathbb{R}^{2}$.
 For instance in the case of the Logistic map the search space is $[0, 4] \times [0, 1]$ since $p \in [0,4]$ and $x \in [0,1]$.
 However, the search space can be reduced even further.
-The global search has already identified the intervals $[p_A, p_B]$ in the parameter space where the saddle-node bifurcation occurs.
+The Global Search has already identified the intervals $[p_A, p_B]$ in the parameter space where the saddle-node bifurcation occurs.
 Hence, the search space can be reduced to $[p_A, p_B] \times [0, 1]$.
 If the optimization converges with enough precision, then it can be supposed that the parameter at which the breakpoint occurs has been found.
 \par
@@ -623,7 +618,7 @@ In the previous sections each part of the algorithm was described.
 It was also pointed out how each part of the algorithm relates to the other parts.
 For clarity, this section explains how to combine all the parts together.
 \par
-First, the Global search is used to identify intervals where breakpoint could occur.
+First, the Global Search is used to identify intervals where breakpoint could occur.
 Secondly, the Local search is employed for each of the intervals to find precise parameter, periodicity and the fixed points of the breakpoint.
 Three alternatives for the Local search were introduced.
 Any one of them can be used.

@@ -66,13 +66,13 @@ The main features include the following.
     \item Automatic differentiation and Jacobians of an arbitrary system.
     \item Davidchack-Lai algorithm.
     \item Bu-Wang-Jiang algorithm.
-    \item Global search, Local search and Colorization algorithms.
+    \item Global Search, Local search and Colorization algorithms.
 \end{itemize}
 Many of the algorithms are parallelizable.
 Bifurcation diagrams were generated in parallel by splitting the parameter space.
 Local search was run in parallel by computing the left boundary estimation and the right boundary estimation separately.
-Local search was also run in parallel for each interval found in the global search.
-Global search was run in parallel by splitting up the parameter space.
+Local search was also run in parallel for each interval found in the Global Search.
+Global Search was run in parallel by splitting up the parameter space.
 \par
 All plots were created using Julia plotting packages Makie.jl~\cite{Danisch2021} and Plots.jl~\cite{Christ2022}.
 Vector graphics was created using the Luxor.jl package~\cite{Luxor2024}.
