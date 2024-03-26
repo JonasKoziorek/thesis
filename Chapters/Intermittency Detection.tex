@@ -253,8 +253,8 @@ The previous section introduced a so-called Global Search, an approach to find a
 This section introduces algorithms to find the exact location of each breakpoint.
 These locations will be later used to color the bifurcation diagram in the proximity of the breakpoint.
 \par
-This section discusses two algorithms for the Local search - Naive Local Search and Nested-Layer Particle Swarm Optimization.
-The Global Search has already identified two boundaries $(p_A, p_B)$, period of the system at parameter $p_B$ and the fact that there is a breakpoint between $(p_A, p_B)$.
+This section discusses two algorithms for the Local Search - Naive Local Search and Nested-Layer Particle Swarm Optimization.
+The Global Search has already identified two boundaries $[p_A, p_B]$, period of the system at parameter $p_B$ and the fact that there is a breakpoint between $[p_A, p_B]$.
 Subsequently, a better approximation of the parameter at which the breakpoint occurs is needed.
 The two algorithms are able to approximate the parameter using the information from the Global Search.
 Both algorithms solve the problem, but they use different approaches.
@@ -437,7 +437,7 @@ Parameters at which the breakpoint occurs were found in the previous steps.
 Characteristic relation of type-I intermittency is used to color the neighborhood of the breakpoint.
 
 \subsection{Description of the algorithm}
-The local search found parameters of the parameter space at which the breakpoint occurs.
+The Local Search found parameters of the parameter space at which the breakpoint occurs.
 Let $p_b$ be one of them.
 It is known that parameters to the left side $p_b$ in its proximity exhibit intermittency.
 Nevertheless, there is a need to quantify how far from $p_b$ is intermittency still occurring.
@@ -446,7 +446,7 @@ Additionally, it is needed to measure how prominent the intermittency is for som
 A useful indicator about the intermittent behavior is average laminar length $l_{avg}$ described in Chapter~\ref{chap:type-I intermittency}.
 The characteristic relation $l_{avg} \varpropto 1 / \sqrt{\varepsilon}$ can be used to estimate the average laminar length.
 Characteristic relation is dependent on the local map around fixed points associated with saddle-node bifurcation.
-Fortunately, these fixed points have been found in the local search.
+Fortunately, these fixed points have been found in the Local Search.
 Hence, by calculating $\varepsilon$ for each stable fixed point of $f_{p_b}$, $l_{avg}$ can be estimated for laminar region around each fixed point.
 Taking their average yields an estimation of the average laminar length for $p_b$.
 \par
@@ -500,7 +500,7 @@ To finish the coloring procedure, bifurcation diagram is constructed.
 A color range is defined for numbers in range $[ l_{avg}$ for $p_L, l_{avg}$ for $p_U ]$.
 The trajectory projections for parameters $p \in [ p_L, p_U ]$ are colored using this color range.
 A trajectory projection at parameter $p$ is colored based on $l_{avg}$ corresponding to $p$.
-The same coloring procedure is repeated for all breakpoint parameters found in the local search.
+The same coloring procedure is repeated for all breakpoint parameters found in the Local Search.
 \par
 The result of the coloring algorithm for a single breakpoint of the Logistic map is shown in Figure~\ref{fig:coloring_example}.
 Note that in order to see the full range of colors, the bifurcation diagram has to be zoomed-in to the breakpoint.
@@ -526,8 +526,8 @@ It was also pointed out how each part of the algorithm relates to the other part
 For clarity, this section explains how to combine all the parts together.
 \par
 First, the Global Search is used to identify intervals where breakpoint could occur.
-Secondly, the Local search is employed for each of the intervals to find precise parameter, periodicity and the fixed points of the breakpoint.
-Two alternatives for the Local search were introduced.
+Secondly, the Local Search is employed for each of the intervals to find precise parameter, periodicity and the fixed points of the breakpoint.
+Two alternatives for the Local Search were introduced.
 Each of them can be used.
 Lastly, areas next to the found breakpoint are colored using the Coloring algorithm.
 The result is a bifurcation diagram with identified breakpoints whose left neighborhoods are colored.

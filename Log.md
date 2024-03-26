@@ -117,5 +117,5 @@ Some of them are these:
 ## 15.2.2024 (My notes)
 Things I could do:
 
-* Benchmarks of the local search methods - average time, iterations, f_calls etc.
+* Benchmarks of the Local Search methods - average time, iterations, f_calls etc.
 * Basins of attraction
