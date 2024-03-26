@@ -250,14 +250,14 @@ The approximate breakpoint locations evaluated by this algorithm are shown in Fi
 \section{Local Search}
 
 The previous section introduced a so-called Global Search, an approach to find approximate intervals in the parameter space where a breakpoint occurs.
-This section introduces an algorithm to find the exact location of each breakpoint.
+This section introduces algorithms to find the exact location of each breakpoint.
 These locations will be later used to color the bifurcation diagram in the proximity of the breakpoint.
 \par
-This section discusses three algorithms for the Local search - Naive Local Search, Nested-Layer Particle Swarm Optimization and Local Search using Global Optimization.
+This section discusses two algorithms for the Local search - Naive Local Search and Nested-Layer Particle Swarm Optimization.
 The Global Search has already identified two boundaries $(p_A, p_B)$, period of the system at parameter $p_B$ and the fact that there is a breakpoint between $(p_A, p_B)$.
 Subsequently, a better approximation of the parameter at which the breakpoint occurs is needed.
-The three algorithms are able to approximate the parameter using the information from the Global Search.
-All three algorithms solve the problem, but they use different approaches.
+The two algorithms are able to approximate the parameter using the information from the Global Search.
+Both algorithms solve the problem, but they use different approaches.
 
 \subsection{Naive Local Search}
 \label{subsec:naive_local_search}
@@ -431,90 +431,6 @@ Since $X$ is invariant under $f_{p}$, $(a, b)$ can be chosen appropriately.
 For example for the Logistic map, $(a, b)$ of PSO1 can be set to $[0, 1]$.
 }
 
-
-\subsection{Local Search using Global Optimization}
-
-The previous subsection introduced the NLPSO algorithm for finding saddle-node bifurcations.
-It achieves its goal by formulating the problem as an optimization problem and by nesting two optimization algorithms into each other.
-However, there exists another approach which also uses global optimization approach.
-This approach shall be called Local Search using Global Optimization (LSGO).
-\par
-The LSGO approach formulates the saddle-node bifurcation detection as an optimization problem.
-However, it uses different formulation that the NLPSO.
-As mentioned earlier, detecting saddle-node bifurcations helps to find the regions exhibiting the type-I intermittency.
-\par
-The LSGO uses the following formulation:
-\begin{align*} 
-x_0 &= f_{p}^{n}(x_0)\\
-x_1 &= f_{p}^{n}(x_1)\\
-\vdots \\
-x_n &= f_{p}^{n}(x_n)\\
-\end{align*}
-
-In the presented formulation $x_0$ is an $n$-periodic point of $f_{p}$.
-Hence, there are $n$ equations of the form $x_i = f_{p}^{n}(x_i)$ which hold.
-These equations can further be formulated to depend only on the parameter $p$ and point $x_0$.
-
-\begin{align*} 
-f_{p}^{0}(x_0) &= f_{p}^{n}(f_{p}^{0}(x_0)) \\
-f_{p}^{1}(x_0) &= f_{p}^{n}(f_{p}^{1}(x_0)) \\
-\vdots \\
-f_{p}^{n}(x_0) &= f_{p}^{n}(f_{p}^{n}(x_0)) \\
-\end{align*}
-
-Furthermore, if $p$ is a saddle-node bifurcation parameter then for all $\{ x_{i}: i \in [1, n] \}$ it holds $(f_{p}^{n})'(x_i) = 1$, in one dimensional case.
-Thus, these $n$ equations hold:
-
-\begin{align*} 
-(f_{p}^{n})'(f_{p}^{0}(x_0)) &= 1 \\
-(f_{p}^{n})'(f_{p}^{1}(x_0)) &= 1 \\
-\vdots \\
-(f_{p}^{n})'(f_{p}^{n}(x_0)) &= 1 \\
-\end{align*}
-
-Combining all these equations yields a system of $2n$ equations.
-Putting all terms on one side results in:
-
-\begin{equation}
-\label{eq:full_system}
-\begin{aligned} 
-f_{p}^{n}(f_{p}^{0}(x_0)) - f_{p}^{0}(x_0) &= 0 \\
-f_{p}^{n}(f_{p}^{1}(x_0)) - f_{p}^{1}(x_0) &= 0 \\
-\vdots \\
-f_{p}^{n}(f_{p}^{n}(x_0)) - f_{p}^{n}(x_0) &= 0 \\
-(f_{p}^{n})'(f_{p}^{0}(x_0)) - 1 &= 0 \\
-(f_{p}^{n})'(f_{p}^{1}(x_0)) - 1 &= 0 \\
-\vdots \\
-(f_{p}^{n})'(f_{p}^{n}(x_0)) - 1 &= 0 \\
-\end{aligned}
-\end{equation}
-
-Finding analytical solution to the system of equations~\eqref{eq:full_system} would yield $p$ at which the saddle-node bifurcation occurs.
-Additionally, $x_0$ would be found as well and could be used to retrieve the whole periodic orbit.
-However, finding analytical solution might not be possible and feasible.
-Using tools from theory of optimization might be a better approach.
-\par
-Let's define a function $H: \mathbb{R}^{2} \rightarrow \mathbb{R}$ as follows:
-
-\begin{multline*} 
-H(p, x_0) = (f_{p}^{n}(f_{p}^{0}(x_0)) - f_{p}^{0}(x_0))^2 + \dots + (f_{p}^{n}(f_{p}^{n}(x_0)) - f_{p}^{n}(x_0))^2 + \\
-    + ((f_{p}^{n})'(f_{p}^{0}(x_0)) -1)^2 + \dots + ((f_{p}^{n})'(f_{p}^{n}(x_0)) -1)^2
-\end{multline*}
-
-Function $H$ has global minimum of $0$ at point $(p_{b}, x_0) \in \mathbb{R}^{2}$ where $p_{b}$ is the saddle-node bifurcation parameter and $x_0$ is the corresponding periodic point.
-By minimizing $H$ such point can be found, if the solution exists.
-\par
-Note that the search space might not be the whole $\mathbb{R}^{2}$.
-For instance in the case of the Logistic map the search space is $[0, 4] \times [0, 1]$ since $p \in [0,4]$ and $x \in [0,1]$.
-However, the search space can be reduced even further.
-The Global Search has already identified the intervals $[p_A, p_B]$ in the parameter space where the saddle-node bifurcation occurs.
-Hence, the search space can be reduced to $[p_A, p_B] \times [0, 1]$.
-If the optimization converges with enough precision, then it can be supposed that the parameter at which the breakpoint occurs has been found.
-\par
-Furthermore, note that different types of optimization algorithms can be used.
-For example, the Particle Swarm Optimization (PSO) algorithm described earlier can be used.
-In our implementation we used the Evolutionary Centers Algorithm~\cite{MejiadeDios20190913} which has proven to be the most effective.
-
 \section{Coloring}
 The goal of this phase is to color the neighborhood of the breakpoint to warn about its ambiguity.
 Parameters at which the breakpoint occurs were found in the previous steps.
@@ -611,8 +527,8 @@ For clarity, this section explains how to combine all the parts together.
 \par
 First, the Global Search is used to identify intervals where breakpoint could occur.
 Secondly, the Local search is employed for each of the intervals to find precise parameter, periodicity and the fixed points of the breakpoint.
-Three alternatives for the Local search were introduced.
-Any one of them can be used.
+Two alternatives for the Local search were introduced.
+Each of them can be used.
 Lastly, areas next to the found breakpoint are colored using the Coloring algorithm.
 The result is a bifurcation diagram with identified breakpoints whose left neighborhoods are colored.
 \par
