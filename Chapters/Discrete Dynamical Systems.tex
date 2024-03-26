@@ -1,6 +1,6 @@
 \chapter{Discrete Dynamical Systems}
 
-\textcolor{darkred}{
+\textcolor{blue}{
 This chapter introduces the reader to the theory of discrete dynamical systems.
 Several standard definitions are provided and explained graphically or computationally.
 Two common visualization tools are described and their algorithms are provided.
@@ -48,7 +48,7 @@ Two common visualization tools are described and their algorithms are provided.
 \end{definition}
 
 \begin{definition}[Graph]
-\textcolor{darkred}{
+\textcolor{blue}{
     Let $\left( X, f \right)$ be a DDS. A graph of $f$ is defined as a set $\{\, (x, f(x)) \mid x \in X \,\}$.
 }
 \end{definition}
@@ -123,14 +123,14 @@ Two common visualization tools are described and their algorithms are provided.
 
 \begin{definition}[Fixed point]
 \label{def:fixed point}
-    \textcolor{darkred}{
+    \textcolor{blue}{
     Let $\left( X, f \right)$ be a DDS. Point $x \in X$ is called a \emph{fixed point} of $f$ if and only if $f(x) = x$.
     }
 \end{definition}
 
 \begin{definition}[Stable fixed point]
 \label{def:sfp}
-    \textcolor{darkred}{
+    \textcolor{blue}{
     Let $\left(X, f\right)$ be a DDS.
     Let $f$ be differentiable on $X$. 
     A fixed point $x \in X$ for which  $|f'(x)| < 1$ is called \emph{attracting} or \emph{stable}.
@@ -139,7 +139,7 @@ Two common visualization tools are described and their algorithms are provided.
 
 \begin{definition}[Unstable fixed point]
 \label{def:ufp}
-    \textcolor{darkred}{
+    \textcolor{blue}{
     Let $\left(X, f\right)$ be a DDS.
     Let $f$ be differentiable on $X$. 
     A fixed point $x \in X$ for which $|f'(x)| > 1$ is called \emph{repelling} or \emph{unstable}.
@@ -147,7 +147,7 @@ Two common visualization tools are described and their algorithms are provided.
 \end{definition}
 
 \begin{remark}
-    \textcolor{darkred}{
+    \textcolor{blue}{
         It is worth noting what the conditions from Definitions~\ref{def:sfp} and \ref{def:ufp} stand for.
         The point of stability detection is linear approximation, that is replacing the original function by its tangent in the proximity of the fixed point.
         This approach can be generalized to an $n$-dimensional system $\left( \mathbb{R}^{n}, f \right)$.
@@ -157,14 +157,14 @@ Two common visualization tools are described and their algorithms are provided.
     Direct evaluation of $\mathcal{L}_{r}(x)=x$ yields Fix$(\mathcal{L}_{r}) = \{ 0, (r-1)/r \}$.
     By evaluating the derivative of $\mathcal{L}_{r}$ at these points, stability of the fixed point can be determined.
     \par
-    \textcolor{darkred}{
+    \textcolor{blue}{
     The fixed point $0$ is attracting if $r \in (0, 1)$ and repelling if $r \in (1, 4)$.
     For parameter $r = 1$, the derivative at $x=0$ is $\mathcal{L}_{r}'(0)=1$.
     The map $\mathcal{L}_{r}$ undergoes a so-called saddle-node bifurcation (see Definition~\ref{def:bifurcation}).
     Consequently, point $x=0$ becomes repelling and an attractive fixed point $x=(r-1)/r$ is created.
     }
     \par
-    \textcolor{darkred}{
+    \textcolor{blue}{
     Note that the fixed point $(r-1)/r$ doesn't exist for $r \in (0, 1)$ since $(r-1)/r \notin [0, 1]$. 
     The fixed point $(r-1)/r$ is attracting if $r \in (1, 3)$ and repelling if $r \in (3, 4) $.
     For parameter $r = 3$, the derivative at $x=(r-1)/r$ is $\mathcal{L}_{r}'((r-1)/r)=-1$.
@@ -172,7 +172,7 @@ Two common visualization tools are described and their algorithms are provided.
     Consequently, point $x=(r-1)/r$ becomes repelling and $x=0$ stays repelling.
     }
     \par
-    \textcolor{darkred}{
+    \textcolor{blue}{
     Figure~\ref{fig:fixed_points_stability_example} displays two fixed points of the Logistic map $\mathcal{L}_{r}$.
     One fixed point is attracting and one is repelling.
     Test for stability is portrayed graphically.
@@ -196,7 +196,7 @@ Two common visualization tools are described and their algorithms are provided.
     \end{subfigure}
 
     \caption{
-        \textcolor{darkred}{ 
+        \textcolor{blue}{ 
         Two fixed points of $\mathcal{L}_{r}$ and their stability. 
         Parameters: (a) $r = 2.3$ and (b) $r = 3.3$. 
         Red area: region of stability.
@@ -213,14 +213,14 @@ Two common visualization tools are described and their algorithms are provided.
 \end{definition}
 
 \begin{definition}[Eventually periodic point]
-    \textcolor{darkred}{
+    \textcolor{blue}{
     Let $\left( X, f\right)$ be a DDS. The point $x \in X$ is called \emph{eventually $n$-periodic} if $x$ is not $n$-periodic but there exists $m>0$ such that $f^{n+i}(x) = f^{i}(x)$ for all $i \geq m$.
     Hence, $f^{i}(x)$ is $n$-periodic for all $i \geq m$.~\emph{\cite{Devaney20211026}}
     }
 \end{definition}
 
 \begin{definition}[Periodic orbit]
-\textcolor{darkred}{
+\textcolor{blue}{
     Let $\left( X, f_{p}\right)$ be a DDS.
     Let $x_0$ be an $n$-periodic point.
     Then the set $O:=\{f_{p}^{n+m}(x_0):m \in \mathbb{N}\}$ is called an \emph{$n$-periodic orbit}.
@@ -239,7 +239,7 @@ Two common visualization tools are described and their algorithms are provided.
 \end{proof}
 
 \begin{remark}
-\textcolor{darkred}{
+\textcolor{blue}{
 Theorem~\ref{theorem:single_orbit} will be useful in Chapter~\ref{chapter:intdetection} when constructing an algorithm for detection of type-I intermittency.
 }
 \end{remark}
@@ -272,7 +272,7 @@ Theorem~\ref{theorem:single_orbit} will be useful in Chapter~\ref{chapter:intdet
     \end{subfigure}
 
     \caption{
-        \textcolor{darkred}{
+        \textcolor{blue}{
         Cobweb diagrams of a trajectory $\mathcal{T}_{50}^{100}(\mathcal{L}_{r}, 0.5)$ and a projection of the trajectory onto a line. 
         Dashed diagonal line: identity function. 
         (a) $r = 3.828$. 
@@ -309,7 +309,7 @@ Theorem~\ref{theorem:single_orbit} will be useful in Chapter~\ref{chapter:intdet
 
 \begin{definition}[Bifurcation point]
 \label{def:bifurcation_point}
-    \textcolor{darkred}{
+    \textcolor{blue}{
     Let $\left( X, f_p \right)$ be a DDS.
     \emph{Bifurcation point} is a value of a parameter $p$ at which bifurcation occurs.
     The qualitative behavior of $\left( X, f_{p} \right)$ changes when the parameter $p$ is moved slightly around the bifurcation point.
@@ -339,7 +339,7 @@ Theorem~\ref{theorem:single_orbit} will be useful in Chapter~\ref{chapter:intdet
     \centering
     \includegraphics[width=0.95\textwidth]{Figures/logistic_map_bif_diag_example.png}
     \caption{
-        \textcolor{darkred}{
+        \textcolor{blue}{
         Bifurcation diagram of $\mathcal{L}_{r}$ for $x_0 = 0.5$ and $r \in I := [ 2.81, 3.87 ]$. 
         Interval $I$ is sampled to $1000$ points. 
         Trajectories $\mathcal{T}_{4500}^{5000}(\mathcal{L}_{r}, x_0)$ are plotted.

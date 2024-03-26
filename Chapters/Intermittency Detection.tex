@@ -15,7 +15,7 @@ The last section of this chapter combines all the parts together.
 
 \section{Global Search}
 \label{sec:globsearch}
-\textcolor{darkred}{
+\textcolor{blue}{
 The initial phase of the algorithm, which shall be called the Global Search, aims to find approximate parameter intervals in which type-I intermittency occurs.
 The algorithm searches through the whole parameter space globally to find these intervals.
 More specifically, the search for type-I intermittency regions is equivalent to a search for the breakpoints in the bifurcation diagram.
@@ -24,7 +24,7 @@ These two parts are described in the following sections and then combined togeth
 }
 \subsection{Naive Global Search}
 
-\textcolor{darkred}{
+\textcolor{blue}{
 A breakpoint is a parameter value at which the bifurcation diagram transitions from nonperiodic behavior to periodic behavior.
 Such breakpoint can be seen in Figure~\ref{fig:break_point_search_example}.
 The Figure shows that there is nonperiodic behavior to the left of the breakpoint and periodic behavior to the right of it.
@@ -33,7 +33,7 @@ If the parameter space could be searched through and the period of the system fo
 To do that, an algorithm is needed to determine the period of the system for any given parameter value.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 Let $(X, f_{p})$ be a DDS. Suppose a bifurcation diagram of $f_{p}$ is constructed for some $x_0$, $n_{total}$, $n_{last}$ and $p_{range}$ (see Algorithm~\ref{alg:bif_diag}).
 The fact that bifurcation diagram shows $n$-periodic behavior ($n$ dots) for a parameter $p$ implies that map $f_{p}$ is $n$-periodic or eventually $n$-periodic.
 Two situations can happen:
@@ -45,20 +45,20 @@ When talking about periodic behavior in a bifurcation diagram, the focus will be
 Case $2$ will be disregarded since it is not very probable that an initial condition will belong to a periodic orbit.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 Theorem~\ref{theorem:single_orbit} states that the Logistic map $\mathcal{L}_r$ can only have at most one unique stable $n$-periodic orbit for each parameter $r$.
 Hence, if bifurcation diagram exhibits $n$-periodic behavior at $r$, it can be concluded that $\mathcal{L}_{r}$ has an $n$-periodic SPO.
 Consequently, finding the smallest SPO of $\mathcal{L}_{r}$ would indicate how many dots there are in the bifurcation diagram at $r$.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 There exist algorithms for finding the UPO (and thus SPO) of an arbitrary DDS.
 They will be discussed in detail in Subsection~\ref{subsec: detection_of_periodic_points}.
 Although they are efficient, they are not efficient enough for the current goal.
 The aim is to search through the whole parameter space $p_{range}$ and try to detect an SPO for every parameter $p \in p_{range}$.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 A naive approach to determine whether $p$ is $n$-periodic is to check whether $f^{m}_{p}(x) = f^{m+n}_{p}(x)$ where $m = n_{total}-n_{last}$.
 If $n$ is the smallest number for which the equality holds, then $x$ is an $n$-periodic point.
 Consequently, the bifurcation diagram has $n$ dots at $p$.
@@ -66,7 +66,7 @@ If the equality is checked for $n = 1,2,\dots,o$ in an ascending order, then it 
 Note that $o$ is some maximal period which is checked.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 The procedure that was just described shall be called Naive Global Search (NGS).
 NGS is a quick way to estimate periodicity in the bifurcation diagram for any parameter $p$.
 The pseudocode for this procedure is presented in Algorithm~\ref{alg:naive_global_search}.
@@ -74,7 +74,7 @@ The result of NGS is portrayed graphically in Figure~\ref{fig:naive_global_searc
 There, the points that were identified by NGS as periodic are colored blue.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 After applying NGS, the breakpoint can found easily.
 It can be concluded that the breakpoint occurs between parameters $[p_{A}, p_{B}]$ such that NGS found no periodicity for $p_{A}$ and $n$-periodicity for $p_{B}$.
 However, the shortcoming of NGS is that it is deceiving in the proximity of a breakpoint.
@@ -85,7 +85,7 @@ Since $\mathcal{T}_{m}^{n_{total}}(f_{p}, x_{0})$ is intermittent, the bifurcati
 That depends on whether the trajectory subset is in the laminar or turbulent phase.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 To overcome this issue, it is useful to verify that period of $p_{A}$ and $p_{B}$ was estimated correctly.
 The next subsection introduces efficient algorithms for computing UPO of arbitrary DDS.
 By checking how many periodic points are stable for $f_{p_{A}}$ and $f_{p_{B}}$, period of $p_{A}$ and $p_{B}$ can be verified.
@@ -121,7 +121,7 @@ By checking how many periodic points are stable for $f_{p_{A}}$ and $f_{p_{B}}$,
     \centering
     \includegraphics[width=0.95\textwidth]{Figures/naive_global_search.png}
     \caption{
-        \textcolor{darkred}{
+        \textcolor{blue}{
         NGS of $\mathcal{L}_{r}$.
         Grey points: bifurcation diagram constructed of trajectories $\mathcal{T}_{3500}^{4000}(\mathcal{L}_{r}, 0.5)$ for $r \in [3.55, 3.75]$.
         Blue points: points identified as periodic. 
@@ -134,7 +134,7 @@ By checking how many periodic points are stable for $f_{p_{A}}$ and $f_{p_{B}}$,
 \subsection{Detection of Periodic Points}
 \label{subsec: detection_of_periodic_points}
 
-\textcolor{darkred}{
+\textcolor{blue}{
 Detecting periodic points numerically can be approached in a straightforward manner.
 An $n$-periodic point is a fixed point of the $n$-th iterate of a map.
 Hence, finding roots of $f^{n}_{p}(x)-x = 0$ yields all periodic points $x$ of $n$-th iteration of map $f_{p}$.
@@ -147,7 +147,7 @@ With the rising number of seeds, the algorithm becomes computationally very expe
 Another issue with Newton-Raphson is that the basins of convergence to each respective root are not very big \cite{Davidchack1999}.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 To overcome the issues with standard root-finding algorithms, researchers came up with new strategies to detect periodic points.
 The central idea of the new approach is to use stabilizing transformations.
 A set of transformations is proposed such that these transformations stabilize some of the fixed points so that they become attractive.
@@ -158,24 +158,24 @@ The main problem with their approach is that the number of stabilizing transform
 Another issue is that the algorithm relies on fine seeding the same way Newton-Raphson does, although it usually needs much less seeds.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 The algorithm of Schmelcher and Diakonos was subsequently improved by Davidchack and Lai (DL)~\cite{Davidchack1999, Davidchack2001, Klebanoff2001}.
 They introduced two improvements: smarter seeding procedure and improved iterative scheme with enhanced convergence speed.
 Through their modifications, they were able to detect periodic points of higher periods than it was previously possible.
 However, their method is still not very applicable to high dimensional dynamical systems.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 Davidchack's and Lai's algorithm was futher improved by Davidchack's PhD student Crofts~\cite{Crofts2005,Crofts2007,Crofts2008,Crofts20090901}.
 His version proposes smaller set of stabilizing transformations such that the method can be used for high dimensional dynamical systems.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 Another approach was proposed by Bu-Wang-Jiang (BWJ)~\cite{Bu2004}.
 This approach is not based on stabilizing transformation, but on an iterative scheme together with fine seeding.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 For the purposes of the Global Search, Bu-Wang-Jiang is chosen for detection of periodic points.
 It is easy to implement and it works well enough.
 Pseudocode for this algorithm is presented in Algorithm~\ref{alg:bwj}.
@@ -185,7 +185,7 @@ Pseudocode for this algorithm is presented in Algorithm~\ref{alg:bwj}.
     \centering
     \includegraphics[width=0.95\textwidth]{Figures/upo_search_example.png}
     \caption{
-        \textcolor{darkred}{
+        \textcolor{blue}{
         Detection of the fixed point of $\mathcal{L}_{r}^{6}$ for $r = 3.7$ using the DL algorithm.
         }
     }
@@ -216,14 +216,14 @@ Pseudocode for this algorithm is presented in Algorithm~\ref{alg:bwj}.
     \end{algorithmic}
 \end{algorithm}
 
-\textcolor{darkred}{
+\textcolor{blue}{
 Note that the $seeds$ parameter in Algorithm~\ref{alg:bwj} is a set of initial conditions from which the algorithm starts.
 This parameter can be generated by uniformly sampling the search space.
 In case of $\mathcal{L}_{r}$, the interval $[0, 1]$ can be uniformly sampled to $N$ points.
 }
 
 \bigskip
-\textcolor{darkred}{
+\textcolor{blue}{
 This section has introduced an algorithm for performing a search for breakpoints in the parameter space.
 First, discretization of the parameter space is performed, and the NGS is used to approximate periodicity of each parameter.
 Afterwards, neighboring pairs of parameters $p_{A}$ and $p_{B}$ such that $p_{A}$ is nonperiodic and $p_{B}$ is periodic are chosen.
@@ -238,7 +238,7 @@ The approximate breakpoint locations evaluated by this algorithm are shown in Fi
     \centering
     \includegraphics[width=0.95\textwidth]{Figures/bif_diag_search_example.png}
     \caption{
-        \textcolor{darkred}{
+        \textcolor{blue}{
         Global Search of $\mathcal{L}_{r}$.
         The bifurcation diagram consists of projections of $\mathcal{T}_{900}^{1000}(\mathcal{L}_{r}, 0.5)$.
         Red lines: detected breakpoints up to period $16$.
@@ -262,11 +262,11 @@ All three algorithms solve the problem, but they use different approaches.
 \subsection{Naive Local Search}
 \label{subsec:naive_local_search}
 
-\textcolor{darkred}{
+\textcolor{blue}{
 Naive Local Search (NLS) uses the approximate intervals containing a breakpoint that were found during the Global Search and finds precise location of the breakpoint through combination of the binary search and BWJ algorithm.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 Suppose that $[p_{A}, p_{B}]$ is the interval identified during the Global Search.
 Furthermore, it is known that $f_{p_{A}}$ is non-periodic and $f_{p_{B}}$ is $n$-periodic.
 Next, split the interval $[p_{A}, p_{B}]$ to obtain two intervals, $[p_{A}, \frac{p_{A}+p_{B}}{2}]$ and $[\frac{p_{A}+p_{B}}{2}, p_{B}]$.
@@ -311,7 +311,7 @@ An example of NLS for $\mathcal{L}_{r}$ is shown in Figure~\ref{fig:break_point_
     \centering
     \includegraphics[width=0.95\textwidth]{Figures/break_point_search_example.png}
     \caption{
-        \textcolor{darkred}{
+        \textcolor{blue}{
         NLS of $\mathcal{L}_{r}$ for $r \in [ 3.825, 3.83 ]$.
         The bifurcation diagram consists of projections of $\mathcal{T}_{900}^{1000}(\mathcal{L}_{r}, 0.5)$.
         Red lines: Left and right estimates of the period $3$ breakpoint.
@@ -394,7 +394,7 @@ The other one will be looking for periodic point $x_b$ corresponding to $p_b$.
 Its worth noticing that the algorithm works for dynamical systems of arbitrary dimensions.
 For that reason the minimization functions are presented in a general form.
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 Let $(\mathbb{R}^{m}, f_{p})$ be a DDS.
 The first PSO, denoted as PSO1, is searching for a periodic point $x_0$ given some parameter $p_{1}$.
 The PSO1 does this by minimizing the function $F_{loss}(x_0) = \norm{f^{n}_{p_{1}}(x_0)-x_0}$.
@@ -413,7 +413,7 @@ Tolerance $tol$ in~\eqref{eq:minimize_p} specifies whether $F_{loss}$ is close e
     \end{cases}
 \end{equation}
 
-\textcolor{darkred}{
+\textcolor{blue}{
 PSO2 has to evaluate its loss function $G_{loss}(p)$ during its runtime.
 However, in order to evaluate $G_{loss}(p)$, it needs to know a periodic point $x_0$ of $f_{p}$.
 To do that, it uses PSO1 and sets its parameter $p_{1} = p$.
@@ -421,7 +421,7 @@ Consequently, PSO1 converges to a periodic point of $f_{p}$, if there is any.
 This nesting of two PSOs enables the PSO2 to converge to a saddle-node bifurcation parameter $p_{b}$.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 To initiate PSO2, information from the Global Search can be used.
 Suppose that $[p_{A}, p_{B}]$ is the interval identified during the Global Search of a DDS $(X, f_{p})$.
 Furthermore, it is known that $f_{p_{A}}$ is non-periodic and $f_{p_{B}}$ is $m$-periodic.
@@ -593,7 +593,7 @@ Note that in order to see the full range of colors, the bifurcation diagram has 
     \centering
     \includegraphics[width=0.95\textwidth]{Figures/logistic_map_coloring_example.png}
     \caption{
-        \textcolor{darkred}{
+        \textcolor{blue}{
         Colorization of a single breakpoint of $\mathcal{L}_{r}$ for $r \in I := [ 3.6263, 3.6267 ]$.
         Algorithm~\ref{alg:optimal_bound} was used to specify the colorization bounds.
         Lower bound $L$: $200$.
@@ -623,7 +623,7 @@ Note that periodic windows (or equivalently breakpoints) that weren't visible at
     \centering
     \includegraphics[width=0.95\textwidth]{Figures/complete_colorization.png}
     \caption{
-        \textcolor{darkred}{
+        \textcolor{blue}{
         Full Colorization of $\mathcal{L}_{r}$ for $r \in [ 3.62, 3.65 ]$.
         The bifurcation diagram consists of projections of $\mathcal{T}_{900}^{1000}(\mathcal{L}_{r}, 0.5)$.
         Colorful lines: areas near the detected breakpoints (up to period $20$).

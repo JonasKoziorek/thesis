@@ -1,7 +1,7 @@
 \chapter{Type-I Intermittency}
 \label{chap:type-I intermittency}
 
-\textcolor{darkred}{
+\textcolor{blue}{
 This Chapter is concerned with the phenomena of intermittency, especially with type-I intermittency.
 Firstly discovery and history of intermittency is mentioned.
 Then the origion of intermittency is motivated.
@@ -10,12 +10,12 @@ Lastly, the ambiguity of bifurcation diagram caused by intermittency is shown.
 }
 
 \section{History}
-\textcolor{darkred}{
+\textcolor{blue}{
 In 1949, the word intermittency was used in context of turbulent flows by Batchelor and Townsend~\cite{Batchelor19491025}.
 They used the term to depict signals that altered between approximately flat periods and and burst ones~\cite{Elaskar2017}.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 About three decades later, Pomeau and Manneville have studied intermittent transition to turbulence in an experiment with convective fluids~\cite{Pomeau1980}.
 During this phenomenon, long periodic behavior was interrupted by chaotic bursts as the experiment control parameter changed.
 They have shown that intermittent behavior is present in simple models such as the Lorenz model~\cite{Lorenz2004}.
@@ -23,7 +23,7 @@ Furthermore, they classified intermittency into three types based on model's Flo
 They called these three types as I, II and III.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 Theoretical analysis of intermittency is centered around certain statistical properties, especially the reinjection probability density function.
 While the standard theory considered this function to be constant~\cite{Dubois1983}, new advances in the field provide more complex explanation~\cite{Elaskar2022}.
 In addition, to the three original types of intermittency, many new types have been described since then.
@@ -35,7 +35,7 @@ Intermittency is a behavior during which seemingly periodic phases in the trajec
 Periodic phases are called laminar.
 Phases with chaotic bursts are called turbulent phases.
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 To illustrate the concept of intermittency, a new dynamical system is needed.
 Let $([0, 1], \mathcal{P}_{\varepsilon})$ be a DDS.
 Map $\mathcal{P}_{\varepsilon}(x) = \left[ (1+\varepsilon)x+(1-\varepsilon)x^2 \right] \mod{1}$ is called the Pomeau-Manneville map~\cite{Manneville1980,Datseris2022}.
@@ -49,14 +49,14 @@ This pattern repeats.
     \centering
     \includegraphics[width=0.95\textwidth]{Figures/type_one_intermittency_example1.png}
     \caption{
-        \textcolor{darkred}{
+        \textcolor{blue}{
         Trajectory $T^{5500}_{0}(\mathcal{P}_{\varepsilon}, x_0)$ for $x_0 = 0.5$ and $\varepsilon = 4.47458$.
         }
     }
     \label{fig:intermittent_trajectory_example}
 \end{figure}
 
-\textcolor{darkred}{
+\textcolor{blue}{
 Although there are many types of intermittency, the main focus of this thesis is on type-I intermittency~\cite{Pomeau1980,Bussac1982,DelRio2014}.
 Such type of intermittent behavior arises when a DDS $(X, f_{p})$ is about to undergo a saddle-node bifurcation.
 This type of bifurcation occurs when the tangent of the graph of $f_{p}$ at point $x^{*}$ is equivalent to the identity line.
@@ -64,7 +64,7 @@ Thus, point $x^{*}$ is a fixed point and $f_{p}'(x^{*}) = 1$.
 As the parameter $p$ is slightly altered, point $x^{*}$ either splits into two fixed points or vanishes.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 An illustration of saddle-node bifurcation is shown in Figure~\ref{fig:saddle_node_bifurcation}.
 A map $f_{p}(x) = p + x + x^2$ is displayed.
 For $p = 0$, there is one single fixed point (red point).
@@ -81,7 +81,7 @@ The narrower the passage is, the more iterations it would take.
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/intermittency_i_local_map.png}
     \caption{
-        \textcolor{darkred}{
+        \textcolor{blue}{
         Map $f_{p}(x) = p + x + x^2$ for different parameters $p$. 
         Parameter $p_B = 0$.
         }
@@ -90,7 +90,7 @@ The narrower the passage is, the more iterations it would take.
 \end{figure}
 
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 Figure~\ref{fig:intermittent_cobweb_example} illustrates the iteration through a narrow passage.
 There, the first laminar phase of Figure~\ref{fig:intermittent_trajectory_example} is displayed through the eyes of a cobweb diagram.
 The trajectory in Figure~\ref{fig:intermittent_trajectory_example} starts off with a chaotic burst but soon transforms into a stable behavior.
@@ -106,7 +106,7 @@ The second entrance into the narrow passage corresponds to the second laminar ph
     \centering
     \includegraphics[width=0.95\textwidth]{Figures/type_one_intermittency_example2.png}
     \caption{
-        \textcolor{darkred}{
+        \textcolor{blue}{
         Subfigures (a) and (b):
         Cobweb diagram of 
         (a) $T^{472}_{38}(\mathcal{P}_{\varepsilon}^{2}, x_0)$ and
@@ -120,7 +120,7 @@ The second entrance into the narrow passage corresponds to the second laminar ph
 \end{figure}
 
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 Intermittency can be though of as a continuous route to chaos (or from chaos).
 Intermittency type-I can be spotted in a bifurcation diagram as a breakpoint or a periodic window.
 Such periodic window can be seen in Figure~\ref{fig:bif_diag_example} at $r = 1+\sqrt{8} \approx 3.82842$.
@@ -132,17 +132,17 @@ When parameter $r$ gets closer and closer to the breakpoint, laminar phases of t
 
 \section{Laminar Phase Length}
 
-\textcolor{darkred}{
+\textcolor{blue}{
 This section describes the notion of laminar phase length, which is the number of iterations a point spends in the narrow passage.
 This notion and especially the notion of the average laminar phase length (or average laminar length for short) will be used in the next Chapter.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 In the following text, the narrow passage from the last section shall be called \emph{laminar region} or \emph{laminar interval}.
 Region outside of the laminar region shall be called \emph{turbulent region}.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 The local shape of the graph above (or below) the laminar region determines the type of intermittency.
 The local shape is also called the \emph{local map}.
 For maps with type-I intermittency, the local map is the following:
@@ -154,7 +154,7 @@ A reinjection mechanism, which reinjects the point from the turbulent region bac
 This reinjection mechanism is described by the reinjection probability density function and depends on a specific DDS.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 Let $(X, f_{p})$ be a DDS. Suppose that $f_{p}$ undergoes saddle-node bifurcation and $x^{*}$ is the corresponding single fixed point.
 Suppose that $I_l = [ x^{*}-c, x^{*}+c ]$ is the laminar interval for some small $c$.
 A \emph{pre-reinjection point} $x_p$ is a point which gets \emph{reinjected} into $I_l$, which means that there exists a point $x_r = f(x_p)$, $x_r \in I_l$.
@@ -178,7 +178,7 @@ Note that the curve in subfigure (b) locally resembles the local map \eqref{eq:i
     \end{subfigure}
 
     \caption{
-        \textcolor{darkred}{ 
+        \textcolor{blue}{ 
         Pre-reinjection points and laminar interval of $\mathcal{L}_{r}^{3}(x+x^{*})-x^{*}$ for $r = 3.827$ and $x^{*} \approxeq 0.51435$.
         (a) the full graph. 
         (b) a close-up to a region of interest. 
@@ -223,7 +223,7 @@ Thus, by calculating $\varepsilon$ of the local map in the vicinity of a fixed p
 To verify that the characteristic relation of type-I intermittency holds, a numerical simulation was conducted.
 The relation is verified for the third iterate of the Logistic map $\mathcal{L}_{r}^{3}$.
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 The third iterate of Logistic map $\mathcal{L}_{r}^{3}$ undergoes saddle-node bifurcation at $r = r^{*} := 1+\sqrt{8}$~\cite{Elaskar2022,Gordon20180411}.
 Parameter $r^{*}$ is the start of the $3$-periodic window, the biggest periodic window visible in the bifurcation diagram of $\mathcal{L}_{r}$ (see Figure~\ref{fig:bif_diag_example}).
 There are three fixed points of $\mathcal{L}_{r^{*}}$ associated with the bifurcation, $x^{*}_{1} \approx 0.1599$, $x^{*}_{2} \approx 0.5143$ and $x^{*}_{3} \approx 0.9563$.
@@ -292,7 +292,7 @@ That implies that the characteristic relation of type-I intermittency holds.
     \end{subfigure}
 
     \caption{
-        \textcolor{darkred}{ 
+        \textcolor{blue}{ 
         $x$-axis: $30$ random $r \in [ r^{*}-10^{-5}, r^{*}-10^{-13} ], r^{*} = 1 + \sqrt{8}$, selected, corresponding $\varepsilon$ are calculated.
         $y$-axis: average $l_{avg}$ of laminar lengths (Equation~\eqref{eq:laminar_length}) for $4000$ points reinjected into laminar interval $I_{c} = [x^{*}-c, x^{*}+c], c \in \{ 0.01, 0.03, 0.05, 0.07 \}$ is calculated.
         Colorful lines: linear fit.
@@ -306,13 +306,13 @@ That implies that the characteristic relation of type-I intermittency holds.
 
 \section{Ambiguous Bifurcation Diagram}
 \label{sec:ambiguous_bif_diag}
-\textcolor{darkred}{
+\textcolor{blue}{
 Bifurcation diagram (Remark~\ref{def: bif_diag}) is a common tool for scientists and researchers to study long term behavior of a DDS for varying parameters.
 However, type-I intermittency poses a problem to the use of a bifurcation diagram.
 The problem is that type-I intermittency causes the bifurcation diagram to be misleading in the proximity of a breakpoint.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 How intermittency might cause the diagram to be misleading can be illustrated as follows:
 Let $(X, f_{p})$ be a DDS.
 Suppose a bifurcation diagram of $f_{p}$ is constructed for some $x_0$, $n_{total}$, $n_{last}$ and $p_{range}$ (see Algorithm~\ref{alg:bif_diag}).
@@ -323,7 +323,7 @@ On the other hand, if the parameter $n_{last}$ is increased, then the projected 
 This might not be a big deal for individual parameters $p$, but this ambiguity might affect a whole range of parameters $p$ near the breakpoint.
 }
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 How a whole range of parameters might be affected can be illustrated as follows:
 Suppose that $p_{R}, p_{B}$ are some parameters near the breakpoint $p_{bif}$.
 Assume that $p_{R} \neq p_{B} \wedge p_{R} < p_{B} < p_{bif}$.
@@ -347,7 +347,7 @@ If such two bifurcation diagrams are constructed, they will both look very diffe
     \centering
     \includegraphics[width=0.95\textwidth]{Figures/bif_diag_ambiguity_creation_sketch.png}
     \caption{
-        \textcolor{darkred}{
+        \textcolor{blue}{
         Sketch describing how to create an ambiguous bifurcation diagram. 
         Red graph: $T^{17000}_{0}(\mathcal{P}_{4.47458285}, x_0)$. 
         Blue graph: $T^{17000}_{0}(\mathcal{P}_{4.47458285+4 \cdot 10^{-8}}, x_0)$. 
@@ -358,7 +358,7 @@ If such two bifurcation diagrams are constructed, they will both look very diffe
 \end{figure}
 
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 Figure~\ref{fig:ambiguous_bif_diag_example} shows an example of $4$ bifurcation diagrams of $\mathcal{P}_{\varepsilon}$.
 They are created for the same parameters except for $n_{last}$, which is different for each one of them.
 A phenomenon, which shall be called ambiguity in the bifurcation diagram, can be observed.
@@ -390,7 +390,7 @@ Ambiguity in this context means that each bifurcation diagram looks drastically 
     \end{subfigure}
 
     \caption{
-        \textcolor{darkred}{ 
+        \textcolor{blue}{ 
         Bifurcation diagrams of $\mathcal{P}_{\varepsilon}$ for $\varepsilon \in I := [4.4745829085, 4.4745829215]$.
         Interval $I$ is sampled to $400$ uniformly spaced points.
         Trajectories used for diagram construction:
@@ -405,7 +405,7 @@ Ambiguity in this context means that each bifurcation diagram looks drastically 
 \end{figure}
 
 \par
-\textcolor{darkred}{
+\textcolor{blue}{
 The ambiguity in the bifurcation diagram might be misleading to someone, who is not aware of it.
 A tool that would warn researchers about intermittency and the ambiguity it is causing might be useful.
 Such a tool will be developed in the Chapter~\ref{chapter:intdetection}.
