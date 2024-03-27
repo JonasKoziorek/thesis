@@ -59,11 +59,13 @@ The aim is to search through the whole parameter space $p_{range}$ and try to de
 }
 \par
 \textcolor{blue}{
-A naive approach to determine whether $p$ is $n$-periodic is to check whether $f^{m}_{p}(x) = f^{m+n}_{p}(x)$ where $m = n_{total}-n_{last}$.
-If $n$ is the smallest number for which the equality holds, then $x$ is an $n$-periodic point.
+A naive approach is to use \emph{brute-force approach}~\cite{Parker1989} or equivalently find \emph{pseudo periodic orbits}~\cite{Galias2023}.
+Initial condition $x_0$ is iterated $m$ times $x_{m} = f^{m}_{p}(x_0)$, where $m = n_{total}-n_{last}$.
+Then, it is checked if $|f^{n}_{p}(x_m) - x_m| \leq \delta$, where $\delta$ is some small tolerance.
+If $n$ is the smallest number for which the inequality holds, then $x_m$ can be considered an $n$-periodic point.
 Consequently, the bifurcation diagram has $n$ dots at $p$.
-If the equality is checked for $n = 1,2,\dots,o$ in an ascending order, then it is clear which $n$ is the smallest.
-Note that $o$ is some maximal period which is checked.
+If the inequality is checked for $n = 1,2,\dots,o$ in an ascending order, then it is clear which $n$ is the smallest.
+Number $o$ denotes the maximal period which is checked.
 }
 \par
 \textcolor{blue}{
@@ -101,14 +103,15 @@ By checking how many periodic points are stable for $f_{p_{A}}$ and $f_{p_{B}}$,
         \Statex $n \gets$ number of samples in the parameter space
         \Statex $m \gets$ number of iterations
         \Statex $o \gets$ maximum period to check
+        \Statex $\delta \gets$ tolerance
         \Statex $x_0 \gets$ initial condition
         \State $p \gets p_{A}$
         \State $p_{step} \gets \frac{p_{B} - p_{A}}{n}$
         \While{$p \leq p_{B}$}
-            \State $x_1 \gets f_{p}^{m}(x_0)$
+            \State $x_m \gets f_{p}^{m}(x_0)$
             \For{$i \gets 1$ to $o$}
-                \State $x_2 \gets f_{p}^{i}(x_1)$
-                \If{$x_2 = x_1$}
+                \State $x \gets f_{p}^{i}(x_m)$
+                \If{$|x_m - x| \leq \delta$}
                     \State $f_p$ is $i$-periodic
                 \EndIf
             \EndFor
