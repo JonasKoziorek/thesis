@@ -215,6 +215,24 @@ However, that is not very practical since it is not always clear how to choose $
 Fortunately, this problem was solved by formulation of so-called characteristic relation of type-I intermittency.
 
 \section{Characteristic Relation}
+
+% \textcolor{green}{
+% To verify whether the characteristic relation holds, the following numerical experiment can be conducted.
+% Logistic map $\mathcal{L}_{r}$. For $r^{*}=1 + \sqrt{8}$ a saddle-node bifurcation occurs.
+% There are three fixed points of $\mathcal{L}_{r^{*}}$ at which the derivative of the map is equal to $1$.
+% These three fixed points are $x^{*}_{1} \approx 0.1599$, $x^{*}_{2} \approx 0.5143$ and $x^{*}_{3} \approx 0.9563$.
+% For parameter $r_{i}$ slightly less than $r^{*}$ a narrow channel is formed between the graph of $\mathcal{L}_{r}$ and identity at in the proximity of these three fixed points.
+% Select one of the fixed points, for instance $x^{*}_{1}$.
+% Furthermore select a laminar interval around it, for instance $I_{l} = [x^{*}_{1}-c, x^{*}_{1}+c]$ for $c = 0.03$.
+% Next, select some $n$ parameters less than $r^{*}$.
+% For each parameter map $\mathcal{L}_{r_{i}} \forall i \in [1, n]$ generate $m$ point reinjected into $I_{l}$.
+% For each reinjected point calculate its laminar length using \eqref{eq:laminar_length}.
+% Calculate average of laminar lengths for each corresponding parameter $r_{i}$.
+% Now, each of the $n$ parameters $r_{i}$ have a corresponding $l_{avg}$.
+% Finally, compute $\epsilon$
+% }
+
+
 To estimate the average laminar length $l_{avg}$ based on the parameter $\varepsilon$ a characteristic relation was formulated~\cite{Elaskar2017}.
 It holds that $l_{avg} \propto 1/\sqrt{\varepsilon}$.
 This relation states that the average laminar length $l_{avg}$ is inversely proportional to the square root of the parameter $\varepsilon$.
