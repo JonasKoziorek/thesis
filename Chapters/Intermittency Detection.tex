@@ -266,23 +266,25 @@ Both algorithms solve the problem, but they use different approaches.
 \label{subsec:naive_local_search}
 
 \textcolor{blue}{
-Naive Local Search (NLS) uses the approximate intervals containing a breakpoint that were found during the Global Search and finds precise location of the breakpoint through combination of the binary search and BWJ algorithm.
+Global Search identified intervals containing a breakpoint.
+Naive Local Search (NLS) uses the these intervals to find precise locations of the breakpoints.
+To achieve that, it uses the Bisection method~\cite{Burden2015-lp} combined with the BWJ algorithm.
 }
 \par
 \textcolor{blue}{
 Suppose that $[p_{A}, p_{B}]$ is the interval identified during the Global Search.
 Furthermore, it is known that $f_{p_{A}}$ is non-periodic and $f_{p_{B}}$ is $n$-periodic.
-Next, split the interval $[p_{A}, p_{B}]$ to obtain two intervals, $[p_{A}, \frac{p_{A}+p_{B}}{2}]$ and $[\frac{p_{A}+p_{B}}{2}, p_{B}]$.
-If $\frac{p_{A}+p_{B}}{2}$ is $n$-periodic then it is known that the breakpoint is in the interval $[p_{A}, \frac{p_{A}+p_{B}}{2}]$.
-If $\frac{p_{A}+p_{B}}{2}$ is non-periodic then it is known that the breakpoint is in the interval $[\frac{p_{A}+p_{B}}{2}, p_{B}]$.
+Next, split the interval $[p_{A}, p_{B}]$ to obtain a midpoint $p_{C} = \frac{p_{A}+p_{B}}{2}$.
+If $p_{C}$ is $n$-periodic then it is known that the breakpoint is in the interval $[p_{A}, p_{C}]$.
+If $p_{C}$ is non-periodic then it is known that the breakpoint is in the interval $[p_{C}, p_{B}]$.
 Whether a parameter is $n$-periodic or not is determined using the BWJ algorithm.
-The new interval is halved again and the process is repeated recursively.
+The new interval is halved again.
 The halving process is repeated for some desired number of iterations $maxiter$.
-Pseudocode for the NLS of the left boundary is given in Algorithm~\ref{alg:local_search}.
+Pseudocode for the NLS of is given in Algorithm~\ref{alg:local_search}.
 }
 
 \begin{algorithm}[!h]
-    \caption{NLS - left boundary}
+    \caption{NLS}
     \label{alg:local_search}
     \begin{algorithmic}[1]
         \Statex $f \gets$ map
@@ -290,36 +292,34 @@ Pseudocode for the NLS of the left boundary is given in Algorithm~\ref{alg:local
         \Statex $p_{B} \gets$ right boundary of the parameter space
         \Statex $n \gets$ period of $f{p_{B}}$
         \Statex $maxiter \gets$ number of iterations
-        \State $p_{C} \gets \frac{p_{A}+p_{B}}{2}$
-        \State $i \gets$ current iteration
-        \If{$i = maxiter$}
-            \State left boundary of the breakpoint is $p_{A}$
-        \EndIf
-        \If{$f_{p_{C}}$ is $n$-periodic}
-            \State repeat the algorithm with the same arguments except $p_{B} \gets p_{C}$ and $i \gets i+1$
-        \Else
-            \State repeat the algorithm with the same arguments except $p_{A} \gets p_{C}$ and $i \gets i+1$
-        \EndIf
+        \For{$i \leq maxiter$}
+            \State $p_{C} \gets \frac{p_{A}+p_{B}}{2}$
+            \If{$f_{p_{C}}$ is $n$-periodic}
+                \State $p_{B} \gets p_{C}$
+            \Else
+                \State $p_{A} \gets p_{C}$
+            \EndIf
+        \EndFor
+        \State \textbf{return} $[p_{A}, p_{B}]$
     \end{algorithmic}
 \end{algorithm}
 
 \par
-The Algorithm~\ref{alg:local_search} searches only for the left boundary. Search for the right boundary can be done analogically by reversing the direction of the search.
-The complete NLS is both the search of the left boundary and the search of the right boundary.
-These two boundaries approximate precise location of a breakpoint.
-By calculating the average $p_{avg}$ of the left and right boundary, a good approximation of the parameter at which the breakpoint occurs is obtained.
+\textcolor{blue}{
+The Algorithm~\ref{alg:local_search} returns a small interval $[p_{A}, p_{B}]$ which contains the breakpoint.
+By calculating the average of the left and right boundary, a good approximation of the parameter at which the breakpoint occurs is obtained.
+Precision can be controlled by the number of iterations $maxiter$.
 An example of NLS for $\mathcal{L}_{r}$ is shown in Figure~\ref{fig:break_point_search_example}.
+}
 
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.95\textwidth]{Figures/break_point_search_example.png}
     \caption{
         \textcolor{blue}{
-        NLS of $\mathcal{L}_{r}$ for $r \in [ 3.825, 3.83 ]$.
+        NLS with parameters $f = \mathcal{L}_{r}$, $p_A = 3.825$, $p_B = 3.83$, $n = 3$ and $maxiter = 20$.
         The bifurcation diagram consists of projections of $\mathcal{T}_{900}^{1000}(\mathcal{L}_{r}, 0.5)$.
-        Red lines: Left and right estimates of the period $3$ breakpoint.
-        Left estimate is found using Algorithm~\ref{alg:local_search} with parameters $p_A = 3.825$, $p_B = 3.83$, $n = 3$ and $maxiter = 20$.
-        Right estimate is found analogically.
+        Red line: estimate of the period $3$ breakpoint.
         }
     }
     \label{fig:break_point_search_example}
@@ -328,7 +328,7 @@ An example of NLS for $\mathcal{L}_{r}$ is shown in Figure~\ref{fig:break_point_
 
 \subsection{Nested-Layer Particle Swarm Optimization}
 The NLS introduced in the previous subsection approximates the parameter at which the breakpoint occurs.
-It is based on the idea of a binary search.
+It is based on the idea of the Bisection method.
 However, the search for the breakpoint can be rephrased as a search for a parameter where saddle-node bifurcation occurs.
 Matsushita, Kurokawa, and Kousaka~\cite{Matsushita2019} introduced an approach to search for saddle-node bifurcation of a DDS.
 Their method uses the Nested-Layer Particle Swarm Optimization (NLPSO) method.

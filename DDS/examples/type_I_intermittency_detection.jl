@@ -40,9 +40,8 @@ end
 begin
     boundaries = []
     for (a, b, n_order) in bifurcation_intervals
-        partition = 2
-        max_iter = 10*partition
-        left_boundary, right_boundary = DDS.intermittency_region(logistic, (a, b), n_order, x_range; max_iter=max_iter, partition=partition)
+        max_iter = 20
+        left_boundary, right_boundary = DDS.NLS(logistic, (a, b), n_order, x_range; max_iter=max_iter)
         push!(boundaries, (left_boundary, right_boundary, n_order))
     end
     param_range2 = LinRange(param_range[1], param_range[end], 1000)

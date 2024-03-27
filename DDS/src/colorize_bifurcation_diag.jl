@@ -74,9 +74,8 @@ function adaptive_range_interval(left, right, division=10)
 end
 
 function find_intermittency_boundary!(map::F, x_range, a, b, n_order) where {F<:Function}
-    partition = 2
-    max_iter = 10 * partition
-    left_boundary, right_boundary = intermittency_region(map, (a, b), n_order, x_range; max_iter=max_iter, partition=partition)
+    max_iter = 15
+    left_boundary, right_boundary = NLS(map, (a, b), n_order, x_range; max_iter=max_iter)
     return (left_boundary, right_boundary, n_order)
 end
 

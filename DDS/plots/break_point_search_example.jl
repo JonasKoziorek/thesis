@@ -11,13 +11,12 @@ begin
     x0 = 0.5
     param = [3.8]
 
-    partition = 2
-    max_iter = 10*partition
+    max_iter = 20
     x_range = (0.0, 1.0)
     total_n = 1000
     last_n = 100
     fig=Figure(resolution=RESOLUTION, fontsize=FONTSIZE)
-    ax = DDS.plot_intermittency_region(
+    ax = DDS.plot_NLS(
         fig[1,1],
         DDS.logistic,
         x0,
@@ -26,7 +25,6 @@ begin
         n_order,
         x_range;
         max_iter=max_iter,
-        partition=partition,
         total_n=total_n,
         last_n=last_n
     )
