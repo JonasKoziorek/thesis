@@ -232,62 +232,110 @@ Fortunately, this problem was solved by formulation of so-called characteristic 
 % Finally, compute $\epsilon$
 % }
 
-
+\textcolor{blue}{
 To estimate the average laminar length $l_{avg}$ based on the parameter $\varepsilon$ a characteristic relation was formulated~\cite{Elaskar2017}.
 It holds that $l_{avg} \propto 1/\sqrt{\varepsilon}$.
 This relation states that the average laminar length $l_{avg}$ is inversely proportional to the square root of the parameter $\varepsilon$.
 Thus, by calculating $\varepsilon$ of the local map in the vicinity of a fixed point $x^{*}$ the $l_{avg}$ can be estimated.
-\par
-To verify that the characteristic relation of type-I intermittency holds, a numerical simulation was conducted.
-The relation is verified for the third iterate of the Logistic map $\mathcal{L}_{r}^{3}$.
-\par
-\textcolor{blue}{
-The third iterate of Logistic map $\mathcal{L}_{r}^{3}$ undergoes saddle-node bifurcation at $r = r^{*} := 1+\sqrt{8}$~\cite{Elaskar2022,Gordon20180411}.
-Parameter $r^{*}$ is the start of the $3$-periodic window, the biggest periodic window visible in the bifurcation diagram of $\mathcal{L}_{r}$ (see Figure~\ref{fig:bif_diag_example}).
-There are three fixed points of $\mathcal{L}_{r^{*}}$ associated with the bifurcation, $x^{*}_{1} \approx 0.1599$, $x^{*}_{2} \approx 0.5143$ and $x^{*}_{3} \approx 0.9563$.
-For parameter $r$ slightly less than $r^{*}$, $\mathcal{L}_{r}^{3}$ in the proximity of each of the points $x^{*}_{1}$, $x^{*}_{2}$ and $x^{*}_{3}$ resembles the local map \eqref{eq:int_I_local_map}.
-Figure~\ref{fig:pre_reinjection_example}~(b) shows the local map of $\mathcal{L}_{r}^{3}$ in the proximity of $x^{*}_{2}$.
-The following explanation of the simulation will use $x^{*}_{1}$ as an example.
-The simulation can be conducted in the same way for $x^{*}_{2}$ and $x^{*}_{3}$.
 }
 \par
-The goal is to compute the average laminar length $l_{avg}$ for a point traveling through the laminar region around $x^{*}_{1}$.
-The laminar region exists for the parameters $r$ slightly less than $r^{*}$.
-In the experiment $30$ parameters $r$ were randomly chosen from the interval $[ r^{*}-10^{-5}, r^{*}-10^{-13} ]$.
-Subsequently, the corresponding $\varepsilon$ parameters were calculated.
+\textcolor{blue}{
+To verify that the characteristic relation of type-I intermittency holds, a numerical simulation was conducted.
+The Algorithm~\ref{alg:char_rel} describes the simulation.
+}
+
+\begin{algorithm}[!h]
+    \caption{Characteristic Relation Verification}
+    \label{alg:char_rel}
+    \begin{algorithmic}[1]
+        \Statex $f_{p} \gets$ map
+        \Statex $p^{*} \gets$ saddle-node bifurcation parameter
+        \Statex $xs \gets$ collection of fixed points of $f_{p^{*}}$
+        \Statex $cs \gets$ collection of laminar interval widths
+        \Statex $N \gets$ number of reinjected points
+        \Statex $M \gets$ number of map parameters
+        \Statex $A \gets$ intermittency region lower bound
+        \Statex $B \gets$ intermittency region upper bound
+
+        \State $ps \gets$ generate $M$ random parameters from $[p^{*}-A, p^{*}-B]$
+        \For{$x_{0}$ in $xs$}
+            \State $g_{p}(x) \gets f_{p}(x + x_0) - x_0$   $\;\;\;$ // map is shifted to the origin
+            \For{$c$ in $cs$}
+                \For{$p_{0}$ in $ps$}
+                    \State $rpoints \gets$ generate $N$ reinjected point into $[-c, c]$
+                    \State $\varepsilon \gets g_{p_{0}}(0)$  $\;\;\;$   // the first term of Maclaurin series
+                    \State $a \gets \frac{1}{2}g''_{p_{0}}(0)$  $\;\;\;$  // the third term of Maclaurin series
+                    \State $ls \gets \emptyset$
+                    \For{$x$ in $rpoints$}
+                        \State $l \gets$ calculate laminar length for $x$, $\varepsilon$ and $a$ using \eqref{eq:laminar_length}
+                        \State $ls \gets ls \cup \{l\}$
+                    \EndFor
+                    \State $l_{avg} \gets$ an average of $ls$
+                    \State plot the point ($\varepsilon$, $l_{avg}$) in a log-log scale
+                \EndFor
+            \EndFor
+        \EndFor
+    \end{algorithmic}
+\end{algorithm}
+
 \par
-To calculate $\varepsilon$ for the local map around $x^{*}_{1}$, the map $\mathcal{L}_{r}^{3}$ was shifted so that $x^{*}_{1}$ is in the origin.
-In other words, $\mathcal{L}_{shift}(x) = \mathcal{L}_{r}^{3}(x + x^{*}_{1}) - x^{*}_{1}$.
-Parameters $\varepsilon$ and $a$ are calculated using the Taylor polynomial of $\mathcal{L}_{shift}(x)$ at $x = 0$.
-Hence, $\varepsilon = | \mathcal{L}_{shift}(0) |$ and $a = \mathcal{L}_{shift}''(0) / 2$.
-$\varepsilon$ and $a$ are calculated for each of the $30$ random $r$ parameters.
-Next, they are used to calculate the laminar length.
+\textcolor{blue}{
+The algorithm chooses a map $f_{p}$, a saddle-node bifurcation parameter $p^{*}$ and fixed points that are associated with the bifurcation.
+Next, for $M$ parameters less than $p^{*}$ a narrow passages are formed between the graph of $f_{p}$ and the fixed points.
+The experiment proceeds by generating $N$ reinjected point in each of the narrow passages, computing their laminar lengths and calculating the average of them.
+In the end, narrow passage heights $\varepsilon$ are plotted against the corresponding average laminar lengths $l_{avg}$ in log-log scale.
+}
 \par
-To calculate the laminar length $l$ from \eqref{eq:laminar_length} corresponding to one parameter $r$, reinjection point $x$, parameters $c$, $\varepsilon$ and $a$ are needed.
-The laminar interval width $c$ in the experiment was selected as $0.01, 0.03, 0.05$ and $0.07$.
-In the following experiment, $c = 0.01$.
-The same procedure can be done for the remaining $c$'s.
-Parameters $c$, $\varepsilon$ and $a$ are known.
-Next, reinjection points $x$ are calculated.
-\par
-To calculate the reinjection points corresponding to one of the $30$ $r$'s, the following procedure is used.
-A point $x$ is randomly chosen from $[ 0-x^{*}_{1}, 1-x^{*}_{1} ]$.
-Consequently, a check is conducted if the point gets reinjected into laminar interval.
-In other words, check if $| \mathcal{L}_{shift}(x) | < c$.
-The procedure is repeated until $N = 4000$ reinjected points are obtained.
-\par
-For each reinjected point $x$, the laminar length $l$ is calculated using \eqref{eq:laminar_length}.
-Then, their average is calculated.
-\par
-The procedure is repeated for each of the $30$ $r$'s.
-The results are plotted in log-log scale.
-A linear fit of the results is calculated and the results are shown in Figure~\ref{fig:characteristic_relation_fit}.
-Note that the results support that the $l_{avg} \propto 1/\sqrt(\varepsilon) = \varepsilon ^ {-1/2}$.
-The linear fit for different $c$'s and $x^{*}$ is shown.
-\par
-Also note that it holds $l_{avg} \propto \varepsilon ^ {-1/2} \implies log_{10}(l_{avg}) \propto -1/2 \cdot \log_{10}(\varepsilon)$.
+\textcolor{blue}{
+The results of the experiment for $\mathcal{L}_{r}^{3}$ are shown in Figure~\ref{fig:characteristic_relation_fit}.
+In addition to data generated by the Algorithm~\ref{alg:char_rel}, linear fits of the data are shown.
+Note that it holds $l_{avg} \propto \varepsilon ^ {-1/2} \implies log_{10}(l_{avg}) \propto -1/2 \cdot \log_{10}(\varepsilon)$.
 The Figure~\ref{fig:characteristic_relation_fit} shows that the slope of the linear fits is approximately $-1/2$.
-That implies that the characteristic relation of type-I intermittency holds. 
+Hence, it can be concluded that the characteristic relation of type-I intermittency holds in this case.
+}
+% \textcolor{blue}{
+% The third iterate of Logistic map $\mathcal{L}_{r}^{3}$ undergoes saddle-node bifurcation at $r = r^{*} := 1+\sqrt{8}$~\cite{Elaskar2022,Gordon20180411}.
+% Parameter $r^{*}$ is the start of the $3$-periodic window, the biggest periodic window visible in the bifurcation diagram of $\mathcal{L}_{r}$ (see Figure~\ref{fig:bif_diag_example}).
+% There are three fixed points of $\mathcal{L}_{r^{*}}$ associated with the bifurcation, $x^{*}_{1} \approx 0.1599$, $x^{*}_{2} \approx 0.5143$ and $x^{*}_{3} \approx 0.9563$.
+% For parameter $r$ slightly less than $r^{*}$, $\mathcal{L}_{r}^{3}$ in the proximity of each of the points $x^{*}_{1}$, $x^{*}_{2}$ and $x^{*}_{3}$ resembles the local map \eqref{eq:int_I_local_map}.
+% Figure~\ref{fig:pre_reinjection_example}~(b) shows the local map of $\mathcal{L}_{r}^{3}$ in the proximity of $x^{*}_{2}$.
+% The following explanation of the simulation will use $x^{*}_{1}$ as an example.
+% The simulation can be conducted in the same way for $x^{*}_{2}$ and $x^{*}_{3}$.
+% }
+% \par
+% The goal is to compute the average laminar length $l_{avg}$ for a point traveling through the laminar region around $x^{*}_{1}$.
+% The laminar region exists for the parameters $r$ slightly less than $r^{*}$.
+% In the experiment $30$ parameters $r$ were randomly chosen from the interval $[ r^{*}-10^{-5}, r^{*}-10^{-13} ]$.
+% Subsequently, the corresponding $\varepsilon$ parameters were calculated.
+% \par
+% To calculate $\varepsilon$ for the local map around $x^{*}_{1}$, the map $\mathcal{L}_{r}^{3}$ was shifted so that $x^{*}_{1}$ is in the origin.
+% In other words, $\mathcal{L}_{shift}(x) = \mathcal{L}_{r}^{3}(x + x^{*}_{1}) - x^{*}_{1}$.
+% Parameters $\varepsilon$ and $a$ are calculated using the Taylor polynomial of $\mathcal{L}_{shift}(x)$ at $x = 0$.
+% Hence, $\varepsilon = | \mathcal{L}_{shift}(0) |$ and $a = \mathcal{L}_{shift}''(0) / 2$.
+% $\varepsilon$ and $a$ are calculated for each of the $30$ random $r$ parameters.
+% Next, they are used to calculate the laminar length.
+% \par
+% To calculate the laminar length $l$ from \eqref{eq:laminar_length} corresponding to one parameter $r$, reinjection point $x$, parameters $c$, $\varepsilon$ and $a$ are needed.
+% The laminar interval width $c$ in the experiment was selected as $0.01, 0.03, 0.05$ and $0.07$.
+% In the following experiment, $c = 0.01$.
+% The same procedure can be done for the remaining $c$'s.
+% Parameters $c$, $\varepsilon$ and $a$ are known.
+% Next, reinjection points $x$ are calculated.
+% \par
+% To calculate the reinjection points corresponding to one of the $30$ $r$'s, the following procedure is used.
+% A point $x$ is randomly chosen from $[ 0-x^{*}_{1}, 1-x^{*}_{1} ]$.
+% Consequently, a check is conducted if the point gets reinjected into laminar interval.
+% In other words, check if $| \mathcal{L}_{shift}(x) | < c$.
+% The procedure is repeated until $N = 4000$ reinjected points are obtained.
+% \par
+% For each reinjected point $x$, the laminar length $l$ is calculated using \eqref{eq:laminar_length}.
+% Then, their average is calculated.
+% \par
+% The procedure is repeated for each of the $30$ $r$'s.
+% The results are plotted in log-log scale.
+% A linear fit of the results is calculated and the results are shown in Figure~\ref{fig:characteristic_relation_fit}.
+% Note that the results support that the $l_{avg} \propto 1/\sqrt(\varepsilon) = \varepsilon ^ {-1/2}$.
+% The linear fit for different $c$'s and $x^{*}$ is shown.
 
 \begin{figure}[!h]
     \centering
@@ -311,12 +359,13 @@ That implies that the characteristic relation of type-I intermittency holds.
 
     \caption{
         \textcolor{blue}{ 
-        $x$-axis: $30$ random $r \in [ r^{*}-10^{-5}, r^{*}-10^{-13} ], r^{*} = 1 + \sqrt{8}$, selected, corresponding $\varepsilon$ are calculated.
-        $y$-axis: average $l_{avg}$ of laminar lengths (Equation~\eqref{eq:laminar_length}) for $4000$ points reinjected into laminar interval $I_{c} = [x^{*}-c, x^{*}+c], c \in \{ 0.01, 0.03, 0.05, 0.07 \}$ is calculated.
+        Results of the simulation \ref{alg:char_rel}. Parameters: $f_{p} = \mathcal{L}_{r}^{3}$, $p^{*} = 1+\sqrt{8}$, $xs = \{0.1599, 0.5143, 0.9563\}$, $cs = \{0.01, 0.03, 0.05, 0.07\}$, $N = 4000$, $M = 30$, $A = 10^{-5}$ and $B = 10^{-13}$.
+        % $x$-axis: $30$ random $r \in [ r^{*}-10^{-5}, r^{*}-10^{-13} ], r^{*} = 1 + \sqrt{8}$, selected, corresponding $\varepsilon$ are calculated.
+        % $y$-axis: average $l_{avg}$ of laminar lengths (Equation~\eqref{eq:laminar_length}) for $4000$ points reinjected into laminar interval $I_{c} = [x^{*}-c, x^{*}+c], c \in \{ 0.01, 0.03, 0.05, 0.07 \}$ is calculated.
         Colorful lines: linear fit.
         Constant $s$: slope of the linear fit.
-        Fixed point $x^{*}$: (a) $x^{*} = 0.1599$ (b) $x^{*} = 0.5143$ and (c) $x^{*} = 0.9563$.
-        DDS: $\mathcal{L}_{r}^{3}$.
+        % Fixed point $x^{*}$: (a) $x^{*} = 0.1599$ (b) $x^{*} = 0.5143$ and (c) $x^{*} = 0.9563$.
+        % DDS: $\mathcal{L}_{r}^{3}$.
         }
     }
     \label{fig:characteristic_relation_fit}

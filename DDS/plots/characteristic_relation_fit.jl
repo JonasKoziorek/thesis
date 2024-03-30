@@ -13,13 +13,16 @@ begin
     x02 = 0.5143552770619905
     x03 = 0.9563178419736238
     x0s = [x01, x02, x03]
+    p0 = 1+sqrt(8)
+    num_points = 30
+    ps = p0 .- [rand(Uniform(1e-13, 1e-5)) for i = 1:num_points]
     names = ["characteristic_relation_fit{$i}.png" for i = 1:3]
     for (x0, name) in zip(x0s, names)
-        generate_plot(x0, name)
+        generate_plot(x0, name, ps)
     end
 end
 
-function generate_plot(x0, name)
+function generate_plot(x0, name, ps)
     LATEX_FONT_SIZE = 33
     FONTSIZE = 25
     RESOLUTION = (720, 700)
@@ -31,16 +34,12 @@ function generate_plot(x0, name)
     nth_logistic = DDS.nth_composition(logistic, order)
     shift(x, param) = nth_logistic(x+x0, param) - x0
     
-    p0 = 1+sqrt(8)
-
     fig = Figure(fontsize=FONTSIZE, resolution=RESOLUTION)
     ax = Axis(fig[2,1], xscale=log10, yscale=log10)
 
     N = 4000
-    num_points = 30
     cs = [0.01, 0.03, 0.05, 0.07]
     colors = [BLUE, GREEN, ORANGE, PURPLE]
-    ps = p0 .- [rand(Uniform(1e-13, 1e-5)) for i = 1:num_points]
     labels = []
     for (c, color) in zip(cs,colors)
         label = plot_line(ax, shift, POINT_SIZE, LINEWIDTH, c, color, ps, N, x0)
