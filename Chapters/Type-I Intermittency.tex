@@ -4,9 +4,9 @@
 \textcolor{blue}{
 This Chapter is concerned with the phenomena of intermittency, especially with type-I intermittency.
 Firstly, discovery and history of intermittency is mentioned.
-Then the origion of intermittency is motivated.
+Then the cause of intermittency is motivated.
 Furthermore, the idea of laminar length and charasteristic relation is introduced.
-Lastly, the ambiguity of the bifurcation diagram caused by intermittency is shown.
+Lastly, the ambiguity of the bifurcation diagram caused by intermittency is explained.
 }
 
 \section{History}
@@ -71,7 +71,7 @@ For $p = 0$, there is one single fixed point (red point).
 The tangent of $f_{p}$ at the red point is $1$.
 When $p$ increases slightly, the fixed point vanishes.
 On the other hand, when $p$ is slightly decreased, two fixed points emerge (blue points).
-Note that if $p$ is decreased by a very small value, a narrow passage is formed between $f_{p}$ and the identity line.
+Note that if $p$ is increased by a very small value, a narrow passage is formed between $f_{p}$ and the identity line.
 Imagine that a cobweb diagram (Remark~\ref{def:cobweb}) is initited with initial condition $x_0$ close to the red point.
 In that case, it would take many iterations for the point to iterate through the narrow passage.
 The narrower the passage, the more iterations it would take.
@@ -94,7 +94,7 @@ The narrower the passage, the more iterations it would take.
 Figure~\ref{fig:intermittent_cobweb_example} illustrates the iteration through a narrow passage.
 There, the first laminar phase of Figure~\ref{fig:intermittent_trajectory_example} is shown through the eyes of a cobweb diagram.
 The trajectory in Figure~\ref{fig:intermittent_trajectory_example} starts off with a chaotic burst but soon transforms into a stable behavior.
-The reason for that is seen in Figure~\ref{fig:intermittent_cobweb_example}(a), the point got trapped in a narrow passage formed between the identity line and the graph.
+The reason for that is seen in Figure~\ref{fig:intermittent_cobweb_example}(a). The point got trapped in a narrow passage formed between the identity line and the graph.
 It takes many iterations for the point to iterate through the passage (Figure~\ref{fig:intermittent_cobweb_example}(b)).
 Figure~\ref{fig:intermittent_cobweb_example}(c) shows a subset of a trajectory in Figure~\ref{fig:intermittent_trajectory_example}.
 The subset corresponds to the iteration through a narrow passage.
@@ -134,24 +134,24 @@ When the parameter $r$ gets closer and closer to the breakpoint, the laminar pha
 
 \textcolor{blue}{
 This section describes the notion of laminar phase length, which is the number of iterations a point spends in the narrow passage.
-This notion and especially the notion of the average laminar phase length (or average laminar length for short) will be used in the next Chapter.
+This notion and especially the notion of the average laminar phase length (or average laminar length for short) will be used in Chapter~\ref{chapter:intdetection}.
 }
 \par
 \textcolor{blue}{
-In the following text, the narrow passage from the last section shall be called \emph{laminar region} or \emph{laminar interval}.
+In the following text, the narrow passage between the graph and the identity shall be called \emph{laminar region} or \emph{laminar interval}.
 The region outside of the laminar region shall be called \emph{turbulent region}.
 }
 \par
 \textcolor{blue}{
 The local shape of the graph above (or below) the laminar region determines the type of intermittency.
-The local shape is also called the \emph{local map}.
+The local shape is also called the \emph{local map} \cite{Elaskar2017}.
 For maps with type-I intermittency, the local map is the following:
 \begin{equation}
 \varepsilon + x + a x^2 \label{eq:int_I_local_map}
 \end{equation}
-However, a correct local map is not enough for intermittency to occur in a DDS.
+However, a specific local map is not enough for intermittency to occur in a DDS.
 A reinjection mechanism has to be present that reinjects the point from the turbulent region back into the laminar region.
-This reinjection mechanism is described by the reinjection probability density function and depends on a specific DDS.
+This reinjection mechanism is described by the reinjection probability density function and depends on a specific DDS. \cite{Elaskar2017}
 }
 \par
 \textcolor{blue}{
@@ -202,7 +202,7 @@ Solving from reinjected point $x$ to the end of laminar interval $c$ yields:
 \begin{equation}
 \int_{x}^{c} \frac{dx}{\varepsilon + a x^2} = \int_{0}^{l} dl \label{eq:int_I_diff_eq_step1}
 \end{equation}
-Solving for $l$ results in:
+Solving for $l$ results in \cite{Elaskar2017}:
 \begin{equation}
     l(x, c) = \frac{1}{\sqrt{a \varepsilon}} \left( \tan^{-1} \left( c \sqrt{\frac{a}{\varepsilon}} \right) - \tan^{-1} \left( x \sqrt{\frac{a}{\varepsilon}} \right) \right) \label{eq:laminar_length}
 \end{equation}
@@ -322,9 +322,9 @@ Let $(X, f_{p})$ be a DDS.
 Suppose a bifurcation diagram of $f_{p}$ is constructed for some $x_0$, $n_{total}$, $n_{last}$, and $p_{range}$ (see Algorithm~\ref{alg:bif_diag}).
 Next, assume that for parameter $p$, $f_{p}$ is intermittent.
 The bifurcation diagram is constructed by projecting trajectories $\mathcal{T}_{n_{total}-n_{last}}^{n_{total}}(f_{p}, x_0)$.
-If the trajectory constructed for iterations $n \in [n_{total}, n_{total}-n_{last}]$ lies fully in the laminar phase, then only a finite number of dots will be displayed on the diagram.
+If the trajectory constructed for iterations $n \in [n_{total}-n_{last}, n_{total}]$ lies fully in the laminar phase, then only a finite number of dots will be displayed on the diagram.
 On the other hand, if the parameter $n_{last}$ is increased, then the projected trajectory might reach the turbulent phase and the diagram will show a band of points.
-This might not be a big deal for individual parameters $p$, but this ambiguity might affect a wide range of parameters $p$ near the breakpoint.
+This might not be a big deal for individual parameters $p$, but this phenomenon might affect a wide range of parameters $p$ near the breakpoint.
 }
 \par
 \textcolor{blue}{

@@ -56,8 +56,8 @@ Julia can even run on a supercomputer~\cite{Regier2016-vq}.
 \section{Implementation}
 All data, plots, and results included in this thesis were generated using the Julia programming language.
 The whole source code is available on Github \url{https://github.com/JonasKoziorek/thesis} and as an attachment to this thesis.
-For the purposes of exploration of this thesis, I have created my own library called DDS.jl (Discrete Dynamical Systems).
-The main features include the following.
+For the purposes of this thesis, I have created my own library called DDS.jl (Discrete Dynamical Systems).
+The main features include the following:
 \begin{itemize}
     \item Support of multidimensional discrete dynamical systems.
     \item Trajectory generation and its plots.
@@ -66,6 +66,7 @@ The main features include the following.
     \item Automatic differentiation and Jacobians of an arbitrary system.
     \item Davidchack-Lai algorithm.
     \item Bu-Wang-Jiang algorithm.
+    \item NLPSO
     \item Global Search, Local Search, and Colorization algorithms.
 \end{itemize}
 Many of the algorithms are parallelizable.
@@ -73,8 +74,6 @@ Bifurcation diagrams were generated in parallel by splitting the parameter space
 Local Search was run in parallel by computing the left boundary estimation and the right boundary estimation separately.
 Local Search was also run in parallel for each interval found in the Global Search.
 Global Search was run in parallel by splitting up the parameter space.
-\par
 All plots were created using Julia plotting packages Makie.jl~\cite{Danisch2021} and Plots.jl~\cite{Christ2022}.
-Vector graphics was created using the Luxor.jl package~\cite{Luxor2024}.
 
 \endinput

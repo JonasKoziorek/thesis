@@ -11,7 +11,7 @@ Fixed points are computed for the first iterate of the Logistic map and their st
 \par
 Chapter 3 establishes the phenomenon of type-I intermittency.
 Motivation behind this type of intermittency is provided and illustrated visually.
-The ambiguity of the bifurcation diagram is brought up, and the creation of such an ambiguous diagram is shown.
+The ambiguity of the bifurcation diagram is explained, and the creation of such an ambiguous diagram is shown.
 Furthermore, the notion of laminar phase length and characteristic relation is introduced.
 A verification of the characteristic relation is carried out for the Logistic map.
 \par
@@ -47,12 +47,10 @@ This way, it is highlighted where does the type-I intermittency occur and how pr
 }
 \par
 \textcolor{blue}{
-% During the development of the algorithm, a lot of attention was given to the detection of unstable periodic orbits.
-% Chapter~\ref{chapter:intdetection} gave comprehensive literature summary, citing several modern approaches for detection of UPOs.
 There is a potential for further development of the detection algorithm.
 One improvement would be to extend Global Search \ref{sec:globsearch} to higher dimensions.
-In that case, the NLPSO algorithm could be used for the Local Search to find precise locations of saddle-node bifurcations.
 Secondly, the detection algorithm could be extended to work for continuous dynamical systems by using Poincare surface sections.
+Next, enabling the algorithm to work with breakpoints that are reversed - periodicity on the left side of the breakpoint.
 Moreover, analyzing how robust and reliable the detection algorithm is.
 Lastly, figuring out whether there are practical applications of the algorithm.
 Constructing detection algorithms for different types of intermittency is also an open problem.

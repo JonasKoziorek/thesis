@@ -1,13 +1,13 @@
 \chapter{Intermittency Detection}
 \label{chapter:intdetection}
-Section \ref{sec:ambiguous_bif_diag} of the previous chapter introduced the problem of ambiguity of the bifurcation diagram.
+Section \ref{sec:ambiguous_bif_diag} of the previous chapter introduced the problem of ambiguity in the bifurcation diagram.
 This chapter introduces an algorithm that aims to detect the ambiguity.
 The algorithm consists of 3 core parts.
 
 \begin{enumerate}
 	\item \textbf{Global Search} -- searching for areas where breakpoints occur.
-	\item \textbf{Local Search} -- searching for precise locations of breakpoints.
-	\item \textbf{Coloring} -- coloring the bifurcation diagram in the proximity of breakpoints.
+	\item \textbf{Local Search} -- searching for precise locations of the breakpoints.
+	\item \textbf{Coloring} -- coloring the bifurcation diagram in the proximity of the breakpoints.
 \end{enumerate}
 
 Each of these parts are described in the following sections.
@@ -39,7 +39,7 @@ The fact that the bifurcation diagram shows $n$-periodic behavior ($n$ dots) for
 Two situations can happen:
 \begin{enumerate}
     \item Map $f_{p}$ has a stable periodic orbit and the $x_0$ has converged to it in $n_{total}-n_{last}$ iterations.
-    \item The initial condition $x_0$ belongs to a UPO or SPO of $f_p$.
+    \item The initial condition $x_0$ belongs to a stable or unstable periodic orbit of $f_p$.
 \end{enumerate}
 When talking about periodic behavior in a bifurcation diagram, the focus will be on case $1$.
 Case $2$ will be ignored since it is not very probable that an initial condition will belong to a periodic orbit.
@@ -52,7 +52,7 @@ Consequently, finding the smallest SPO of $\mathcal{L}_{r}$ would indicate how m
 }
 \par
 \textcolor{blue}{
-There exist algorithms to find the UPO (and thus SPO) of an arbitrary DDS.
+There exist algorithms to find the periodic points of an arbitrary DDS.
 They will be discussed in detail in Subsection~\ref{subsec: detection_of_periodic_points}.
 Although they are efficient, they are not efficient enough for the current goal.
 The aim is to search the entire parameter space $p_{range}$ and try to detect an SPO for each parameter $p \in p_{range}$.
@@ -78,18 +78,18 @@ There, the points that were identified by NGS as periodic are colored blue.
 \par
 \textcolor{blue}{
 After applying NGS, the breakpoint can be easily found.
-It can be concluded that the breakpoint occurs between parameters $[p_{A}, p_{B}]$ such that NGS found no periodicity for $p_{A}$ and $n$-periodicity for $p_{B}$.
+It can be concluded that the breakpoint occurs between neighboring parameters $[p_{A}, p_{B}]$ such that NGS found no periodicity for $p_{A}$ and $n$-periodicity for $p_{B}$.
 However, the shortcoming of NGS is that it is misleading in the proximity of a breakpoint.
 Imagine that $f^{m}_{p}(x_0)$ for $m = n_{total}-n_{last}$ lies in the laminar phase of an intermittent trajectory of $f_{p}$.
 Then $p$ will be determined as periodic even if it is not.
-In addition, the bifurcation diagram at $p$ might or might not show $n$ dots.
+% In addition, the bifurcation diagram at $p$ might or might not show $n$ dots.
 Since $\mathcal{T}_{m}^{n_{total}}(f_{p}, x_{0})$ is intermittent, the bifurcation diagram could show a band of points or just $n$ dots.
 That depends on whether the trajectory subset is in the laminar or turbulent phase.
 }
 \par
 \textcolor{blue}{
 To overcome this issue, it is useful to verify that the period of $p_{A}$ and $p_{B}$ was correctly estimated.
-The next subsection introduces efficient algorithms for computing the UPO of an arbitrary DDS.
+The next subsection introduces efficient algorithms for computing the periodic points of an arbitrary DDS.
 By checking how many periodic points are stable for $f_{p_{A}}$ and $f_{p_{B}}$, the period of $p_{A}$ and $p_{B}$ can be verified.
 }
 
@@ -337,12 +337,12 @@ In addition, their approach can be used for the detection of other types of bifu
 Understanding how NLPSO detection of saddle-node bifurcation works requires understanding of the Particle Swarm Optimization (PSO).
 PSO is a popular population-based evolutionary algorithm.
 It tracks several particles that represent potential solutions.
-Each particle has its own position and velocity. It also tracks its previous best position and score, which is evaluated by a cost function.
+Each particle has its own position $pos \in \mathbb{R}^{n}$ and velocity $vel \in \mathbb{R}^{n}$. It also tracks its previous best position $b_{pos} \in \mathbb{R}^{n}$ and score $b_{score} \in \mathbb{R}$, which is evaluated by a cost function.
 Each particle moves through the search space based on its velocity and position.
-Its movement is also influenced by its previous best position and the best positions of other particles.~\cite{Matsushita2019}
+Its movement is also influenced by its previous best position, the best positions of other particles $g_{pos}$ and the global best score $g_{score}$.~\cite{Matsushita2019}
 \par
-Each particle has a position $pos \in \mathbb{R}^{n}$, a velocity $vel \in \mathbb{R}^{n}$, a best position $b_{pos} \in \mathbb{R}^{n}$ and a best score $b_{score} \in \mathbb{R}$.
-The algorithm also tracks the best global position $g_{pos}$ and global best score $g_{score}$.
+% Each particle has a position $pos \in \mathbb{R}^{n}$, a velocity $vel \in \mathbb{R}^{n}$, a best position $b_{pos} \in \mathbb{R}^{n}$ and a best score $b_{score} \in \mathbb{R}$.
+% The algorithm also tracks the best global position $g_{pos}$ and global best score $g_{score}$.
 The pseudocode for the PSO algorithm is given in Algorithm~\ref{alg:pso}.
 The parameters $w$, $c_{1}$ and $c_{2}$ in Algorithm~\ref{alg:pso} shall be set as $w=0.729$ and $c_{1}=c_{2}=1.494$.~\cite{Matsushita2019}
 
@@ -358,12 +358,12 @@ The parameters $w$, $c_{1}$ and $c_{2}$ in Algorithm~\ref{alg:pso} shall be set 
         \Statex $w, c_{1}, c_{2} \gets$ parameters described in the text
         \State Create $n$ particles.
         \For{each particle}
-            \State $pos$ $m$-dimensional vector of uniform random numbers between $a$ and $b$.
-            \State $vel$ $m$-dimensional zero vector.
+            \State $pos \gets$ $m$-dimensional vector of uniform random numbers between $a$ and $b$.
+            \State $vel \gets$ $m$-dimensional zero vector.
             \State $b_{pos} \gets$ $m$-dimensional vector of uniform random numbers between $a$ and $b$.
             \State $b_{score} \gets \infty$
         \EndFor
-        \State $g_{pos}$ $m$-dimensional vector of uniform random numbers between $a$ and $b$.
+        \State $g_{pos} \gets$ $m$-dimensional vector of uniform random numbers between $a$ and $b$.
         \State $g_{score} \gets \infty$
 
         \For{iteration less than $maxiter$}
@@ -428,7 +428,7 @@ This nesting of two PSOs enables the PSO2 to converge to a saddle-node bifurcati
 To initiate PSO2, information from Global Search can be used.
 Suppose that $[p_{A}, p_{B}]$ is the interval identified during the Global Search of a DDS $(X, f_{p})$.
 Furthermore, it is known that $f_{p_{A}}$ is non-periodic and $f_{p_{B}}$ is $m$-periodic.
-Then, the parameters of PSO2 (Algorithm~\ref{alg:pso}) can be chosen as follows: $f = f_{p}$, $(a, b) = (p_{A}, p_{B})$, $n = m$, $maxiter = 500$ and $tol = 10^{-6}$.
+Then, the parameters of PSO2 (Algorithm~\ref{alg:pso}) can be chosen as follows: $f = f_{p}$, $(a, b) = (p_{A}, p_{B})$, $n = 10$, $maxiter = 500$ and $tol = 10^{-6}$.
 The parameters of PSO1 can be chosen equivalently, except that $(a, b)$ must be chosen with respect to $f_{p}$.
 Since $X$ is invariant under $f_{p}$, $(a, b)$ can be chosen appropriately.
 For example, for the Logistic map, $(a, b)$ of PSO1 can be set to $[0, 1]$.
@@ -442,7 +442,7 @@ The characteristic relation of type-I intermittency is used to color the neighbo
 \subsection{Description of the algorithm}
 The Local Search found parameters of the parameter space at which the breakpoint occurs.
 Let $p_b$ be one of them.
-It is known that the parameters on the left side $p_b$ in its proximity exhibit intermittency.
+It is known that the parameters on the left side of $p_b$ in its proximity exhibit intermittency.
 Nevertheless, there is a need to quantify how far from $p_b$ is intermittency still occurring.
 Additionally, it is needed to measure how prominent the intermittency is for some $p$ near $p_b$.
 \par
@@ -455,7 +455,7 @@ Taking their average yields an estimate of the average laminar length for $p_b$.
 \par
 Depending on the parameter $p$, the laminar phases have various lengths.
 Far to the left of $p_b$ the laminar phases are about $50$ iterations long.
-Very close to the left of $p_b$ the length of the laminar phase can become arbitrary long.
+Very close to the left of $p_b$ the length of the laminar phase can become arbitrarily long.
 The closer the parameter $p$ gets to $p_b$, the longer the laminar phase.
 \par
 To colorize the diagram it is needed to determine the average laminar length for the parameters $p$ to the left of $p_b$ and compare them.
