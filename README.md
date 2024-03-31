@@ -1,6 +1,6 @@
 # Contents
 
-This repository contains text and code of my bachelor's thesis. I am a student at VSB-TUO, Czechia. My major is Computational and Applied mathematics. The thesis deals with the area of mathematics called dynamical systems.
+This repository contains text and code of my bachelor's thesis. I am a student at VSB-TUO, Czechia. My major is Computational and Applied mathematics. The thesis deals with the area of mathematics called dynamical systems. To run examples of the code, see `DDS/examples`.
 
 # Information about the thesis
 
