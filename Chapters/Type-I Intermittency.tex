@@ -3,10 +3,10 @@
 
 \textcolor{blue}{
 This Chapter is concerned with the phenomena of intermittency, especially with type-I intermittency.
-Firstly discovery and history of intermittency is mentioned.
+Firstly, discovery and history of intermittency is mentioned.
 Then the origion of intermittency is motivated.
 Furthermore, the idea of laminar length and charasteristic relation is introduced.
-Lastly, the ambiguity of bifurcation diagram caused by intermittency is shown.
+Lastly, the ambiguity of the bifurcation diagram caused by intermittency is shown.
 }
 
 \section{History}
@@ -20,14 +20,14 @@ About three decades later, Pomeau and Manneville have studied intermittent trans
 During this phenomenon, long periodic behavior was interrupted by chaotic bursts as the experiment control parameter changed.
 They have shown that intermittent behavior is present in simple models such as the Lorenz model~\cite{Lorenz2004}.
 Furthermore, they classified intermittency into three types based on model's Floquet multipliers.
-They called these three types as I, II and III.
+They called these three types I, II and III.
 }
 \par
 \textcolor{blue}{
 Theoretical analysis of intermittency is centered around certain statistical properties, especially the reinjection probability density function.
-While the standard theory considered this function to be constant~\cite{Dubois1983}, new advances in the field provide more complex explanation~\cite{Elaskar2022}.
+Although standard theory considered this function constant~\cite{Dubois1983}, new advances in the field provide a more complex explanation~\cite{Elaskar2022}.
 In addition, to the three original types of intermittency, many new types have been described since then.
-Some of them are V, X, on-off, eyelet and ring~\cite{Elaskar2022}.
+Some of them are V, X, on-off, eyelet, and ring~\cite{Elaskar2022}.
 }
 
 \section{Motivation}
@@ -38,8 +38,8 @@ Phases with chaotic bursts are called turbulent phases.
 \textcolor{blue}{
 To illustrate the concept of intermittency, a new dynamical system is needed.
 Let $([0, 1], \mathcal{P}_{\varepsilon})$ be a DDS.
-Map $\mathcal{P}_{\varepsilon}(x) = \left[ (1+\varepsilon)x+(1-\varepsilon)x^2 \right] \mod{1}$ is called the Pomeau-Manneville map~\cite{Manneville1980,Datseris2022}.
-Intermittency is clearly visible in trajectory of $\mathcal{P}_{\varepsilon}$ diplayed in Figure~\ref{fig:intermittent_trajectory_example}.
+The map $\mathcal{P}_{\varepsilon}(x) = \left[ (1+\varepsilon)x+(1-\varepsilon)x^2 \right] \mod{1}$ is called the Pomeau-Manneville map~\cite{Manneville1980,Datseris2022}.
+Intermittency is clearly visible in the trajectory of $\mathcal{P}_{\varepsilon}$ shown in Figure~\ref{fig:intermittent_trajectory_example}.
 Seemingly 2-periodic behavior which lasts for about 1000 iterations is interrupted by short chaotic bursts.
 These chaotic bursts soon transform into seemingly 2-periodic behavior.
 This pattern repeats.
@@ -58,23 +58,23 @@ This pattern repeats.
 
 \textcolor{blue}{
 Although there are many types of intermittency, the main focus of this thesis is on type-I intermittency~\cite{Pomeau1980,Bussac1982,DelRio2014}.
-Such type of intermittent behavior arises when a DDS $(X, f_{p})$ is about to undergo a saddle-node bifurcation.
-This type of bifurcation occurs when the tangent of the graph of $f_{p}$ at point $x^{*}$ is equivalent to the identity line.
-Thus, point $x^{*}$ is a fixed point and $f_{p}'(x^{*}) = 1$.
-As the parameter $p$ is slightly altered, point $x^{*}$ either splits into two fixed points or vanishes.
+Such an intermittent behavior arises when a DDS $(X, f_{p})$ is about to undergo a saddle-node bifurcation.
+This type of bifurcation occurs when the tangent of the graph of $f_{p}$ at the point $x^{*}$ is equivalent to the identity line.
+Thus, the point $x^{*}$ is a fixed point, and $f_{p}'(x^{*}) = 1$.
+As the parameter $p$ is slightly altered, the point $x^{*}$ either splits into two fixed points or vanishes.
 }
 \par
 \textcolor{blue}{
 An illustration of saddle-node bifurcation is shown in Figure~\ref{fig:saddle_node_bifurcation}.
 A map $f_{p}(x) = p + x + x^2$ is displayed.
 For $p = 0$, there is one single fixed point (red point).
-Tangent of $f_{p}$ at the red point is $1$.
-When $p$ is slightly increased, the fixed point vanishes.
-On the other hand, when $p$ is slightly decreased, two fixed point emerge (blue points).
+The tangent of $f_{p}$ at the red point is $1$.
+When $p$ increases slightly, the fixed point vanishes.
+On the other hand, when $p$ is slightly decreased, two fixed points emerge (blue points).
 Note that if $p$ is decreased by a very small value, a narrow passage is formed between $f_{p}$ and the identity line.
 Imagine that a cobweb diagram (Remark~\ref{def:cobweb}) is initited with initial condition $x_0$ close to the red point.
-In that case it would take many iterations for the point to iterate through the narrow passage.
-The narrower the passage is, the more iterations it would take.
+In that case, it would take many iterations for the point to iterate through the narrow passage.
+The narrower the passage, the more iterations it would take.
 }
 
 \begin{figure}[!h]
@@ -92,13 +92,13 @@ The narrower the passage is, the more iterations it would take.
 \par
 \textcolor{blue}{
 Figure~\ref{fig:intermittent_cobweb_example} illustrates the iteration through a narrow passage.
-There, the first laminar phase of Figure~\ref{fig:intermittent_trajectory_example} is displayed through the eyes of a cobweb diagram.
+There, the first laminar phase of Figure~\ref{fig:intermittent_trajectory_example} is shown through the eyes of a cobweb diagram.
 The trajectory in Figure~\ref{fig:intermittent_trajectory_example} starts off with a chaotic burst but soon transforms into a stable behavior.
-The reason for that is seen in Figure~\ref{fig:intermittent_cobweb_example}(a), the point got trapped in a narrow passage formed between identity line and the graph.
+The reason for that is seen in Figure~\ref{fig:intermittent_cobweb_example}(a), the point got trapped in a narrow passage formed between the identity line and the graph.
 It takes many iterations for the point to iterate through the passage (Figure~\ref{fig:intermittent_cobweb_example}(b)).
 Figure~\ref{fig:intermittent_cobweb_example}(c) shows a subset of a trajectory in Figure~\ref{fig:intermittent_trajectory_example}.
 The subset corresponds to the iteration through a narrow passage.
-Once the point gets out of the narrow passage, it moves chaotically before it gets reinjected back into the narrow passage.
+Once the point escapes the narrow passage, it moves chaotically before being reinjected back into the narrow passage.
 The second entrance into the narrow passage corresponds to the second laminar phase of Figure~\ref{fig:intermittent_trajectory_example}.
 }
 
@@ -121,12 +121,12 @@ The second entrance into the narrow passage corresponds to the second laminar ph
 
 \par
 \textcolor{blue}{
-Intermittency can be though of as a continuous route to chaos (or from chaos).
+Intermittency can be thought of as a continuous route to chaos (or from chaos).
 Intermittency type-I can be spotted in a bifurcation diagram as a breakpoint or a periodic window.
 Such periodic window can be seen in Figure~\ref{fig:bif_diag_example} at $r = 1+\sqrt{8} \approx 3.82842$.
-At this parameter, the a non-periodic behavior suddently changed to a $3$-periodic behavior.
-The process which caused this change is type-I intermittency.
-When parameter $r$ gets closer and closer to the breakpoint, laminar phases of the trajectories get longer and longer until the whole trajectory is one infinitely long laminar phase.
+At this parameter, the nonperiodic behavior suddenly changed to the $3$-periodic behavior.
+The process that caused this change is type-I intermittency.
+When the parameter $r$ gets closer and closer to the breakpoint, the laminar phases of the trajectories become longer and longer until the whole trajectory becomes an infinitely long laminar phase.
 }
 
 
@@ -139,7 +139,7 @@ This notion and especially the notion of the average laminar phase length (or av
 \par
 \textcolor{blue}{
 In the following text, the narrow passage from the last section shall be called \emph{laminar region} or \emph{laminar interval}.
-Region outside of the laminar region shall be called \emph{turbulent region}.
+The region outside of the laminar region shall be called \emph{turbulent region}.
 }
 \par
 \textcolor{blue}{
@@ -150,14 +150,14 @@ For maps with type-I intermittency, the local map is the following:
 \varepsilon + x + a x^2 \label{eq:int_I_local_map}
 \end{equation}
 However, a correct local map is not enough for intermittency to occur in a DDS.
-A reinjection mechanism, which reinjects the point from the turbulent region back into the laminar region, has to be present.
+A reinjection mechanism has to be present that reinjects the point from the turbulent region back into the laminar region.
 This reinjection mechanism is described by the reinjection probability density function and depends on a specific DDS.
 }
 \par
 \textcolor{blue}{
 Let $(X, f_{p})$ be a DDS. Suppose that $f_{p}$ undergoes saddle-node bifurcation and $x^{*}$ is the corresponding single fixed point.
 Suppose that $I_l = [ x^{*}-c, x^{*}+c ]$ is the laminar interval for some small $c$.
-A \emph{pre-reinjection point} $x_p$ is a point which gets \emph{reinjected} into $I_l$, which means that there exists a point $x_r = f(x_p)$, $x_r \in I_l$.
+A \emph{pre-reinjection point} $x_p$ is a point that gets \emph{reinjected} into $I_l$, which means that there exists a point $x_r = f(x_p)$, $x_r \in I_l$.
 The point $x_r$ shall be called a \emph{reinjected point}.
 }
 \par
@@ -208,11 +208,11 @@ Solving for $l$ results in:
 \end{equation}
 
 \par
-Hence for a given reinjected point $x$ and laminar interval width $c$ the laminar length $l$ can be calculated.
+Hence for a given reinjected point $x$ and the width of the laminar interval $c$ the laminar length $l$ can be calculated.
 Laminar length means the number of iterations the point has to make to the end of laminar interval.
-By calculating laminar length for many reinjected points and some fixed $c$ the average laminar length $l_{avg}$ can be calculated.
+By calculating the laminar length for many reinjected points and some fixed $c$, the average laminar length $l_{avg}$ can be calculated.
 However, that is not very practical since it is not always clear how to choose $c$.
-Fortunately, this problem was solved by formulation of so-called characteristic relation of type-I intermittency.
+Fortunately, this problem was solved by formulation of the so-called characteristic relation of type-I intermittency.
 
 \section{Characteristic Relation}
 
@@ -281,17 +281,17 @@ The Algorithm~\ref{alg:char_rel} describes the simulation.
 \par
 \textcolor{blue}{
 The algorithm chooses a map $f_{p}$, a saddle-node bifurcation parameter $p^{*}$ and fixed points that are associated with the bifurcation.
-Next, for $M$ parameters less than $p^{*}$ a narrow passages are formed between the graph of $f_{p}$ and the fixed points.
-The experiment proceeds by generating $N$ reinjected point in each of the narrow passages, computing their laminar lengths and calculating the average of them.
-In the end, narrow passage heights $\varepsilon$ are plotted against the corresponding average laminar lengths $l_{avg}$ in log-log scale.
+Next, for $M$ parameters less than $p^{*}$ narrow passages are formed between the graph of $f_{p}$ and the fixed points.
+The experiment proceeds by generating $N$ reinjected points in each of the narrow passages, computing their laminar lengths and calculating the average of them.
+In the end, the narrow passage heights $\varepsilon$ are plotted against the corresponding average laminar lengths $l_{avg}$ in log-log scale.
 }
 \par
 \textcolor{blue}{
 The results of the experiment for $\mathcal{L}_{r}^{3}$ are shown in Figure~\ref{fig:characteristic_relation_fit}.
-In addition to data generated by the Algorithm~\ref{alg:char_rel}, linear fits of the data are shown.
-Note that it holds $l_{avg} \propto \varepsilon ^ {-1/2} \implies log_{10}(l_{avg}) \propto -1/2 \cdot \log_{10}(\varepsilon)$.
-The Figure~\ref{fig:characteristic_relation_fit} shows that the slope of the linear fits is approximately $-1/2$.
-Hence, it can be concluded that the characteristic relation of type-I intermittency holds in this case.
+In addition to the data generated by the Algorithm~\ref{alg:char_rel}, linear fits of the data are shown.
+Note that $l_{avg} \propto \varepsilon ^ {-1/2} \implies log_{10}(l_{avg}) \propto -1/2 \cdot \log_{10}(\varepsilon)$.
+ Figure~\ref{fig:characteristic_relation_fit} shows that the slope of the linear fits is approximately $-1/2$.
+Therefore, it can be concluded that the characteristic relation of type-I intermittency holds in this case.
 }
 % \textcolor{blue}{
 % The third iterate of Logistic map $\mathcal{L}_{r}^{3}$ undergoes saddle-node bifurcation at $r = r^{*} := 1+\sqrt{8}$~\cite{Elaskar2022,Gordon20180411}.
@@ -374,20 +374,20 @@ Hence, it can be concluded that the characteristic relation of type-I intermitte
 \section{Ambiguous Bifurcation Diagram}
 \label{sec:ambiguous_bif_diag}
 \textcolor{blue}{
-Bifurcation diagram (Remark~\ref{def: bif_diag}) is a common tool for scientists and researchers to study long term behavior of a DDS for varying parameters.
-However, type-I intermittency poses a problem to the use of a bifurcation diagram.
+Bifurcation diagram (Remark~\ref{def: bif_diag}) is a common tool for scientists and researchers to study the long-term behavior of a DDS for varying parameters.
+However, type-I intermittency poses a problem for the use of a bifurcation diagram.
 The problem is that type-I intermittency causes the bifurcation diagram to be misleading in the proximity of a breakpoint.
 }
 \par
 \textcolor{blue}{
 How intermittency might cause the diagram to be misleading can be illustrated as follows:
 Let $(X, f_{p})$ be a DDS.
-Suppose a bifurcation diagram of $f_{p}$ is constructed for some $x_0$, $n_{total}$, $n_{last}$ and $p_{range}$ (see Algorithm~\ref{alg:bif_diag}).
+Suppose a bifurcation diagram of $f_{p}$ is constructed for some $x_0$, $n_{total}$, $n_{last}$, and $p_{range}$ (see Algorithm~\ref{alg:bif_diag}).
 Next, assume that for parameter $p$, $f_{p}$ is intermittent.
 The bifurcation diagram is constructed by projecting trajectories $\mathcal{T}_{n_{total}-n_{last}}^{n_{total}}(f_{p}, x_0)$.
-If the trajectory constructed for iterations $n \in [n_{total}, n_{total}-n_{last}]$ fully lies in the laminar phase, then only finite number of dots will be displayed on the diagram.
+If the trajectory constructed for iterations $n \in [n_{total}, n_{total}-n_{last}]$ lies fully in the laminar phase, then only a finite number of dots will be displayed on the diagram.
 On the other hand, if the parameter $n_{last}$ is increased, then the projected trajectory might reach the turbulent phase and the diagram will show a band of points.
-This might not be a big deal for individual parameters $p$, but this ambiguity might affect a whole range of parameters $p$ near the breakpoint.
+This might not be a big deal for individual parameters $p$, but this ambiguity might affect a wide range of parameters $p$ near the breakpoint.
 }
 \par
 \textcolor{blue}{
@@ -395,11 +395,11 @@ How a whole range of parameters might be affected can be illustrated as follows:
 Suppose that $p_{R}, p_{B}$ are some parameters near the breakpoint $p_{bif}$.
 Assume that $p_{R} \neq p_{B} \wedge p_{R} < p_{B} < p_{bif}$.
 If $p_{R}$ and $p_{B}$ are close enough to $p_{bif}$ they both have intermittent trajectories.
-Additionally, it follows that the laminar phases of $f_{p_{R}}$ are shorter than laminar phases of $f_{p_{B}}$.
-That is because the closer the parameter is to $p_{bif}$, the longer the laminar phases get.
+Additionally, it follows that the laminar phases of $f_{p_{R}}$ are shorter than the laminar phases of $f_{p_{B}}$.
+That is because the closer the parameter is to $p_{bif}$, the longer the laminar phases.
 An example of this can be seen in Figure~\ref{fig:ambiguous_bif_diag}.
 The red trajectory (which is partially hidden behind the blue one) has shorter laminar phases than the blue trajectory.
-Notice the three letters, a, b and c, in the Figure~\ref{fig:ambiguous_bif_diag}.
+Notice the three letters, a, b, and c, in Figure~\ref{fig:ambiguous_bif_diag}.
 These letters correspond to an iteration $n$ at which the a specific chaotic burst occurs.
 Now, two bifurcation diagrams are created using these parameters:
 \begin{enumerate}
@@ -473,8 +473,8 @@ Ambiguity in this context means that each bifurcation diagram looks drastically 
 
 \par
 \textcolor{blue}{
-The ambiguity in the bifurcation diagram might be misleading to someone, who is not aware of it.
-A tool that would warn researchers about intermittency and the ambiguity it is causing might be useful.
+The ambiguity in the bifurcation diagram could be misleading to someone who is not aware of it.
+A tool that would warn researchers about intermittency and the ambiguity it causes might be useful.
 Such a tool will be developed in the Chapter~\ref{chapter:intdetection}.
 }
 

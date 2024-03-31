@@ -9,7 +9,7 @@ Two common visualization tools are described and their algorithms are provided.
 \section{Introduction to Theory}
 
 \begin{definition}[Discrete dynamical system]
-    A \emph{discrete dynamical system} (abbr. DDS) is a tuple $\left( X, f \right)$ where X is a non-empty set and $f: X \rightarrow X$ is a map~\emph{\cite{Brin20100706}}.
+    A \emph{discrete dynamical system} (abbr. DDS) is a tuple $\left( X, f \right)$ where X is a nonempty set and $f: X \rightarrow X$ is a map~\emph{\cite{Brin20100706}}.
     Set X is called a \emph{state space}.
     The set X is \emph{invariant} under $f$ if and only if $f(X) \subseteq X$, the set $X$ is \emph{strongly invariant} if and only if $f(X) = X$.
     If map $f$ depends on a parameter $p$, it is denoted as $f_p$.
@@ -19,12 +19,12 @@ Two common visualization tools are described and their algorithms are provided.
     The dynamical system that will be used in most of the examples throughout the text is the so-called Logistic map.
     This map is very popular because, although it is mathematically very simple, it exhibits a wide range of complex behavior.
     The Logistic map was popularized by May~\cite{May19760610}.
-    He proposed that student should be introduced to Logistic map early on in their studies to understand that simple rules can yield complex behavior.
+    He proposed that the student should be introduced to the Logistic map early on in their studies to understand that simple rules can yield complex behavior.
     \par
     Mathematically, Logistic map can be thought of as a DDS of the form $\left( [0, 1], \mathcal{L}_{r} \right)$ where $\mathcal{L}_{r}: [0,1] \rightarrow [0,1]$, $\mathcal{L}_{r}(x) = rx(1-x)$.
     To ensure that $x$ remains in the range $[0,1]$, the parameter $r$ is chosen from the range $r \in [0, 4]$.
     \par
-    Originally, Logistic map was used as a simple model for population dynamics in an environment with limited resources.
+    Originally, Logistic map was used as a simple model of population dynamics in an environment with limited resources.
     The variable $x$ represents a population of some species and is understood as a normalized population.
     The value $1$ means that the population is at its maximum and the value $0$ means that the population is extinct.
     The parameter $r$ represents the growth rate of the population in each generation. \cite{Strogatz201854}
@@ -124,7 +124,7 @@ Two common visualization tools are described and their algorithms are provided.
 \begin{definition}[Fixed point]
 \label{def:fixed point}
     \textcolor{blue}{
-    Let $\left( X, f \right)$ be a DDS. Point $x \in X$ is called a \emph{fixed point} of $f$ if and only if $f(x) = x$.
+    Let $\left( X, f \right)$ be a DDS. The point $x \in X$ is called a \emph{fixed point} of $f$ if and only if $f(x) = x$.
     }
 \end{definition}
 
@@ -149,19 +149,19 @@ Two common visualization tools are described and their algorithms are provided.
 \begin{remark}
     \textcolor{blue}{
         It is worth noting what the conditions from Definitions~\ref{def:sfp} and \ref{def:ufp} stand for.
-        The point of stability detection is linear approximation, that is replacing the original function by its tangent in the proximity of the fixed point.
+        The point of stability detection is the linear approximation, that is, replacing the original function by its tangent in the proximity of the fixed point.
         This approach can be generalized to an $n$-dimensional system $\left( \mathbb{R}^{n}, f \right)$.
-        In this case, the stability of a fixed point is determined by the absolute values of eigenvalues of the Jacobian matrix of $f$ at the fixed point.
+        In this case, the stability of a fixed point is determined by the absolute values of the eigenvalues of the Jacobian matrix of $f$ at the fixed point.
     }
     \par
     Direct evaluation of $\mathcal{L}_{r}(x)=x$ yields Fix$(\mathcal{L}_{r}) = \{ 0, (r-1)/r \}$.
-    By evaluating the derivative of $\mathcal{L}_{r}$ at these points, stability of the fixed point can be determined.
+    When the derivative of $\mathcal{L}_{r}$ is evaluated at these points, the stability of the fixed point can be determined.
     \par
     \textcolor{blue}{
     The fixed point $0$ is attracting if $r \in (0, 1)$ and repelling if $r \in (1, 4)$.
-    For parameter $r = 1$, the derivative at $x=0$ is $\mathcal{L}_{r}'(0)=1$.
+    For the parameter $r = 1$, the derivative at $x=0$ is $\mathcal{L}_{r}'(0)=1$.
     The map $\mathcal{L}_{r}$ undergoes a so-called saddle-node bifurcation (see Definition~\ref{def:bifurcation}).
-    Consequently, point $x=0$ becomes repelling and an attractive fixed point $x=(r-1)/r$ is created.
+    Consequently, the point $x=0$ becomes repelling and an attractive fixed point $x=(r-1)/r$ is created.
     }
     \par
     \textcolor{blue}{
@@ -169,12 +169,12 @@ Two common visualization tools are described and their algorithms are provided.
     The fixed point $(r-1)/r$ is attracting if $r \in (1, 3)$ and repelling if $r \in (3, 4) $.
     For parameter $r = 3$, the derivative at $x=(r-1)/r$ is $\mathcal{L}_{r}'((r-1)/r)=-1$.
     The map $\mathcal{L}_{r}$ undergoes a so-called period-doubling bifurcation (see Definition~\ref{def:bifurcation}).
-    Consequently, point $x=(r-1)/r$ becomes repelling and $x=0$ stays repelling.
+    Consequently, point $x=(r-1)/r$ becomes repelling and $x=0$ remains repelling.
     }
     \par
     \textcolor{blue}{
     Figure~\ref{fig:fixed_points_stability_example} displays two fixed points of the Logistic map $\mathcal{L}_{r}$.
-    One fixed point is attracting and one is repelling.
+    One fixed point is attracting, and one is repelling.
     Test for stability is portrayed graphically.
     The red area represents the region of stability and thus if the tangent of the graph of $\mathcal{L}_{r}$ at the fixed point is in the red area, the fixed point is attracting.
     Analogously, if the tangent of the graph is in the blue area, the fixed point is repelling.
@@ -240,13 +240,13 @@ Two common visualization tools are described and their algorithms are provided.
 
 \begin{remark}
 \textcolor{blue}{
-Theorem~\ref{theorem:single_orbit} will be useful in Chapter~\ref{chapter:intdetection} when constructing an algorithm for detection of type-I intermittency.
+Theorem~\ref{theorem:single_orbit} will be useful in Chapter~\ref{chapter:intdetection} when constructing an algorithm for the detection of type-I intermittency.
 }
 \end{remark}
 
 \begin{remark}[Cobweb diagram]
 \label{def:cobweb}
-    Cobweb diagrams are a visual tools for understanding long term behavior of a DDS.
+    Cobweb diagrams are visual tools for understanding long term behavior of a DDS.
     They are closely related to the trajectory of a DDS and the projection of the trajectory onto a line.
     Furthermore, they are useful, for example, for determining whether a fixed point is attracting or repelling.
     \par
@@ -304,7 +304,7 @@ Theorem~\ref{theorem:single_orbit} will be useful in Chapter~\ref{chapter:intdet
 \begin{definition}[Bifurcation]
 \label{def:bifurcation}
     Let $\left( X, f_p \right)$ be a DDS.
-    A \emph{bifurcation} occurs when the qualitative behavior of $f_p$ changes as the parameter $p$ slightly changes.
+    A \emph{bifurcation} occurs when the qualitative behavior of $f_p$ changes as the parameter $p$ changes slightly.
 \end{definition}
 
 \begin{definition}[Bifurcation point]
@@ -319,13 +319,13 @@ Theorem~\ref{theorem:single_orbit} will be useful in Chapter~\ref{chapter:intdet
 \begin{remark}[Bifurcation diagram]
 \label{def: bif_diag} 
     Bifurcation diagram is a tool for the long-term global analysis of a DDS.
-    It shows how the qualitative behavior of an arbitrary system $f_{p}(x_0)$ changes for varying parameter $p$.
-    It helps to identify stable regions, chaotic regions, and intermittent regions. (Intermittency is explained in Chapter~\ref{chap:type-I intermittency}.)
+    It shows how the qualitative behavior of an arbitrary system $f_{p}(x_0)$ changes with varying parameters $p$.
+    It helps identify stable regions, chaotic regions, and intermittent regions. (Intermittency is explained in Chapter~\ref{chap:type-I intermittency}.)
     The bifurcation diagram is especially useful for identifying bifurcations.
     \par
-    An example of a bifurcation diagram of $\left( [0,1], \mathcal{L}_{r} \right)$ is given in Figure~\ref{fig:bif_diag_example}.
+    An example of a bifurcation diagram of $\left( [0,1], \mathcal{L}_{r} \right)$ is shown in Figure~\ref{fig:bif_diag_example}.
     Notice the connection to Figures~\ref{fig:trajectory_example} and~\ref{fig:cobweb_diag_example}, especially the projections onto a line.
-    The bifurcation diagram is generated as an union of these projections for various parameters.
+    The bifurcation diagram is generated as a union of these projections for various parameters.
     Projections fall into one of two categories:
     \begin{itemize}
         \item{A set of isolated points. This case corresponds to the periodic trajectory.}
@@ -370,12 +370,12 @@ Theorem~\ref{theorem:single_orbit} will be useful in Chapter~\ref{chapter:intdet
 \end{algorithm}
 
 \begin{remark}
-    In Figure~\ref{fig:bif_diag_example} it is visible that small change of a parameter can cause qualitatively different behavior of the DDS's trajectories.
-    When the qualitative change occurs, it is said that bifurcation has occurred.
-    An example of a bifurcation point is $r = 1+\sqrt{8} \approx 3.82842$. For this $r$, the $\mathcal{L}_{r}$ changes its behavior from seemingly chaotic to $3$-periodic. 
-    This type of bifurcation is called saddle-node bifurcation.
-    Another example of a bifurcation point is $r \approx 3.446$. For this $r$, the $\mathcal{L}_{r}$ changes its behavior from $2$-periodic to $4$-periodic.
-    This type of bifurcation is called period-doubling bifurcation.
+    In Figure~\ref{fig:bif_diag_example} it is visible that a small change of a parameter can cause qualitatively different behavior of the DDS's trajectories.
+    When the qualitative change occurs, it is said that a bifurcation has occurred.
+    An example of a bifurcation point is $r = 1+\sqrt{8} \approx 3.82842$. For this $r$, $\mathcal{L}_{r}$ changes its behavior from seemingly chaotic to $3$-periodic. 
+    This type of bifurcation is called a saddle-node bifurcation.
+    Another example of a bifurcation point is $r \approx 3.446$. For this $r$, $\mathcal{L}_{r}$ changes its behavior from $2$-periodic to $4$-periodic.
+    This type of bifurcation is called a period-doubling bifurcation.
 \end{remark}
 
 \endinput

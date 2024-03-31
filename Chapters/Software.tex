@@ -2,11 +2,11 @@
 \label{sec:software}
 
 This chapter discusses the software used for numerical computations in this thesis.
-A mention of the source code used for in this thesis is also included.
+A mention of the source code used in this thesis is also included.
 
 \section{Julia Programming Language}
 Numerical simulations play a crucial role in the field of dynamical systems.
-The analytical approach is often impossible, and numerical simulation is the only option.
+The analytical approach is often impossible and a numerical simulation is the only option.
 In the past, it was common to use Fortran or C for fast numerical simulations.
 However, these languages require a lot of effort and skill to write even simple programs.
 Later, Matlab and Python became popular in the scientific world.
@@ -15,17 +15,17 @@ However, Matlab is proprietary software, and Python is an interpreted language w
 \par
 Julia is a high-level programming language with a syntax similar to Matlab and Python.
 It aims to bridge the gap between dynamically typed languages like Python and statically typed languages like C.
-The language is designed in a way that it allows you to write high-level code that is as fast as C or Fortran while being as readable as Python.
+The language is designed in a way that allows you to write high-level code that is as fast as C or Fortran while being as readable as Python.
 Code written in Julia resembles mathematical abstraction because of its use of generic types and multiple dispatch. 
 Sharing code with other scientists is easy because Julia is open source, free, and has a large community. 
 The ability to access low-level details enables the user to achieve maximum performance.
-Other features include built-in package manager, meta-programming, optional typing, just-in-time compilation, and more.
+Other features include a built-in package manager, meta-programming, optional typing, just-in-time compilation, and more.
 It is also suitable for parallel and distributed computing~\cite{Bezanson2017,Bezanson20181024}.
 \par
-Thanks to its vibrant community of scientists and developers, Julia has a lot of packages for scientific computing.
-One of the notable ones is the DynamicalSystems.jl open source library.
+Thanks to its vibrant community of scientists and developers, Julia has many packages for scientific computing.
+One of the notable ones is the DynamicalSystems.jl open-source library.
 It provides a framework and efficient algorithms for computations with dynamical systems.
-Its generic algorithms work both for discrete-time and continuous-time dynamical systems.
+Its generic algorithms work for both discrete-time and continuous-time dynamical systems.
 The library contains algorithms for many subfields of dynamical systems theory~\cite{Datseris2018}.
 \par
 The list of some of the features is presented in the following list~\cite{DynamicalSystems2024}:
@@ -46,9 +46,9 @@ Julia is well suited for numerical simulations in the field of dynamical systems
 Such simulations often require many mathematical algorithms and methods.
 Support for differential equation solvers, linear algebra solvers, automatic evaluation of Jacobians, root-finding algorithms, etc. are all needed.
 The need for high-quality plotting libraries that are easy to use is also important.
-Interactive development via REPL and Jupyter notebooks is also a big advantage.
+Interactive development via REPL and Jupyter notebooks is also a great advantage.
 One of the main advantages is the great support for profiling, benchmarking, and optimization of algorithms.
-Every scientist without the skills of a computer scientist can track down bottlenecks and limit number of heap allocations.
+Every scientist without the skills of a computer scientist can track down bottlenecks and limit the number of heap allocations.
 Good support for multi-threading and parallel computing is also a big advantage.
 % Many of the algorithms used in this thesis are easily parallelizable.
 Julia can even run on a supercomputer~\cite{Regier2016-vq}.
@@ -66,7 +66,7 @@ The main features include the following.
     \item Automatic differentiation and Jacobians of an arbitrary system.
     \item Davidchack-Lai algorithm.
     \item Bu-Wang-Jiang algorithm.
-    \item Global Search, Local Search and Colorization algorithms.
+    \item Global Search, Local Search, and Colorization algorithms.
 \end{itemize}
 Many of the algorithms are parallelizable.
 Bifurcation diagrams were generated in parallel by splitting the parameter space.

@@ -11,24 +11,24 @@ Fixed points are computed for the first iterate of the Logistic map and their st
 \par
 Chapter 3 establishes the phenomenon of type-I intermittency.
 Motivation behind this type of intermittency is provided and illustrated visually.
-Ambiguity of the bifurcation diagram is brought up, and the creation of such ambiguous diagram is shown.
+The ambiguity of the bifurcation diagram is brought up, and the creation of such an ambiguous diagram is shown.
 Furthermore, the notion of laminar phase length and characteristic relation is introduced.
 A verification of the characteristic relation is carried out for the Logistic map.
 \par
 Chapter 4 deals with the development of the algorithm for the detection of type-I intermittency.
 The Chapter has four sections - Global Search, Local Search, Colorization and Complete algorithm.
 The first three sections correspond to the three sub-parts of the algorithm.
-The last section puts everything together.
+The last section brings everything together.
 \par
-The Global Search section comes up with the idea of a Naive Global Search.
+The Global Search section proposes the idea of a Naive Global Search.
 Additionally, it presents the Bu-Wang-Jiang algorithm for computation of periodic orbits.
 In general, the Global Search subpart of the algorithm intends to find approximate locations of the breakpoints in the bifurcation diagram.
 \par
-The Local Search section presents two algorithms - Naive Local Search and Nested-Layer Particle Swarm Optimization.
+The Local Search section presents two algorithms, Naive local search and Nested-Layer particle swarm optimization.
 These two algorithms can be used to find the exact location of the breakpoints in the bifurcation diagram by using information from the Global Search.
 \par
 The Colorization section deals with the colorization of the bifurcation diagram.
-It builds on top of the Global Search and Local Search.
+It builds on top of Global Search and Local Search.
 It utilizes the characteristic relation developed in Chapter~\ref{chap:type-I intermittency}.
 An algorithm for optimal colorization bounds is presented.
 \par
@@ -40,10 +40,10 @@ Additionally, it mentions some information about the source code used in this th
 \par
 \textcolor{blue}{
 Overall, the thesis aimed to develop an algorithm for the detection of type-I intermittency in discrete dynamical systems.
-For this purpose a novel approach was proposed.
+For this purpose, a novel approach was proposed.
 By combination of works of many authors and original contribution, a global detection of type-I intermittency was achieved for the Logistic map.
 In addition to detection of type-I intermittency, an algorithm to colorize the bifurcation diagram is provided.
-This way, it is highlighted, where does the type-I intermittency occur and how prominent it is.
+This way, it is highlighted where does the type-I intermittency occur and how prominent it is.
 }
 \par
 \textcolor{blue}{
@@ -51,10 +51,10 @@ This way, it is highlighted, where does the type-I intermittency occur and how p
 % Chapter~\ref{chapter:intdetection} gave comprehensive literature summary, citing several modern approaches for detection of UPOs.
 There is a potential for further development of the detection algorithm.
 One improvement would be to extend Global Search \ref{sec:globsearch} to higher dimensions.
-In that case NLPSO algorithm could be used for the Local Search to find precise locations of saddle-node bifurcations.
+In that case, the NLPSO algorithm could be used for the Local Search to find precise locations of saddle-node bifurcations.
 Secondly, the detection algorithm could be extended to work for continuous dynamical systems by using Poincare surface sections.
 Moreover, analyzing how robust and reliable the detection algorithm is.
-Lastly, figuring out whether there are practical application of the algorithm.
+Lastly, figuring out whether there are practical applications of the algorithm.
 Constructing detection algorithms for different types of intermittency is also an open problem.
 All the mentioned improvements are left for further investigation.
 }
