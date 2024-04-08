@@ -33,11 +33,11 @@ Let $(X, f_{p})$ be a DDS. Suppose a bifurcation diagram of $f_{p}$ is construct
 The fact that the bifurcation diagram shows $n$-periodic behavior ($n$ dots) for a parameter $p$ implies that map $f_{p}$ is $n$-periodic or eventually $n$-periodic.
 Two situations can happen:
 \begin{enumerate}
-    \item Map $f_{p}$ has a stable periodic orbit and the $x_0$ has converged to it in $n_{total}-n_{last}$ iterations.
-    \item The initial condition $x_0$ belongs to a stable or unstable periodic orbit of $f_p$.
+    \item map $f_{p}$ has a stable periodic orbit and the $x_0$ has converged to it in $n_{total}-n_{last}$ iterations,
+    \item the initial condition $x_0$ belongs to a stable or unstable periodic orbit of $f_p$.
 \end{enumerate}
 When talking about periodic behavior in a bifurcation diagram, the focus will be on case $1$.
-Case $2$ will be ignored since it is not very probable that an initial condition will belong to a periodic orbit.
+Case $2$. will be ignored since it is not very probable that an initial condition will belong to a periodic orbit.
 \par
 Theorem~\ref{theorem:single_orbit} states that the Logistic map $\mathcal{L}_r$ can only have at most one unique stable $n$-periodic orbit for each parameter $r$.
 Therefore, if the bifurcation diagram exhibits $n$-periodic behavior at $r$, it can be concluded that $\mathcal{L}_{r}$ has a $n$-periodic SPO.
@@ -231,7 +231,7 @@ To achieve that, it uses the Bisection method~\cite{Burden2015-lp} combined with
 \par
 Suppose that $[p_{A}, p_{B}]$ is the interval identified during the Global Search.
 Furthermore, it is known that $f_{p_{A}}$ is non-periodic and $f_{p_{B}}$ is $n$-periodic.
-Next, split the interval $[p_{A}, p_{B}]$ to obtain a midpoint $p_{C} = \frac{p_{A}+p_{B}}{2}$.
+Next, split the interval $[p_{A}, p_{B}]$ to obtain a midpoint $p_{C} = (p_{A}+p_{B})/2$.
 If $p_{C}$ is $n$-periodic then it is known that the breakpoint is in the interval $[p_{A}, p_{C}]$.
 If $p_{C}$ is nonperiodic, then it is known that the breakpoint is in the interval $[p_{C}, p_{B}]$.
 Whether a parameter is $n$-periodic or not is determined using the BWJ algorithm.
@@ -457,10 +457,10 @@ Note that in order to see the full range of colors, the bifurcation diagram has 
     \centering
     \includegraphics[width=0.95\textwidth]{Figures/logistic_map_coloring_example.png}
     \caption{
-        Colorization of a single breakpoint of $\mathcal{L}_{r}$ for $r \in I := [ 3.6263, 3.6267 ]$.
+        Colorization of a single breakpoint of $\mathcal{L}_{r}$ for $r \in I = [ 3.6263, 3.6267 ]$.
         Algorithm~\ref{alg:optimal_bound} was used to specify the colorization bounds.
-        Lower bound $L$: $200$.
-        Upper bound $U$: $1000$.
+        Lower bound $L$ = $200$.
+        Upper bound $U$ = $1000$.
         The bifurcation diagram consists of projections $\mathcal{T}_{900}^{1000}(\mathcal{L}_{r}, 0.5)$ for $r \in I$.
     }
     \label{fig:coloring_example}

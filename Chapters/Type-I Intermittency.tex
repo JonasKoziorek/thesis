@@ -1,7 +1,7 @@
 \chapter{Type-I Intermittency}
 \label{chap:type-I intermittency}
 
-This Chapter is concerned with the phenomena of intermittency, especially with type-I intermittency.
+This chapter is concerned with the phenomena of intermittency, especially with type-I intermittency.
 Firstly, discovery and history of intermittency is mentioned.
 Then the cause of intermittency is motivated.
 Furthermore, the idea of laminar length and charasteristic relation is introduced.
@@ -29,11 +29,14 @@ Phases with chaotic bursts are called turbulent phases.
 \par
 To illustrate the concept of intermittency, a new dynamical system is needed.
 Let $([0, 1], \mathcal{P}_{\varepsilon})$ be a DDS.
-The map $\mathcal{P}_{\varepsilon}(x) = \left[ (1+\varepsilon)x+(1-\varepsilon)x^2 \right] \mod{1}$ is called the Pomeau-Manneville map~\cite{Manneville1980,Datseris2022}.
+\textcolor{red}{The map $\mathcal{P}_{\varepsilon}$ defined as 
+\begin{equation}
+    \mathcal{P}_{\varepsilon}(x) = \left[ (1+\varepsilon)x+(1-\varepsilon)x^2 \right] \pmod{1} \label{pommeau_manneville_map}
+\end{equation}
+is called the Pomeau-Manneville map~\cite{Manneville1980,Datseris2022}.}
 Intermittency is clearly visible in the trajectory of $\mathcal{P}_{\varepsilon}$ shown in Figure~\ref{fig:intermittent_trajectory_example}.
 Seemingly 2-periodic behavior which lasts for about 1000 iterations is interrupted by short chaotic bursts.
-These chaotic bursts soon transform into seemingly 2-periodic behavior.
-This pattern repeats.
+These chaotic bursts soon transform into seemingly 2-periodic behavior and the pattern repeats.
 
 \begin{figure}[!h]
     \centering
@@ -65,8 +68,7 @@ The narrower the passage, the more iterations it would take.
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/intermittency_i_local_map.png}
     \caption{
-        Map $f_{p}(x) = p + x + x^2$ for different parameters $p$. 
-        Parameter $p_B = 0$.
+        Graphs of $f_{p}(x) = p + x + x^2$ for different parameters $p$.
     }
     \label{fig:saddle_node_bifurcation}
 \end{figure}
@@ -86,13 +88,11 @@ The second entrance into the narrow passage corresponds to the second laminar ph
     \centering
     \includegraphics[width=0.95\textwidth]{Figures/type_one_intermittency_example2.png}
     \caption{
-        Subfigures (a) and (b):
-        Cobweb diagram of 
-        (a) $T^{472}_{38}(\mathcal{P}_{\varepsilon}^{2}, x_0)$ and
-        (b) $T^{461}_{40}(\mathcal{P}_{\varepsilon}^{2}, x_0)$. 
-        Subfigure (c):
-        Trajectory $T^{520}_{0}(\mathcal{P}_{\varepsilon}^{2}, x_0)$.
-        Parameters: $x_0 = 0.5$ and $\varepsilon = 4.47458$.
+        \textcolor{red}{Cobweb diagram of 
+        (a) $T^{472}_{38}(\mathcal{P}_{\varepsilon}^{2}, x_0)$,
+        (b) $T^{461}_{40}(\mathcal{P}_{\varepsilon}^{2}, x_0)$ and
+        trajectory (c) $T^{520}_{0}(\mathcal{P}_{\varepsilon}^{2}, x_0)$
+        for parameters: $x_0 = 0.5$ and $\varepsilon = 4.47458$.}
     }
     \label{fig:intermittent_cobweb_example}
 \end{figure}
@@ -147,13 +147,12 @@ Note that the curve in subfigure (b) locally resembles the local map \eqref{eq:i
 
     \caption{
         Pre-reinjection points and laminar interval of $\mathcal{L}_{r}^{3}(x+x^{*})-x^{*}$ for $r = 3.827$ and $x^{*} \approxeq 0.51435$.
-        (a) the full graph. 
-        (b) a close-up to a region of interest. 
+        In (a) is the full graph. 
+        In (b) is the zoomed in region of interest. 
+        Orange line: laminar interval $[ x^{*}-c, x^{*}+c ]$ for $c = 0.03$.
+        Green dot: $x^{*}$.
         Red dots: pre-reinjection points.
         Blue dots: reinjected points.
-        Laminar interval: $I_l = [ x^{*}-c, x^{*}+c ]$ for $c = 0.03$.
-        Orange line: $I_l$.
-        Green dot: $x^{*}$.
     }
     \label{fig:pre_reinjection_example}
 \end{figure}
@@ -257,7 +256,7 @@ Therefore, it can be concluded that the characteristic relation of type-I interm
     \end{subfigure}
 
     \caption{
-        Results of the simulation \ref{alg:char_rel}. Parameters: $f_{p} = \mathcal{L}_{r}^{3}$, $p^{*} = 1+\sqrt{8}$, $xs = \{0.1599, 0.5143, 0.9563\}$, $cs = \{0.01, 0.03, 0.05, 0.07\}$, $N = 4000$, $M = 30$, $A = 10^{-5}$ and $B = 10^{-13}$.
+        Output of the Algorithm~\ref{alg:char_rel} for parameters: $f_{p} = \mathcal{L}_{r}^{3}$, $p^{*} = 1+\sqrt{8}$, $xs = \{0.1599, 0.5143, 0.9563\}$, $cs = \{0.01, 0.03, 0.05, 0.07\}$, $N = 4000$, $M = 30$, $A = 10^{-5}$ and $B = 10^{-13}$.
         Colorful lines: linear fit.
         Constant $s$: slope of the linear fit.
     }
@@ -270,7 +269,7 @@ Bifurcation diagram (Remark~\ref{def: bif_diag}) is a common tool for scientists
 However, type-I intermittency poses a problem for the use of a bifurcation diagram.
 The problem is that type-I intermittency causes the bifurcation diagram to be misleading in the proximity of a breakpoint.
 \par
-How intermittency might cause the diagram to be misleading can be illustrated as follows:
+How intermittency might cause the diagram to be misleading can be illustrated as follows.
 Let $(X, f_{p})$ be a DDS.
 Suppose a bifurcation diagram of $f_{p}$ is constructed for some $x_0$, $n_{total}$, $n_{last}$, and $p_{range}$ (see Algorithm~\ref{alg:bif_diag}).
 Next, assume that for parameter $p$, $f_{p}$ is intermittent.
@@ -279,7 +278,7 @@ If the trajectory constructed for iterations $n \in [n_{total}-n_{last}, n_{tota
 On the other hand, if the parameter $n_{last}$ is increased, then the projected trajectory might reach the turbulent phase and the diagram will show a band of points.
 This might not be a big deal for individual parameters $p$, but this phenomenon might affect a wide range of parameters $p$ near the breakpoint.
 \par
-How a whole range of parameters might be affected can be illustrated as follows:
+How a whole range of parameters might be affected can be illustrated as follows.
 Suppose that $p_{R}, p_{B}$ are some parameters near the breakpoint $p_{bif}$.
 Assume that $p_{R} \neq p_{B} \wedge p_{R} < p_{B} < p_{bif}$.
 If $p_{R}$ and $p_{B}$ are close enough to $p_{bif}$ they both have intermittent trajectories.
@@ -290,11 +289,13 @@ The red trajectory (which is partially hidden behind the blue one) has shorter l
 Notice the three letters, a, b, and c, in Figure~\ref{fig:ambiguous_bif_diag}.
 These letters correspond to an iteration $n$ at which the a specific chaotic burst occurs.
 Now, two bifurcation diagrams are created using these parameters:
+
 \begin{enumerate}
     \item $n_{last} = c-(b-0.25(b-a))$
     \item $n_{last} = c-(b-0.75(b-a))$
 \end{enumerate}
-Other than that, both 1. and 2. have the same parameters: $n_{total} = 0.95c$ and some $x_0$, $p_{range}$ and $f_{p}$.
+
+Other than $n_{last}$, both bifurcation diagrams have the same parameters: $n_{total} = 0.95c$ and some $x_0$, $p_{range}$ and $f_{p}$.
 If such two bifurcation diagrams are constructed, they will both look very different in the proximity of $p_{bif}$.
 
 \begin{figure}[!h]
@@ -310,7 +311,7 @@ If such two bifurcation diagrams are constructed, they will both look very diffe
 \end{figure}
 
 \par
-Figure~\ref{fig:ambiguous_bif_diag_example} shows an example of $4$ bifurcation diagrams of $\mathcal{P}_{\varepsilon}$.
+Figure~\ref{fig:ambiguous_bif_diag_example} shows an example of four bifurcation diagrams of $\mathcal{P}_{\varepsilon}$.
 They are created for the same parameters except for $n_{last}$, which is different for each one of them.
 A phenomenon, which shall be called ambiguity in the bifurcation diagram, can be observed.
 Ambiguity in this context means that each bifurcation diagram looks drastically different for varying $n_{last}$.
@@ -340,7 +341,7 @@ Ambiguity in this context means that each bifurcation diagram looks drastically 
     \end{subfigure}
 
     \caption{
-        Bifurcation diagrams of $\mathcal{P}_{\varepsilon}$ for $\varepsilon \in I := [4.4745829085, 4.4745829215]$.
+        Bifurcation diagrams of $\mathcal{P}_{\varepsilon}$ for $\varepsilon \in I = [4.4745829085, 4.4745829215]$.
         Interval $I$ is sampled to $400$ uniformly spaced points.
         Trajectories used for diagram construction:
         (a) $\mathcal{T}_{12000}^{25000}(\mathcal{P}_{\varepsilon}, x_0)$

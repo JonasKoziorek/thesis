@@ -60,9 +60,9 @@ begin
     fontsize(30)
     x = -350
     y = 115
-    text(L"p < p_{B}", Point(x, y+60), halign=:center, valign=:baseline)
-    text(L"p = p_{B}", Point(x, y), halign=:center, valign=:baseline)
-    text(L"p > p_{B}", Point(x, y-60), halign=:center, valign=:baseline)
+    text(L"p < 0", Point(x, y+60), halign=:center, valign=:baseline)
+    text(L"p = 0", Point(x, y), halign=:center, valign=:baseline)
+    text(L"p > 0", Point(x, y-60), halign=:center, valign=:baseline)
 # end 800 600
 end 800 600 file_path
 

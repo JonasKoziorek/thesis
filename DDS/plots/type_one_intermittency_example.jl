@@ -165,8 +165,8 @@ Luxor.@png begin
 
     rect3_nw = Point(-540, 80)
     rect3_ne = Point(710, 80)
-    line(rect3_nw, rect2_sw, :stroke)
-    line(rect3_ne, rect2_se, :stroke)
+    # line(rect3_nw, rect2_sw, :stroke)
+    # line(rect3_ne, rect2_se, :stroke)
 end 1000 1000 file_path
 end
 

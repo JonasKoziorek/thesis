@@ -3,11 +3,12 @@
 This chapter introduces the reader to the theory of discrete dynamical systems.
 Several standard definitions are provided and explained graphically or computationally.
 Two common visualization tools are described and their algorithms are provided.
+\textcolor{red}{The theory provided below follows textbooks~\cite{Devaney20211026,Strogatz201854,Brin20100706}.}
 
 \section{Introduction to Theory}
 
 \begin{definition}[Discrete dynamical system]
-    A \emph{discrete dynamical system} (abbr. DDS) is a tuple $\left( X, f \right)$ where X is a nonempty set and $f: X \rightarrow X$ is a map~\emph{\cite{Brin20100706}}.
+    A \emph{discrete dynamical system} (abbr. DDS) is a tuple $\left( X, f \right)$ where X is a nonempty set and $f: X \rightarrow X$ is a map.
     Set X is called a \emph{state space}.
     The set X is \emph{invariant} under $f$ if and only if $f(X) \subseteq X$, the set $X$ is \emph{strongly invariant} if and only if $f(X) = X$.
     If map $f$ depends on a parameter $p$, it is denoted as $f_p$.
@@ -150,8 +151,8 @@ Two common visualization tools are described and their algorithms are provided.
     The map $\mathcal{L}_{r}$ undergoes a so-called saddle-node bifurcation (see Definition~\ref{def:bifurcation}).
     Consequently, the point $x=0$ becomes repelling and an attractive fixed point $x=(r-1)/r$ is created.
     \par
-    Note that the fixed point $(r-1)/r$ doesn't exist for $r \in (0, 1)$ since $(r-1)/r \notin [0, 1]$. 
     The fixed point $(r-1)/r$ is attracting if $r \in (1, 3)$ and repelling if $r \in (3, 4) $.
+    \textcolor{red}{For $r \in (0, 1)$ the fixed point $(r-1)/r$ doesn't belong to the state space $[0, 1]$.}
     For parameter $r = 3$, the derivative at $x=(r-1)/r$ is $\mathcal{L}_{r}'((r-1)/r)=-1$.
     The map $\mathcal{L}_{r}$ undergoes a so-called period-doubling bifurcation (see Definition~\ref{def:bifurcation}).
     Consequently, point $x=(r-1)/r$ becomes repelling and $x=0$ remains repelling.
@@ -178,8 +179,7 @@ Two common visualization tools are described and their algorithms are provided.
     \end{subfigure}
 
     \caption{
-        Two fixed points of $\mathcal{L}_{r}$ and their stability. 
-        Parameters: (a) $r = 2.3$ and (b) $r = 3.3$. 
+        Two fixed points of $\mathcal{L}_{r}$ and their stability for parameters: (a) $r = 2.3$ and (b) $r = 3.3$. 
         Red area: region of stability.
         Red point in (a): attracting fixed point.
         Blue area: region of instability.
@@ -200,7 +200,7 @@ Two common visualization tools are described and their algorithms are provided.
 \begin{definition}[Periodic orbit]
     Let $\left( X, f \right)$ be a DDS.
     Let $x_0$ be an $n$-periodic point.
-    Then the set $O:=\{f^{n+m}(x_0):m \in \mathbb{N}\}$ is called an \emph{$n$-periodic orbit}.
+    Then the set $O=\{f^{n+m}(x_0):m \in \mathbb{N}\}$ is called an \emph{$n$-periodic orbit}.
     If $x_{0}$ is attracting, then the set $O$ is called \emph{stable periodic orbit}.
     If $x_{0}$ is repelling, then the set $O$ is called \emph{unstable periodic orbit}.
 \end{definition}
@@ -246,7 +246,7 @@ Theorem~\ref{theorem:single_orbit} will be useful in Chapter~\ref{chapter:intdet
     \end{subfigure}
 
     \caption{
-        Cobweb diagrams of a trajectory $\mathcal{T}_{50}^{100}(\mathcal{L}_{r}, 0.5)$ and a projection of the trajectory onto a line. 
+        Cobweb diagrams of the trajectory $\mathcal{T}_{50}^{100}(\mathcal{L}_{r}, 0.5)$ and a projection of the trajectory onto a line. 
         Dashed diagonal line: identity function. 
         (a) $r = 3.828$. 
         (b) $r = 3.829$. 
@@ -309,7 +309,7 @@ Theorem~\ref{theorem:single_orbit} will be useful in Chapter~\ref{chapter:intdet
     \centering
     \includegraphics[width=0.95\textwidth]{Figures/logistic_map_bif_diag_example.png}
     \caption{
-        Bifurcation diagram of $\mathcal{L}_{r}$ for $x_0 = 0.5$ and $r \in I := [ 2.81, 3.87 ]$. 
+        Bifurcation diagram of $\mathcal{L}_{r}$ for $x_0 = 0.5$ and $r \in I = [ 2.81, 3.87 ]$. 
         Interval $I$ is sampled to $1000$ points. 
         Trajectories $\mathcal{T}_{4500}^{5000}(\mathcal{L}_{r}, x_0)$ are plotted.
     }
