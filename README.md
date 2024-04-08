@@ -20,4 +20,4 @@ The main aim of this thesis is to study dynamical properties of suitable mathema
 1. to study and define all needed notions, 
 2. to construct typical models from the dynamical systems theory, 
 3. to characterize investigated model’s dynamical behavior, 
-4. to investigate non-trivial dynamical phenomena, e.g. intermittencies"
+4. to investigate non-trivial dynamical phenomena, e.g. intermittencies
