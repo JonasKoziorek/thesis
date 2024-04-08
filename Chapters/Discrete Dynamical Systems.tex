@@ -1,10 +1,8 @@
 \chapter{Discrete Dynamical Systems}
 
-\textcolor{blue}{
 This chapter introduces the reader to the theory of discrete dynamical systems.
 Several standard definitions are provided and explained graphically or computationally.
 Two common visualization tools are described and their algorithms are provided.
-}
 
 \section{Introduction to Theory}
 
@@ -48,9 +46,7 @@ Two common visualization tools are described and their algorithms are provided.
 \end{definition}
 
 \begin{definition}[Graph]
-\textcolor{blue}{
     Let $\left( X, f \right)$ be a DDS. A graph of $f$ is defined as a set $\{\, (x, f(x)) \mid x \in X \,\}$.
-}
 \end{definition}
 
 \begin{remark}
@@ -123,62 +119,48 @@ Two common visualization tools are described and their algorithms are provided.
 
 \begin{definition}[Fixed point]
 \label{def:fixed point}
-    \textcolor{blue}{
     Let $\left( X, f \right)$ be a DDS. The point $x \in X$ is called a \emph{fixed point} of $f$ if and only if $f(x) = x$.
-    }
 \end{definition}
 
 \begin{definition}[Stable fixed point]
 \label{def:sfp}
-    \textcolor{blue}{
     Let $\left(X, f\right)$ be a DDS.
     Let $f$ be differentiable on $X$. 
     A fixed point $x \in X$ for which  $|f'(x)| < 1$ is called \emph{attracting} or \emph{stable}.
-    }
 \end{definition}
 
 \begin{definition}[Unstable fixed point]
 \label{def:ufp}
-    \textcolor{blue}{
     Let $\left(X, f\right)$ be a DDS.
     Let $f$ be differentiable on $X$. 
     A fixed point $x \in X$ for which $|f'(x)| > 1$ is called \emph{repelling} or \emph{unstable}.
-    }
 \end{definition}
 
 \begin{remark}
-    \textcolor{blue}{
         It is worth noting what the conditions from Definitions~\ref{def:sfp} and \ref{def:ufp} stand for.
         The point of stability detection is the linear approximation, that is, replacing the original function by its tangent in the proximity of the fixed point.
         This approach can be generalized to an $n$-dimensional system $\left( \mathbb{R}^{n}, f \right)$.
         In this case, the stability of a fixed point is determined by the absolute values of the eigenvalues of the Jacobian matrix of $f$ at the fixed point.
-    }
     \par
     Direct evaluation of $\mathcal{L}_{r}(x)=x$ yields Fix$(\mathcal{L}_{r}) = \{ 0, (r-1)/r \}$.
     When the derivative of $\mathcal{L}_{r}$ is evaluated at these points, the stability of the fixed point can be determined.
     \par
-    \textcolor{blue}{
     The fixed point $0$ is attracting if $r \in (0, 1)$ and repelling if $r \in (1, 4)$.
     For the parameter $r = 1$, the derivative at $x=0$ is $\mathcal{L}_{r}'(0)=1$.
     The map $\mathcal{L}_{r}$ undergoes a so-called saddle-node bifurcation (see Definition~\ref{def:bifurcation}).
     Consequently, the point $x=0$ becomes repelling and an attractive fixed point $x=(r-1)/r$ is created.
-    }
     \par
-    \textcolor{blue}{
     Note that the fixed point $(r-1)/r$ doesn't exist for $r \in (0, 1)$ since $(r-1)/r \notin [0, 1]$. 
     The fixed point $(r-1)/r$ is attracting if $r \in (1, 3)$ and repelling if $r \in (3, 4) $.
     For parameter $r = 3$, the derivative at $x=(r-1)/r$ is $\mathcal{L}_{r}'((r-1)/r)=-1$.
     The map $\mathcal{L}_{r}$ undergoes a so-called period-doubling bifurcation (see Definition~\ref{def:bifurcation}).
     Consequently, point $x=(r-1)/r$ becomes repelling and $x=0$ remains repelling.
-    }
     \par
-    \textcolor{blue}{
     Figure~\ref{fig:fixed_points_stability_example} displays two fixed points of the Logistic map $\mathcal{L}_{r}$.
     One fixed point is attracting, and one is repelling.
     Test for stability is portrayed graphically.
     The red area represents the region of stability and thus if the tangent of the graph of $\mathcal{L}_{r}$ at the fixed point is in the red area, the fixed point is attracting.
     Analogously, if the tangent of the graph is in the blue area, the fixed point is repelling.
-    }
 \end{remark}
 
 \begin{figure}[!h]
@@ -196,14 +178,12 @@ Two common visualization tools are described and their algorithms are provided.
     \end{subfigure}
 
     \caption{
-        \textcolor{blue}{ 
         Two fixed points of $\mathcal{L}_{r}$ and their stability. 
         Parameters: (a) $r = 2.3$ and (b) $r = 3.3$. 
         Red area: region of stability.
         Red point in (a): attracting fixed point.
         Blue area: region of instability.
         Blue point in (b): repelling fixed point.
-        }
     }
     \label{fig:fixed_points_stability_example}
 \end{figure}
@@ -213,20 +193,16 @@ Two common visualization tools are described and their algorithms are provided.
 \end{definition}
 
 \begin{definition}[Eventually periodic point]
-    \textcolor{blue}{
     Let $\left( X, f\right)$ be a DDS. The point $x \in X$ is called \emph{eventually $n$-periodic} if $x$ is not $n$-periodic but there exists $m>0$ such that $f^{n+i}(x) = f^{i}(x)$ for all $i \geq m$.
     Hence, $f^{i}(x)$ is $n$-periodic for all $i \geq m$.~\emph{\cite{Devaney20211026}}
-    }
 \end{definition}
 
 \begin{definition}[Periodic orbit]
-\textcolor{blue}{
     Let $\left( X, f \right)$ be a DDS.
     Let $x_0$ be an $n$-periodic point.
     Then the set $O:=\{f^{n+m}(x_0):m \in \mathbb{N}\}$ is called an \emph{$n$-periodic orbit}.
     If $x_{0}$ is attracting, then the set $O$ is called \emph{stable periodic orbit}.
     If $x_{0}$ is repelling, then the set $O$ is called \emph{unstable periodic orbit}.
-}
 \end{definition}
 
 \begin{theorem}
@@ -239,9 +215,7 @@ Two common visualization tools are described and their algorithms are provided.
 \end{proof}
 
 \begin{remark}
-\textcolor{blue}{
 Theorem~\ref{theorem:single_orbit} will be useful in Chapter~\ref{chapter:intdetection} when constructing an algorithm for the detection of type-I intermittency.
-}
 \end{remark}
 
 \begin{remark}[Cobweb diagram]
@@ -272,12 +246,10 @@ Theorem~\ref{theorem:single_orbit} will be useful in Chapter~\ref{chapter:intdet
     \end{subfigure}
 
     \caption{
-        \textcolor{blue}{
         Cobweb diagrams of a trajectory $\mathcal{T}_{50}^{100}(\mathcal{L}_{r}, 0.5)$ and a projection of the trajectory onto a line. 
         Dashed diagonal line: identity function. 
         (a) $r = 3.828$. 
         (b) $r = 3.829$. 
-        }
         }
     \label{fig:cobweb_diag_example}
 \end{figure}
@@ -309,11 +281,9 @@ Theorem~\ref{theorem:single_orbit} will be useful in Chapter~\ref{chapter:intdet
 
 \begin{definition}[Bifurcation point]
 \label{def:bifurcation_point}
-    \textcolor{blue}{
     Let $\left( X, f_p \right)$ be a DDS.
     \emph{Bifurcation point} is a value of a parameter $p$ at which bifurcation occurs.
     The qualitative behavior of $\left( X, f_{p} \right)$ changes when the parameter $p$ is moved slightly around the bifurcation point.
-    }
 \end{definition}
 
 \begin{remark}[Bifurcation diagram]
@@ -339,11 +309,9 @@ Theorem~\ref{theorem:single_orbit} will be useful in Chapter~\ref{chapter:intdet
     \centering
     \includegraphics[width=0.95\textwidth]{Figures/logistic_map_bif_diag_example.png}
     \caption{
-        \textcolor{blue}{
         Bifurcation diagram of $\mathcal{L}_{r}$ for $x_0 = 0.5$ and $r \in I := [ 2.81, 3.87 ]$. 
         Interval $I$ is sampled to $1000$ points. 
         Trajectories $\mathcal{T}_{4500}^{5000}(\mathcal{L}_{r}, x_0)$ are plotted.
-        }
     }
     \label{fig:bif_diag_example}
 \end{figure}
