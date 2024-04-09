@@ -42,19 +42,19 @@ These chaotic bursts soon transform into seemingly 2-periodic behavior and the p
     \centering
     \includegraphics[width=0.95\textwidth]{Figures/type_one_intermittency_example1.png}
     \caption{
-        Trajectory $T^{5500}_{0}(\mathcal{P}_{\varepsilon}, x_0)$ for $x_0 = 0.5$ and $\varepsilon = 4.47458$.
+        Trajectory $\mathcal{T}^{5500}_{0}(\mathcal{P}_{\varepsilon}, x_0)$ for $x_0 = 0.5$ and $\varepsilon = 4.47458$.
     }
     \label{fig:intermittent_trajectory_example}
 \end{figure}
 
 Although there are many types of intermittency, the main focus of this thesis is on type-I intermittency~\cite{Pomeau1980,Bussac1982,DelRio2014}.
-Such an intermittent behavior arises when a DDS $(X, f_{p})$ is about to undergo a saddle-node bifurcation.
+Such an intermittent behavior arises when a DDS $(X, f_{p})$ is about to undergo a saddle-node bifurcation~\cite{Elaskar2017}.
 This type of bifurcation occurs when the tangent of the graph of $f_{p}$ at the point $x^{*}$ is equivalent to the identity line.
 Thus, the point $x^{*}$ is a fixed point, and $f_{p}'(x^{*}) = 1$.
 As the parameter $p$ is slightly altered, the point $x^{*}$ either splits into two fixed points or vanishes.
 \par
 An illustration of saddle-node bifurcation is shown in Figure~\ref{fig:saddle_node_bifurcation}.
-A map $f_{p}(x) = p + x + x^2$ is displayed.
+The map $f_{p}(x) = p + x + x^2$ ~\cite{Pomeau1980} is displayed.
 For $p = 0$, there is one single fixed point (red point).
 The tangent of $f_{p}$ at the red point is $1$.
 When $p$ increases slightly, the fixed point vanishes.
@@ -89,16 +89,16 @@ The second entrance into the narrow passage corresponds to the second laminar ph
     \includegraphics[width=0.95\textwidth]{Figures/type_one_intermittency_example2.png}
     \caption{
         \textcolor{red}{Cobweb diagram of 
-        (a) $T^{472}_{38}(\mathcal{P}_{\varepsilon}^{2}, x_0)$,
-        (b) $T^{461}_{40}(\mathcal{P}_{\varepsilon}^{2}, x_0)$ and
-        trajectory (c) $T^{520}_{0}(\mathcal{P}_{\varepsilon}^{2}, x_0)$
+        (a) $\mathcal{T}^{472}_{38}(\mathcal{P}_{\varepsilon}^{2}, x_0)$,
+        (b) $\mathcal{T}^{461}_{40}(\mathcal{P}_{\varepsilon}^{2}, x_0)$ and
+        trajectory (c) $\mathcal{T}^{520}_{0}(\mathcal{P}_{\varepsilon}^{2}, x_0)$
         for parameters: $x_0 = 0.5$ and $\varepsilon = 4.47458$.}
     }
     \label{fig:intermittent_cobweb_example}
 \end{figure}
 
 \par
-Intermittency can be thought of as a continuous route to chaos (or from chaos).
+Intermittency can be thought of as a continuous route to chaos (or from chaos)~\cite{Strogatz201854}.
 Intermittency type-I can be spotted in a bifurcation diagram as a breakpoint or a periodic window.
 Such periodic window can be seen in Figure~\ref{fig:bif_diag_example} at $r = 1+\sqrt{8} \approx 3.82842$.
 At this parameter, the nonperiodic behavior suddenly changed to the $3$-periodic behavior.
@@ -157,6 +157,8 @@ Note that the curve in subfigure (b) locally resembles the local map \eqref{eq:i
     \label{fig:pre_reinjection_example}
 \end{figure}
 \par
+The \emph{laminar phase length} is the number of iterations that it takes to get from a reinjected point to the end of the laminar region.
+To calculate the laminar phase length for a specific reinjected point, the argument from \cite{Elaskar2017} is presented.
 Consider that $0 < \varepsilon \ll 1$.
 By using the Equation~\eqref{eq:int_I_local_map} the difference between two successive points $x_n - x_{n-1} \approx dx/dl$ can be written as:
 \begin{equation}
@@ -167,17 +169,16 @@ Solving from reinjected point $x$ to the end of laminar interval $c$ yields:
 \begin{equation}
 \int_{x}^{c} \frac{dx}{\varepsilon + a x^2} = \int_{0}^{l} dl \label{eq:int_I_diff_eq_step1}
 \end{equation}
-Solving for $l$ results in \cite{Elaskar2017}:
+Solving for $l$ results in:
 \begin{equation}
     l(x, c) = \frac{1}{\sqrt{a \varepsilon}} \left( \tan^{-1} \left( c \sqrt{\frac{a}{\varepsilon}} \right) - \tan^{-1} \left( x \sqrt{\frac{a}{\varepsilon}} \right) \right) \label{eq:laminar_length}
 \end{equation}
 
 \par
 Hence for a given reinjected point $x$ and the width of the laminar interval $c$ the laminar length $l$ can be calculated.
-Laminar length means the number of iterations the point has to make to the end of laminar interval.
 By calculating the laminar length for many reinjected points and some fixed $c$, the average laminar length $l_{avg}$ can be calculated.
 However, that is not very practical since it is not always clear how to choose $c$.
-Fortunately, this problem was solved by formulation of the so-called characteristic relation of type-I intermittency.
+Fortunately, this problem can be avoided by approximating $l_{avg}$ with so-called characteristic relation of type-I intermittency.
 
 \section{Characteristic Relation}
 
@@ -186,8 +187,9 @@ It holds that $l_{avg} \propto 1/\sqrt{\varepsilon}$.
 This relation states that the average laminar length $l_{avg}$ is inversely proportional to the square root of the parameter $\varepsilon$.
 Thus, by calculating $\varepsilon$ of the local map in the vicinity of a fixed point $x^{*}$ the $l_{avg}$ can be estimated.
 \par
-To verify that the characteristic relation of type-I intermittency holds, a numerical simulation was conducted.
-The Algorithm~\ref{alg:char_rel} describes the simulation.
+To verify that the characteristic relation of type-I intermittency holds, a numerical experiment was conducted.
+The experiment loosely follows ideas from \cite{Elaskar2022}.
+The Algorithm~\ref{alg:char_rel} describes the experiment.
 
 \begin{algorithm}[!h]
     \caption{Characteristic Relation Verification}
@@ -224,7 +226,7 @@ The Algorithm~\ref{alg:char_rel} describes the simulation.
 \end{algorithm}
 
 \par
-The algorithm chooses a map $f_{p}$, a saddle-node bifurcation parameter $p^{*}$ and fixed points that are associated with the bifurcation.
+Algorithm~\ref{alg:char_rel} chooses a map $f_{p}$, a saddle-node bifurcation parameter $p^{*}$ and fixed points that are associated with the bifurcation.
 Next, for $M$ parameters less than $p^{*}$ narrow passages are formed between the graph of $f_{p}$ and the fixed points.
 The experiment proceeds by generating $N$ reinjected points in each of the narrow passages, computing their laminar lengths and calculating the average of them.
 In the end, the narrow passage heights $\varepsilon$ are plotted against the corresponding average laminar lengths $l_{avg}$ in log-log scale.
@@ -280,7 +282,7 @@ This might not be a big deal for individual parameters $p$, but this phenomenon 
 \par
 How a whole range of parameters might be affected can be illustrated as follows.
 Suppose that $p_{R}, p_{B}$ are some parameters near the breakpoint $p_{bif}$.
-Assume that $p_{R} \neq p_{B} \wedge p_{R} < p_{B} < p_{bif}$.
+Assume that $p_{R} \neq p_{B}$ and $p_{R} < p_{B} < p_{bif}$.
 If $p_{R}$ and $p_{B}$ are close enough to $p_{bif}$ they both have intermittent trajectories.
 Additionally, it follows that the laminar phases of $f_{p_{R}}$ are shorter than the laminar phases of $f_{p_{B}}$.
 That is because the closer the parameter is to $p_{bif}$, the longer the laminar phases.
@@ -303,8 +305,8 @@ If such two bifurcation diagrams are constructed, they will both look very diffe
     \includegraphics[width=0.95\textwidth]{Figures/bif_diag_ambiguity_creation_sketch.png}
     \caption{
         Sketch describing how to create an ambiguous bifurcation diagram. 
-        Red graph: $T^{17000}_{0}(\mathcal{P}_{4.47458285}, x_0)$. 
-        Blue graph: $T^{17000}_{0}(\mathcal{P}_{4.47458285+4 \cdot 10^{-8}}, x_0)$. 
+        Red graph: $\mathcal{T}^{17000}_{0}(\mathcal{P}_{4.47458285}, x_0)$. 
+        Blue graph: $\mathcal{T}^{17000}_{0}(\mathcal{P}_{4.47458285+4 \cdot 10^{-8}}, x_0)$. 
         Initial condition: $x_0 = 0.5$.
     }
     \label{fig:ambiguous_bif_diag}
