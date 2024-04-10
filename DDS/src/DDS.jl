@@ -2,7 +2,6 @@ module DDS
 
 using CairoMakie, Luxor 
 using ForwardDiff
-using InteractiveUtils
 using Distributions: Uniform
 using LinearAlgebra: norm
 
