@@ -11,6 +11,7 @@ This folder contains the source code used in the thesis.
 5. install dependencies using:
 ```
 import Pkg
+Pkg.activate(".")
 Pkg.instantiate()
 Pkg.precompile()
 ```
