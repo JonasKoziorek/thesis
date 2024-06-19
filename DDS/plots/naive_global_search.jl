@@ -52,11 +52,14 @@ begin
     scatter!(ax, points2, color=:grey, markersize=0.4)
     for o in 1:order
         if !isempty(points[o])
-            scatter!(ax, points[o], color=:blue, markersize=3.5)
+            scatter!(ax, points[o], color="#FF0000", markersize=4.5)
         end
     end
     display(fig)
 
     file_path = DDS.FIGURES_DIRECTORY * "naive_global_search.png"
+    save(file_path, fig)
+
+    file_path = "/mnt/c/Users/pepaz/Documents/SSZ/Prezentace/images/naive_global_search.png"
     save(file_path, fig)
 end

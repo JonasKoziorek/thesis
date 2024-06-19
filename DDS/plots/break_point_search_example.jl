@@ -26,7 +26,9 @@ begin
         x_range;
         max_iter=max_iter,
         total_n=total_n,
-        last_n=last_n
+        last_n=last_n,
+        color1="#FF0000",
+        color2="#FF0000",
     )
     ax.xlabel = L"r"
     ax.ylabel = L"\mathcal{T}_{%$(total_n-last_n)}^{%$(total_n)}(\mathcal{L}_{r}, %$(x0))"
@@ -38,5 +40,8 @@ begin
     display(fig)
 
     file_path = DDS.FIGURES_DIRECTORY * "break_point_search_example.png"
+    save(file_path, fig)
+
+    file_path = "/mnt/c/Users/pepaz/Documents/SSZ/Prezentace/images/break_point_search_example.png"
     save(file_path, fig)
 end

@@ -10,7 +10,7 @@ begin
     max_iter = 10
     x_range = (0.0, 1.0)
     fig=Figure()
-    ax = DDS.plot_NLS(
+    @time ax = DDS.plot_NLS(
         fig[1,1],
         DDS.logistic,
         x0,

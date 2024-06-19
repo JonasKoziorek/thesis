@@ -31,7 +31,7 @@ function diff_scatter2(x, y, ticks, x_axis_name, y_axis_name, size)
     return Plots.scatter(
         x, 
         y, 
-        markercolor=BLUE, 
+        markercolor="#FF0000", 
         markerstrokewidth=0,
         markersize=1.5, 
         legend=false, 

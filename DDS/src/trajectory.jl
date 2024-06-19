@@ -16,7 +16,7 @@ end
 
 function trajectory_plot(x, y; resolution=(800, 500), kwargs...)
     fig = Figure(resolution=resolution)
-    ax = trajectory_axis(fig[1,1], x, y; starting_n = starting_n, kwargs...)
+    ax = trajectory_axis(fig[1,1], x, y; kwargs...)
     return fig
 end
 

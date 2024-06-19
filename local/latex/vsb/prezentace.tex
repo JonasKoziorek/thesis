@@ -1,0 +1,235 @@
+\documentclass[lualatex,hyperref={pdfencoding=auto}]{beamer}
+\usepackage[czech]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{tikz,etoolbox,environ,ifthen,kvsetkeys,kvoptions}
+\usetheme[fei]{vsb}
+\usepackage{qcircuit}
+\usepackage{subfig}
+
+\title[Obhajoba bakalářské práce]{Algoritmická detekce intermitence typu I}
+
+\author{Jonáš Koziorek}
+\institute[KOZ0325]
+    {
+        \vspace{2mm}Vedoucí: prof. RNDr. Marek Lampart, Ph.D. \\
+        VŠB -- Technická univerzita Ostrava
+    }
+\date[5.~6.~2024]{5.~června 2024}
+
+
+\begin{document}
+
+\begin{frame}
+	\frametitle{Cíl práce}
+
+\begin{itemize}
+    \item detekovat intermitenci typu I
+    \begin{itemize}
+        \item diskrétní dynamické systémy
+        \item systémy 1. dimenze
+    \end{itemize}
+    \item upozornit na nejednoznačnost bifurkačního diagramu
+\end{itemize}
+
+\end{frame}
+
+
+
+
+\begin{frame}
+	\frametitle{Úvod do dynamických systémů}
+ 
+\begin{itemize}
+    \item Diskrétní dynamický systém: $(X, f)$,  $f: X \rightarrow X$
+    \item Počáteční podmínka: $x_0$
+    \item $n$-tá iterace: $x_{n}=f^{n}(x_0)=\underbrace{f \circ f \circ \cdots \circ f}_{n\text{-krát}}(x_0)$
+    \item Pevný bod: $f(x_{0})=x_{0}$
+    \item Periodický bod periody $n$: $f^{n}(x_{0})=x_{0}$
+    \item Periodická orbita: $\{f^{n+m}(x_0):m \in \mathbb{N}\}$
+    \item Logistické zobrazení: $\mathcal{L}_{r}(x)=rx(1-x)$, $r \in [0, 4]$, $x \in [0, 1]$
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+	\frametitle{Trajektorie}
+
+\begin{itemize}
+     \item  Postupné iterace: $f^0(x_0), f^1(x_0), f^2(x_0), f^3(x_0), \cdots  = x_0, x_1, x_2, x_3, \cdots$
+
+\end{itemize}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{./trajectory.png}
+    \caption{
+        Prvních 50 iterací systému $\mathcal{L}_{3.828}$ s $x_0=0.5$.
+    }
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Bifurkační diagram}
+ 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{bifurcationdiagram.png}
+    \caption{
+        Bifurkační diagram systému $\mathcal{L}_{r}$ pro $r \in [2.81, 3.87]$, $x_{0}=0.5$.
+    }
+\end{figure}
+ 
+ 
+\end{frame}
+
+\begin{frame}
+	\frametitle{Intermitence}
+ 
+\begin{itemize}
+     \item Alternace (pseudo) periodického a chaotického chování
+    \item $\mathcal{P}_{\varepsilon}(x) = \left[ (1+\varepsilon)x+(1-\varepsilon)x^2 \right] \pmod{1}$, $x \in [0, 1]$
+ \end{itemize}
+ 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1.0\textwidth]{intermittent_trajectory.png}
+    \caption{
+        Intermitentní trajektorie systému $\mathcal{P}_{4.47458}$ pro $x_0=0.5$.
+    }
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Intermitence typu I}
+ 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{breakpoint.png}
+    \caption{Bod zlomu v bifurkačním diagramu.}
+\end{figure}
+
+\end{frame}
+
+
+
+\begin{frame}
+	\frametitle{Nejednoznačný bifurkační diagram}
+
+\begin{figure}
+    \centering
+    {\includegraphics[width=0.9\textwidth]{pomeau_manneville_bif_comparison_big{3}.png} }
+    \qquad
+    {\includegraphics[width=0.9\textwidth]{pomeau_manneville_bif_comparison_big{4}.png} }
+    \caption{Porovnání bifurkačních diagramů pro jiný počet promítáných iterací.}
+    \label{fig:example}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Algoritmus detekce}
+    
+\begin{itemize}
+    \item Globální prohledávání
+        \begin{itemize}
+            \item Globální prohledávání hrubou silou
+            \item Detekce periodických orbit
+        \end{itemize}
+    \item Lokální prohledávání
+        \begin{itemize}
+            \item Naivní lokální prohledávání
+            \item Optimalizace pomocí hejna částic s vnořenými vrstvami
+        \end{itemize}
+    \item Vybarvení bifurkačního diagramu
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Globální prohledávání hrubou silou}
+    
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[width=0.9\textwidth]{naive_global_search.png}
+        \caption{Stabilní periodické body detekované hrubou silou.}
+    \end{figure}
+    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Detekce periodických orbit}
+    
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[width=1.0\textwidth]{upos.png}
+        \caption{Periodické body $\mathcal{L}_{3.6}(x)$ periody $6$.}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Globální prohledávání}
+    
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[width=0.9\textwidth]{bif_search.png}
+        \caption{Přibližné lokace bodů zlomu.}
+    \end{figure}
+    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Lokální prohledávání}
+    
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[width=0.9\textwidth]{break_point_search_example.png}
+        \caption{Přesná lokace bodu zlomu.}
+    \end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Vybarvení bifurkačního diagramu}
+    
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{logistic_map_coloring_example.png}
+    \caption{Vybarvení bifurkačního diagramu.}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Závěr}
+
+\begin{itemize}
+    \item Dosaženo detekce pro 1D diskrétní dynamické systémy
+    \item Upozornění na intermitenci skrze vybarvení bifurkačního diagramu
+    \item Možné vylepšení
+    \begin{itemize}
+        \item vícedimenzionální systémy
+        \item jiné typy intermitence
+        \item spojité systémy (Poincarého řez)
+        \item numerická kontinuace
+    \end{itemize}
+\end{itemize}
+
+    
+\end{frame}
+
+
+\end{document}

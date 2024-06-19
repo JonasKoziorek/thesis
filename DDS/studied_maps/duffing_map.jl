@@ -116,7 +116,7 @@ begin
 
     x0 = [-1.0, 0.0]
     p0 = [2.75, 0.0001]
-    p_range = LinRange(2.3, 2.5, 4000)
+    p_range = LinRange(2.3, 2.5, 2000)
     x_index = 1
     p_index = 1
     display(DDS.bifurcation_diagram(duffing, x0, p0, p_index, p_range, total_n, last_n, x_index))

@@ -27,7 +27,7 @@ begin
         markersize=POINT_SIZE,
         xtick_period=10,
         linewidth=LINEWIDTH, 
-        dot_color=BLUE,
+        dot_color="#FF0000",
         # title="Trajectory of logistic map for r=$(p[1]), x0=$(x0)"
     )
     ax3.xlabelsize = LATEX_FONT_SIZE
@@ -35,6 +35,9 @@ begin
     display(fig)
 
     file_path = DDS.FIGURES_DIRECTORY * "logistic_map_trajectory_example1.png"
+    save(file_path, fig)
+
+    file_path = "/mnt/c/Users/pepaz/Documents/SSZ/Prezentace/images/trajectory.png"
     save(file_path, fig)
 
     fig = Figure(
@@ -50,7 +53,7 @@ begin
         markersize=POINT_SIZE,
         xtick_period=10,
         linewidth=LINEWIDTH, 
-        dot_color=BLUE,
+        dot_color="#FF0000",
         # title="Trajectory of logistic map for r=$(p[1]), x0=$(x0)"
     )
     ax3.xlabelsize = LATEX_FONT_SIZE
@@ -149,4 +152,5 @@ begin
 
     file_path = DDS.FIGURES_DIRECTORY * "logistic_map_trajectory_example2.png"
     save(file_path, fig)
+
 end

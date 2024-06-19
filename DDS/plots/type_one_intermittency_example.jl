@@ -27,7 +27,7 @@ begin
         xtick_period=500, 
         linewidth=0.04, 
         line_color = :black,
-        dot_color = BLUE,
+        dot_color = "#FF0000",
         # title="Trajectory of Pomeau-Manneville map for ϵ=$(p[1]), x0=$(x0)",
     )
     ax.xlabelsize = LATEX_FONT_SIZE
@@ -35,6 +35,9 @@ begin
     display(fig)
 
     file_path = DDS.FIGURES_DIRECTORY * "type_one_intermittency_example1.png"
+    save(file_path, fig)
+
+    file_path = "/mnt/c/Users/pepaz/Documents/SSZ/Prezentace/images/intermittent_trajectory.png"
     save(file_path, fig)
 end
 

@@ -44,12 +44,15 @@ begin
     height_ = [0.25, 1.0]
     for (l, r, _) in bifurcation_intervals
         color = colors[i%2+1]
-        lines!(ax, [l, l], [height_...], color=color)
-        lines!(ax, [r, r], [height_...], color=color)
+        lines!(ax, [l, l], [height_...], color="#FF0000", linewidth=3)
+        lines!(ax, [r, r], [height_...], color="#FF0000", linewidth=3)
         i+=1
     end
     display(fig)
 
     file_path = DDS.FIGURES_DIRECTORY * "bif_diag_search_example.png"
+    save(file_path, fig)
+
+    file_path = "/mnt/c/Users/pepaz/Documents/SSZ/Prezentace/images/bif_search.png"
     save(file_path, fig)
 end

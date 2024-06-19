@@ -3,8 +3,8 @@ using DDS
 begin # logistic map
     x0 = 0.5
     p = [3.85]
-    p_range = LinRange(0,4, 8000)
-    DDS.bifurcation_diagram(DDS.logistic, x0, p, 1, p_range, 1000, 100)
+    p_range = LinRange(3.5,3.572, 4000)
+    DDS.bifurcation_diagram(DDS.logistic, x0, p, 1, p_range, 1000, 100; ax_aspect=2)
 end
 
 begin # logistic map in the negative range

@@ -133,3 +133,38 @@ begin
     file_path = DDS.FIGURES_DIRECTORY * "logistic_complex.png"
     save(file_path, fig)
 end
+
+begin
+    CLINEWIDTH = 5
+    LATEX_FONT_SIZE = 30
+
+    x0 = 0.5
+
+    fig = Figure(
+        resolution = (900, 500),
+        fontsize=20,
+    )
+
+    total_n = 2000
+    last_n = 200
+    x0 = 0.5
+    p = [4.5]
+    p_range = LinRange(3.81, 3.87, 2000)
+    ax = DDS.bifurcation_diagram!(
+        fig[1,1], logistic, x0, p, 1, p_range, total_n, last_n;
+        ax_aspect=2,
+        xticks = LinRange(3.81, 3.87, 6),
+    )
+    ax.xlabel = L"r"
+    ax.ylabel = L"\mathcal{T}_{%$(total_n-last_n)}^{%$(total_n)}(\mathcal{L}_{r}, %$(x0))"
+    ax.xlabelsize = LATEX_FONT_SIZE
+    ax.ylabelsize = LATEX_FONT_SIZE
+    left_boundary = 3.827
+    right_boundary = 3.830
+    lines!(ax, [left_boundary, right_boundary, right_boundary, left_boundary, left_boundary], [0.1, 0.1, 1, 1, 0.1], color="#FF0000", linewidth = 3)
+
+    display(fig)
+
+    file_path = "/mnt/c/Users/pepaz/Documents/SSZ/Prezentace/images/breakpoint.png"
+    save(file_path, fig)
+end

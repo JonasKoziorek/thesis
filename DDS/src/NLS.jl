@@ -25,6 +25,8 @@ function plot_NLS(
         total_n=1000,
         last_n=100,
         range_partition = 2000, 
+        color1=DDS.BLUE,
+        color2=DDS.RED,
         kwargs...
     )
     left_boundary, right_boundary = NLS(map, param_range, o, x_range; kwargs...)
@@ -42,7 +44,7 @@ function plot_NLS(
         last_n,
         x_index
     )
-    lines!(ax, [left_boundary, left_boundary], [x_range...], color=DDS.BLUE, linewidth=3)
-    lines!(ax, [right_boundary, right_boundary], [x_range...], color=DDS.RED, linewidth=3)
+    lines!(ax, [left_boundary, left_boundary], [x_range...], color=color1, linewidth=3)
+    lines!(ax, [right_boundary, right_boundary], [x_range...], color=color2, linewidth=3)
     return ax
 end

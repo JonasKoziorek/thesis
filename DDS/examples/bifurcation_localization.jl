@@ -7,7 +7,7 @@ begin
     logistic = DDS.logistic
 
     param_index = 1
-    param_range = LinRange(3.6, 3.7, 4000)
+    param_range = LinRange(3.6, 3.7, 2000)
     # param_range = LinRange(3.64, 3.65, 100)
     x_range = (0.0, 1.0)
     orbit_limit = 30
